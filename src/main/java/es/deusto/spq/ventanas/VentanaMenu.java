@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import java.net.URL;
+
 import es.deusto.spq.main.Main;
 
 
@@ -44,7 +46,9 @@ public class VentanaMenu extends JFrame {
 		JPanel panelCentral = new JPanel(new FlowLayout());
 		panelCentral.setBackground(Color.decode("#e0a370"));
 		BBuzon = new JButton();
-		ImageIcon imagen = new ImageIcon("buzon.jpg");
+		// Código ejemplo para importar una foto
+		URL urlImagen = getClass().getResource("../fotos/buzon.jpg"); // Obtener URL de la imagen
+		ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
 		BBuzon.setBounds(100, 100, 50, 50);
 		Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
 		BBuzon.setIcon(imag);
