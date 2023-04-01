@@ -7,11 +7,15 @@ public class Reserva {
     private LocalDate fecha;
     private Time hora;
     private int numPersonas;
+    private int key;
+    private boolean cancelada;
 
-    public Reserva(LocalDate fecha, Time hora, int numPersonas){
+    public Reserva(LocalDate fecha, Time hora, int numPersonas, int key, boolean cancelada){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
+        this.key = key;
+        this.cancelada = cancelada;
     }
 
     public Time getHora() {
@@ -26,12 +30,35 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public int getNumPersonas() {
-        return numPersonas;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
     public void setNumPersonas(int numPersonas) {
         this.numPersonas = numPersonas;
     }
+
+    public int getNumPersonas() {
+        return numPersonas;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public boolean getCancelada() {
+        return cancelada;
+    }
+
+    public void setCancelada(boolean cancelada) {
+        this.cancelada = cancelada;
+    }
     
 }
+
+
+
