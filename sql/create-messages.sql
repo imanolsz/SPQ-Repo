@@ -12,17 +12,16 @@ GRANT ALL ON messagesDB.* TO 'spq'@'localhost';
 
 /* Tabla Cliente */
 CREATE TABLE IF NOT EXISTS Clientes ( /* Creamos la tabla de clientes solo sino existe */
-id INTEGER PRIMARY KEY,
-nombre TEXT NOT NULL,
-password TEXT NOT NULL 
+  id INTEGER PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  password TEXT NOT NULL 
 );
-
-
 
 /* Tabla Reservas */
 CREATE TABLE IF NOT EXISTS Reservas ( /* Creamos la tabla de reservas solo sino existe */
   id INTEGER PRIMARY KEY,
   nombre TEXT,
+  nomre TEXT,
   fecha TEXT,
   hora TEXT,
   cantidad_personas INTEGER,
