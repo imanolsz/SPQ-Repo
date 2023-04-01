@@ -1,6 +1,8 @@
 .classpath
 target/
 .DS_Store
+src/main/resources/datanucleus.properties
+
 
 #GITIGNORE JAVA
 # Compiled class file
@@ -103,3 +105,4 @@ local.properties
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 .project
+
