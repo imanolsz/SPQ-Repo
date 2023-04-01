@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @PersistenceCapable
 public class User {
 	@PrimaryKey
-	String login=null;
+	String id=null;
 	String password=null;
 	
 	@Persistent(mappedBy="user", dependentElement="true")
@@ -24,8 +24,8 @@ public class User {
 	@Persistent(mappedBy = "cliente")
 	private List<Reserva> reservas = new ArrayList<>();
 	
-	public User(String login, String password) {
-		this.login = login;
+	public User(String id, String password) {
+		this.id = id;
 		this.password = password;
 	}
 	
@@ -38,7 +38,7 @@ public class User {
 	}
 
 	public String getLogin() {
-		return this.login;
+		return this.id;
 	}
 	
 	public String getPassword() {
@@ -56,6 +56,6 @@ public class User {
 		for (Message message: this.messages) {
 			messagesStr.append(message.toString() + " - ");
 		}
-        return "User: login --> " + this.login + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
+        return "User: login --> " + this.id + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
     }
 }
