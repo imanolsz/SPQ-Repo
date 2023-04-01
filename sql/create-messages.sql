@@ -10,19 +10,12 @@ CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
 
 GRANT ALL ON messagesDB.* TO 'spq'@'localhost';
 
-/* Prueba */
-CREATE TABLE confirmadas (
+/* Tabla Reservas */
+CREATE TABLE IF NOT EXISTS Reservas ( /* Creamos la tabla de reservas solo sino existe */
   id INTEGER PRIMARY KEY,
   nombre TEXT,
   fecha TEXT,
   hora TEXT,
-  cantidad_personas INTEGER
-);
-
-CREATE TABLE canceladas (
-  id INTEGER PRIMARY KEY,
-  nombre TEXT,
-  fecha TEXT,
-  hora TEXT,
-  cantidad_personas INTEGER
+  cantidad_personas INTEGER,
+  Cancelada BOOLEAN /* Si esta cancelado se pone atrue, sino la reseva esta confirmada por defecto */ 
 );
