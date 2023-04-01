@@ -1,5 +1,7 @@
 package es.deusto.spq.ventanas;
 
+import java.net.URL;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -77,7 +79,9 @@ public class VentanaPrincipal extends JFrame {
 		});
 		
 		//ETIQUETA IMAGEN
-		JLabel etiquetaImg = new JLabel(new ImageIcon("LOGO.jpg"));
+		URL urlImagen = getClass().getResource("../fotos/LOGO.jpg"); // // Obtener URL de la imagen
+        ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
+		JLabel etiquetaImg = new JLabel(imagen); // Crear JLabel con la imagen 
 		etiquetaImg.setBounds(10, 20, 512, 512);
 		panelCentral.add(etiquetaImg);
 		getContentPane().add(panelCentral,"Center");
