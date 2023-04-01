@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Clientes ( /* Creamos la tabla de clientes solo sino 
 CREATE TABLE IF NOT EXISTS Reservas ( /* Creamos la tabla de reservas solo sino existe */
   id INTEGER PRIMARY KEY,
   nombre TEXT,
-  nome TEXT,
+  noadasdadme TEXT,
   fecha TEXT,
   hora TEXT,
   cantidad_personas INTEGER,
