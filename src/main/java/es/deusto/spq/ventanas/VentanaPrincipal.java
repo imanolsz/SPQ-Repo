@@ -1,3 +1,5 @@
+package es.deusto.spq.ventanas;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -11,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import es.deusto.spq.main.Main;
 
 
 

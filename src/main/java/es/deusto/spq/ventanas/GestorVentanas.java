@@ -1,3 +1,5 @@
+package es.deusto.spq.ventanas;
+
 public class GestorVentanas {
 	
 	VentanaInicio VentanaInicioSesion;
