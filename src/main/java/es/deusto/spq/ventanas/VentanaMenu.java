@@ -1,6 +1,5 @@
 package es.deusto.spq.ventanas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -9,21 +8,13 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import java.net.URL;
 
 import es.deusto.spq.main.Main;
 
-
-
 public class VentanaMenu extends JFrame {
-
 	/**
 	 * 
 	 */
@@ -36,7 +27,6 @@ public class VentanaMenu extends JFrame {
 	// private Thread t;
 
 	public VentanaMenu() {
-
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("MENU");
 		setSize(800, 600);
@@ -81,15 +71,11 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 
-
 		BBuzon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaBuzon().setVisible(true);
 				dispose();
 			}
-		});
-
-		
-
+		});	
 	}
 }

@@ -1,8 +1,5 @@
 package es.deusto.spq.ventanas;
 
-import es.deusto.spq.restaurante.Mensaje;
-import java.util.List;
-
 public class GestorVentanas {
 	
 	VentanaInicio VentanaInicioSesion;

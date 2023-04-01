@@ -1,33 +1,13 @@
 package es.deusto.spq.ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.event.*;
 import java.util.List;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import es.deusto.spq.restaurante.Mensaje;
+
 import es.deusto.spq.modelos.ModeloTablaMensajes;
-import javax.swing.JTable;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import java.net.URL;
-import javax.swing.JTextArea;
-
-import es.deusto.spq.main.Main;
-
-
+import es.deusto.spq.server.jdo.Mensaje;
 
 public class VentanaBuzon extends JFrame {
 

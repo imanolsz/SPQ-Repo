@@ -1,15 +1,10 @@
 package es.deusto.spq.main;
 
 
-import javax.ws.rs.client.Client;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import es.deusto.spq.client.ExampleClient;
 import es.deusto.spq.ventanas.GestorVentanas;
-import es.deusto.spq.restaurante.Mensaje;
-import java.util.List;
-import java.util.ArrayList;
-import java.time.LocalDate;
 
 public class Main {
     private static GestorVentanas gestorVentanas;
