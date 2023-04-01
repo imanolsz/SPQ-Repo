@@ -7,21 +7,25 @@ import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.Persistent;
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 
 @PersistenceCapable
 public class User {
 	@PrimaryKey
-	String login=null;
+	String id=null;
 	String password=null;
 	
 	@Persistent(mappedBy="user", dependentElement="true")
 	@Join
 	Set<Message> messages = new HashSet<>();
 	
+	// La propiedad reservas es mapeada por la propiedad cliente en la clase Reserva. La propiedad reservas es una lista de objetos Reserva asociados a un Cliente.
+	@Persistent(mappedBy = "cliente")
+	private List<Reserva> reservas = new ArrayList<>();
 	
-	
-	public User(String login, String password) {
-		this.login = login;
+	public User(String id, String password) {
+		this.id = id;
 		this.password = password;
 	}
 	
@@ -34,7 +38,7 @@ public class User {
 	}
 
 	public String getLogin() {
-		return this.login;
+		return this.id;
 	}
 	
 	public String getPassword() {
@@ -52,6 +56,6 @@ public class User {
 		for (Message message: this.messages) {
 			messagesStr.append(message.toString() + " - ");
 		}
-        return "User: login --> " + this.login + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
+        return "User: login --> " + this.id + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
     }
 }

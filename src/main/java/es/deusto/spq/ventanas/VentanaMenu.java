@@ -81,6 +81,14 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 
+
+		BBuzon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaBuzon().setVisible(true);
+				dispose();
+			}
+		});
+
 		
 
 	}
