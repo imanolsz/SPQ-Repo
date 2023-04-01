@@ -1,4 +1,4 @@
-package es.deusto.spq.restaurante;
+package es.deusto.spq.server.jdo.restaurante;
 
 import java.sql.*;
 import java.time.LocalDate;

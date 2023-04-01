@@ -19,11 +19,6 @@ import org.apache.logging.log4j.Logger;
 public class ExampleClient {
 
 	protected static final Logger logger = LogManager.getLogger();
-
-	private static final String USER = "dipina";
-	private static final String PASSWORD = "dipina";
-
-
 	private Client client;
 	private WebTarget webTarget;
 
@@ -71,17 +66,4 @@ public class ExampleClient {
 		}
 	}
 
-	public static void main(String[] args) {
-		if (args.length != 2) {
-			logger.info("Use: java Client.Client [host] [port]");
-			System.exit(0);
-		}
-
-		String hostname = args[0];
-		String port = args[1];
-
-		ExampleClient exampleClient = new ExampleClient(hostname, port);
-		exampleClient.registerUser(USER, PASSWORD);
-		exampleClient.sayMessage(USER, PASSWORD, "This is a test!...");
-	}
 }
