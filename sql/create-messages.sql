@@ -9,3 +9,20 @@ CREATE SCHEMA messagesDB;
 CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
 
 GRANT ALL ON messagesDB.* TO 'spq'@'localhost';
+
+/* Prueba */
+CREATE TABLE confirmadas (
+  id INTEGER PRIMARY KEY,
+  nombre TEXT,
+  fecha TEXT,
+  hora TEXT,
+  cantidad_personas INTEGER
+);
+
+CREATE TABLE canceladas (
+  id INTEGER PRIMARY KEY,
+  nombre TEXT,
+  fecha TEXT,
+  hora TEXT,
+  cantidad_personas INTEGER
+);
