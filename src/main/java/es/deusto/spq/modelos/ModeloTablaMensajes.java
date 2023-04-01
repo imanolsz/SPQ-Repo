@@ -1,8 +1,9 @@
 package es.deusto.spq.modelos;
 
-import es.deusto.spq.restaurante.Mensaje;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+
+import es.deusto.spq.server.jdo.Mensaje;
 
 public class ModeloTablaMensajes extends AbstractTableModel {
 
