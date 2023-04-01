@@ -21,11 +21,10 @@ CREATE TABLE IF NOT EXISTS Clientes ( /* Creamos la tabla de clientes solo sino 
 CREATE TABLE IF NOT EXISTS Reservas ( /* Creamos la tabla de reservas solo sino existe */
   id INTEGER PRIMARY KEY,
   nombre TEXT,
-  noadsaasaasdadme TEXT,
   fecha TEXT,
   hora TEXT,
   cantidad_personas INTEGER,
-  Cancelada BOOLEAN, /* Si esta cancelado se pone atrue, sino la reseva esta confirmada por defecto */ 
+  Cancelada BOOLEAN, /* Si esta cancelado se pone a true, sino la reseva esta confirmada por defecto */ 
   FOREIGN KEY (id_cliente) REFERENCES Clientes(id)
 );
 
