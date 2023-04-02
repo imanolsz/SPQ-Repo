@@ -250,11 +250,6 @@ public class Resource {
 		return Response.ok(notifications).build();
 	}
 	
-	
-
-	
-	
-
 	@GET
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -299,7 +294,7 @@ public class Resource {
 			}
 			if(reserva != null){
 				reserva.setId(reservaData.getId());
-				reserva.setFecha(reservaData.getFecha());
+				//reserva.setFecha(reservaData.getFecha());
 				reserva.setCancelada(reservaData.getCancelada());
 				reserva.setHora(reservaData.getHora());
 				reserva.setNumPersonas(reservaData.getNumPersonas());

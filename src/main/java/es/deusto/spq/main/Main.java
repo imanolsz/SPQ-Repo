@@ -35,7 +35,7 @@ public class Main {
 		// Notificaciones.add(new Notificacion("Solicitud de información", "Buenas tardes, quisiera solicitar información sobre los precios del menú del día", LocalDate.now()));
 	
 		
-		// gestorVentanas = new GestorVentanas(Notificaciones);
+		//gestorVentanas = new GestorVentanas(Notificaciones);
 		//gestorVentanas.getVentanaPrincipal().setVisible(true);
 	}
 	public static GestorVentanas getGestorVentanas() {
