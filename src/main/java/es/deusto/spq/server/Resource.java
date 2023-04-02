@@ -246,7 +246,6 @@ public class Resource {
             logger.info("Realizando reserva: '{}'", reservaData.getId());
 			pm.makePersistent(reserva);
 			tx.commit();
-			NotificacionData.guardarNotificacionDataBD(notificacionData);
 			return Response.ok().build();
         }
         finally
