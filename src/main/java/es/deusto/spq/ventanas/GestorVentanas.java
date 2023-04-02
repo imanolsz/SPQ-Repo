@@ -13,7 +13,7 @@ public class GestorVentanas {
 		VentanaInicioSesion = new VentanaInicio();
 		VentanaRegistro = new VentanaRegistro();
 		VentanaMenu = new VentanaMenu();
-		//VentanaBuzon = new VentanaBuzon(mensajes);
+		//VentanaBuzon = new VentanaBuzon(notificaciones);
 	}
 	
 	public VentanaPrincipal getVentanaPrincipal() {

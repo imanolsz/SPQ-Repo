@@ -41,10 +41,10 @@ public class VentanaPrincipal extends JFrame {
 		JPanel panelSuperior = new JPanel(new BorderLayout());
 		
 		//PanelCentral
-		JLabel lMensaje = new JLabel("                       Cooking Mama");
-		lMensaje.setForeground(Color.black);
-		lMensaje.setFont(new Font("Serif", Font.PLAIN, 44));
-		panelSuperior.add(lMensaje);
+		JLabel lNotificacion = new JLabel("                       Cooking Mama");
+		lNotificacion.setForeground(Color.black);
+		lNotificacion.setFont(new Font("Serif", Font.PLAIN, 44));
+		panelSuperior.add(lNotificacion);
 		getContentPane().add(panelSuperior,"North");
 		panelSuperior.setBackground(Color.decode("#e0a370"));
 		
