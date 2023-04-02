@@ -17,11 +17,13 @@ import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User; // Mal
 
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +34,7 @@ public class ExampleClient {
 	protected static final Logger logger = LogManager.getLogger();
 	private Client client;
 	private WebTarget webTarget;
-	int ID = 0;
+	private long token = -1;
 
 	public ExampleClient(String hostname, String port) {
 		client = ClientBuilder.newClient();
@@ -68,6 +70,19 @@ public class ExampleClient {
 		}
 		return userData;
 	}
+
+	public void logout() {
+		WebTarget registerUserWebTarget = webTarget.path("logout");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.post(Entity.entity(this.token, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
+		}
+		this.token = -1;
+	}
+
 	public void sayMessage(String login, String password, String message) {
 		WebTarget sayHelloWebTarget = webTarget.path("sayMessage");
 		Invocation.Builder invocationBuilder = sayHelloWebTarget.request(MediaType.APPLICATION_JSON);
@@ -117,6 +132,7 @@ public class ExampleClient {
 		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
 
 
+<<<<<<< HEAD
 		//creo una notificacionData para el usuario
 		NotificacionData notificacionData;
 		notificacionData.setIDNotificDacionata(ID);
@@ -125,6 +141,16 @@ public class ExampleClient {
 		notificacionData.setAsunto("Confirmacion de reserva");
 		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
 		NotificacionData.guardarNotifDicacionataBD(notificacionData);
+=======
+		//creo una notificacion para el usuario
+		Notificacion notificacion;
+		//notificacion.setIDNotificacion(ID);
+		//ID += 1;
+		// notificacion.setFecha(localDate);
+		// notificacion.setAsunto("Confirmacion de reserva");
+		// notificacion.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
+		// Notificacion.guardarNotificacionBD(notificacion);
+>>>>>>> f2cdee43b1508ad96b25512f81e57541f016bd24
 		
 		ReservaData reservaData = new ReservaData();
 		reservaData.setFecha(fecha);
@@ -162,6 +188,10 @@ public class ExampleClient {
 			}
 		}
 	}
+	public long getToken() {
+		return token;
+	}
+
 
 	public List<ReservaData> getReservasFiltradas() {
 		WebTarget getReservasWebTarget = webTarget.path("admin/getReservas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
