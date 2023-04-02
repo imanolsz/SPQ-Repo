@@ -1,11 +1,8 @@
 package es.deusto.spq.server.jdo;
 import java.time.LocalDate;
 
-import javax.jdo.JDOHelper;
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.annotations.*;
-import javax.jdo.Transaction;
+
 
 @PersistenceCapable(detachable="true")
 public class Notificacion {
@@ -65,25 +62,7 @@ public class Notificacion {
 
 
 
-    public static void guardarNotificacionBD(Notificacion notificacion) {
-        // insert to notification a test notification
-        PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-        PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx = pm.currentTransaction();
-        
-        try {
-            tx.begin();
-            pm.makePersistent(notificacion);
-            tx.commit();
-        } catch (Exception ex) {
-            System.out.println(" $ Error storing an object: " + ex.getMessage());
-        } finally {
-            if (tx.isActive()) {
-                tx.rollback();
-            }
-            pm.close();
-        }
-    }
+
 
 
 }
