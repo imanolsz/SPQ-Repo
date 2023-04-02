@@ -87,9 +87,9 @@ public class Resource {
 	public Response registerUser(UserData userData) {
 		try
         {	
+			User user = null;
             tx.begin();
             logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
-			User user = null;
 			try {
 				user = pm.getObjectById(User.class, userData.getId());
 			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
@@ -115,7 +115,80 @@ public class Resource {
             {
                 tx.rollback();
             }
-      
+		}
+	}
+	@POST
+	@Path("/login")
+	public Response loginUser(UserData userData) {
+		User user = null;
+		try
+        {	
+            tx.begin();
+            logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
+			try {
+				user = pm.getObjectById(User.class, userData.getId());
+			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+				logger.info("Exception launched: {}", jonfe.getMessage());
+			}
+			try (Query<?> q = pm.newQuery("SELECT FROM " + User.class.getName() + " WHERE login == \"" + user.getId() + "\" &&  password == \"" + user.getPassword() + "\" && admin == \""+ user.isAdmin()+"\"")) {
+				q.setUnique(true);
+				user = (User)q.execute();
+				
+				logger.info("User: {}", user);
+				if (user != null)  {
+					if(user.isAdmin()){
+						logger.info("Admin logged: {}", user);
+					}else{
+						logger.info("User logged: {}", user);
+					}
+					pm.makePersistent(user);					 
+				}else{
+					try {
+						user = pm.getObjectById(User.class, userData.getId());
+					} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+						logger.info("Exception launched: {}", jonfe.getMessage());
+					}
+					try (Query<?> q2 = pm.newQuery("SELECT FROM" + User.class.getName() + " WHERE login == \"" + user.getId() + " \"")){
+						q2.setUnique(true);
+						user = (User)q.execute();
+						logger.info("User: {}", user);
+						if (user != null)  {
+							logger.info("Contraseña incorrecta");
+							pm.makePersistent(user);					 
+						}else{
+							try {
+								user = pm.getObjectById(User.class, userData.getId());
+							} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+								logger.info("Exception launched: {}", jonfe.getMessage());
+							}
+							try (Query<?> q3= pm.newQuery("SELECT FROM" + User.class.getName() + " WHERE password == \"" + user.getId() + " \"")){
+								q3.setUnique(true);
+								user = (User)q.execute();
+								logger.info("User: {}", user);
+								if (user != null)  {
+									logger.info("Nombre de usuario  	incorrecto");
+									pm.makePersistent(user);		 
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			tx.commit();
+			return Response.ok().build();
+        }
+        finally
+        {
+			if (tx.isActive())
+            {
+				tx.rollback();
+            }
 		}
 	}
 

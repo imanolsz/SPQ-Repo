@@ -4,6 +4,7 @@ public class UserData {
 
     private String id;
     private String password;
+    private boolean admin;
 
     public UserData() {
         // required by serialization
@@ -27,5 +28,13 @@ public class UserData {
 
     public String toString() {
         return "[id=" + id + ", password=" + password + "]";
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }
