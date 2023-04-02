@@ -18,6 +18,7 @@ import es.deusto.spq.server.jdo.Notificacion;
 
 import java.util.ArrayList;
 import java.util.List;
+import es.deusto.spq.server.jdo.User;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,7 +48,21 @@ public class ExampleClient {
 			logger.info("User correctly registered");
 		}
 	}
-
+	public UserData loginUser(String login, String password){
+		WebTarget registerUserWebTarget = webTarget.path("login");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		
+		UserData userData = new UserData();
+		userData.setId(login);
+		userData.setPassword(password);
+		Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly logged.");
+		}
+		return userData;
+	}
 	public void sayMessage(String login, String password, String message) {
 		WebTarget sayHelloWebTarget = webTarget.path("sayMessage");
 		Invocation.Builder invocationBuilder = sayHelloWebTarget.request(MediaType.APPLICATION_JSON);

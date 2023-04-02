@@ -15,20 +15,28 @@ public class User {
 	@PrimaryKey
 	String id=null;
 	String password=null;
+	boolean admin = false;
 	
 	@Persistent(mappedBy="user", dependentElement="true")
 	@Join
 	Set<Message> messages = new HashSet<>();
 	
 	// La propiedad reservas es mapeada por la propiedad cliente en la clase Reserva. La propiedad reservas es una lista de objetos Reserva asociados a un Cliente.
-	@Persistent(mappedBy = "user")
+	@Persistent(mappedBy = "cliente")
 	private List<Reserva> reservas = new ArrayList<>();
 	
+	// CONSTRUCTOR Para inicializar un usuario sin permisos de administrador
 	public User(String id, String password) {
 		this.id = id;
 		this.password = password;
+		this.admin = false;
 	}
-	
+	// CONSTRUCTOR Para inicializar un usuario con permisos (para crear admin)
+	public User(String id, String password, boolean admin) {
+		this.id = id;
+		this.password = password;
+		this.admin = admin;
+	}
 	public void addMessage(Message message) {
 		messages.add(message);
 	}
@@ -37,7 +45,7 @@ public class User {
 		messages.remove(message);
 	}
 
-	public String getLogin() {
+	public String getId() {
 		return this.id;
 	}
 	
@@ -49,7 +57,15 @@ public class User {
 		this.password = password;
 	}
 	
-	 public Set<Message> getMessages() {return this.messages;}
+	 public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public Set<Message> getMessages() {return this.messages;}
 	 
 	 public String toString() {
 		StringBuilder messagesStr = new StringBuilder();

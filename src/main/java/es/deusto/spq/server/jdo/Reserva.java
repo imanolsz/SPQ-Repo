@@ -26,14 +26,22 @@ public class Reserva {
 
     @ForeignKey
     @Persistent
-    private User user;
+    private String username;
 
-    public Reserva(LocalDate fecha, Time hora, int numPersonas, boolean cancelada, User user){
+    public Reserva(LocalDate fecha, Time hora, int numPersonas, boolean cancelada, String username){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
-        this.user = user;
+        this.username = username;
+    }
+    
+    public void actualizarReserva(Reserva reserva) {
+        this.setFecha(reserva.getFecha());
+        this.setHora(reserva.getHora());
+        this.setNumPersonas(reserva.getNumPersonas());
+        this.setCancelada(reserva.getCancelada());
+        this.setUsername(reserva.getUsername());
     }
     
     public Time getHora() {
@@ -68,12 +76,20 @@ public class Reserva {
         this.cancelada = cancelada;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
 }
