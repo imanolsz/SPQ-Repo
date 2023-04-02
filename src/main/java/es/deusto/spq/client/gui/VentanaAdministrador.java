@@ -38,13 +38,14 @@ public class VentanaAdministrador extends JFrame {
         List<ReservaData> reservas = Main.getExampleClient().getReservas();
         if (reservas != null) {
             DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("ID");
             model.addColumn("Fecha");
             model.addColumn("Hora");
             model.addColumn("Canelada");
             model.addColumn("NumPersonas");
             model.addColumn("UserData");
             for (ReservaData reserva : reservas) {
-                model.addRow(new Object[]{reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
+                model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
             }
             tablaReservas.setModel(model);
         }

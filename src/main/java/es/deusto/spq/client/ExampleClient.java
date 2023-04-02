@@ -132,7 +132,6 @@ public class ExampleClient {
 		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
 
 
-<<<<<<< HEAD
 		//creo una notificacionData para el usuario
 		NotificacionData notificacionData;
 		notificacionData.setIDNotificDacionata(ID);
@@ -141,16 +140,6 @@ public class ExampleClient {
 		notificacionData.setAsunto("Confirmacion de reserva");
 		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
 		NotificacionData.guardarNotifDicacionataBD(notificacionData);
-=======
-		//creo una notificacion para el usuario
-		Notificacion notificacion;
-		//notificacion.setIDNotificacion(ID);
-		//ID += 1;
-		// notificacion.setFecha(localDate);
-		// notificacion.setAsunto("Confirmacion de reserva");
-		// notificacion.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
-		// Notificacion.guardarNotificacionBD(notificacion);
->>>>>>> f2cdee43b1508ad96b25512f81e57541f016bd24
 		
 		ReservaData reservaData = new ReservaData();
 		reservaData.setFecha(fecha);
@@ -212,6 +201,24 @@ public class ExampleClient {
 				logger.error("Error al obtener las reservas: ", e);
 				throw new RuntimeException("Error al obtener las reservas", e);
 			}
+		}
+	}
+
+	public void cancelarReserva(ReservaData reserva) {
+		WebTarget registerUserWebTarget = webTarget.path("cancelarReserva");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		
+		ReservaData reservaData = new ReservaData();
+		reservaData.setFecha(reserva.getFecha());
+		reservaData.setHora(reserva.getHora());
+		reservaData.setCancelada(reserva.getCancelada());
+		reservaData.setNumPersonas(reserva.getNumPersonas());
+		reservaData.setUser(reserva.getUser());
+		Response response = invocationBuilder.post(null);
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
 		}
 	}
 
