@@ -2,6 +2,7 @@ package es.deusto.spq.server.jdo;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.jdo.annotations.*;
 
@@ -13,7 +14,7 @@ public class Reserva {
     private long id;
     
     @Persistent
-    private LocalDate fecha;
+    private Date fecha;
     
     @Persistent
     private Time hora;
@@ -28,7 +29,7 @@ public class Reserva {
     @Persistent
     private String username;
 
-    public Reserva(LocalDate fecha, Time hora, int numPersonas, boolean cancelada, String username){
+    public Reserva(Date fecha, Time hora, int numPersonas, boolean cancelada, String username){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
@@ -36,13 +37,13 @@ public class Reserva {
         this.username = username;
     }
     
-    public void actualizarReserva(Reserva reserva) {
-        this.setFecha(reserva.getFecha());
-        this.setHora(reserva.getHora());
-        this.setNumPersonas(reserva.getNumPersonas());
-        this.setCancelada(reserva.getCancelada());
-        this.setUsername(reserva.getUsername());
-    }
+    // public void actualizarReserva(Reserva reserva) {
+    //     this.setFecha(reserva.getFecha());
+    //     this.setHora(reserva.getHora());
+    //     this.setNumPersonas(reserva.getNumPersonas());
+    //     this.setCancelada(reserva.getCancelada());
+    //     this.setUsername(reserva.getUsername());
+    // }
     
     public Time getHora() {
         return hora;
@@ -52,11 +53,11 @@ public class Reserva {
         this.hora = hora;
     }
     
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
     

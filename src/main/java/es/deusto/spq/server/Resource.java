@@ -194,6 +194,28 @@ public class Resource {
 	}
 
 	@POST
+	@Path("/realizarReserva")
+	public Response realizarReserva(ReservaData reservaData) {
+		try
+        {	
+			Reserva reserva = null;
+            tx.begin();
+			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getusername());
+            logger.info("Realizando reserva: '{}'", reservaData.getId());
+			
+			tx.commit();
+			return Response.ok().build();
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+		}
+	}
+
+	@POST
 	@Path("/getNotifications")
 	public Response getNotifications(User userParam) {
 		List<Notificacion> notifications = new ArrayList<>();
@@ -275,7 +297,7 @@ public class Resource {
 			}
 			if(reserva != null){
 				reserva.setId(reservaData.getId());
-				reserva.setFecha(reservaData.getFecha());
+				//reserva.setFecha(reservaData.getFecha());
 				reserva.setCancelada(reservaData.getCancelada());
 				reserva.setHora(reservaData.getHora());
 				reserva.setNumPersonas(reservaData.getNumPersonas());
