@@ -8,6 +8,7 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
+import javax.validation.constraints.Null;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
@@ -24,7 +25,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import es.deusto.spq.server.jdo.Notificacion;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a52ec42ce9d26979c35b3e41c56dd87455a0f7dc
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;

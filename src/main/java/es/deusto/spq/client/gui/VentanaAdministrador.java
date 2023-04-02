@@ -1,9 +1,18 @@
 package es.deusto.spq.client.gui;
 
-import javax.swing.*;
+import java.util.List;
 
-public class AdminWindow extends JFrame {
-    public AdminWindow() {
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import es.deusto.spq.client.*;
+import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.ReservaData;
+
+public class VentanaAdministrador extends JFrame {
+    private JTable tablaReservas;
+
+    public VentanaAdministrador() {
         super("Ventana de Administración");
 
         // Crear etiqueta para el título
@@ -21,6 +30,25 @@ public class AdminWindow extends JFrame {
         container.add(editarReservaButton);
         container.add(eliminarReservaButton);
 
+        //Crear la tabla
+        tablaReservas = new JTable();
+        container.add(tablaReservas);
+
+
+        List<ReservaData> reservas = Main.getExampleClient().getReservas();
+        if (reservas != null) {
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Fecha");
+            model.addColumn("Hora");
+            model.addColumn("Canelada");
+            model.addColumn("NumPersonas");
+            model.addColumn("UserData");
+            for (ReservaData reserva : reservas) {
+                model.addRow(new Object[]{reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
+            }
+            tablaReservas.setModel(model);
+        }
+
         // Configurar la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(400, 300);
@@ -30,6 +58,7 @@ public class AdminWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        AdminWindow adminWindow = new AdminWindow();
+        VentanaAdministrador ventana = new VentanaAdministrador();
     }
+
 }
