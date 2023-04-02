@@ -1,5 +1,8 @@
 package es.deusto.spq.server;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
@@ -11,6 +14,7 @@ import es.deusto.spq.server.jdo.Message;
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.UserData;
+import es.deusto.spq.server.jdo.*;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -30,8 +34,8 @@ public class Resource {
 	protected static final Logger logger = LogManager.getLogger();
 
 	private int cont = 0;
-	private PersistenceManager pm=null;
-	private Transaction tx=null;
+	private PersistenceManager pm=null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
+	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
 
 	public Resource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
@@ -120,5 +124,27 @@ public class Resource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response sayHello() {
 		return Response.ok("Hello world!").build();
+	}
+
+	@GET
+	@Path("/admin/reservas")
+	public Response getReservas() {
+		try { 
+			tx.begin(); // Comienza una transacción para realizar operaciones en la base de datos.
+			List<Reserva> reservas = new ArrayList<>();
+			Query<Reserva> query = pm.newQuery(Reserva.class); // Crea una instancia de una consulta
+			query.setFilter("cancelada == true || cancelada == false"); // Filtro para la consulta, devolverá todas las reservas, tanto canceladas como no canceladas
+			query.setOrdering("fecha desc, hora asc"); // Orden de la consulta, Las reservas se ordenan primero por fecha y luego por hora
+			reservas = query.executeList(); // Ejecuta una consulta en la base de datos y devuelve los resultados en forma de una lista de objetos
+			tx.commit(); // Confirma la transacción.
+			return Response.ok(reservas).build(); // Retorna una respuesta HTTP 200 (OK) con la lista de reservas como cuerpo de la respuesta.
+		} catch (Exception e) {
+			logger.error("Error en el método getReservas: ", e);
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build(); // Retorna una respuesta HTTP 500 (Internal Server Error) si se produce una excepción.
+		} finally { // Bloque finally se ejecuta siempre, independientemente de si se produce una excepción o no.
+			if (tx.isActive()) { // Si la transacción está activa (si no se realizo el tx.commit), hace un rollback de la transacción.
+				tx.rollback(); // Operación que revierte una transacción y deshace todos los cambios realizados en la base de datos desde el inicio de la misma
+			}
+		}
 	}
 }
