@@ -16,6 +16,11 @@ import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User; // Mal
 import es.deusto.spq.server.jdo.Notificacion;
+<<<<<<< HEAD
+
+import java.util.ArrayList;
+import java.util.List;
+=======
 import es.deusto.spq.pojo.*;
 import es.deusto.spq.server.jdo.User;
 import java.sql.Time;
@@ -23,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+>>>>>>> 822078f89847c628d8f18915a7c0d3f1e1eec861
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
