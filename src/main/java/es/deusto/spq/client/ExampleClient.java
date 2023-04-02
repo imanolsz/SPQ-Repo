@@ -15,10 +15,11 @@ import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 import es.deusto.spq.server.jdo.Notificacion;
+import es.deusto.spq.pojo.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import es.deusto.spq.server.jdo.User;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -102,6 +103,22 @@ public class ExampleClient {
 		}
 		
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
+	}
+
+	public void getReservas() {
+		WebTarget getReservasWebTarget = webTarget.path("admin/getReservas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
+		Invocation.Builder invocationBuilder = getReservasWebTarget.request(MediaType.APPLICATION_JSON); //  Se crea un objeto Invocation.Builder, que se utiliza para configurar la solicitud REST
+		Response response = invocationBuilder.get();  // Se realiza la solicitud REST utilizando el método get() del objeto invocationBuilder, y se almacena la respuesta en un objeto Response.
+		if (response.getStatus() != Status.OK.getStatusCode()) { // Se verifica si la respuesta de la solicitud es exitosa, si no es exitosa, se registra un error en el archivo de registro.
+			logger.error("Error connecting with the server. Code: {}", response.getStatus()); 
+		} else {
+			try {
+				List<ReservaData> reservas = response.readEntity(new GenericType<List<ReservaData>>() {}); //Se lee la respuesta en formato JSON y se convertierte en una lista de objetos ReservaData. Se utiliza un objeto GenericType para especificar el tipo de objeto que se está convirtiendo.
+				logger.info("* Reservas obtenidas: '{}'", reservas); // Se registra un mensaje de información en el archivo de registro con la lista de reservas obtenidas
+			} catch (Exception e) {
+				logger.error("Error al obtener las reservas: ", e);
+			}
+		}
 	}
 	
 	
