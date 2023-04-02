@@ -202,7 +202,7 @@ public class Resource {
             tx.begin();
 			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getusername());
             logger.info("Realizando reserva: '{}'", reservaData.getId());
-			
+			pm.makePersistent(reserva)
 			tx.commit();
 			return Response.ok().build();
         }
@@ -297,7 +297,7 @@ public class Resource {
 			}
 			if(reserva != null){
 				reserva.setId(reservaData.getId());
-				//reserva.setFecha(reservaData.getFecha());
+				reserva.setFecha(reservaData.getFecha());
 				reserva.setCancelada(reservaData.getCancelada());
 				reserva.setHora(reservaData.getHora());
 				reserva.setNumPersonas(reservaData.getNumPersonas());
