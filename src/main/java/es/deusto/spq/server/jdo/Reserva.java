@@ -13,9 +13,6 @@ public class Reserva {
     private long id;
     
     @Persistent
-    private String nombre;
-
-    @Persistent
     private LocalDate fecha;
     
     @Persistent
@@ -31,8 +28,7 @@ public class Reserva {
     @Persistent
     private User user;
 
-    public Reserva(String nombre, LocalDate fecha, Time hora, int numPersonas, boolean cancelada, User user){
-        this.nombre = nombre;
+    public Reserva(LocalDate fecha, Time hora, int numPersonas, boolean cancelada, User user){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
@@ -40,14 +36,6 @@ public class Reserva {
         this.user = user;
     }
     
-    public String getNombre() {
-        return nombre;
-    }
-    
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public Time getHora() {
         return hora;
     }
