@@ -8,6 +8,7 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
+import javax.validation.constraints.Null;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
@@ -24,10 +25,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import es.deusto.spq.server.jdo.Notificacion;
-<<<<<<< HEAD
-
-=======
->>>>>>> 822078f89847c628d8f18915a7c0d3f1e1eec861
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -202,7 +199,7 @@ public class Resource {
         {	
 			Reserva reserva = null;
             tx.begin();
-			//reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getUser());
+			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),null);
             logger.info("Realizando reserva: '{}'", reservaData.getId());
 			pm.makePersistent(reserva);
 			tx.commit();
