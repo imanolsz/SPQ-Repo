@@ -108,7 +108,7 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
-	public void realizarReserva(Date fecha, Time hora,  int numPersonas, boolean cancelada, String username) {
+	public void realizarReserva(Date fecha, Time hora,  int numPersonas, boolean cancelada, UserData userData) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		
@@ -117,7 +117,7 @@ public class ExampleClient {
 		reservaData.setHora(hora);
 		reservaData.setCancelada(cancelada);
 		reservaData.setNumPersonas(numPersonas);
-		reservaData.setusername(username);
+		reservaData.setUser(userData);
 		Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());

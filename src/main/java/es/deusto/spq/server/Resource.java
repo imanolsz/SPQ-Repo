@@ -24,8 +24,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import es.deusto.spq.server.jdo.Notificacion;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -301,9 +299,9 @@ public class Resource {
 				reserva.setCancelada(reservaData.getCancelada());
 				reserva.setHora(reservaData.getHora());
 				reserva.setNumPersonas(reservaData.getNumPersonas());
-				reserva.setUsername(reservaData.getusername());
+				//reserva.setUser(reservaData.getUser()); //TODO
 
-				try(Query<?> q = pm.newQuery("UPDATE"+ Reserva.class.getName()+ " SET fecha== \"" + reserva.getFecha() + ", cancelada== \""+ reserva.getCancelada() + ", hora== \"" + reserva.getHora() + ", numpersonas== \"" + reserva.getNumPersonas()+ " WHERE id == \"" + reserva.getId()+ " \" && username== \"" + reserva.getUsername() +"+ \"")){
+				try(Query<?> q = pm.newQuery("UPDATE"+ Reserva.class.getName()+ " SET fecha== \"" + reserva.getFecha() + ", cancelada== \""+ reserva.getCancelada() + ", hora== \"" + reserva.getHora() + ", numpersonas== \"" + reserva.getNumPersonas()+ " WHERE id == \"" + reserva.getId()+ " \" && user== \"" + reserva.getUser() +"+ \"")){
 					logger.info("La reserva {} ha sido modificada.", reserva.getId());
 				}catch(Exception e){
 					logger.error("Error en el método actualizarReservas: ", e);
