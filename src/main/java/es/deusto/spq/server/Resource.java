@@ -100,9 +100,7 @@ public class Resource {
 			}
 			logger.info("User: {}", user);
 			if (user != null) {
-				logger.info("Setting password user: {}", user);
-				user.setPassword(userData.getPassword());
-				logger.info("Password set user: {}", user);
+				logger.info("Usuario ya registrado: {}", user);
 			} else {
 				logger.info("Creating user: {}", user);
 				user = new User(userData.getId(), userData.getPassword());

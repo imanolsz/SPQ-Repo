@@ -2,11 +2,12 @@ package es.deusto.spq.pojo;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class ReservaData {
     
     private long id;
-    private LocalDate fecha;
+    private Date fecha;
     private Time hora;
     private int numPersonas;
     private boolean cancelada;
@@ -16,7 +17,7 @@ public class ReservaData {
         // Requerido por la serialización (Para poder ser almacenada en un archivo o enviada a través de una red)
     }
     
-    public ReservaData(LocalDate fecha, Time hora, int numPersonas, boolean cancelada, String username) {
+    public ReservaData(Date fecha, Time hora, int numPersonas, boolean cancelada, String username) {
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
@@ -32,11 +33,11 @@ public class ReservaData {
         this.id = id;
     }
     
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
     
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     
