@@ -1,5 +1,7 @@
 package es.deusto.spq.server;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,6 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
-import javax.validation.constraints.Null;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
@@ -276,6 +277,45 @@ public class Resource {
 		}
 	}
 
+	/* 
+	@GET
+    @Path("/hayMesaLibre")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response hayMesaLibre(@QueryParam("fecha") Date fecha, @QueryParam("hora") Time hora, @QueryParam("numPersonas") int numPersonas) {
+        boolean mesaLibre = hayMesaLibrebool(fecha, hora, numPersonas);
+        return Response.ok().entity(mesaLibre).build();
+    }
+
+	public boolean hayMesaLibrebool(Date fecha, Time hora, int numPersonas) {
+		int CAPACIDAD_MAXIMA_RESTAURANTE = 100; // Ejemplo
+		PersistenceManager pm = pmf.getPersistenceManager(); // Se crea una instancia del objeto PersistenceManager, que se utiliza para interactuar con la base de datos.
+		boolean mesaLibre = false;
+		
+		try {
+			// Obtener todas las reservas para la fecha y hora especificadas y que no hayan sido canceladas
+			Query<Reserva> query = pm.newQuery(Reserva.class);
+			query.setFilter("fecha == fechaParam && hora == horaParam && cancelada == false");
+			query.declareParameters("java.util.Date fechaParam, java.sql.Time horaParam");
+			List<Reserva> reservas = (List<Reserva>) query.execute(fecha, hora);
+	
+			// Calcular el número de personas en las reservas encontradas
+			int numPersonasReservadas = 0;
+			for (Reserva reserva : reservas) {
+				numPersonasReservadas += reserva.getNumPersonas();
+			}
+	
+			// Comprobar si hay suficiente espacio para la nueva reserva
+			if (numPersonasReservadas + numPersonas <= CAPACIDAD_MAXIMA_RESTAURANTE) {
+				mesaLibre = true;
+			}
+		} finally {
+			pm.close();
+		}
+		
+		return mesaLibre;
+	}
+	*/
+
 	@GET
 	@Path("/admin/setReservas")
 	public Response actualizarReserva(ReservaData reservaData){
@@ -317,4 +357,5 @@ public class Resource {
             }
 		}
 	}
+	
 }
