@@ -9,10 +9,9 @@ import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
 
-import es.deusto.spq.server.jdo.User;
-import es.deusto.spq.server.jdo.Message;
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.*;
 
@@ -120,9 +119,9 @@ public class Resource {
 	@POST
 	@Path("/login")
 	public Response loginUser(UserData userData) {
-		User user = null;
 		try
         {	
+			User user = null;
             tx.begin();
             logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
 			try {
@@ -218,6 +217,48 @@ public class Resource {
 			if (tx.isActive()) { // Si la transacción está activa (si no se realizo el tx.commit), hace un rollback de la transacción.
 				tx.rollback(); // Operación que revierte una transacción y deshace todos los cambios realizados en la base de datos desde el inicio de la misma
 			}
+		}
+	}
+
+	@GET
+	@Path("/admin/reservas")
+	public Response actualizarReserva(ReservaData reservaData){
+		Reserva reserva = null;
+		try{
+			tx.begin();
+			logger.info("Comprobando que la reserva {} existe.", reservaData.getId());
+			try {
+				reserva = pm.getObjectById(Reserva.class, reservaData.getId());
+			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+				logger.info("Exception launched: {}", jonfe.getMessage());
+				return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+			}
+			if(reserva != null){
+				reserva.setId(reservaData.getId());
+				reserva.setFecha(reservaData.getFecha());
+				reserva.setCancelada(reservaData.getCancelada());
+				reserva.setHora(reservaData.getHora());
+				reserva.setNumPersonas(reservaData.getNumPersonas());
+				reserva.setUsername(reservaData.getusername());
+
+				try(Query<?> q = pm.newQuery("UPDATE"+ Reserva.class.getName()+ " SET fecha== \"" + reserva.getFecha() + ", cancelada== \""+ reserva.getCancelada() + ", hora== \"" + reserva.getHora() + ", numpersonas== \"" + reserva.getNumPersonas()+ " WHERE id == \"" + reserva.getId()+ " \" && username== \"" + reserva.getUsername() +"+ \"")){
+					logger.info("La reserva {} ha sido modificada.", reserva.getId());
+				}catch(Exception e){
+					logger.error("Error en el método actualizarReservas: ", e);
+					e.printStackTrace();
+				}
+			}else{
+				logger.info("La reserva {} no existe.", reservaData.getId());
+				return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+			}
+			return Response.ok().build();
+		}
+		finally
+        {
+			if (tx.isActive())
+            {
+				tx.rollback();
+            }
 		}
 	}
 }
