@@ -1,20 +1,29 @@
 package es.deusto.spq.server.jdo;
-
 import java.time.LocalDate;
+import javax.jdo.annotations.*;
 
-import javax.jdo.annotations.PersistenceCapable;
+public class Notificacion {
 
-@PersistenceCapable
-public class Mensaje {
+    @Persistent   
     private String asunto;
-    private String contenido;
-    private LocalDate fecha;
 
-    public Mensaje(String asunto, String contenido, LocalDate fecha) {
+    @Persistent
+    private String contenido;
+    
+    @Persistent
+    private LocalDate fecha;
+    
+    @PrimaryKey
+    @Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
+    private int IDNotificacion;
+
+    public Notificacion(String asunto, String contenido, LocalDate fecha, int IDNotificacion) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
+        this.IDNotificacion = IDNotificacion;
     }
+
 
     public String getAsunto() {
         return asunto;
@@ -39,4 +48,15 @@ public class Mensaje {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
+    public Integer getIDNotificacion() {
+        return IDNotificacion;
+    }
+
+    public void setIDNotificacion(Integer IDNotificacion) {
+        this.IDNotificacion = IDNotificacion;
+    }
+
+
+
 }
