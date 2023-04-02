@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response.Status;
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.UserData;
-import es.deusto.spq.server.jdo.User;
+import es.deusto.spq.server.jdo.User; // Mal
 import es.deusto.spq.server.jdo.Notificacion;
 import es.deusto.spq.pojo.*;
 
@@ -105,6 +105,37 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	public void getReservas() {
 		WebTarget getReservasWebTarget = webTarget.path("admin/getReservas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
 		Invocation.Builder invocationBuilder = getReservasWebTarget.request(MediaType.APPLICATION_JSON); //  Se crea un objeto Invocation.Builder, que se utiliza para configurar la solicitud REST
