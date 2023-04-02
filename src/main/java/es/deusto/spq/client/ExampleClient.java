@@ -16,6 +16,8 @@ import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 import es.deusto.spq.server.jdo.Notificacion;
+
+import java.rmi.RemoteException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +32,7 @@ public class ExampleClient {
 	protected static final Logger logger = LogManager.getLogger();
 	private Client client;
 	private WebTarget webTarget;
+	private long token = -1;
 
 	public ExampleClient(String hostname, String port) {
 		client = ClientBuilder.newClient();
@@ -65,6 +68,19 @@ public class ExampleClient {
 		}
 		return userData;
 	}
+
+	public void logout() {
+		WebTarget registerUserWebTarget = webTarget.path("logout");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.post(Entity.entity(this.token, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
+		}
+		this.token = -1;
+	}
+
 	public void sayMessage(String login, String password, String message) {
 		WebTarget sayHelloWebTarget = webTarget.path("sayMessage");
 		Invocation.Builder invocationBuilder = sayHelloWebTarget.request(MediaType.APPLICATION_JSON);
@@ -146,5 +162,9 @@ public class ExampleClient {
 			}
 		}
 	}
+	public long getToken() {
+		return token;
+	}
+
 
 }

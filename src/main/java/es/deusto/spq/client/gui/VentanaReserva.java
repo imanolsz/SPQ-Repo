@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import es.deusto.spq.main.Main;
+
 public class VentanaReserva extends JFrame {
     /**
 	 * 
@@ -53,18 +55,6 @@ public class VentanaReserva extends JFrame {
         gbc_textFecha.gridy = 1;
         panel.add(textFecha, gbc_textFecha);
         textFecha.setColumns(10);
-        
-        //Obtener la fecha en formato Date
-        String nombre = textFecha.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
-        Date fechaReserva;
-        try {
-            fechaReserva = sdf.parse(textFecha.getText());
-        } catch (ParseException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-  
 
         // Crear las restricciones para los componentes
         GridBagConstraints c;
@@ -127,7 +117,7 @@ public class VentanaReserva extends JFrame {
         bMenu.setBackground(new Color(255, 0, 0));
         bMenu.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//Main.getGestorVentanas().getVentanaMenu().setVisible(true);
+        		Main.getGestorVentanas().getVentanaMenu().setVisible(true);
 				dispose();
         		
         	}
@@ -142,7 +132,19 @@ public class VentanaReserva extends JFrame {
         bConfirmar.setBackground(new Color(50, 205, 50));
         bConfirmar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//Main.getGestorVentanas().getVentanaMenu().setVisible(true);
+                //Obtener la fecha en formato Date
+                String nombre = textFecha.getText();
+                SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
+                Date fechaReserva;
+                try {
+                    fechaReserva = sdf.parse(textFecha.getText());
+                    //Main.getExampleClient().realizarReserva(fechaReserva, boxHora.getSelectedItem(), boxComensales.getSelectedItem(),true, null);
+                } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                
+        		Main.getGestorVentanas().getVentanaMenu().setVisible(true);
 				dispose();
         		
         	}
@@ -161,4 +163,5 @@ public class VentanaReserva extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
+    
 }

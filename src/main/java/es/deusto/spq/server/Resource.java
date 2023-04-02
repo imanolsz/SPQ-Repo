@@ -1,7 +1,12 @@
 package es.deusto.spq.server;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -34,7 +39,7 @@ import org.apache.logging.log4j.LogManager;
 public class Resource {
 
 	protected static final Logger logger = LogManager.getLogger();
-
+	private Map<Long, User> serverState = new HashMap<>();
 	private int cont = 0;
 	private PersistenceManager pm=null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
@@ -180,6 +185,17 @@ public class Resource {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			//gestión del token 
+			if (user != null)  {
+				Long token = Calendar.getInstance().getTimeInMillis();
+				this.serverState.put(token, user);
+			}
+			// else{
+			// 	Iterator<Long> it = this.serverState.keySet().iterator();
+			// 	while (it.hasNext()) {
+			// 	Long token = it.next();
+			// 	}
+			// }}
 			tx.commit();
 			return Response.ok().build();
         }
@@ -191,7 +207,30 @@ public class Resource {
             }
 		}
 	}
-
+	@POST
+	@Path("/logout")
+	public Response logout(long token) throws RemoteException {
+		try
+        {	
+            tx.begin();
+            if (this.serverState.containsKey(token)) {
+				// Logout means remove the User from Server State
+				this.serverState.remove(token);
+			} else {
+				throw new RemoteException("User is not logged in!");
+			}
+			
+			tx.commit();
+			return Response.ok().build();
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+		}
+	}
 	@POST
 	@Path("/realizarReserva")
 	public Response realizarReserva(ReservaData reservaData) {
