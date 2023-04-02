@@ -64,9 +64,6 @@ public class Message {
         this.timestamp = timestamp;
     }
 
-
-
-
     public String toString() {
         return "Message: message --> " + this.contenido + ", timestamp -->  " + new Date(this.timestamp);
     }

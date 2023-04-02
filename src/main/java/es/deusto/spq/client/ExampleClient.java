@@ -16,12 +16,13 @@ import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 import es.deusto.spq.server.jdo.Notificacion;
-
+import es.deusto.spq.pojo.*;
+import es.deusto.spq.server.jdo.User;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import es.deusto.spq.server.jdo.User;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -106,23 +107,7 @@ public class ExampleClient {
 		
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
-	public void realizarReserva(Date fecha, Time hora,  int numPersonas, boolean cancelada, String username) {
-		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
-		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		
-		ReservaData reservaData = new ReservaData();
-		reservaData.setFecha(fecha);
-		reservaData.setHora(hora);
-		reservaData.setCancelada(cancelada);
-		reservaData.setNumPersonas(numPersonas);
-		reservaData.setusername(username);
-		Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
-		if (response.getStatus() != Status.OK.getStatusCode()) {
-			logger.error("Error connecting with the server. Code: {}", response.getStatus());
-		} else {
-			logger.info("User correctly registered");
-		}
-	}
+	
 	
 
 }

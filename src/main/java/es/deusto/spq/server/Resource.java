@@ -239,7 +239,7 @@ public class Resource {
 	}
 
 	@GET
-	@Path("/admin/reservas")
+	@Path("/admin/getReservas")
 	public Response getReservas() {
 		try { 
 			tx.begin(); // Comienza una transacción para realizar operaciones en la base de datos.
@@ -261,7 +261,7 @@ public class Resource {
 	}
 
 	@GET
-	@Path("/admin/reservas")
+	@Path("/admin/setReservas")
 	public Response actualizarReserva(ReservaData reservaData){
 		Reserva reserva = null;
 		try{
