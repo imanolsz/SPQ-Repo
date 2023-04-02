@@ -8,6 +8,7 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
+import javax.validation.constraints.Null;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
@@ -198,7 +199,7 @@ public class Resource {
         {	
 			Reserva reserva = null;
             tx.begin();
-			//reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getUser());
+			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),null);
             logger.info("Realizando reserva: '{}'", reservaData.getId());
 			pm.makePersistent(reserva);
 			tx.commit();
