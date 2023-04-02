@@ -7,13 +7,13 @@ import javax.swing.event.*;
 
 
 
-import es.deusto.spq.server.jdo.Notificacion;
+import es.deusto.spq.pojo.NotificacionData;
 
 import java.util.List;
 import es.deusto.spq.server.jdo.User;
 import es.deusto.spq.client.ExampleClient;
 import es.deusto.spq.main.Main;
-import es.deusto.spq.modelos.ModeloTablaNotificaciones;
+import es.deusto.spq.modelos.ModeloTablaNotificacionData;
 
 
 public class VentanaBuzon extends JFrame {
@@ -30,7 +30,7 @@ public class VentanaBuzon extends JFrame {
     public VentanaBuzon(User user, String[] args) {
 
         ExampleClient ec = Main.getExampleClient();
-        List<Notificacion> notificaciones = ec.getNotifications(user);
+        List<NotificacionData> notificaciones = ec.getNotifications(user);
         
 
         
@@ -42,7 +42,7 @@ public class VentanaBuzon extends JFrame {
         setLocationRelativeTo(null);
 
         // Creamos el modelo de tabla con los datos de los Notificacions
-        ModeloTablaNotificaciones modelo = new ModeloTablaNotificaciones(notificaciones);
+        ModeloTablaNotificacionData modelo = new ModeloTablaNotificacionData(notificaciones);
 
         // Creamos la tabla con el modelo
         JTable tablaNotificaciones = new JTable(modelo);
@@ -77,7 +77,7 @@ public class VentanaBuzon extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 int filaSeleccionada = tablaNotificaciones.getSelectedRow();
                 if (filaSeleccionada != -1) { // Si se ha seleccionado una fila
-                    Notificacion notificacionSeleccionada = notificaciones.get(filaSeleccionada);
+                    NotificacionData notificacionSeleccionada = notificaciones.get(filaSeleccionada);
                     String contenido = notificacionSeleccionada.getContenido();
                     contenidoNotificacion.setText(contenido);
                 }

@@ -1,7 +1,6 @@
 package es.deusto.spq.server.jdo;
 
 import java.sql.Time;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.jdo.annotations.*;
