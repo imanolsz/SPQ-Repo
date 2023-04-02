@@ -21,7 +21,7 @@ public class User {
 	Set<Message> messages = new HashSet<>();
 	
 	// La propiedad reservas es mapeada por la propiedad cliente en la clase Reserva. La propiedad reservas es una lista de objetos Reserva asociados a un Cliente.
-	@Persistent(mappedBy = "cliente")
+	@Persistent(mappedBy = "user")
 	private List<Reserva> reservas = new ArrayList<>();
 	
 	public User(String id, String password) {

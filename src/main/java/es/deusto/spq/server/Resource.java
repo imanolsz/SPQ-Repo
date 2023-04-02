@@ -47,7 +47,7 @@ public class Resource {
 			tx.begin();
 			logger.info("Creating query ...");
 			
-			try (Query<?> q = pm.newQuery("SELECT FROM " + User.class.getName() + " WHERE login == \"" + directMessage.getUserData().getLogin() + "\" &&  password == \"" + directMessage.getUserData().getPassword() + "\"")) {
+			try (Query<?> q = pm.newQuery("SELECT FROM " + User.class.getName() + " WHERE login == \"" + directMessage.getUserData().getId() + "\" &&  password == \"" + directMessage.getUserData().getPassword() + "\"")) {
 				q.setUnique(true);
 				user = (User)q.execute();
 				
@@ -84,10 +84,10 @@ public class Resource {
 		try
         {	
             tx.begin();
-            logger.info("Checking whether the user already exits or not: '{}'", userData.getLogin());
+            logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
 			User user = null;
 			try {
-				user = pm.getObjectById(User.class, userData.getLogin());
+				user = pm.getObjectById(User.class, userData.getId());
 			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
 				logger.info("Exception launched: {}", jonfe.getMessage());
 			}
@@ -98,7 +98,7 @@ public class Resource {
 				logger.info("Password set user: {}", user);
 			} else {
 				logger.info("Creating user: {}", user);
-				user = new User(userData.getLogin(), userData.getPassword());
+				user = new User(userData.getId(), userData.getPassword());
 				pm.makePersistent(user);					 
 				logger.info("User created: {}", user);
 			}

@@ -4,7 +4,7 @@ package es.deusto.spq.main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import es.deusto.spq.client.ExampleClient;
-import es.deusto.spq.ventanas.GestorVentanas;
+import es.deusto.spq.client.gui.GestorVentanas;
 
 public class Main {
     private static GestorVentanas gestorVentanas;

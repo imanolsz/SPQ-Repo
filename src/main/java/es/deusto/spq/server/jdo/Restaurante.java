@@ -1,4 +1,4 @@
-package es.deusto.spq.server.jdo.restaurante;
+package es.deusto.spq.server.jdo;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

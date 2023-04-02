@@ -1,4 +1,4 @@
-package es.deusto.spq.ventanas;
+package es.deusto.spq.client.gui;
 
 public class GestorVentanas {
 	

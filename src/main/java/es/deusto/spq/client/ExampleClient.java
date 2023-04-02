@@ -32,7 +32,7 @@ public class ExampleClient {
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		
 		UserData userData = new UserData();
-		userData.setLogin(login);
+		userData.setId(login);
 		userData.setPassword(password);
 		Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
@@ -48,7 +48,7 @@ public class ExampleClient {
 
 		DirectMessage directMessage = new DirectMessage();
 		UserData userData = new UserData();
-		userData.setLogin(login);
+		userData.setId(login);
 		userData.setPassword(password);
 
 		directMessage.setUserData(userData);
