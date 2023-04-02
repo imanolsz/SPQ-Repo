@@ -24,10 +24,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import es.deusto.spq.server.jdo.Notificacion;
-<<<<<<< HEAD
-
-=======
->>>>>>> 822078f89847c628d8f18915a7c0d3f1e1eec861
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
