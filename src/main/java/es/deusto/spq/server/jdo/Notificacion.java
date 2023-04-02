@@ -18,34 +18,21 @@ public class Notificacion {
     
     @Persistent
     private LocalDate fecha;
-
-    @ForeignKey
-    @Persistent
-    private User user;
     
     @PrimaryKey
     @Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
     private int IDNotificacion;
 
-    public Notificacion(String asunto, String contenido, LocalDate fecha, int IDNotificacion, User user) {
+    public Notificacion(String asunto, String contenido, LocalDate fecha, int IDNotificacion) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
         this.IDNotificacion = IDNotificacion;
-        this.user = user;
     }
 
 
     public String getAsunto() {
         return asunto;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setAsunto(String asunto) {
@@ -78,27 +65,25 @@ public class Notificacion {
 
 
 
-    // public static void main(String[] args) {
-    //     // insert to notification a test notification
-    //     User user = new User("username", "password");
-    //     //Notificacion notificacion = new Notificacion("asunto", "contenido", LocalDate.now(), 1);
-    //     PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-    //     PersistenceManager pm = pmf.getPersistenceManager();
-    //     Transaction tx = pm.currentTransaction();
+    public static void guardarNotificacionBD(Notificacion notificacion) {
+        // insert to notification a test notification
+        PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
         
-    //     try {
-    //         tx.begin();
-    //         //pm.makePersistent(notificacion);
-    //         tx.commit();
-    //     } catch (Exception ex) {
-    //         System.out.println(" $ Error storing an object: " + ex.getMessage());
-    //     } finally {
-    //         if (tx.isActive()) {
-    //             tx.rollback();
-    //         }
-    //         pm.close();
-    //     }
-    // }
+        try {
+            tx.begin();
+            pm.makePersistent(notificacion);
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(" $ Error storing an object: " + ex.getMessage());
+        } finally {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            pm.close();
+        }
+    }
 
 
 }

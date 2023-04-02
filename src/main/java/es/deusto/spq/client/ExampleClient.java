@@ -14,18 +14,20 @@ import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
-import es.deusto.spq.server.jdo.User;
+import es.deusto.spq.server.jdo.User; // Mal
 import es.deusto.spq.server.jdo.Notificacion;
 
-import java.rmi.RemoteException;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.time.Instant;
 
 public class ExampleClient {
 
@@ -125,6 +127,19 @@ public class ExampleClient {
 	public void realizarReserva(Date fecha, Time hora,  int numPersonas, boolean cancelada, UserData userData) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Date date = fecha; // crea un objeto Date
+		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
+		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
+
+
+		//creo una notificacion para el usuario
+		Notificacion notificacion;
+		//notificacion.setIDNotificacion(ID);
+		//ID += 1;
+		// notificacion.setFecha(localDate);
+		// notificacion.setAsunto("Confirmacion de reserva");
+		// notificacion.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
+		// Notificacion.guardarNotificacionBD(notificacion);
 		
 		ReservaData reservaData = new ReservaData();
 		reservaData.setFecha(fecha);
