@@ -2,6 +2,7 @@ package es.deusto.spq.server;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -14,8 +15,10 @@ import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
 
+
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.NotificacionData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.*;
@@ -233,9 +236,11 @@ public class Resource {
             }
 		}
 	}
+
+
 	@POST
 	@Path("/realizarReserva")
-	public Response realizarReserva(ReservaData reservaData) {
+	public Response realizarReserva(ReservaData reservaData ) {
 		try
         {	
 			Reserva reserva = null;
@@ -254,6 +259,31 @@ public class Resource {
             }
 		}
 	}
+
+	@POST
+	@Path("/realizarNotificacion")
+	public Response realizarNotificacion(NotificacionData notificacionData ) {
+		try
+        {	
+			Notificacion notificacion = null;
+            tx.begin();
+			//paso de notificacionData a notificacion
+			notificacion = new Notificacion(notificacionData.getAsunto(), notificacionData.getContenido(), notificacionData.getFecha(),notificacionData.getIDNotificacionData());
+            logger.info("Realizando notificacion: '{}'", notificacionData.getIDNotificacionData());
+			pm.makePersistent(notificacion);
+			tx.commit();
+			NotificacionData.guardarNotificacionDataBD(notificacionData);
+			return Response.ok().build();
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+		}
+	}
+
 
 	@POST
 	@Path("/getNotifications")
@@ -317,6 +347,35 @@ public class Resource {
 		}
 	}
 
+
+	@GET
+	@Path("/admin/getReservasFiltradas")
+	public Response getReservasFiltradas(LocalDate fecha, Time hora) {
+		try { 
+			tx.begin(); // Comienza una transacción para realizar operaciones en la base de datos.
+			List<Reserva> reservas = new ArrayList<>();
+			Query<Reserva> query = pm.newQuery(Reserva.class); // Crea una instancia de una consulta
+			query.setFilter("cancelada == true || cancelada == false"); // Filtro para la consulta, devolverá todas las reservas, tanto canceladas como no canceladas
+			query.setOrdering("fecha desc, hora asc"); // Orden de la consulta, Las reservas se ordenan primero por fecha y luego por hora
+			reservas = query.executeList(); // Ejecuta una consulta en la base de datos y devuelve los resultados en forma de una lista de objetos
+			List<Reserva> reservasFiltradas = new ArrayList<>();
+			for (Reserva reserva : reservas) {
+				if (reserva.getFecha().equals(fecha) && reserva.getHora().equals(hora)) {
+					reservasFiltradas.add(reserva);
+				}
+			}
+			tx.commit(); // Confirma la transacción.
+			return Response.ok(reservasFiltradas).build(); // Retorna una respuesta HTTP 200 (OK) con la lista de reservas como cuerpo de la respuesta.
+		} catch (Exception e) {
+			logger.error("Error en el método getReservas: ", e);
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build(); // Retorna una respuesta HTTP 500 (Internal Server Error) si se produce una excepción.
+		} finally { // Bloque finally se ejecuta siempre, independientemente de si se produce una excepción o no.
+			if (tx.isActive()) { // Si la transacción está activa (si no se realizo el tx.commit), hace un rollback de la transacción.
+				tx.rollback(); // Operación que revierte una transacción y deshace todos los cambios realizados en la base de datos desde el inicio de la misma
+			}
+		}
+	}
+
 	/* 
 	@GET
     @Path("/hayMesaLibre")
@@ -331,18 +390,18 @@ public class Resource {
 		PersistenceManager pm = pmf.getPersistenceManager(); // Se crea una instancia del objeto PersistenceManager, que se utiliza para interactuar con la base de datos.
 		boolean mesaLibre = false;
 		
-		try {
+		try { 
 			// Obtener todas las reservas para la fecha y hora especificadas y que no hayan sido canceladas
 			Query<Reserva> query = pm.newQuery(Reserva.class);
 			query.setFilter("fecha == fechaParam && hora == horaParam && cancelada == false");
 			query.declareParameters("java.util.Date fechaParam, java.sql.Time horaParam");
 			List<Reserva> reservas = (List<Reserva>) query.execute(fecha, hora);
-	
+
 			// Calcular el número de personas en las reservas encontradas
 			int numPersonasReservadas = 0;
 			for (Reserva reserva : reservas) {
 				numPersonasReservadas += reserva.getNumPersonas();
-			}
+				}
 	
 			// Comprobar si hay suficiente espacio para la nueva reserva
 			if (numPersonasReservadas + numPersonas <= CAPACIDAD_MAXIMA_RESTAURANTE) {
@@ -350,8 +409,8 @@ public class Resource {
 			}
 		} finally {
 			pm.close();
-		}
-		
+	}
+
 		return mesaLibre;
 	}
 	*/

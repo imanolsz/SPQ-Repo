@@ -1,7 +1,6 @@
 package es.deusto.spq.server.jdo;
 
 import java.sql.Time;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.jdo.annotations.*;
@@ -35,6 +34,10 @@ public class Reserva {
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
         this.user = user;
+    }
+
+    public Reserva(){
+        
     }
     
     public void actualizarReserva(Reserva reserva) {

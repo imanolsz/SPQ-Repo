@@ -3,14 +3,15 @@ package es.deusto.spq.modelos;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-import es.deusto.spq.server.jdo.Notificacion;
+import es.deusto.spq.pojo.NotificacionData;
 
-public class ModeloTablaNotificaciones extends AbstractTableModel {
 
-    private List<Notificacion> notificaciones;
+public class ModeloTablaNotificacionData extends AbstractTableModel {
+
+    private List<NotificacionData> notificaciones;
     private String[] columnas = {"Asunto", "Fecha"};
 
-    public ModeloTablaNotificaciones(List<Notificacion> notificaciones) {
+    public ModeloTablaNotificacionData(List<NotificacionData> notificaciones) {
         this.notificaciones = notificaciones;
     }
 
@@ -31,7 +32,7 @@ public class ModeloTablaNotificaciones extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Notificacion notificacion = notificaciones.get(rowIndex);
+        NotificacionData notificacion = notificaciones.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return notificacion.getAsunto();

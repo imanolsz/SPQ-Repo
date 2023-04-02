@@ -1,10 +1,9 @@
-package es.deusto.spq.server.jdo;
+package es.deusto.spq.pojo;
 import java.time.LocalDate;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.annotations.*;
 import javax.jdo.Transaction;
 
 
@@ -20,15 +19,18 @@ public class NotificacionData {
     private LocalDate fecha;
 
 
-    private int IDNotificacion;
+    private int IDNotificacionData;
 
-    public NotificacionData(String asunto, String contenido, LocalDate fecha, int IDNotificacion) {
+    public NotificacionData(String asunto, String contenido, LocalDate fecha, int IDNotificacionData) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
-        this.IDNotificacion = IDNotificacion;
+        this.IDNotificacionData = IDNotificacionData;
     }
 
+    public NotificacionData() {
+        // required by serialization
+    }
 
     public String getAsunto() {
         return asunto;
@@ -54,17 +56,17 @@ public class NotificacionData {
         this.fecha = fecha;
     }
 
-    public Integer getIDNotificacion() {
-        return IDNotificacion;
+    public Integer getIDNotificacionData() {
+        return IDNotificacionData;
     }
 
-    public void setIDNotificacion(Integer IDNotificacion) {
-        this.IDNotificacion = IDNotificacion;
+    public void setIDNotificacionData(Integer IDNotificacionData) {
+        this.IDNotificacionData = IDNotificacionData;
     }
 
 
 
-    public static void guardarNotificacionBD(NotificacionData notificaciondata) {
+    public static void guardarNotificacionDataBD(NotificacionData notificaciondata) {
         // insert to notification a test notification
         PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
         PersistenceManager pm = pmf.getPersistenceManager();

@@ -14,6 +14,7 @@ import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
+import es.deusto.spq.server.jdo.Reserva;
 import es.deusto.spq.server.jdo.User; // Mal
 
 
@@ -28,6 +29,7 @@ import java.util.TimeZone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.time.Instant;
+import es.deusto.spq.pojo.NotificacionData;
 
 public class ExampleClient {
 
@@ -35,6 +37,7 @@ public class ExampleClient {
 	private Client client;
 	private WebTarget webTarget;
 	private long token = -1;
+	int ID = 0;
 
 	public ExampleClient(String hostname, String port) {
 		client = ClientBuilder.newClient();
@@ -106,7 +109,7 @@ public class ExampleClient {
 			logger.info("* Message coming from the server: '{}'", responseMessage);
 		}
 	}
-	public List<NotificacionData> getNotifications(User userParam) {
+	public List<NotificacionData> getNotifications(UserData userParam) {
 		WebTarget webTarget = client.target("http://example.com/api/");
 		WebTarget notificationsTarget = webTarget.path("getNotifications");
 		Invocation.Builder invocationBuilder = notificationsTarget.request(MediaType.APPLICATION_JSON);
@@ -133,13 +136,13 @@ public class ExampleClient {
 
 
 		//creo una notificacionData para el usuario
-		NotificacionData notificacionData;
-		notificacionData.setIDNotificDacionata(ID);
+		NotificacionData notificacionData = new NotificacionData();
+		notificacionData.setIDNotificacionData(ID);
 		ID += 1;
 		notificacionData.setFecha(localDate);
 		notificacionData.setAsunto("Confirmacion de reserva");
 		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
-		NotificacionData.guardarNotifDicacionataBD(notificacionData);
+		
 		
 		ReservaData reservaData = new ReservaData();
 		reservaData.setFecha(fecha);
@@ -148,6 +151,34 @@ public class ExampleClient {
 		reservaData.setNumPersonas(numPersonas);
 		reservaData.setUser(userData);
 		Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
+		}
+	}
+
+
+	
+
+	public void realizarNotificacion(ReservaData reserva) {
+		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Date date = reserva.getFecha(); // crea un objeto Date
+		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
+		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
+
+
+		//creo una notificacionData para el usuario
+		NotificacionData notificacionData = new NotificacionData();
+		notificacionData.setIDNotificacionData(ID);
+		ID += 1;
+		notificacionData.setFecha(localDate);
+		notificacionData.setAsunto("Confirmacion de reserva");
+		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + reserva.getFecha() + " a las " + reserva.getHora() + " para " + reserva.getNumPersonas() + " personas.");
+		
+		
+		Response response = invocationBuilder.post(Entity.entity(notificacionData, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
@@ -182,7 +213,7 @@ public class ExampleClient {
 	}
 
 
-	public List<ReservaData> getReservasFiltradas() {
+	public List<ReservaData> getReservasFiltradas(LocalDate fecha, Time hora) {
 		WebTarget getReservasWebTarget = webTarget.path("admin/getReservas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
 		Invocation.Builder invocationBuilder = getReservasWebTarget.request(MediaType.APPLICATION_JSON); //  Se crea un objeto Invocation.Builder, que se utiliza para configurar la solicitud REST
 		Response response = invocationBuilder.get();  // Se realiza la solicitud REST utilizando el método get() del objeto invocationBuilder, y se almacena la respuesta en un objeto Response.
@@ -192,11 +223,17 @@ public class ExampleClient {
 		} else {
 			try {
 				List<ReservaData> reservas = response.readEntity(new GenericType<List<ReservaData>>() {}); //Se lee la respuesta en formato JSON y se convertierte en una lista de objetos ReservaData. Se utiliza un objeto GenericType para especificar el tipo de objeto que se está convirtiendo.
+				List<ReservaData> reservasFiltradas = new ArrayList<>();
+				for (ReservaData reserva : reservas) {
+					if (reserva.getFecha().equals(fecha) && reserva.getHora().equals(hora)) {
+						reservasFiltradas.add(reserva);
+					}
+				}
 				if (reservas == null) {
 					throw new RuntimeException("Null list of ReservaData returned from the server");
 				}
 				logger.info("* Reservas obtenidas: '{}'", reservas); // Se registra un mensaje de información en el archivo de registro con la lista de reservas obtenidas
-				return reservas;
+				return reservasFiltradas;
 			} catch (Exception e) {
 				logger.error("Error al obtener las reservas: ", e);
 				throw new RuntimeException("Error al obtener las reservas", e);
