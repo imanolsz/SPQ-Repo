@@ -12,12 +12,15 @@ import javax.ws.rs.core.Response.Status;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User; // Mal
 import es.deusto.spq.server.jdo.Notificacion;
 import es.deusto.spq.pojo.*;
-
+import es.deusto.spq.server.jdo.User;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -49,12 +52,12 @@ public class ExampleClient {
 			logger.info("User correctly registered");
 		}
 	}
-	public UserData loginUser(String login, String password){
+	public UserData loginUser(String id, String password){
 		WebTarget registerUserWebTarget = webTarget.path("login");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		
 		UserData userData = new UserData();
-		userData.setId(login);
+		userData.setId(id);
 		userData.setPassword(password);
 		Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
