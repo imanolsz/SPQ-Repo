@@ -11,7 +11,6 @@ import es.deusto.spq.server.jdo.Message;
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.UserData;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,6 +18,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import es.deusto.spq.server.jdo.Notificacion;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -114,6 +117,44 @@ public class Resource {
       
 		}
 	}
+
+	@POST
+	@Path("/getNotifications")
+	public Response getNotifications(User userParam) {
+		List<Notificacion> notifications = new ArrayList<>();
+	
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+	
+		try {
+			tx.begin();
+	
+			Query<Notificacion> query = pm.newQuery(Notificacion.class, "usuario == userParam");
+			query.declareParameters(User.class.getName() + " userParam");
+	
+			
+			notifications.add((Notificacion)query.execute(userParam));
+	
+			
+	
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println(" $ Error retrieving notifications: " + ex.getMessage());
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	
+		return Response.ok(notifications).build();
+	}
+	
+	
+
+	
+	
 
 	@GET
 	@Path("/hello")

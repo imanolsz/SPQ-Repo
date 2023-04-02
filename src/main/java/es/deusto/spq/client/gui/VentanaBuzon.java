@@ -6,13 +6,17 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 
-import java.util.List;
 
-import es.deusto.spq.modelos.ModeloTablaNotificaciones;
 import es.deusto.spq.server.jdo.Notificacion;
 
-public class VentanaBuzon extends JFrame {
+import java.util.List;
+import es.deusto.spq.server.jdo.User;
+import es.deusto.spq.client.ExampleClient;
+import es.deusto.spq.main.Main;
+import es.deusto.spq.modelos.ModeloTablaNotificaciones;
 
+
+public class VentanaBuzon extends JFrame {
 
 
 
@@ -23,8 +27,15 @@ public class VentanaBuzon extends JFrame {
 
 	// private Thread t;
 
-    public VentanaBuzon(List<Notificacion> notificaciones) {
+    public VentanaBuzon(User user, String[] args) {
 
+        ExampleClient ec = Main.getExampleClient();
+        List<Notificacion> notificaciones = ec.getNotifications(user);
+        
+
+        
+
+        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("BUZÓN");
         setSize(800, 600);
