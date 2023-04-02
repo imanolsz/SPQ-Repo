@@ -10,7 +10,7 @@ import javax.swing.event.*;
 import es.deusto.spq.pojo.NotificacionData;
 
 import java.util.List;
-import es.deusto.spq.server.jdo.User;
+import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.client.ExampleClient;
 import es.deusto.spq.main.Main;
 import es.deusto.spq.modelos.ModeloTablaNotificacionData;
@@ -27,7 +27,7 @@ public class VentanaBuzon extends JFrame {
 
 	// private Thread t;
 
-    public VentanaBuzon(User user, String[] args) {
+    public VentanaBuzon(UserData user, String[] args) {
 
         ExampleClient ec = Main.getExampleClient();
         List<NotificacionData> notificaciones = ec.getNotifications(user);
