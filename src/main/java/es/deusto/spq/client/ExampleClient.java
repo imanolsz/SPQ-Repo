@@ -14,6 +14,7 @@ import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
+import es.deusto.spq.server.jdo.Reserva;
 import es.deusto.spq.server.jdo.User; // Mal
 
 
@@ -156,6 +157,9 @@ public class ExampleClient {
 			logger.info("User correctly registered");
 		}
 	}
+
+
+	
 
 	public void realizarNotificacion(ReservaData reserva) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");

@@ -235,6 +235,8 @@ public class Resource {
             }
 		}
 	}
+
+
 	@POST
 	@Path("/realizarReserva")
 	public Response realizarReserva(ReservaData reservaData ) {

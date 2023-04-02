@@ -35,6 +35,10 @@ public class Reserva {
         this.cancelada = cancelada;
         this.user = user;
     }
+
+    public Reserva(){
+        
+    }
     
     public void actualizarReserva(Reserva reserva) {
         this.setFecha(reserva.getFecha());

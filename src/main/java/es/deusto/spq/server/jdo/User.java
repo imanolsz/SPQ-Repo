@@ -31,6 +31,10 @@ public class User {
 		this.password = password;
 		this.admin = false;
 	}
+
+	public User(){
+
+	}
 	// CONSTRUCTOR Para inicializar un usuario con permisos (para crear admin)
 	public User(String id, String password, boolean admin) {
 		this.id = id;
@@ -47,6 +51,10 @@ public class User {
 
 	public String getId() {
 		return this.id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	public String getPassword() {
