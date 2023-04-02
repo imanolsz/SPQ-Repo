@@ -24,10 +24,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import es.deusto.spq.server.jdo.Notificacion;
-<<<<<<< HEAD
 
-=======
->>>>>>> 822078f89847c628d8f18915a7c0d3f1e1eec861
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -102,7 +99,9 @@ public class Resource {
 			}
 			logger.info("User: {}", user);
 			if (user != null) {
-				logger.info("Usuario ya registrado: {}", user);
+				logger.info("Setting password user: {}", user);
+				user.setPassword(userData.getPassword());
+				logger.info("Password set user: {}", user);
 			} else {
 				logger.info("Creating user: {}", user);
 				user = new User(userData.getId(), userData.getPassword());
@@ -196,28 +195,6 @@ public class Resource {
 	}
 
 	@POST
-	@Path("/realizarReserva")
-	public Response realizarReserva(ReservaData reservaData) {
-		try
-        {	
-			Reserva reserva = null;
-            tx.begin();
-			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getusername());
-            logger.info("Realizando reserva: '{}'", reservaData.getId());
-			pm.makePersistent(reserva)
-			tx.commit();
-			return Response.ok().build();
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-		}
-	}
-
-	@POST
 	@Path("/getNotifications")
 	public Response getNotifications(User userParam) {
 		List<Notificacion> notifications = new ArrayList<>();
@@ -250,6 +227,11 @@ public class Resource {
 		return Response.ok(notifications).build();
 	}
 	
+	
+
+	
+	
+
 	@GET
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -258,7 +240,7 @@ public class Resource {
 	}
 
 	@GET
-	@Path("/admin/getReservas")
+	@Path("/admin/reservas")
 	public Response getReservas() {
 		try { 
 			tx.begin(); // Comienza una transacción para realizar operaciones en la base de datos.
@@ -280,7 +262,7 @@ public class Resource {
 	}
 
 	@GET
-	@Path("/admin/setReservas")
+	@Path("/admin/reservas")
 	public Response actualizarReserva(ReservaData reservaData){
 		Reserva reserva = null;
 		try{
@@ -294,13 +276,13 @@ public class Resource {
 			}
 			if(reserva != null){
 				reserva.setId(reservaData.getId());
-				//reserva.setFecha(reservaData.getFecha());
+				reserva.setFecha(reservaData.getFecha());
 				reserva.setCancelada(reservaData.getCancelada());
 				reserva.setHora(reservaData.getHora());
 				reserva.setNumPersonas(reservaData.getNumPersonas());
-				//reserva.setUser(reservaData.getUser()); //TODO
+				reserva.setUsername(reservaData.getusername());
 
-				try(Query<?> q = pm.newQuery("UPDATE"+ Reserva.class.getName()+ " SET fecha== \"" + reserva.getFecha() + ", cancelada== \""+ reserva.getCancelada() + ", hora== \"" + reserva.getHora() + ", numpersonas== \"" + reserva.getNumPersonas()+ " WHERE id == \"" + reserva.getId()+ " \" && user== \"" + reserva.getUser() +"+ \"")){
+				try(Query<?> q = pm.newQuery("UPDATE"+ Reserva.class.getName()+ " SET fecha== \"" + reserva.getFecha() + ", cancelada== \""+ reserva.getCancelada() + ", hora== \"" + reserva.getHora() + ", numpersonas== \"" + reserva.getNumPersonas()+ " WHERE id == \"" + reserva.getId()+ " \" && username== \"" + reserva.getUsername() +"+ \"")){
 					logger.info("La reserva {} ha sido modificada.", reserva.getId());
 				}catch(Exception e){
 					logger.error("Error en el método actualizarReservas: ", e);
@@ -320,4 +302,9 @@ public class Resource {
             }
 		}
 	}
+
+
+
+
+	
 }
