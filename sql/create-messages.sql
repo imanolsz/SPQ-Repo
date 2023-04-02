@@ -10,12 +10,4 @@ CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
 
 GRANT ALL ON messagesDB.* TO 'spq'@'localhost';
 
-/* TODO-->  Tabla Cliente 
-CREATE TABLE IF NOT EXISTS Clientes 
-  id INTEGER PRIMARY KEY,
-  nombre TEXT NOT NULL,
-  password TEXT NOT NULL 
-);
-*/ 
-
 
