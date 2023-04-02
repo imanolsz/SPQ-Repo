@@ -1,14 +1,18 @@
 package es.deusto.spq.server;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
-import javax.validation.constraints.Null;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
@@ -27,6 +31,7 @@ import javax.ws.rs.core.Response.Status;
 import es.deusto.spq.server.jdo.Notificacion;
 
 import org.apache.logging.log4j.Logger;
+import org.apache.hadoop.ipc.RemoteException;
 import org.apache.logging.log4j.LogManager;
 
 @Path("/resource")
@@ -34,7 +39,7 @@ import org.apache.logging.log4j.LogManager;
 public class Resource {
 
 	protected static final Logger logger = LogManager.getLogger();
-
+	private Map<Long, User> serverState = new HashMap<>();
 	private int cont = 0;
 	private PersistenceManager pm=null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
@@ -180,6 +185,17 @@ public class Resource {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			//gestión del token 
+			if (user != null)  {
+				Long token = Calendar.getInstance().getTimeInMillis();
+				this.serverState.put(token, user);
+			}
+			// else{
+			// 	Iterator<Long> it = this.serverState.keySet().iterator();
+			// 	while (it.hasNext()) {
+			// 	Long token = it.next();
+			// 	}
+			// }}
 			tx.commit();
 			return Response.ok().build();
         }
@@ -191,7 +207,31 @@ public class Resource {
             }
 		}
 	}
-
+	@POST
+	@Path("/logout")
+	public Response logout(long token) throws RemoteException {
+		try
+        {	
+			User user = null;
+            tx.begin();
+            if (this.serverState.containsKey(token)) {
+				// Logout means remove the User from Server State
+				this.serverState.remove(token);
+			} else {
+				throw new RemoteException("User is not logged in!");
+			}
+			
+			tx.commit();
+			return Response.ok().build();
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+		}
+	}
 	@POST
 	@Path("/realizarReserva")
 	public Response realizarReserva(ReservaData reservaData) {
@@ -276,6 +316,45 @@ public class Resource {
 		}
 	}
 
+	/* 
+	@GET
+    @Path("/hayMesaLibre")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response hayMesaLibre(@QueryParam("fecha") Date fecha, @QueryParam("hora") Time hora, @QueryParam("numPersonas") int numPersonas) {
+        boolean mesaLibre = hayMesaLibrebool(fecha, hora, numPersonas);
+        return Response.ok().entity(mesaLibre).build();
+    }
+
+	public boolean hayMesaLibrebool(Date fecha, Time hora, int numPersonas) {
+		int CAPACIDAD_MAXIMA_RESTAURANTE = 100; // Ejemplo
+		PersistenceManager pm = pmf.getPersistenceManager(); // Se crea una instancia del objeto PersistenceManager, que se utiliza para interactuar con la base de datos.
+		boolean mesaLibre = false;
+		
+		try {
+			// Obtener todas las reservas para la fecha y hora especificadas y que no hayan sido canceladas
+			Query<Reserva> query = pm.newQuery(Reserva.class);
+			query.setFilter("fecha == fechaParam && hora == horaParam && cancelada == false");
+			query.declareParameters("java.util.Date fechaParam, java.sql.Time horaParam");
+			List<Reserva> reservas = (List<Reserva>) query.execute(fecha, hora);
+	
+			// Calcular el número de personas en las reservas encontradas
+			int numPersonasReservadas = 0;
+			for (Reserva reserva : reservas) {
+				numPersonasReservadas += reserva.getNumPersonas();
+			}
+	
+			// Comprobar si hay suficiente espacio para la nueva reserva
+			if (numPersonasReservadas + numPersonas <= CAPACIDAD_MAXIMA_RESTAURANTE) {
+				mesaLibre = true;
+			}
+		} finally {
+			pm.close();
+		}
+		
+		return mesaLibre;
+	}
+	*/
+
 	@GET
 	@Path("/admin/setReservas")
 	public Response actualizarReserva(ReservaData reservaData){
@@ -317,4 +396,5 @@ public class Resource {
             }
 		}
 	}
+	
 }
