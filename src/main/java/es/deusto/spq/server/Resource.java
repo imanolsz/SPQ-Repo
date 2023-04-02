@@ -20,6 +20,7 @@ import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.*;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -396,5 +397,41 @@ public class Resource {
             }
 		}
 	}
-	
+
+	//Falta comprobación: método que borra una reserva pasada por parametro
+	@POST
+    @Path("/cancelarReserva")
+    public Response cancelarReserva(ReservaData reservadata) {
+        PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+
+        //pasar de reservadata a reserva
+        Reserva reserva = new Reserva();
+        reserva.setFecha(reservadata.getFecha());
+        reserva.setHora(reservadata.getHora());
+        reserva.setNumPersonas(reservadata.getNumPersonas());
+        reserva.setCancelada(reservadata.isCancelada());
+        //pasar de userdata a user
+        User user = new User();
+        user.setId(reservadata.getUser().getId());
+        user.setPassword(reservadata.getUser().getPassword());
+        reserva.setUser(user);
+        reserva.setId(reservadata.getId());
+
+
+        try {
+            tx.begin();
+            pm.deletePersistent(reserva);
+
+            tx.commit();
+            return Response.ok().build();
+        } catch (Exception ex) {
+            System.out.println(" $ Error borrando reserva: " + ex.getMessage());
+            tx.rollback();
+            return Response.serverError().build();
+        } finally {
+            pm.close();
+        }
+	}
 }

@@ -204,10 +204,11 @@ public class ExampleClient {
 		}
 	}
 
+	/*borrar
 	public void cancelarReserva(ReservaData reserva) {
-		WebTarget registerUserWebTarget = webTarget.path("cancelarReserva");
-		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		
+        WebTarget registerUserWebTarget = webTarget.path("cancelarReserva");
+        Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+
 		ReservaData reservaData = new ReservaData();
 		reservaData.setFecha(reserva.getFecha());
 		reservaData.setHora(reserva.getHora());
@@ -215,11 +216,25 @@ public class ExampleClient {
 		reservaData.setNumPersonas(reserva.getNumPersonas());
 		reservaData.setUser(reserva.getUser());
 		Response response = invocationBuilder.post(null);
-		if (response.getStatus() != Status.OK.getStatusCode()) {
-			logger.error("Error connecting with the server. Code: {}", response.getStatus());
-		} else {
-			logger.info("User correctly registered");
-		}
-	}
+        if (response.getStatus() != Status.OK.getStatusCode()) {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+        } else {
+            logger.info("User correctly registered");
+        }
+    }
+	*/
+
+	public void cancelarReserva(ReservaData reservaData) {
+        WebTarget registerUserWebTarget = webTarget.path("cancelarReserva");
+        Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+
+        Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
+        if (response.getStatus() != Status.OK.getStatusCode()) {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+        } else {
+            logger.info("User correctly registered");
+        }
+    }
 
 }
+
