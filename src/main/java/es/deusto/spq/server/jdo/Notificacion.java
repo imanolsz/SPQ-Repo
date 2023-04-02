@@ -81,14 +81,14 @@ public class Notificacion {
     public static void main(String[] args) {
         // insert to notification a test notification
         User user = new User("username", "password");
-        Notificacion notificacion = new Notificacion("asunto", "contenido", LocalDate.now(), 1);
+        //Notificacion notificacion = new Notificacion("asunto", "contenido", LocalDate.now(), 1);
         PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
         
         try {
             tx.begin();
-            pm.makePersistent(notificacion);
+            //pm.makePersistent(notificacion);
             tx.commit();
         } catch (Exception ex) {
             System.out.println(" $ Error storing an object: " + ex.getMessage());

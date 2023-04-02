@@ -104,37 +104,6 @@ public class ExampleClient {
 		
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	public void getReservas() {
 		WebTarget getReservasWebTarget = webTarget.path("admin/getReservas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
