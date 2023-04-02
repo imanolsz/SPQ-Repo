@@ -2,6 +2,7 @@ package es.deusto.spq.server.jdo;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.jdo.annotations.*;
 
@@ -13,7 +14,7 @@ public class Reserva {
     private long id;
     
     @Persistent
-    private LocalDate fecha;
+    private Date fecha;
     
     @Persistent
     private Time hora;
@@ -26,14 +27,14 @@ public class Reserva {
 
     @ForeignKey
     @Persistent
-    private String username;
+    private User user;
 
-    public Reserva(LocalDate fecha, Time hora, int numPersonas, boolean cancelada, String username){
+    public Reserva(Date fecha, Time hora, int numPersonas, boolean cancelada, User user){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
-        this.username = username;
+        this.user = user;
     }
     
     public void actualizarReserva(Reserva reserva) {
@@ -41,7 +42,7 @@ public class Reserva {
         this.setHora(reserva.getHora());
         this.setNumPersonas(reserva.getNumPersonas());
         this.setCancelada(reserva.getCancelada());
-        this.setUsername(reserva.getUsername());
+        this.setUser(reserva.getUser());
     }
     
     public Time getHora() {
@@ -52,11 +53,11 @@ public class Reserva {
         this.hora = hora;
     }
     
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
     
@@ -76,14 +77,13 @@ public class Reserva {
         this.cancelada = cancelada;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
-
     public long getId() {
         return id;
     }

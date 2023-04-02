@@ -1,27 +1,27 @@
 package es.deusto.spq.pojo;
 
 import java.sql.Time;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class ReservaData {
     
     private long id;
-    private LocalDate fecha;
+    private Date fecha;
     private Time hora;
     private int numPersonas;
     private boolean cancelada;
-    private String username;
+    private UserData user;
     
     public ReservaData() {
         // Requerido por la serialización (Para poder ser almacenada en un archivo o enviada a través de una red)
     }
     
-    public ReservaData(LocalDate fecha, Time hora, int numPersonas, boolean cancelada, String username) {
+    public ReservaData(Date fecha, Time hora, int numPersonas, boolean cancelada, UserData user) {
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
-        this.username = username;
+        this.user = user;
     }
     
     public long getId() {
@@ -32,11 +32,11 @@ public class ReservaData {
         this.id = id;
     }
     
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
     
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     
@@ -64,14 +64,14 @@ public class ReservaData {
         this.cancelada = cancelada;
     }
     
-    public String getusername() {
-        return username;
-    }
-    
-    public void setusername(String username) {
-        this.username = username;
+    public UserData getUser() {
+        return user;
     }
 
+    public void setUser(UserData user) {
+        this.user = user;
+    }
+    
     public boolean getCancelada() {
         return false;
     }
