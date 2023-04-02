@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @PersistenceCapable
 public class User {
 	@PrimaryKey
-	String id=null;
+	String id=null; //nombre 
 	String password=null;
 	boolean admin = false;
 	
