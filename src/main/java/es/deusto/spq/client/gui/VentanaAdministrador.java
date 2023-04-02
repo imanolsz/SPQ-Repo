@@ -2,8 +2,8 @@ package es.deusto.spq.client.gui;
 
 import javax.swing.*;
 
-public class AdminWindow extends JFrame {
-    public AdminWindow() {
+public class VentanaAdministrador extends JFrame {
+    public VentanaAdministrador() {
         super("Ventana de Administración");
 
         // Crear etiqueta para el título
@@ -30,6 +30,7 @@ public class AdminWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        AdminWindow adminWindow = new AdminWindow();
+        VentanaAdministrador ventana = new VentanaAdministrador();
     }
+
 }

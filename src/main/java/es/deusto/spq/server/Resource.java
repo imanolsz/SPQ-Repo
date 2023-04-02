@@ -198,9 +198,9 @@ public class Resource {
         {	
 			Reserva reserva = null;
             tx.begin();
-			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getusername());
+			//reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getUser());
             logger.info("Realizando reserva: '{}'", reservaData.getId());
-			pm.makePersistent(reserva)
+			pm.makePersistent(reserva);
 			tx.commit();
 			return Response.ok().build();
         }
