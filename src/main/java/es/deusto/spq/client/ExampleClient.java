@@ -18,7 +18,6 @@ import es.deusto.spq.server.jdo.Notificacion;
 
 import java.util.ArrayList;
 import java.util.List;
-import es.deusto.spq.server.jdo.User;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
