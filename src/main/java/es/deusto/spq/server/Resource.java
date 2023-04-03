@@ -1,5 +1,6 @@
 package es.deusto.spq.server;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -28,6 +29,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -35,7 +37,7 @@ import javax.ws.rs.core.Response.Status;
 import es.deusto.spq.server.jdo.Notificacion;
 
 import org.apache.logging.log4j.Logger;
-import org.apache.hadoop.ipc.RemoteException;
+import org.apache.logging.log4j.core.config.composite.*;
 import org.apache.logging.log4j.LogManager;
 
 @Path("/resource")
@@ -376,17 +378,21 @@ public class Resource {
 		}
 	}
 
-	/* 
+
 	@GET
     @Path("/hayMesaLibre")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response hayMesaLibre(@QueryParam("fecha") Date fecha, @QueryParam("hora") Time hora, @QueryParam("numPersonas") int numPersonas) {
+    @Produces(MediaType.APPLICATION_JSON) //  Anotación que indica que el método produce una respuesta en formato JSON.
+    public Response hayMesaLibre(@QueryParam("fecha") Date fecha, @QueryParam("hora") Time hora, @QueryParam("numPersonas") int numPersonas) { // Acepta tres parámetros de consulta HTTP: fecha, hora y numPersonas.
         boolean mesaLibre = hayMesaLibrebool(fecha, hora, numPersonas);
-        return Response.ok().entity(mesaLibre).build();
+        return Response.ok().entity(mesaLibre).build(); // Se construye y se devuelve la respuesta HTTP completa, con un código de estado "200 OK". En este caso, la respuesta es un booleano mesaLibre en formato JSON.
+		
     }
+
 
 	public boolean hayMesaLibrebool(Date fecha, Time hora, int numPersonas) {
 		int CAPACIDAD_MAXIMA_RESTAURANTE = 100; // Ejemplo
+		
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("nombreDeLaUnidadDePersistencia"); // Obtener una instancia de PersistenceManagerFactory
 		PersistenceManager pm = pmf.getPersistenceManager(); // Se crea una instancia del objeto PersistenceManager, que se utiliza para interactuar con la base de datos.
 		boolean mesaLibre = false;
 		
@@ -394,8 +400,8 @@ public class Resource {
 			// Obtener todas las reservas para la fecha y hora especificadas y que no hayan sido canceladas
 			Query<Reserva> query = pm.newQuery(Reserva.class);
 			query.setFilter("fecha == fechaParam && hora == horaParam && cancelada == false");
-			query.declareParameters("java.util.Date fechaParam, java.sql.Time horaParam");
-			List<Reserva> reservas = (List<Reserva>) query.execute(fecha, hora);
+			query.declareParameters("java.util.Date fechaParam, java.sql.Time horaParam"); // Declarar los parámetros que se utilizan en una consulta
+			List<Reserva> reservas = (List<Reserva>) query.execute(fecha, hora); // Se ejecuta la consulta
 
 			// Calcular el número de personas en las reservas encontradas
 			int numPersonasReservadas = 0;
@@ -408,12 +414,12 @@ public class Resource {
 				mesaLibre = true;
 			}
 		} finally {
-			pm.close();
+			pm.close(); // Se cierra el objeto PersistenceManager.
 	}
 
 		return mesaLibre;
 	}
-	*/
+
 
 	@GET
 	@Path("/admin/setReservas")
