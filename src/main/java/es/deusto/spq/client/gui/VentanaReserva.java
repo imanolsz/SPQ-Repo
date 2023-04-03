@@ -21,9 +21,7 @@ import javax.swing.JTextField;
 import es.deusto.spq.main.Main;
 
 public class VentanaReserva extends JFrame {
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
     private GridBagConstraints c_1;
     private GridBagConstraints c_2;

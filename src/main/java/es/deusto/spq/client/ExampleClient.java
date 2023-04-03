@@ -15,7 +15,6 @@ import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 
-import java.net.http.HttpClient;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -26,10 +25,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import es.deusto.spq.pojo.NotificacionData;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 
 public class ExampleClient {
 

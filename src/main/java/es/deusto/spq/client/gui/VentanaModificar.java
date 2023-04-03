@@ -10,9 +10,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 public class VentanaModificar extends JFrame {
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
     private GridBagConstraints gbc_boxNuevosComensales;
     private GridBagConstraints c_2;

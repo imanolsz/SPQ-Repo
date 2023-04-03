@@ -5,7 +5,6 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import es.deusto.spq.client.*;
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
 
