@@ -1,3 +1,4 @@
+
 package es.deusto.spq.client.gui;
 
 import java.awt.Color;
@@ -14,7 +15,7 @@ import java.net.URL;
 
 import es.deusto.spq.main.Main;
 
-public class VentanaMenu extends JFrame {
+public class VentanaConsultaReserva extends JFrame {
 	/**
 	 * 
 	 */
@@ -23,11 +24,12 @@ public class VentanaMenu extends JFrame {
 	JButton bSalir;
 	JButton bRealizarReserva;
 	JButton BBuzon;
-	JButton bModificarReserva;
+	JButton bCancelarReserva;
+	JTable tableReservasUsuario;
 
 	// private Thread t;
 
-	public VentanaMenu() {
+	public VentanaConsultaReserva() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("MENU");
 		setSize(800, 600);
@@ -44,15 +46,13 @@ public class VentanaMenu extends JFrame {
 		Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
 		BBuzon.setIcon(imag);
 
-		//boton consultar reserva y añado el boton buzon al panel
-		bConsultarReservas = new JButton("Consultar Reservas");
-		bConsultarReservas.setBackground(Color.LIGHT_GRAY);
+		//añado el boton buzon al panel
 		panelCentral.add(BBuzon);
 		panelInferior.add(bConsultarReservas);
 
 		//boton salir
 		bSalir = new JButton("Salir");
-		bSalir.setBackground(Color.RED);
+		bSalir.setBackground(Color.LIGHT_GRAY);
 		panelInferior.add(bSalir);
 
 		//boton realizar reserva y caracteristicas de la ventana
@@ -64,26 +64,24 @@ public class VentanaMenu extends JFrame {
 		panelCentral.add(bRealizarReserva);
 		bRealizarReserva.setLocation(width, height);
 
-		//boton modificar reserva
-		bModificarReserva = new JButton("Modificar reserva");
-		bModificarReserva.setBackground(Color.ORANGE);
-		panelInferior.add(bModificarReserva);
+		//boton cancelar reserva
+		bCancelarReserva = new JButton("Cancelar reserva");
+		bCancelarReserva.setBackground(Color.RED);
+		panelInferior.add(bCancelarReserva);
 		
 		//Paneles
 		getContentPane().add(panelInferior, "South");
 		getContentPane().add(panelCentral,"Center" );
+		
+        //Tabla para mostrar las reservas del usuario
+		tableReservasUsuario = new JTable();
+		panelCentral.add(tableReservasUsuario);
 
 		//Action listener de los botones
-		bConsultarReservas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.getGestorVentanas().getVentanaConsultaReserva().setVisible(true);
-				dispose();
-			}
-		});
 
 		bSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
+				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
 				dispose();
 			}
 		});
@@ -95,10 +93,9 @@ public class VentanaMenu extends JFrame {
 			}
 		});	
 
-		bModificarReserva.addActionListener(new ActionListener() {
+		//Implementar el listener del metodo que cancele una reserva
+		bCancelarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.getGestorVentanas().getVentanaModificar().setVisible(true);
-				dispose();
 			}
 		});
 
