@@ -12,7 +12,7 @@ public class Main {
 	protected static final Logger logger = LogManager.getLogger();
 	
 
-
+	
 	public static void main(String[] args) {
 
 		if (args.length != 2) {
@@ -44,5 +44,6 @@ public class Main {
 	public static ExampleClient getExampleClient(){
 		return exampleClient;
 	}
+	
 
 }
