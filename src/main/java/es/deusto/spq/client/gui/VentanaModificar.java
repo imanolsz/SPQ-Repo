@@ -44,15 +44,15 @@ public class VentanaModificar extends JFrame {
         textFecha.setColumns(10);
         
         //Obtener la fecha en formato Date
-        String nombre = textFecha.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
-        Date fechaReserva;
-        try {
-            fechaReserva = sdf.parse(textFecha.getText());
-        } catch (ParseException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
+        // String nombre = textFecha.getText();
+        // SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
+        // Date fechaReserva;
+        // try {
+        //     fechaReserva = sdf.parse(textFecha.getText());
+        // } catch (ParseException e1) {
+        //     // TODO Auto-generated catch block
+        //     e1.printStackTrace();
+        // }
   
 
         // Crear las restricciones para los componentes

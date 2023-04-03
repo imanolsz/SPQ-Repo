@@ -197,7 +197,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <mainClass>es.deusto.spq.Main</mainClass> <!-- Se especifica la clase principal del programa en la etiqueta "mainClass" -->
+                            <mainClass>es.deusto.spq.main.Main</mainClass> <!-- Se especifica la clase principal del programa en la etiqueta "mainClass" -->
 							<arguments>
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>
