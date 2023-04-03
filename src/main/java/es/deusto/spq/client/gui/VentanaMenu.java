@@ -23,6 +23,7 @@ public class VentanaMenu extends JFrame {
 	JButton bSalir;
 	JButton bRealizarReserva;
 	JButton BBuzon;
+	JButton bModificarReserva;
 
 	// private Thread t;
 
@@ -42,21 +43,37 @@ public class VentanaMenu extends JFrame {
 		BBuzon.setBounds(100, 100, 50, 50);
 		Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
 		BBuzon.setIcon(imag);
+
+		//boton consultar reserva y añado el boton buzon al panel
 		bConsultarReservas = new JButton("Consultar Reservas");
+		bConsultarReservas.setBackground(Color.LIGHT_GRAY);
 		panelCentral.add(BBuzon);
 		panelInferior.add(bConsultarReservas);
+
+		//boton salir
 		bSalir = new JButton("Salir");
+		bSalir.setBackground(Color.RED);
 		panelInferior.add(bSalir);
+
+		//boton realizar reserva y caracteristicas de la ventana
 		bRealizarReserva = new JButton("Realizar reserva");
+		bRealizarReserva.setBackground(Color.GREEN);
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 	    int height = pantalla.height;
 	    int width = pantalla.width;
 		panelCentral.add(bRealizarReserva);
 		bRealizarReserva.setLocation(width, height);
+
+		//boton modificar reserva
+		bModificarReserva = new JButton("Modificar reserva");
+		bModificarReserva.setBackground(Color.ORANGE);
+		panelInferior.add(bModificarReserva);
 		
+		//Paneles
 		getContentPane().add(panelInferior, "South");
 		getContentPane().add(panelCentral,"Center" );
 
+		//Action listener de los botones
 		bConsultarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -77,5 +94,21 @@ public class VentanaMenu extends JFrame {
 				dispose();
 			}
 		});	
+
+		bModificarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaModificar().setVisible(true);
+				dispose();
+			}
+		});
+
+		bRealizarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().gVentanaReserva().setVisible(true);
+				dispose();
+			}
+		});
+
+		
 	}
 }
