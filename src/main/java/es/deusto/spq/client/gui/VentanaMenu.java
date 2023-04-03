@@ -76,7 +76,7 @@ public class VentanaMenu extends JFrame {
 		//Action listener de los botones
 		bConsultarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Main.getGestorVentanas().getVentanaConsultaReserva().setVisible(true);
 				dispose();
 			}
 		});
@@ -104,7 +104,7 @@ public class VentanaMenu extends JFrame {
 
 		bRealizarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.getGestorVentanas().gVentanaReserva().setVisible(true);
+				Main.getGestorVentanas().getVentanaReserva().setVisible(true);
 				dispose();
 			}
 		});

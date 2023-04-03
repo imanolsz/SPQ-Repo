@@ -10,6 +10,7 @@ public class GestorVentanas {
 	VentanaConfirmacion VentanaConfirmacion;
 	VentanaModificar VentanaModificar;
 	VentanaReserva ventanaReserva;
+	VentanaConsultaReserva ventanaConsultaReserva;
 	
 	public GestorVentanas() {
 		VentanaPrincipal = new VentanaPrincipal();
@@ -19,6 +20,7 @@ public class GestorVentanas {
 		VentanaConfirmacion = new VentanaConfirmacion();
 		VentanaModificar= new VentanaModificar();
 		ventanaReserva = new VentanaReserva();
+		ventanaConsultaReserva = new VentanaConsultaReserva();
 		//VentanaBuzon = new VentanaBuzon(notificaciones);
 	}
 	
@@ -49,7 +51,11 @@ public class GestorVentanas {
 		return VentanaModificar;
 	}
 
-	public VentanaReserva gVentanaReserva(){
+	public VentanaReserva getVentanaReserva(){
 		return ventanaReserva;
+	}
+
+	public VentanaConsultaReserva getVentanaConsultaReserva(){
+		return ventanaConsultaReserva;
 	}
 }

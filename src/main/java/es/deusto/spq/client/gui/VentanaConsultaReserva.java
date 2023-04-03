@@ -101,7 +101,7 @@ public class VentanaConsultaReserva extends JFrame {
 
 		bRealizarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.getGestorVentanas().gVentanaReserva().setVisible(true);
+				Main.getGestorVentanas().getVentanaReserva().setVisible(true);
 				dispose();
 			}
 		});
