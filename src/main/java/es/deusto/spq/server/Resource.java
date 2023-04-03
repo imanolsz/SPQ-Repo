@@ -388,7 +388,7 @@ public class Resource {
 		
     }
 
-
+	// Booleano para el método /hayMesaLibre
 	public boolean hayMesaLibrebool(Date fecha, Time hora, int numPersonas) {
 		int CAPACIDAD_MAXIMA_RESTAURANTE = 100; // Ejemplo
 		
