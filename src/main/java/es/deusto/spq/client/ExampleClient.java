@@ -14,22 +14,22 @@ import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
-import es.deusto.spq.server.jdo.Reserva;
-import es.deusto.spq.server.jdo.User; // Mal
 
-
+import java.net.http.HttpClient;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.time.Instant;
 import es.deusto.spq.pojo.NotificacionData;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 
 public class ExampleClient {
 
@@ -272,6 +272,27 @@ public class ExampleClient {
             logger.info("User correctly registered");
         }
     }
+
+	public boolean hayMesaLibre(ReservaData reservaData) {
+		boolean mesaLibre = false;
+	
+		WebTarget hayMesaLibreWebTarget = webTarget.path("hayMesaLibre")
+				.queryParam("fecha", reservaData.getFecha()) // Se agrega un parámetro de consulta HTTP llamado "fecha", que tiene el valor de la propiedad fecha del objeto reservaData
+				.queryParam("hora", reservaData.getHora())
+				.queryParam("numPersonas", reservaData.getNumPersonas());
+	
+		Invocation.Builder invocationBuilder = hayMesaLibreWebTarget.request(MediaType.APPLICATION_JSON); // Se establece el tipo de medio que se espera en la respuesta HTTP
+	
+		Response response = invocationBuilder.get(); //  Se envía una solicitud HTTP GET
+	
+		if (response.getStatus() == Status.OK.getStatusCode()) { // Se verifica si el código de estado de la respuesta HTTP es 200 OK.
+			mesaLibre = response.readEntity(Boolean.class); // Si el código de estado de la respuesta HTTP es 200 OK, se lee el contenido de la respuesta como un objeto booleano, y se asigna a la variable mesaLibre.
+		} else {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		}
+	
+		return mesaLibre;
+	}
 
 }
 
