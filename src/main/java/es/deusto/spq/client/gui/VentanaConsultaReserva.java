@@ -5,15 +5,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.util.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import java.net.URL;
 
 import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.ReservaData;
 
 public class VentanaConsultaReserva extends JFrame {
 	/**
@@ -73,9 +76,33 @@ public class VentanaConsultaReserva extends JFrame {
 		getContentPane().add(panelInferior, "South");
 		getContentPane().add(panelCentral,"Center" );
 		
-        //Tabla para mostrar las reservas del usuario
+        //Tabla INCOMPLETA para mostrar las reservas del usuario
 		tableReservasUsuario = new JTable();
 		panelCentral.add(tableReservasUsuario);
+
+		List<ReservaData> reservas = Main.getExampleClient().getReservas();
+		if (reservas != null) {
+			DefaultTableModel model = new DefaultTableModel();
+			model.addColumn("ID");
+			model.addColumn("Fecha");
+			model.addColumn("Hora");
+			model.addColumn("Cancelada");
+			model.addColumn("NumPersonas");
+			model.addColumn("UserData");
+
+			// para poder filtrar las reservas por el id que queremos.
+			for (int i = 0; i < reservas.size(); i++) {
+				ReservaData reserva = reservas.get(i);
+				//Falta que con ese token encontremos el id del cliente que esta conectado mediante el mapa que los une en resources
+				if (reserva.getId() == Main.getExampleClient().getToken()) { // Solo se agregan las reservas con el id que queremos
+					model.addRow(new Object[]{reserva.getId(), reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
+				}
+			}
+
+			tableReservasUsuario.setModel(model);
+		}
+
+
 
 		//Action listener de los botones
 
