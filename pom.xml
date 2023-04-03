@@ -1,37 +1,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"> <!-- Establece el esquema XML utilizado para el archivo POM y También establece la ubicación del esquema XSD de Maven (especifica la estructura XML del archivo POM) -->
 	
-	<modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>  <!-- Versión de POM que se está utilizando, -->
 	
 	<groupId>org.datanucleus</groupId>
-	<artifactId>datanucleus-jersey-jdo-mysql</artifactId>
-	<packaging>war</packaging>
+	<artifactId>datanucleus-jersey-jdo-mysql</artifactId> <!-- Proporciona soporte para la integración de Jersey, Datanucleus  y MySQL para el proyecto.-->
+	<packaging>war</packaging> <!-- Especifica el tipo de empaquetado que se usará para el artefacto. En este caso, es un archivo WAR, que es un archivo de implementación web Java. -->
 	<version>1.0-SNAPSHOT</version>
 	<name>Jersey + Datanucleus + MySQL</name>
 
-	<properties>
-		<maven.compiler.release>8</maven.compiler.release>
-		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jersey.version>2.35</jersey.version>
-		<server.hostname>127.0.0.1</server.hostname>
-		<server.port>8080</server.port>
+	<properties> <!-- Se definen una serie de propiedades que serán utilizadas en diferentes partes del proyecto. -->
+		<maven.compiler.release>8</maven.compiler.release> <!-- Indica la versión del compilador de Java que se utilizará para compilar el código del proyecto -->
+		<config.files.dir>${basedir}/src/main/resources</config.files.dir>  <!-- Indica la ubicación del directorio que contiene los archivos de configuración del proyecto. -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Indica la codificación de caracteres que se utilizará para leer los archivos de código fuente del proyecto -->
+		<jersey.version>2.35</jersey.version> <!-- Indica la versión de la biblioteca Jersey que se utilizará en el proyecto. Jersey es una biblioteca de Java que se utiliza para crear servicios web RESTful. -->
+		<server.hostname>127.0.0.1</server.hostname> <!-- Indican el nombre y del servidor en el que se ejecutará el proyecto.-->
+		<server.port>8080</server.port>  <!-- Indica el número de puerto del servidor en el que se ejecutará el proyecto.-->
 	</properties>
 
-	<dependencyManagement>
+	<dependencyManagement> <!-- Para manejar todas las versiones de las dependencias del proyecto-->
         <dependencies>
             <dependency>
                 <groupId>org.glassfish.jersey</groupId>
-                <artifactId>jersey-bom</artifactId>
-                <version>${jersey.version}</version>
+                <artifactId>jersey-bom</artifactId> <!-- En este caso, la dependencia manejada es jersey-bom, es una manera de manejar la compatibilidad de las versiones de las diferentes dependencias de un proyecto, en lugar de tener que especificar la versión de cada biblioteca individualmente. Al definir la versión de esta dependencia en la sección properties, todas las bibliotecas Jersey utilizadas en el proyecto usarán la misma versión.-->
+                <version>${jersey.version}</version> <!-- Especifica la versión a usar -->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-	<dependencies>
+	<dependencies> <!-- Sección del archivo POM de Maven donde se especifican las dependencias del proyecto. Cada dependencia se define dentro de la etiqueta <dependency>.-->
+		<!-- Las dependencias incluyen varias bibliotecas de DataNucleus y MySQL Connector/J entre otras -->
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
@@ -82,9 +83,9 @@
         </dependency>
 	</dependencies>
 
-	<build>
+	<build> <!-- En la sección <build> se definen los plugins de Maven que se utilizarán para compilar, empaquetar y generar documentación para el proyecto -->
 		<resources>
-			<resource>
+			<resource> <!-- Se define la ubicación de los recursos que serán incluidos en el paquete construido. En este caso, se incluyen todos los archivos con extensión .jdo, .orm y .properties que se encuentren en el directorio especificado por la variable  -->
 				<directory>${config.files.dir}</directory>
 				<includes>
 					<include>**/*.jdo</include>
@@ -95,7 +96,7 @@
 		</resources>
 
 		<plugins>
-			<plugin>
+			<plugin> <!-- Este plugin se utiliza para limpiar los archivos generados en la última compilación. En este caso, se eliminan todos los archivos con extensión .log y .ods que se encuentren en el directorio principal del proyecto (${basedir}). -->
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.2.0</version>
 				<configuration>
@@ -111,18 +112,18 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
+			<plugin> <!-- Este plugin se utiliza para compilar el código fuente del proyecto. En este caso, se utiliza la versión 3.8.1 del plugin -->
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 			</plugin>
 
-			<plugin>
+			<plugin> <!-- Este plugin se utiliza para empaquetar el proyecto en un archivo WAR (Web ARchive) -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
 			</plugin>
 
-			<plugin>
+			<plugin> <!-- Este plugin se utiliza para mejorar el código generado por el DataNucleus JDO Enhancer. El JDO Enhancer es una herramienta que se utiliza para mejorar el rendimiento de las operaciones de persistencia de objetos Java-->
 				<groupId>org.datanucleus</groupId>
 				<artifactId>datanucleus-maven-plugin</artifactId>
 				<version>6.0.0-release</version>
@@ -131,7 +132,7 @@
 					<verbose>true</verbose>
 					<props>${config.files.dir}/datanucleus.properties</props>
 				</configuration>
-				<executions>
+				<executions> <!-- Lista de objetivos (goals) a ejecutar durante el proceso de construcción (build) del proyecto. -->
 					<execution>
 						<!-- links the enhance to the compile phase -->
 						<phase>compile</phase>
@@ -142,30 +143,32 @@
 				</executions>
 			</plugin>
 
-			<plugin>
+			<plugin> <!-- este plugin se utiliza para iniciar un servidor Jetty (Un servicio Jetty es un proceso en segundo plano que escucha las solicitudes HTTP entrantes en un puerto determinado y las dirige a la aplicación web Java correspondiente) -->
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.4.46.v20220331</version>
             </plugin>
 
-			<plugin>
+			<plugin> <!-- Este plugin se utiliza para ejecutar una clase Java específica del proyecto durante la fase de compilación-->
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2.1</version>
 
 				<configuration>
-					<mainClass>org.datanucleus.samples.jdo.tutorial.Main</mainClass>
+					<mainClass>org.datanucleus.samples.jdo.tutorial.Main</mainClass> <!-- Se utiliza para especificar la clase principal que se debe ejecutar cuando se invoca el comando mvn exec:java -->
 				</configuration>
 			</plugin>
-			<plugin>
+
+			<plugin> <!-- Este plugin se utiliza para empaquetar el proyecto en un archivo JAR (Java ARchive) con todas sus dependencias -->
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptors>
-						<descriptor>${basedir}/assembly.xml</descriptor>
+						<descriptor>${basedir}/assembly.xml</descriptor> <!-- En este caso, se utiliza un archivo de configuración assembly.xml para definir el contenido del archivo JAR generado. -->
 					</descriptors>
 				</configuration>
 			</plugin>
-			<plugin>
+
+			<plugin> <!-- Este plugin se utiliza para generar documentación Javadoc para el proyecto. En este caso, se utiliza la versión 3.0.0 del plugin y se especifica que se deben mostrar los métodos privados y que no se deben incluir páginas de ayuda.-->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.0.0</version>
@@ -179,10 +182,10 @@
 
 	<profiles>
 		<profile>
-			<id>client</id>
+			<id>client</id> <!-- En este fragmento de código, se define un perfil llamado "client", el perfil se usa para construir un cliente para una aplicación de servidor.-->
 			<build>
                 <plugins>
-                    <plugin>
+                    <plugin> <!-- El plugin se utiliza para ejecutar un programa Java que actúa como cliente. -->
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
@@ -194,7 +197,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <mainClass>es.deusto.spq.client.ExampleClient</mainClass>
+                            <mainClass>es.deusto.spq.Main</mainClass> <!-- Se especifica la clase principal del programa en la etiqueta "mainClass" -->
 							<arguments>
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>
