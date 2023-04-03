@@ -16,14 +16,12 @@ public class User {
 	String id=null; //nombre 
 	String password=null;
 	boolean admin = false;
-	
-	@Persistent(mappedBy="user", dependentElement="true")
-	@Join
-	Set<Message> messages = new HashSet<>();
-	
 	// La propiedad reservas es mapeada por la propiedad cliente en la clase Reserva. La propiedad reservas es una lista de objetos Reserva asociados a un Cliente.
 	@Persistent(mappedBy = "user") // Es mappedBy user ya que la clase se llama  así 
 	private List<Reserva> reservas = new ArrayList<>();
+	
+	
+	Set<Message> messages = new HashSet<>();
 	
 	// CONSTRUCTOR Para inicializar un usuario sin permisos de administrador
 	public User(String id, String password) {

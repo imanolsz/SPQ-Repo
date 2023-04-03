@@ -26,6 +26,7 @@ import es.deusto.spq.server.jdo.*;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -178,7 +179,10 @@ public class Resource {
 								logger.info("User: {}", user);
 								if (user != null)  {
 									logger.info("Nombre de usuario  	incorrecto");
-									pm.makePersistent(user);		 
+									pm.makePersistent(user);
+									Long token = Calendar.getInstance().getTimeInMillis();
+                					this.serverState.put(token, user);
+                					return Response.ok().entity(token.toString()).build();		 
 								}
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -191,17 +195,7 @@ public class Resource {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			//gestión del token 
-			if (user != null)  {
-				Long token = Calendar.getInstance().getTimeInMillis();
-				this.serverState.put(token, user);
-			}
-			// else{
-			// 	Iterator<Long> it = this.serverState.keySet().iterator();
-			// 	while (it.hasNext()) {
-			// 	Long token = it.next();
-			// 	}
-			// }}
+			
 			tx.commit();
 			return Response.ok().build();
         }
@@ -218,7 +212,6 @@ public class Resource {
 	public Response logout(long token) throws RemoteException {
 		try
         {	
-			User user = null;
             tx.begin();
             if (this.serverState.containsKey(token)) {
 				// Logout means remove the User from Server State
@@ -242,14 +235,21 @@ public class Resource {
 
 	@POST
 	@Path("/realizarReserva")
-	public Response realizarReserva(ReservaData reservaData ) {
+	public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authorization") String authorizationHeader ) {
 		try
         {	
 			Reserva reserva = null;
             tx.begin();
-			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),null);
+			//Desenmascarar usuario activo
+			String tokenString = authorizationHeader.substring("Bearer ".length()).trim();
+			long token = Long.parseLong(tokenString);
+			if (this.serverState.containsKey(token)) {
+				User usuario = this.serverState.get(token);
+			
+			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),usuario);
             logger.info("Realizando reserva: '{}'", reservaData.getId());
 			pm.makePersistent(reserva);
+			}
 			tx.commit();
 			return Response.ok().build();
         }

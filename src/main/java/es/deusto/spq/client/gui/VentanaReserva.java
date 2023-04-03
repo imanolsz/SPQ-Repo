@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -134,9 +135,12 @@ public class VentanaReserva extends JFrame {
                 String nombre = textFecha.getText();
                 SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
                 Date fechaReserva;
+                long token = Main.getExampleClient().getToken();
                 try {
                     fechaReserva = sdf.parse(textFecha.getText());
-                    //Main.getExampleClient().realizarReserva(fechaReserva, boxHora.getSelectedItem(), boxComensales.getSelectedItem(),true, null);
+                    int comensales = (int) boxComensales.getSelectedItem();
+                    Time hora =  (Time) boxHora.getSelectedItem();
+                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,token);
                 } catch (ParseException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();

@@ -53,7 +53,7 @@ public class ExampleClient {
 			logger.info("User correctly registered");
 		}
 	}
-	public UserData loginUser(String id, String password){
+	public String loginUser(String id, String password){
 		WebTarget registerUserWebTarget = webTarget.path("login");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		
@@ -65,8 +65,12 @@ public class ExampleClient {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
 			logger.info("User correctly logged.");
+			String tokenString = response.readEntity(String.class);
+			this.token = Long.parseLong(tokenString);
+        	logger.info("User correctly logged. Token: {}", token);
+       		 return tokenString;
 		}
-		return userData;
+		return null;
 	}
 
 	public void logout() {
@@ -122,13 +126,15 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
-	public void realizarReserva(Date fecha, Time hora,  int numPersonas, boolean cancelada, UserData userData) {
+	public void realizarReserva(Date fecha, Time hora,  int numPersonas, boolean cancelada, long token) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Date date = fecha; // crea un objeto Date
 		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
 		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
 
+		// Agregar token como header personalizado
+		invocationBuilder.header("Authorization", "Bearer " + token);
 
 		//creo una notificacionData para el usuario
 		NotificacionData notificacionData = new NotificacionData();
@@ -144,8 +150,8 @@ public class ExampleClient {
 		reservaData.setHora(hora);
 		reservaData.setCancelada(cancelada);
 		reservaData.setNumPersonas(numPersonas);
-		reservaData.setUser(userData);
 		Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
+		
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
