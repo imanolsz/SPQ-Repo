@@ -80,10 +80,9 @@ public class VentanaPrincipal extends JFrame {
 		
 		//ETIQUETA IMAGEN
 		URL urlImagen = getClass().getResource("../fotos/LOGO.jpg"); // // Obtener URL de la imagen
-        ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
-		JLabel etiquetaImg = new JLabel(imagen); // Crear JLabel con la imagen 
-		etiquetaImg.setBounds(10, 20, 512, 512);
-		panelCentral.add(etiquetaImg);
+        //ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
+		//JLabel etiquetaImg = new JLabel(imagen); // Crear JLabel con la imagen 
+		//panelCentral.add(etiquetaImg);
 		getContentPane().add(panelCentral,"Center");
 		
 	}
