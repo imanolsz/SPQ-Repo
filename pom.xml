@@ -121,6 +121,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
+				<configuration>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
+				</configuration>
 			</plugin>
 
 			<plugin> <!-- Este plugin se utiliza para mejorar el código generado por el DataNucleus JDO Enhancer. El JDO Enhancer es una herramienta que se utiliza para mejorar el rendimiento de las operaciones de persistencia de objetos Java-->
@@ -147,6 +150,9 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.4.46.v20220331</version>
+				<configuration>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
+				</configuration>
             </plugin>
 
 			<plugin> <!-- Este plugin se utiliza para ejecutar una clase Java específica del proyecto durante la fase de compilación-->
@@ -165,6 +171,7 @@
 					<descriptors>
 						<descriptor>${basedir}/assembly.xml</descriptor> <!-- En este caso, se utiliza un archivo de configuración assembly.xml para definir el contenido del archivo JAR generado. -->
 					</descriptors>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
 				</configuration>
 			</plugin>
 
@@ -175,6 +182,7 @@
 				<configuration>
 					<show>private</show>
 					<nohelp>true</nohelp>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
 				</configuration>
 			</plugin>
 		</plugins>
