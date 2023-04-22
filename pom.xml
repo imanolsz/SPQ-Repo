@@ -109,12 +109,16 @@
 							</includes>
 						</fileset>
 					</filesets>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
 				</configuration>
 			</plugin>
 
 			<plugin> <!-- Este plugin se utiliza para compilar el código fuente del proyecto. En este caso, se utiliza la versión 3.8.1 del plugin -->
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
+				<configuration>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
+				</configuration>
 			</plugin>
 
 			<plugin> <!-- Este plugin se utiliza para empaquetar el proyecto en un archivo WAR (Web ARchive) -->
@@ -134,6 +138,7 @@
 					<api>JDO</api>
 					<verbose>true</verbose>
 					<props>${config.files.dir}/datanucleus.properties</props>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
 				</configuration>
 				<executions> <!-- Lista de objetivos (goals) a ejecutar durante el proceso de construcción (build) del proyecto. -->
 					<execution>
@@ -210,7 +215,7 @@
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>
 							</arguments>
-                        </configuration>
+						</configuration>
                     </plugin>
                 </plugins>
             </build>
