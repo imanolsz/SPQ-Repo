@@ -36,6 +36,12 @@
 	<dependencies> <!-- Sección del archivo POM de Maven donde se especifican las dependencias del proyecto. Cada dependencia se define dentro de la etiqueta <dependency>.-->
 		<!-- Las dependencias incluyen varias bibliotecas de DataNucleus y MySQL Connector/J entre otras -->
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
 			<version>[3.2.0-release, )</version>
@@ -111,16 +117,12 @@
 							</includes>
 						</fileset>
 					</filesets>
-					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
 				</configuration>
 			</plugin>
 
 			<plugin> <!-- Este plugin se utiliza para compilar el código fuente del proyecto. En este caso, se utiliza la versión 3.8.1 del plugin -->
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
-				<configuration>
-					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
-				</configuration>
 			</plugin>
 
 			<plugin> <!-- Este plugin se utiliza para empaquetar el proyecto en un archivo WAR (Web ARchive) -->
@@ -140,7 +142,7 @@
 					<api>JDO</api>
 					<verbose>true</verbose>
 					<props>${config.files.dir}/datanucleus.properties</props>
-					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
+					<fork>false</fork>
 				</configuration>
 				<executions> <!-- Lista de objetivos (goals) a ejecutar durante el proceso de construcción (build) del proyecto. -->
 					<execution>

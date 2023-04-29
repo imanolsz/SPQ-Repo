@@ -1,6 +1,6 @@
 .classpath
 target/
-
+src/main/resources/datanucleus.properties
 .DS_Store
 
 

@@ -18,7 +18,7 @@ import java.net.URL;
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
 
-public class VentanaConsultaReserva extends JFrame {
+public class VentanaConsultaReservaTest extends JFrame {
 	/**
 	 * 
 	 */
@@ -32,7 +32,7 @@ public class VentanaConsultaReserva extends JFrame {
 
 	// private Thread t;
 
-	public VentanaConsultaReserva() {
+	public VentanaConsultaReservaTest() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("MENU");
 		setSize(800, 600);
@@ -43,15 +43,11 @@ public class VentanaConsultaReserva extends JFrame {
 		panelCentral.setBackground(Color.decode("#e0a370"));
 		BBuzon = new JButton();
 		// Código ejemplo para importar una foto
-<<<<<<< HEAD
-		//URL urlImagen = getClass().getResource("src/main/java/es/deusto/spq/client/fotos/LOGO.png"); // Obtener URL de la imagen
-=======
-		//URL urlImagen = getClass().getResource("../fotos/buzon.jpg"); // Obtener URL de la imagen
->>>>>>> b79cbb28469c90e8eb341f682e9e606f088b0101
-		//ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
+		URL urlImagen = getClass().getResource("../fotos/buzon.jpg"); // Obtener URL de la imagen
+		ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
 		BBuzon.setBounds(100, 100, 50, 50);
-		//Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
-		//BBuzon.setIcon(imag);
+		Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
+		BBuzon.setIcon(imag);
 		bConsultarReservas = new JButton("Consultar reservas");
 
 		//añado el boton buzon al panel
