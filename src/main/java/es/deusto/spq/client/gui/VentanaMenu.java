@@ -38,11 +38,11 @@ public class VentanaMenu extends JFrame {
 		panelCentral.setBackground(Color.decode("#e0a370"));
 		BBuzon = new JButton();
 		// Código ejemplo para importar una foto
-		// URL urlImagen = getClass().getResource("../fotos/buzon.jpg"); // Obtener URL de la imagen
-		// ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
-		// BBuzon.setBounds(100, 100, 50, 50);
-		// Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
-		// BBuzon.setIcon(imag);
+		 URL urlImagen = getClass().getResource("/fotos/buzon.jpg"); // Obtener URL de la imagen
+		 ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
+		 BBuzon.setBounds(100, 100, 50, 50);
+		 Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
+		 BBuzon.setIcon(imag);
 
 		//boton consultar reserva y añado el boton buzon al panel
 		bConsultarReservas = new JButton("Consultar Reservas");
