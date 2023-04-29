@@ -1,10 +1,11 @@
 package es.deusto.spq.client.gui;
-import javax.swing.JOptionPane;
 
+import org.junit.*;
 
 public class VentanaConfirmacionTest {
 
-    public static void mostrarMensaje() {
-        JOptionPane.showMessageDialog(null, "Su reserva ha sido creada satisfactoriamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-    }
+    @Before
+	public void setUp() throws Exception {
+		// Code executed before each test
+	}
 }
