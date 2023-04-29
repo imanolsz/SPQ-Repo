@@ -17,6 +17,8 @@
 		<jersey.version>2.35</jersey.version> <!-- Indica la versión de la biblioteca Jersey que se utilizará en el proyecto. Jersey es una biblioteca de Java que se utiliza para crear servicios web RESTful. -->
 		<server.hostname>127.0.0.1</server.hostname> <!-- Indican el nombre y del servidor en el que se ejecutará el proyecto.-->
 		<server.port>8080</server.port>  <!-- Indica el número de puerto del servidor en el que se ejecutará el proyecto.-->
+		<sonar.organization>imanolsz</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencyManagement> <!-- Para manejar todas las versiones de las dependencias del proyecto-->
@@ -33,6 +35,12 @@
 
 	<dependencies> <!-- Sección del archivo POM de Maven donde se especifican las dependencias del proyecto. Cada dependencia se define dentro de la etiqueta <dependency>.-->
 		<!-- Las dependencias incluyen varias bibliotecas de DataNucleus y MySQL Connector/J entre otras -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
@@ -121,6 +129,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
+				<configuration>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
+				</configuration>
 			</plugin>
 
 			<plugin> <!-- Este plugin se utiliza para mejorar el código generado por el DataNucleus JDO Enhancer. El JDO Enhancer es una herramienta que se utiliza para mejorar el rendimiento de las operaciones de persistencia de objetos Java-->
@@ -131,6 +142,7 @@
 					<api>JDO</api>
 					<verbose>true</verbose>
 					<props>${config.files.dir}/datanucleus.properties</props>
+					<fork>false</fork>
 				</configuration>
 				<executions> <!-- Lista de objetivos (goals) a ejecutar durante el proceso de construcción (build) del proyecto. -->
 					<execution>
@@ -147,6 +159,9 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.4.46.v20220331</version>
+				<configuration>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
+				</configuration>
             </plugin>
 
 			<plugin> <!-- Este plugin se utiliza para ejecutar una clase Java específica del proyecto durante la fase de compilación-->
@@ -165,6 +180,7 @@
 					<descriptors>
 						<descriptor>${basedir}/assembly.xml</descriptor> <!-- En este caso, se utiliza un archivo de configuración assembly.xml para definir el contenido del archivo JAR generado. -->
 					</descriptors>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
 				</configuration>
 			</plugin>
 
@@ -175,6 +191,7 @@
 				<configuration>
 					<show>private</show>
 					<nohelp>true</nohelp>
+					<repositorySystemSession>${repositorySystemSession}</repositorySystemSession>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -202,7 +219,7 @@
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>
 							</arguments>
-                        </configuration>
+						</configuration>
                     </plugin>
                 </plugins>
             </build>

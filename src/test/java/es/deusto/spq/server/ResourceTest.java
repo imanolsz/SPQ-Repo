@@ -1,9 +1,17 @@
 package es.deusto.spq.server;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import junit.framework.JUnit4TestAdapter;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -24,7 +32,6 @@ import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.*;
 
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -38,12 +45,11 @@ import javax.ws.rs.core.Response.Status;
 import es.deusto.spq.server.jdo.Notificacion;
 
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.config.composite.*;
 import org.apache.logging.log4j.LogManager;
 
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)
-public class Resource {
+public class ResourceTest {
 
 	protected static final Logger logger = LogManager.getLogger();
 	private Map<Long, User> serverState = new HashMap<>();
@@ -51,12 +57,22 @@ public class Resource {
 	private PersistenceManager pm=null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
 
-	public Resource() {
+	public ResourceTest() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
 		this.tx = pm.currentTransaction();
 	}
 
+	private Resource r1;
+	private Resource r2;
+
+	@Before
+	public void setUp() {
+		r1 = new Resource();
+		r2 = new Resource();
+	}
+
+	@Test
 	@POST
 	@Path("/sayMessage")
 	public Response sayMessage(DirectMessage directMessage) {
