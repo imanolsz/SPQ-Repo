@@ -27,7 +27,7 @@ public class VentanaBuzon extends JFrame {
 
 	// private Thread t;
 
-    public VentanaBuzon(UserData user, String[] args) {
+    public VentanaBuzon(UserData user) {
 
         ExampleClient ec = Main.getExampleClient();
         List<NotificacionData> notificaciones = ec.getNotifications(user);

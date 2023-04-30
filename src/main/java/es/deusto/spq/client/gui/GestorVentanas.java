@@ -1,5 +1,7 @@
 package es.deusto.spq.client.gui;
 
+import es.deusto.spq.pojo.UserData;
+
 public class GestorVentanas {
 	
 	VentanaInicio VentanaInicioSesion;
@@ -21,7 +23,8 @@ public class GestorVentanas {
 		VentanaModificar= new VentanaModificar();
 		ventanaReserva = new VentanaReserva();
 		ventanaConsultaReserva = new VentanaConsultaReserva();
-		//VentanaBuzon = new VentanaBuzon(notificaciones);
+		UserData user = new UserData();
+		VentanaBuzon = new VentanaBuzon(user);
 	}
 	
 	public VentanaPrincipal getVentanaPrincipal() {
