@@ -23,6 +23,11 @@ import es.deusto.spq.main.Main;
 
 public class VentanaPrincipal extends JFrame {
 	
+	public static void main(String[] args) {
+        VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setVisible(true);
+    }
+
 	private static final long serialVersionUID = 1L;
 	private JButton bCerrar;
 	private JButton bInicio;
@@ -79,10 +84,11 @@ public class VentanaPrincipal extends JFrame {
 		});
 		
 		//ETIQUETA IMAGEN
-		URL urlImagen = getClass().getResource("../fotos/LOGO.jpg"); // // Obtener URL de la imagen
-        //ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
-		//JLabel etiquetaImg = new JLabel(imagen); // Crear JLabel con la imagen 
-		//panelCentral.add(etiquetaImg);
+		
+		URL urlImagen = getClass().getResource("/fotos/LOGO.png"); // // Obtener URL de la imagen	
+        ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
+		JLabel etiquetaImg = new JLabel(imagen); // Crear JLabel con la imagen 
+		panelCentral.add(etiquetaImg);
 		getContentPane().add(panelCentral,"Center");
 		
 	}

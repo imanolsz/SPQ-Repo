@@ -48,6 +48,8 @@ public class VentanaConsultaReserva extends JFrame {
 		BBuzon.setBounds(100, 100, 50, 50);
 		Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
 		BBuzon.setIcon(imag);
+		Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
+		BBuzon.setIcon(imag);
 		bConsultarReservas = new JButton("Consultar reservas");
 
 		//añado el boton buzon al panel
