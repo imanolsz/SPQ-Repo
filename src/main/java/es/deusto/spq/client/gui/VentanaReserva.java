@@ -46,7 +46,7 @@ public class VentanaReserva extends JFrame {
         gbc_lfecha.gridx = 0;
         gbc_lfecha.gridy = 1;
         panel.add(lfecha, gbc_lfecha);
-        
+        //comentarioPrueba
         textFecha = new JTextField();
         GridBagConstraints gbc_textFecha = new GridBagConstraints();
         gbc_textFecha.insets = new Insets(0, 0, 5, 0);
