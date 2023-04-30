@@ -38,7 +38,7 @@ public class VentanaMenu extends JFrame {
 		panelCentral.setBackground(Color.decode("#e0a370"));
 		BBuzon = new JButton();
 		// Código ejemplo para importar una foto
-		URL urlImagen = getClass().getResource("/client/fotos/buzon.jpg");
+		URL urlImagen = getClass().getResource("/fotos/buzon.jpg");
 		// Obtener URL de la imagen
 		 if(urlImagen != null){
 			ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
