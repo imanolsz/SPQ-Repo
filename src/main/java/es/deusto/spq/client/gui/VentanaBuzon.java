@@ -10,7 +10,11 @@ import javax.swing.event.*;
 
 
 import es.deusto.spq.pojo.NotificacionData;
+import es.deusto.spq.pojo.ReservaData;
+
 import java.net.URL;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.client.ExampleClient;
@@ -33,7 +37,21 @@ public class VentanaBuzon extends JFrame {
 
     public VentanaBuzon() {
 
+        
+
         ExampleClient ec = Main.getExampleClient();
+
+
+
+        // Ejemplo de creación de un objeto ReservaData
+        Date fecha = new Date();
+        LocalTime hora = LocalTime.now();
+        int numPersonas = 2;
+        boolean cancelada = false;
+        UserData user2 = new UserData();
+        ReservaData reserva = new ReservaData(fecha, hora, numPersonas, cancelada, user2);
+
+        Main.getExampleClient().realizarNota(reserva, "prueba", "dar");
         //creo userdata
         UserData user = new UserData();
         user.setId((Long.toString(Main.getExampleClient().getToken())));

@@ -19,6 +19,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.NotaData;
 import es.deusto.spq.pojo.NotificacionData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
@@ -261,6 +262,32 @@ public class Resource {
 			pm.makePersistent(notificacion);
 			tx.commit();
 			NotificacionData.guardarNotificacionDataBD(notificacionData);
+			return Response.ok().build();
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+		}
+	}
+
+
+	@POST
+	@Path("/realizarNota")
+	public Response realizarNota(NotaData notaData ) {
+		System.out.println("JEJEJEJE");
+		try
+        {	
+			Nota nota = null;
+            tx.begin();
+			//paso de notificacionData a notificacion
+			nota = new Nota(notaData.getAsunto(), notaData.getContenido(), notaData.getFecha(),notaData.getIDNota());
+            logger.info("Realizando notificacion: '{}'", notaData.getIDNota());
+			pm.makePersistent(nota);
+			tx.commit();
+			NotaData.guardarNotaDataBD(notaData);
 			return Response.ok().build();
         }
         finally
