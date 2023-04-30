@@ -17,10 +17,18 @@ import es.deusto.spq.pojo.UserData;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import org.glassfish.jersey.client.ClientConfig;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,8 +43,23 @@ public class ExampleClient {
 	int ID = 0;
 
 	public ExampleClient(String hostname, String port) {
-		client = ClientBuilder.newClient();
-		webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
+		ClientConfig config = new ClientConfig();
+
+    // Crear un ObjectMapper y registrar el módulo JavaTimeModule
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new JavaTimeModule());
+
+    // Crear un JacksonJaxbJsonProvider y establecer el ObjectMapper personalizado
+    JacksonJaxbJsonProvider provider = new JacksonJaxbJsonProvider();
+    provider.setMapper(objectMapper);
+
+    // Registrar el provider y la característica JacksonFeature en la configuración del cliente
+    config.register(provider);
+    config.register(JacksonFeature.class);
+
+    // Crear un nuevo cliente JAX-RS utilizando la configuración personalizada
+    client = ClientBuilder.newClient(config);
+    webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
 	}
 
 	public void registerUser(String login, String password) {
@@ -127,24 +150,24 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
-	public void realizarReserva(Date fecha, Time hora,  int numPersonas, boolean cancelada, long token) {
+	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, long token) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		Date date = fecha; // crea un objeto Date
-		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
-		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
+		//Date date = fecha; // crea un objeto Date
+		//java.time.Instant instant = date.toInstant(); // convierte Date a Instant
+		//LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
 
 		// Agregar token como header personalizado
 		invocationBuilder.header("Authorization", "Bearer " + token);
 
 		//creo una notificacionData para el usuario
-		NotificacionData notificacionData = new NotificacionData();
+		/*NotificacionData notificacionData = new NotificacionData();
 		notificacionData.setIDNotificacionData(ID);
 		ID += 1;
 		notificacionData.setFecha(localDate);
 		notificacionData.setAsunto("Confirmacion de reserva");
 		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
-		
+		*/
 		
 		ReservaData reservaData = new ReservaData();
 		reservaData.setFecha(fecha);
@@ -156,7 +179,7 @@ public class ExampleClient {
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
-			logger.info("User correctly registered");
+			logger.info("La reserva se ha realizado");
 		}
 	}
 
@@ -215,8 +238,8 @@ public class ExampleClient {
 	}
 
 
-	public List<ReservaData> getReservasFiltradas(Date fecha, Time hora) {
-		WebTarget getReservasWebTarget = webTarget.path("admin/getReservas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
+	public List<ReservaData> getReservasFiltradas(Date fecha, LocalTime hora) {
+		WebTarget getReservasWebTarget = webTarget.path("admin/getReservasFiltradas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
 		Invocation.Builder invocationBuilder = getReservasWebTarget.request(MediaType.APPLICATION_JSON); //  Se crea un objeto Invocation.Builder, que se utiliza para configurar la solicitud REST
 		Response response = invocationBuilder.get();  // Se realiza la solicitud REST utilizando el método get() del objeto invocationBuilder, y se almacena la respuesta en un objeto Response.
 		if (response.getStatus() != Status.OK.getStatusCode()) { // Se verifica si la respuesta de la solicitud es exitosa, si no es exitosa, se registra un error en el archivo de registro.

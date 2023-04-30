@@ -3,7 +3,7 @@ package es.deusto.spq.server;
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
-
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -257,8 +257,10 @@ public class Resource {
 			//Desenmascarar usuario activo
 			String tokenString = authorizationHeader.substring("Bearer ".length()).trim();
 			long token = Long.parseLong(tokenString);
+			System.out.println(token);
 			if (this.serverState.containsKey(token)) {
 				User usuario = this.serverState.get(token);
+				System.out.println(usuario.getId());
 			
 			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),usuario);
             logger.info("Realizando reserva: '{}'", reservaData.getId());
@@ -363,10 +365,10 @@ public class Resource {
 		}
 	}
 
-
+	/* 
 	 @GET
 	 @Path("/admin/getReservasFiltradas")
-	 public Response getReservasFiltradas(Date fecha, Time hora) {
+	 public Response getReservasFiltradas(Date fecha, LocalTime hora) {
 	 	try { 
 			tx.begin(); // Comienza una transacción para realizar operaciones en la base de datos.
 	 		List<Reserva> reservas = new ArrayList<>();
@@ -391,7 +393,7 @@ public class Resource {
 	 		}
 	 	}
 	 }
-
+	 */
 
 	@GET
     @Path("/hayMesaLibre")

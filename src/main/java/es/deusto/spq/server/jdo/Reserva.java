@@ -1,6 +1,7 @@
 package es.deusto.spq.server.jdo;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.jdo.annotations.*;
@@ -16,7 +17,7 @@ public class Reserva {
     private Date fecha;
     
     @Persistent
-    private Time hora;
+    private LocalTime hora;
     
     @Persistent
     private int numPersonas;
@@ -28,7 +29,7 @@ public class Reserva {
     @Persistent
     private User user;
 
-    public Reserva(Date fecha, Time hora, int numPersonas, boolean cancelada, User user){
+    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, User user){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
@@ -48,11 +49,11 @@ public class Reserva {
         this.setUser(reserva.getUser());
     }
     
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
     
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
     

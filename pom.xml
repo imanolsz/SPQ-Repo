@@ -89,7 +89,15 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
         </dependency>
+		
+		<dependency>
+    		<groupId>com.fasterxml.jackson.datatype</groupId>
+    		<artifactId>jackson-datatype-jsr310</artifactId>
+    		<version>2.13.1</version> <!-- Asegúrate de usar la versión correcta según la versión de Jackson que estés utilizando -->
+		</dependency>
+
 	</dependencies>
+	
 
 	<build> <!-- En la sección <build> se definen los plugins de Maven que se utilizarán para compilar, empaquetar y generar documentación para el proyecto -->
 		<resources>

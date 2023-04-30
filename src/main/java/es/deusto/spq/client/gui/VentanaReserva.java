@@ -139,7 +139,9 @@ public class VentanaReserva extends JFrame {
                 try {
                     fechaReserva = sdf.parse(textFecha.getText());
                     int comensales = (int) boxComensales.getSelectedItem();
-                    Time hora =  (Time) boxHora.getSelectedItem();
+                    System.out.println("hollllaa");
+                    LocalTime hora = (LocalTime) boxHora.getSelectedItem();
+                    System.out.println("hollllaaaaaaa");
                     Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,token);
                 } catch (ParseException e1) {
                     // TODO Auto-generated catch block
