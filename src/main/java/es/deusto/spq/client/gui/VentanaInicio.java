@@ -67,6 +67,7 @@ public class VentanaInicio extends JFrame {
 		bEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
+				System.out.println(TfusuarioDTO.getText()+ "diarrea");
 				Main.getExampleClient().loginUser(TfusuarioDTO.getText(), TfPasword.getText());
 				dispose();
 

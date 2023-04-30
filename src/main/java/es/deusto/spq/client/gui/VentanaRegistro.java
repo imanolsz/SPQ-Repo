@@ -69,7 +69,9 @@ public class VentanaRegistro extends JFrame {
 		});
 		bRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(tfemail.getText() + tfPasword.getText());
 				Main.getExampleClient().registerUser(tfemail.getText(), tfPasword.getText());
+				Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
 				System.out.println("\t* usuario pasa por la ventana: ");
 				}
 		});

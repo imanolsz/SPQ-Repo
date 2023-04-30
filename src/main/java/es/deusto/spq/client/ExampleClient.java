@@ -66,9 +66,10 @@ public class ExampleClient {
 		} else {
 			logger.info("User correctly logged.");
 			String tokenString = response.readEntity(String.class);
+			System.out.println(tokenString);
 			this.token = Long.parseLong(tokenString);
         	logger.info("User correctly logged. Token: {}", token);
-       		 return tokenString;
+       		return tokenString;
 		}
 		return null;
 	}

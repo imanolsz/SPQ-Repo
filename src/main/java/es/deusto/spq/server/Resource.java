@@ -48,13 +48,16 @@ public class Resource {
 	protected static final Logger logger = LogManager.getLogger();
 	private Map<Long, User> serverState = new HashMap<>();
 	private int cont = 0;
-	private PersistenceManager pm=null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
+	private PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
 
 	public Resource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
-		this.tx = pm.currentTransaction();
+			if (this.tx != null && this.tx.isActive()) {
+				this.tx.rollback();
+			}
+			this.tx = pm.currentTransaction();
 	}
 
 	@POST
@@ -99,11 +102,13 @@ public class Resource {
 	@POST
 	@Path("/register")
 	public Response registerUser(UserData userData) {
-		try
-        {	
+		Transaction localTx = pm.currentTransaction();
+		try {
 			User user = null;
-            tx.begin();
-            logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
+			if (!localTx.isActive()) {
+				localTx.begin();
+			}
+			logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
 			try {
 				user = pm.getObjectById(User.class, userData.getId());
 			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
@@ -112,23 +117,28 @@ public class Resource {
 			logger.info("User: {}", user);
 			if (user != null) {
 				logger.info("Usuario ya registrado: {}", user);
+				System.out.println("objt creado");
 			} else {
-				logger.info("Creating user: {}", user);
 				user = new User(userData.getId(), userData.getPassword());
-				pm.makePersistent(user);					 
+				logger.info("Creating user: {}", user);
+				pm.makePersistent(user);
+				//User retrievedUser = getUserByUsername("username");
+				//if (retrievedUser != null) {
+				//	System.out.println("El usuario ha sido creado exitosamente.");
+				//} else {
+				//	System.out.println("El usuario no se pudo crear.");
+				//}
 				logger.info("User created: {}", user);
 			}
-			tx.commit();
+			localTx.commit();
 			return Response.ok().build();
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
+		} finally {
+			if (localTx.isActive()) {
+				localTx.rollback();
+			}
 		}
 	}
+	
 	@POST
 	@Path("/login")
 	public Response loginUser(UserData userData) {
@@ -139,10 +149,12 @@ public class Resource {
             logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
 			try {
 				user = pm.getObjectById(User.class, userData.getId());
+				System.out.println("hola cararcola");
 			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
 				logger.info("Exception launched: {}", jonfe.getMessage());
+				System.out.println("hola ");
 			}
-			try (Query<?> q = pm.newQuery("SELECT FROM " + User.class.getName() + " WHERE login == \"" + user.getId() + "\" &&  password == \"" + user.getPassword() + "\" && admin == \""+ user.isAdmin()+"\"")) {
+			try (Query<?> q = pm.newQuery("SELECT FROM " + User.class.getName() + " WHERE id == \"" + user.getId() + "\" && password == \"" + user.getPassword() + "\" && admin == " + user.isAdmin())) {
 				q.setUnique(true);
 				user = (User)q.execute();
 				
@@ -153,7 +165,11 @@ public class Resource {
 					}else{
 						logger.info("User logged: {}", user);
 					}
-					pm.makePersistent(user);					 
+					pm.makePersistent(user);
+					Long token = Calendar.getInstance().getTimeInMillis();
+                	this.serverState.put(token, user);
+                	return Response.ok().entity(token.toString()).build();
+						 
 				}else{
 					try {
 						user = pm.getObjectById(User.class, userData.getId());
@@ -179,14 +195,12 @@ public class Resource {
 								logger.info("User: {}", user);
 								if (user != null)  {
 									logger.info("Nombre de usuario  	incorrecto");
-									pm.makePersistent(user);
-									Long token = Calendar.getInstance().getTimeInMillis();
-                					this.serverState.put(token, user);
-                					return Response.ok().entity(token.toString()).build();		 
+									pm.makePersistent(user);		 
 								}
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
+							
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -498,5 +512,24 @@ public class Resource {
         } finally {
             pm.close();
         }
+	}
+
+	public User getUserByUsername(String username) {
+		User user = null;
+		try {
+			Query<User> query = pm.newQuery(User.class);
+			query.setFilter("this.username == usernameParam");
+			query.declareParameters("String usernameParam");
+			List<User> results = (List<User>) query.execute(username);
+			System.out.println(results + "lista vacia");
+			if (!results.isEmpty()) {
+				user = results.get(0);
+			}
+		} catch (Exception e) {
+			// Manejar excepción
+		} finally {
+			pm.close();
+		}
+		return user;
 	}
 }
