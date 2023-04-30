@@ -4,12 +4,19 @@ import java.net.URL;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 
 
@@ -36,13 +43,16 @@ public class VentanaPrincipal extends JFrame {
 	private JButton bRegistrarse;
 	
 	public VentanaPrincipal(){
+		        // Título de la ventana
+				super("Ventana Principal");
+
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setTitle( "INICIO" );
 		setSize( 800, 600 );
 		setLocationRelativeTo( null );
 		
 		//Paneles principales
-		JPanel panelCentral = new JPanel(new BorderLayout());
+		JPanel panelCentral = new JPanel(new GridBagLayout());
 		panelCentral.setBackground(Color.white);
 		JPanel panelInferior = new JPanel(new FlowLayout());
 		JPanel panelSuperior = new JPanel(new BorderLayout());
@@ -90,14 +100,48 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		
-		//ETIQUETA IMAGEN
-		
+		// Panel para centrar la imagen y el texto
+		JPanel panelImagenTexto = new JPanel();
+		panelImagenTexto.setLayout(new BoxLayout(panelImagenTexto, BoxLayout.Y_AXIS));
+		panelImagenTexto.setBackground(Color.white);
+
+		//Etiqueta de la imagen
 		URL urlImagen = getClass().getResource("/fotos/LOGO.png"); // // Obtener URL de la imagen	
         ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
 		JLabel etiquetaImg = new JLabel(imagen); // Crear JLabel con la imagen 
-		panelCentral.add(etiquetaImg);
-		getContentPane().add(panelCentral,"Center");
+		etiquetaImg.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panelImagenTexto.add(etiquetaImg);
+
 		
+
+		// Enlace a ventana de políticas de privacidad
+		JLabel texto = new JLabel("Política de privacidad y cookies");
+		texto.setBackground(Color.red);
+		texto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); // Cambiar el cursor al pasar el mouse
+		texto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) { // Cambiar color de fondo al pasar el cursor por encima
+				texto.setForeground(Color.gray);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				texto.setForeground(Color.black);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// Crear una instancia de la ventana de políticas y cookies
+				VentanaPoliticas ventanaPoliticas = new VentanaPoliticas(VentanaPrincipal.this);
+				ventanaPoliticas.setLocationRelativeTo(VentanaPrincipal.this);
+			}
+		});
+
+
+		//Agregar elementos a paneles
+        texto.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panelImagenTexto.add(texto);
+		panelCentral.add(panelImagenTexto);
+		getContentPane().add(panelCentral, BorderLayout.CENTER);
 	}
 
 }
