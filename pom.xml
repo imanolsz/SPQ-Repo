@@ -96,6 +96,12 @@
     		<version>2.13.1</version> <!-- Asegúrate de usar la versión correcta según la versión de Jackson que estés utilizando -->
 		</dependency>
 
+		<dependency>
+   			 <groupId>javax.inject</groupId>
+   			 <artifactId>javax.inject</artifactId>
+   			 <version>1</version>
+		</dependency>
+
 	</dependencies>
 	
 

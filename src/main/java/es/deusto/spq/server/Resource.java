@@ -34,6 +34,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.inject.Singleton;
 
 import es.deusto.spq.server.jdo.Notificacion;
 
@@ -43,10 +44,11 @@ import org.apache.logging.log4j.LogManager;
 
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)
+@Singleton
 public class Resource {
 
 	protected static final Logger logger = LogManager.getLogger();
-	private Map<Long, User> serverState = new HashMap<>();
+	private static Map<Long, User> serverState = new HashMap<>();
 	private int cont = 0;
 	private PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
@@ -258,6 +260,8 @@ public class Resource {
 			String tokenString = authorizationHeader.substring("Bearer ".length()).trim();
 			long token = Long.parseLong(tokenString);
 			System.out.println(token);
+			User foundUser = serverState.get(token);
+			System.out.println(foundUser);
 			if (this.serverState.containsKey(token)) {
 				User usuario = this.serverState.get(token);
 				System.out.println(usuario.getId());
