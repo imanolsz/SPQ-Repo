@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,12 +48,17 @@ public class VentanaPrincipal extends JFrame {
 		JPanel panelSuperior = new JPanel(new BorderLayout());
 		
 		//PanelCentral
-		JLabel lNotificacion = new JLabel("                       Cooking Mama");
+		JLabel lNotificacion = new JLabel("Cooking Mama");
 		lNotificacion.setForeground(Color.black);
 		lNotificacion.setFont(new Font("Serif", Font.PLAIN, 44));
-		panelSuperior.add(lNotificacion);
-		getContentPane().add(panelSuperior,"North");
+		panelSuperior.add(lNotificacion, BorderLayout.CENTER);
+
+		JPanel panelCentrado = new JPanel(new GridBagLayout());
+		panelCentrado.add(panelSuperior, new GridBagConstraints());
+
+		getContentPane().add(panelCentrado, BorderLayout.NORTH);
 		panelSuperior.setBackground(Color.decode("#e0a370"));
+		panelCentrado.setBackground(Color.decode("#e0a370"));
 		
 		//PanelInferior
 		bInicio = new JButton("Iniciar Sesion");

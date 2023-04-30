@@ -21,7 +21,7 @@ public class GestorVentanas {
 		VentanaModificar= new VentanaModificar();
 		ventanaReserva = new VentanaReserva();
 		ventanaConsultaReserva = new VentanaConsultaReserva();
-		//VentanaBuzon = new VentanaBuzon(notificaciones);
+		//VentanaBuzon = new VentanaBuzon();
 	}
 	
 	public VentanaPrincipal getVentanaPrincipal() {
