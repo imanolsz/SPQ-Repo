@@ -2,18 +2,22 @@ package es.deusto.spq.client.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
 
 
 import es.deusto.spq.pojo.NotificacionData;
-
+import java.net.URL;
 import java.util.List;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.client.ExampleClient;
 import es.deusto.spq.main.Main;
 import es.deusto.spq.modelos.ModeloTablaNotificacionData;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class VentanaBuzon extends JFrame {
@@ -27,12 +31,22 @@ public class VentanaBuzon extends JFrame {
 
 	// private Thread t;
 
-    public VentanaBuzon(UserData user) {
+    public VentanaBuzon() {
 
         ExampleClient ec = Main.getExampleClient();
+        //creo userdata
+        UserData user = new UserData();
+        user.setId((Long.toString(Main.getExampleClient().getToken())));
         List<NotificacionData> notificaciones = ec.getNotifications(user);
         
 
+        JButton BAtras = new JButton();
+        // Código ejemplo para importar una foto
+         URL urlImagenA = getClass().getResource("/fotos/atras.png"); // Obtener URL de la imagen
+         ImageIcon imagenA = new ImageIcon(urlImagenA); // Crear ImageIcon a partir de la URL
+         BAtras.setBounds(100, 100, 50, 50);
+         Icon imagA = new ImageIcon(imagenA.getImage().getScaledInstance(BAtras.getWidth(), BAtras.getHeight(), Image.SCALE_DEFAULT)); 
+         BAtras.setIcon(imagA);
         
 
         
@@ -70,6 +84,7 @@ public class VentanaBuzon extends JFrame {
         // Agregamos los paneles al contenedor principal
         getContentPane().add(panelTabla, BorderLayout.WEST);
         getContentPane().add(panelNotificacion, BorderLayout.CENTER);
+        getContentPane().add(BAtras, BorderLayout.SOUTH);
 
         // Agregamos un listener a la tabla para actualizar el contenido de la notificacion
         tablaNotificaciones.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -83,6 +98,13 @@ public class VentanaBuzon extends JFrame {
                 }
             }
         });
+
+        BAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
+				dispose();
+			}
+		});	
 
     }
 

@@ -285,13 +285,14 @@ public class Resource {
 	@POST
 	@Path("/realizarNotificacion")
 	public Response realizarNotificacion(NotificacionData notificacionData ) {
+		System.out.println("JEJEJEJE");
 		try
         {	
 			Notificacion notificacion = null;
             tx.begin();
 			//paso de notificacionData a notificacion
-			notificacion = new Notificacion(notificacionData.getAsunto(), notificacionData.getContenido(), notificacionData.getFecha(),notificacionData.getIDNotificacionData());
-            logger.info("Realizando notificacion: '{}'", notificacionData.getIDNotificacionData());
+			notificacion = new Notificacion(notificacionData.getAsunto(), notificacionData.getContenido(), notificacionData.getFecha(),notificacionData.getIDNotificacion());
+            logger.info("Realizando notificacion: '{}'", notificacionData.getIDNotificacion());
 			pm.makePersistent(notificacion);
 			tx.commit();
 			NotificacionData.guardarNotificacionDataBD(notificacionData);
@@ -318,15 +319,12 @@ public class Resource {
 	
 		try {
 			tx.begin();
-	
-			Query<Notificacion> query = pm.newQuery(Notificacion.class, "usuario == userParam");
-			query.declareParameters(User.class.getName() + " userParam");
-	
 			
-			notifications.add((Notificacion)query.execute(userParam));
-	
-			
-	
+			// find in notification where userParam.getId is equal to IDNotificacion
+			Query<Notificacion> query = pm.newQuery(Notificacion.class);
+		//	userParam.setId("1");
+		//	query.setFilter("IDNOTIFICACION == " + Long.parseLong(userParam.getId()));
+			notifications = query.executeList();
 			tx.commit();
 		} catch (Exception ex) {
 			System.out.println(" $ Error retrieving notifications: " + ex.getMessage());

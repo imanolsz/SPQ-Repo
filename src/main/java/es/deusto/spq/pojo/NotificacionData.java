@@ -20,13 +20,13 @@ public class NotificacionData {
     private Date fecha;
 
 
-    private int IDNotificacionData;
+    private Long IDNotificacion;
 
-    public NotificacionData(String asunto, String contenido, Date fecha, int IDNotificacionData) {
+    public NotificacionData(String asunto, String contenido, Date fecha, Long IDNotificacion) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
-        this.IDNotificacionData = IDNotificacionData;
+        this.IDNotificacion = IDNotificacion;
     }
 
     public NotificacionData() {
@@ -57,12 +57,12 @@ public class NotificacionData {
         this.fecha = fecha;
     }
 
-    public Integer getIDNotificacionData() {
-        return IDNotificacionData;
+    public Long getIDNotificacion() {
+        return IDNotificacion;
     }
 
-    public void setIDNotificacionData(Integer IDNotificacionData) {
-        this.IDNotificacionData = IDNotificacionData;
+    public void setIDNotificacion(Long IDNotificacionData) {
+        this.IDNotificacion = IDNotificacionData;
     }
 
 
@@ -72,20 +72,21 @@ public class NotificacionData {
         PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
-        
+    
         try {
             tx.begin();
             pm.makePersistent(notificaciondata);
             tx.commit();
         } catch (Exception ex) {
-            System.out.println(" $ Error storing an object: " + ex.getMessage());
-        } finally {
+            System.err.println("Error almacenando el objeto: " + ex.getMessage());
             if (tx.isActive()) {
                 tx.rollback();
             }
+        } finally {
             pm.close();
         }
     }
+    
 
 
 }

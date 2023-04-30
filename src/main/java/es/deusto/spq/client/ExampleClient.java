@@ -132,7 +132,6 @@ public class ExampleClient {
 		}
 	}
 	public List<NotificacionData> getNotifications(UserData userParam) {
-		WebTarget webTarget = client.target("http://example.com/api/");
 		WebTarget notificationsTarget = webTarget.path("getNotifications");
 		Invocation.Builder invocationBuilder = notificationsTarget.request(MediaType.APPLICATION_JSON);
 		Response response = invocationBuilder.post(Entity.entity(userParam, MediaType.APPLICATION_JSON));
@@ -146,6 +145,7 @@ public class ExampleClient {
 			logger.info("* Notifications: {}", notifications);
 		}
 		
+		System.out.println(notifications);
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
@@ -178,7 +178,7 @@ public class ExampleClient {
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
-			realizarNotificacion(reservaData);
+			realizarNotificacion(reservaData,token);
 			logger.info("La reserva se ha realizado");
 		}
 	}
@@ -186,8 +186,8 @@ public class ExampleClient {
 
 	
 
-	public void realizarNotificacion(ReservaData reserva) {
-		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
+	public void realizarNotificacion(ReservaData reserva, Long token) {
+		WebTarget registerUserWebTarget = webTarget.path("realizarNotificacion");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Date date = reserva.getFecha(); // crea un objeto Date
 		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
@@ -196,8 +196,7 @@ public class ExampleClient {
 
 		//creo una notificacionData para el usuario
 		NotificacionData notificacionData = new NotificacionData();
-		notificacionData.setIDNotificacionData(ID);
-		ID += 1;
+		notificacionData.setIDNotificacion(token);
 		notificacionData.setFecha(date2);
 		notificacionData.setAsunto("Confirmacion de reserva");
 		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + reserva.getFecha() + " a las " + reserva.getHora() + " para " + reserva.getNumPersonas() + " personas.");

@@ -18,9 +18,9 @@ public class Notificacion {
     
     @PrimaryKey
     @Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
-    private int IDNotificacion;
+    private Long IDNotificacion;
 
-    public Notificacion(String asunto, String contenido, Date fecha, int IDNotificacion) {
+    public Notificacion(String asunto, String contenido, Date fecha, Long IDNotificacion) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
@@ -52,11 +52,11 @@ public class Notificacion {
         this.fecha = fecha;
     }
 
-    public Integer getIDNotificacion() {
+    public Long getIDNotificacion() {
         return IDNotificacion;
     }
 
-    public void setIDNotificacion(Integer IDNotificacion) {
+    public void setIDNotificacion(Long IDNotificacion) {
         this.IDNotificacion = IDNotificacion;
     }
 
