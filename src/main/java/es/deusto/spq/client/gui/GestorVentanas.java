@@ -12,10 +12,12 @@ public class GestorVentanas {
 	VentanaConfirmacion VentanaConfirmacion;
 	VentanaModificar VentanaModificar;
 	VentanaReserva ventanaReserva;
+	VentanaContacto ventanaContacto;
 	VentanaConsultaReserva ventanaConsultaReserva;
 	
 	public GestorVentanas() {
 		VentanaPrincipal = new VentanaPrincipal();
+		ventanaContacto = new VentanaContacto();
 		VentanaInicioSesion = new VentanaInicio();
 		VentanaRegistro = new VentanaRegistro();
 		VentanaMenu = new VentanaMenu();
@@ -31,6 +33,9 @@ public class GestorVentanas {
 		return VentanaPrincipal;
 	}
 
+	public VentanaContacto getVentanaContacto() {
+		return ventanaContacto;
+	}
 	public VentanaInicio getVentanaInicio() {
 		return VentanaInicioSesion;
 	}

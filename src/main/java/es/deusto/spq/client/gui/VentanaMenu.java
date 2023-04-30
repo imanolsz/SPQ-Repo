@@ -23,6 +23,7 @@ public class VentanaMenu extends JFrame {
 	JButton bSalir;
 	JButton bRealizarReserva;
 	JButton BBuzon;
+	JButton BContacto;
 	JButton bModificarReserva;
 
 	// private Thread t;
@@ -44,10 +45,19 @@ public class VentanaMenu extends JFrame {
 		 Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
 		 BBuzon.setIcon(imag);
 
+		 BContacto = new JButton();
+		 // Código ejemplo para importar una foto
+		  URL urlImagenC = getClass().getResource("/fotos/contacto.png"); // Obtener URL de la imagen
+		  ImageIcon imagenC = new ImageIcon(urlImagenC); // Crear ImageIcon a partir de la URL
+		  BContacto.setBounds(100, 100, 50, 50);
+		  Icon imagC = new ImageIcon(imagenC.getImage().getScaledInstance(BContacto.getWidth(), BContacto.getHeight(), Image.SCALE_DEFAULT)); 
+		  BContacto.setIcon(imagC);
+
 		//boton consultar reserva y añado el boton buzon al panel
 		bConsultarReservas = new JButton("Consultar Reservas");
 		bConsultarReservas.setBackground(Color.LIGHT_GRAY);
 		panelCentral.add(BBuzon);
+		panelCentral.add(BContacto);
 		panelInferior.add(bConsultarReservas);
 
 		//boton salir
@@ -91,6 +101,13 @@ public class VentanaMenu extends JFrame {
 		BBuzon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaBuzon().setVisible(true);
+				dispose();
+			}
+		});	
+
+		BContacto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaContacto().setVisible(true);
 				dispose();
 			}
 		});	
