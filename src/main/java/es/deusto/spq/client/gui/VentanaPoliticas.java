@@ -17,6 +17,7 @@ public class VentanaPoliticas extends JDialog {
 
         // JEditorPane con políticas y cookies
         JEditorPane editorPane = new JEditorPane();
+        editorPane.setEditable(false); // deshabilitar la edición del contenido
         editorPane.setContentType("text/html");
         editorPane.setText("<html>"
                 + "<p style=\"text-align:justify;\">En nuestro restaurante nos preocupamos por ofrecer a nuestros clientes la mejor experiencia culinaria posible. "
