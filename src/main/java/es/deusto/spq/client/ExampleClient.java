@@ -16,7 +16,6 @@ import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 
 import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -155,7 +154,7 @@ public class ExampleClient {
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		//Date date = fecha; // crea un objeto Date
 		//java.time.Instant instant = date.toInstant(); // convierte Date a Instant
-		//LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
+		//Date Date = instant.atZone(ZoneId.systemDefault()).toLDate(); // convierte Instant a LocalDate
 
 		// Agregar token como header personalizado
 		invocationBuilder.header("Authorization", "Bearer " + token);
@@ -164,7 +163,7 @@ public class ExampleClient {
 		/*NotificacionData notificacionData = new NotificacionData();
 		notificacionData.setIDNotificacionData(ID);
 		ID += 1;
-		notificacionData.setFecha(localDate);
+		notificacionData.setFecha(Date);
 		notificacionData.setAsunto("Confirmacion de reserva");
 		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
 		*/
@@ -179,6 +178,7 @@ public class ExampleClient {
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
+			realizarNotificacion(reservaData);
 			logger.info("La reserva se ha realizado");
 		}
 	}
@@ -191,14 +191,14 @@ public class ExampleClient {
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Date date = reserva.getFecha(); // crea un objeto Date
 		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
-		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
+		Date date2 = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant()); // convierte Instant a LocalDate
 
 
 		//creo una notificacionData para el usuario
 		NotificacionData notificacionData = new NotificacionData();
 		notificacionData.setIDNotificacionData(ID);
 		ID += 1;
-		notificacionData.setFecha(localDate);
+		notificacionData.setFecha(date2);
 		notificacionData.setAsunto("Confirmacion de reserva");
 		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + reserva.getFecha() + " a las " + reserva.getHora() + " para " + reserva.getNumPersonas() + " personas.");
 		

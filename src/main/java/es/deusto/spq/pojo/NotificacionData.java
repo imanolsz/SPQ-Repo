@@ -1,5 +1,6 @@
 package es.deusto.spq.pojo;
-import java.time.LocalDate;
+
+import java.util.Date;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -16,12 +17,12 @@ public class NotificacionData {
     private String contenido;
     
 
-    private LocalDate fecha;
+    private Date fecha;
 
 
     private int IDNotificacionData;
 
-    public NotificacionData(String asunto, String contenido, LocalDate fecha, int IDNotificacionData) {
+    public NotificacionData(String asunto, String contenido, Date fecha, int IDNotificacionData) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
@@ -48,11 +49,11 @@ public class NotificacionData {
         this.contenido = contenido;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
