@@ -1,40 +1,11 @@
 package es.deusto.spq.pojo;
 
+import org.junit.*;
+
 public class UserDataTest {
 
-    private String id;
-    private String password;
-    private boolean admin;
-
-    public UserDataTest() {
-        // required by serialization
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String toString() {
-        return "[id=" + id + ", password=" + password + "]";
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
+    @Before
+	public void setUp() throws Exception {
+		// Code executed before each test
+	}
 }

@@ -43,12 +43,11 @@ public class VentanaConsultaReserva extends JFrame {
 		panelCentral.setBackground(Color.decode("#e0a370"));
 		BBuzon = new JButton();
 		// Código ejemplo para importar una foto
-		//URL urlImagen = getClass().getResource("src/main/java/es/deusto/spq/client/fotos/LOGO.png"); // Obtener URL de la imagen
-		//URL urlImagen = getClass().getResource("../fotos/buzon.jpg"); // Obtener URL de la imagen
-		//ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
+		URL urlImagen = getClass().getResource("/fotos/buzon.jpg"); // Obtener URL de la imagen
+		ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
 		BBuzon.setBounds(100, 100, 50, 50);
-		//Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
-		//BBuzon.setIcon(imag);
+		Icon imag = new ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(), BBuzon.getHeight(), Image.SCALE_DEFAULT)); 
+		BBuzon.setIcon(imag);
 		bConsultarReservas = new JButton("Consultar reservas");
 
 		//añado el boton buzon al panel

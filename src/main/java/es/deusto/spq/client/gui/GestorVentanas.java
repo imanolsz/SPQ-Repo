@@ -1,5 +1,7 @@
 package es.deusto.spq.client.gui;
 
+import es.deusto.spq.pojo.UserData;
+
 public class GestorVentanas {
 	
 	VentanaInicio VentanaInicioSesion;
@@ -10,10 +12,12 @@ public class GestorVentanas {
 	VentanaConfirmacion VentanaConfirmacion;
 	VentanaModificar VentanaModificar;
 	VentanaReserva ventanaReserva;
+	VentanaContacto ventanaContacto;
 	VentanaConsultaReserva ventanaConsultaReserva;
 	
 	public GestorVentanas() {
 		VentanaPrincipal = new VentanaPrincipal();
+		ventanaContacto = new VentanaContacto();
 		VentanaInicioSesion = new VentanaInicio();
 		VentanaRegistro = new VentanaRegistro();
 		VentanaMenu = new VentanaMenu();
@@ -21,13 +25,17 @@ public class GestorVentanas {
 		VentanaModificar= new VentanaModificar();
 		ventanaReserva = new VentanaReserva();
 		ventanaConsultaReserva = new VentanaConsultaReserva();
-		//VentanaBuzon = new VentanaBuzon(notificaciones);
+		UserData user = new UserData();
+		VentanaBuzon = new VentanaBuzon(user);
 	}
 	
 	public VentanaPrincipal getVentanaPrincipal() {
 		return VentanaPrincipal;
 	}
 
+	public VentanaContacto getVentanaContacto() {
+		return ventanaContacto;
+	}
 	public VentanaInicio getVentanaInicio() {
 		return VentanaInicioSesion;
 	}

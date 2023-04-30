@@ -1,18 +1,10 @@
 package es.deusto.spq.pojo;
 
+import org.junit.*;
+
 public class MessageDataTest {
-
-    private String message;
-
-    public MessageDataTest() {
-        // required by serialization
-    }
-
-    public String getMessage() {
-        return this.message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    @Before
+	public void setUp() throws Exception {
+		// Code executed before each test
+	}
 }
