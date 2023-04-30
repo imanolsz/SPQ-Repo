@@ -287,8 +287,8 @@ public class Resource {
 			
 			// find in notification where userParam.getId is equal to IDNotificacion
 			Query<Notificacion> query = pm.newQuery(Notificacion.class);
-		//	userParam.setId("1");
-		//	query.setFilter("IDNOTIFICACION == " + Long.parseLong(userParam.getId()));
+			//userParam.setId("1");
+			//query.setFilter("IDNOTIFICACION == " + Long.parseLong(userParam.getId()));
 			notifications = query.executeList();
 			tx.commit();
 		} catch (Exception ex) {
@@ -299,6 +299,8 @@ public class Resource {
 			}
 			pm.close();
 		}
+
+		System.out.println(" $ Notifications retrieved: " + notifications.size());
 	
 		return Response.ok(notifications).build();
 	}
