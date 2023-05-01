@@ -13,7 +13,7 @@ import java.awt.Color;
 import es.deusto.spq.main.Main;
 
 
-public class VentanaComidaPedido {
+public class VentanaComidaPedido extends JFrame {
 
 	private JFrame frame;
 	private JTable TablaMenu;

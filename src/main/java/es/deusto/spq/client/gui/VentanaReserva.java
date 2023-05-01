@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -18,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 
 import es.deusto.spq.main.Main;
 
@@ -151,6 +151,12 @@ public class VentanaReserva extends JFrame {
         gbc_bRealizarPedido.gridx = 1;
         gbc_bRealizarPedido.gridy = 0;
         panel.add(bRealizarPedido, gbc_bRealizarPedido);
+        bRealizarPedido.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+                Main.getGestorVentanas().getVentanaComidaPedido().setVisible(true);
+				dispose();
+	        }
+	    });
 
           // Agregar JTextField para especificación
           textEspecificacion = new JTextField();

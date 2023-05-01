@@ -76,7 +76,7 @@ public class ExampleClient {
 			logger.info("User correctly registered");
 		}
 	}
-	public String loginUser(String id, String password){
+	public AuthResponse loginUser(String id, String password){
 		WebTarget registerUserWebTarget = webTarget.path("login");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		
@@ -88,11 +88,15 @@ public class ExampleClient {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
 			logger.info("User correctly logged.");
-			String tokenString = response.readEntity(String.class);
-			System.out.println(tokenString);
-			this.token = Long.parseLong(tokenString);
+			AuthResponse authResponse = response.readEntity(AuthResponse.class);
+			if (authResponse.isAdmin()) {
+				logger.info("Admin user logged in. Token: {}", authResponse.getToken());
+			} else {
+				logger.info("Regular user logged in. Token: {}", authResponse.getToken());
+			}
+			this.token = Long.parseLong(authResponse.getToken());
         	logger.info("User correctly logged. Token: {}", token);
-       		return tokenString;
+       		return authResponse;
 		}
 		return null;
 	}
