@@ -5,9 +5,8 @@ import javax.swing.table.DefaultTableModel;
 
 //La tabla donde se muestran todos los ingredientes
 public class TablaMenu extends JTable{
-
+    String[] columnas = {"Comida", "Precio", "Cantidad", "Vegetariano"};
     public TablaMenu(){
-        String[] columnas = {"Comida", "Precio", "Cantidad", "Vegetariano"};
         Object[][] platos= {
             {"Croquetas de la abuela", 10.20, 0, "No"},
             {"Rabas", 4.30, 0, "No"},
@@ -48,6 +47,7 @@ public class TablaMenu extends JTable{
         getColumnModel().getColumn(3).setPreferredWidth(70);
     }
 
+    // Filtra las filas de la tabla dejando solo los vegetarianos
     public Object[][] getMenuVegetariano(){
         DefaultTableModel model = (DefaultTableModel)getModel();
         int numFilas = model.getRowCount();
@@ -75,6 +75,10 @@ public class TablaMenu extends JTable{
             result[i][3] = rows[i][3];
         }
         return result;
+    }
+
+    public String[] getColumnas() {
+        return columnas;
     }
     
 }
