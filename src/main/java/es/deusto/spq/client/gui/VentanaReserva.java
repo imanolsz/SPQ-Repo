@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 
 import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.PedidoData;
 
 public class VentanaReserva extends JFrame {
 
@@ -141,7 +142,7 @@ public class VentanaReserva extends JFrame {
         GridBagConstraints gbc_button = new GridBagConstraints();
         gbc_button.insets = new Insets(0, 0, 0, 5);
         gbc_button.gridx = 0;
-        gbc_button.gridy = 5;
+        gbc_button.gridy = 6;
         panel.add(bMenu, gbc_button);
 
         // Agregar JButton "Realizar pedido"
@@ -166,13 +167,26 @@ public class VentanaReserva extends JFrame {
           gbc_textEspecificacion.gridy = 4;
           panel.add(textEspecificacion, gbc_textEspecificacion);
           textEspecificacion.setColumns(10);
+
+          JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
+        GridBagConstraints gbc_boxAparcamiento = new GridBagConstraints();
+        gbc_boxAparcamiento.anchor = GridBagConstraints.WEST;
+        gbc_boxAparcamiento.insets = new Insets(0, 0, 5, 0);
+        gbc_boxAparcamiento.gridx = 1;
+        gbc_boxAparcamiento.gridy = 5;
+        panel.add(boxAparcamiento, gbc_boxAparcamiento);
+        boxAparcamiento.addItem(0);
+        boxAparcamiento.addItem(1);
+        boxAparcamiento.addItem(2);
+        boxAparcamiento.addItem(3);
+        boxAparcamiento.addItem(4);
+        boxAparcamiento.addItem(5);
         
         JButton bConfirmar = new JButton("Confirmar");
         bConfirmar.setBackground(new Color(50, 205, 50));
         bConfirmar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 //Obtener la fecha en formato Date
-                String nombre = textFecha.getText();
                 SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
                 Date fechaReserva;
                 long token = Main.getExampleClient().getToken();
@@ -181,7 +195,9 @@ public class VentanaReserva extends JFrame {
                     fechaReserva = sdf.parse(textFecha.getText());
                     int comensales = (int) boxComensales.getSelectedItem();
                     LocalTime hora = (LocalTime) boxHora.getSelectedItem();
-                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion, token);
+                    PedidoData pedido = new PedidoData(null);
+                    int aparcamiento = (int) boxAparcamiento.getSelectedItem();
+                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion,pedido, aparcamiento, token);
                 } catch (ParseException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -195,10 +211,18 @@ public class VentanaReserva extends JFrame {
         GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
         gbc_btnNewButton.fill = GridBagConstraints.BOTH;
         gbc_btnNewButton.gridx = 1;
-        gbc_btnNewButton.gridy = 5;
+        gbc_btnNewButton.gridy = 6;
         panel.add(bConfirmar, gbc_btnNewButton);
-        
-       
+
+
+        JLabel laparcamiento = new JLabel("Aparcamiento:");
+        GridBagConstraints gbc_laparcamiento = new GridBagConstraints();
+        gbc_laparcamiento.insets = new Insets(0, 0, 5, 5);
+        gbc_laparcamiento.gridx = 0;
+        gbc_laparcamiento.gridy = 5;
+        panel.add(laparcamiento, gbc_laparcamiento);
+
+
 
         // Configurar las propiedades de la ventana
         setTitle("Reserva");

@@ -15,9 +15,7 @@ import java.net.URL;
 import es.deusto.spq.main.Main;
 
 public class VentanaMenu extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	JButton bConsultarReservas;
 	JButton bSalir;

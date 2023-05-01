@@ -33,6 +33,7 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import es.deusto.spq.pojo.NotificacionData;
+import es.deusto.spq.pojo.PedidoData;
 
 public class ExampleClient {
 
@@ -40,6 +41,7 @@ public class ExampleClient {
 	private Client client;
 	private WebTarget webTarget;
 	private long token = -1;
+	static private PedidoData pedidoActivo;
 	int ID = 0;
 
 	public ExampleClient(String hostname, String port) {
@@ -154,7 +156,7 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
-	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, long token) {
+	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, PedidoData pedido, int aparcamiento, long token) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		//Date date = fecha; // crea un objeto Date
@@ -178,6 +180,9 @@ public class ExampleClient {
 		reservaData.setHora(hora);
 		reservaData.setCancelada(cancelada);
 		reservaData.setNumPersonas(numPersonas);
+		reservaData.setEspecificacion(especificacion);
+		reservaData.setPedido(pedido);
+		reservaData.setAparcamiento(aparcamiento);
 		Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
 		
 		if (response.getStatus() != Status.OK.getStatusCode()) {
@@ -267,6 +272,13 @@ public class ExampleClient {
 	public long getToken() {
 		return token;
 	}
+	public PedidoData getPedidoActivo() {
+		return pedidoActivo;
+	}
+	public void setPedidoActivo(PedidoData pedidoActivo){
+		this.pedidoActivo = pedidoActivo;
+	}
+
 
 
 	public List<ReservaData> getReservasFiltradas(Date fecha, LocalTime hora) {

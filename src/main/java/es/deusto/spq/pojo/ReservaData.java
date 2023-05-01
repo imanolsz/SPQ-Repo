@@ -13,18 +13,22 @@ public class ReservaData {
     private boolean cancelada;
     private UserData user;
     private String especificacion;
+    private int aparcamiento;
+    private PedidoData pedido;
     
     public ReservaData() {
         // Requerido por la serialización (Para poder ser almacenada en un archivo o enviada a través de una red)
     }
     
-    public ReservaData(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion,UserData user) {
+    public ReservaData(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion,PedidoData pedido,int aparcamiento, UserData user) {
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
         this.user = user;
         this.especificacion = especificacion;
+        this.aparcamiento = aparcamiento;
+        this.pedido = pedido;
     }
     
     public long getId() {
@@ -81,6 +85,23 @@ public class ReservaData {
     public void setEspecificacion(String especificacion) {
         this.especificacion = especificacion;
     }
+
+    public int getAparcamiento() {
+        return aparcamiento;
+    }
+
+    public void setAparcamiento(int aparcamiento) {
+        this.aparcamiento = aparcamiento;
+    }
+
+    public PedidoData getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoData pedido) {
+        this.pedido = pedido;
+    }
+
     public boolean getCancelada() {
         return false;
     }
