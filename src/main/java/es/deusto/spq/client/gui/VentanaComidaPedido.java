@@ -16,7 +16,7 @@ import es.deusto.spq.main.Main;
 public class VentanaComidaPedido extends JFrame {
 
 	private JFrame frame;
-	private JTable TablaMenu;
+	private JTable tablaMenu;
 
 	/**
 	 * Create the application.
@@ -66,17 +66,18 @@ public class VentanaComidaPedido extends JFrame {
 	    };
 	    String[] columnNames = {"Comida", "Precio", "Cantidad", "Vegetariano"};
 
-	    TablaMenu = new JTable(data, columnNames);
+	    tablaMenu = new JTable(data, columnNames);
 	    
 	    // Establecer el renderer de celda personalizado
-        TablaMenu.setDefaultRenderer(Object.class, new MiRenderer());
+        tablaMenu.setDefaultRenderer(Object.class, new MiRenderer());
 	    
-	    JScrollPane scrollPane = new JScrollPane(TablaMenu);
+	    JScrollPane scrollPane = new JScrollPane(tablaMenu);
 	    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 	    // establecer el ancho de las columnas de la tabla
-	    TablaMenu.getColumnModel().getColumn(0).setPreferredWidth(200);
-	    TablaMenu.getColumnModel().getColumn(1).setPreferredWidth(100);
-	    TablaMenu.getColumnModel().getColumn(2).setPreferredWidth(50);
+	    tablaMenu.getColumnModel().getColumn(0).setPreferredWidth(200);
+	    tablaMenu.getColumnModel().getColumn(1).setPreferredWidth(100);
+	    tablaMenu.getColumnModel().getColumn(2).setPreferredWidth(50);
+		tablaMenu.getColumnModel().getColumn(3).setPreferredWidth(50);
 
 	    Panel panel = new Panel();
 	    panel.setBackground(Color.PINK);
@@ -104,7 +105,7 @@ public class VentanaComidaPedido extends JFrame {
 	}
 
 	public JTable getTablaMenu() {
-		return TablaMenu;
+		return tablaMenu;
 	}
 
 }
