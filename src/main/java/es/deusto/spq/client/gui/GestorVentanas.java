@@ -29,6 +29,7 @@ public class GestorVentanas {
 		ventanaConsultaReserva = new VentanaConsultaReserva();
 		//VentanaBuzon = new VentanaBuzon();
 		ventanaMenuComida = new VentanaMenuComida();
+		ventanaComidaPedido = new VentanaComidaPedido();
 	}
 	
 	public VentanaPrincipal getVentanaPrincipal() {
