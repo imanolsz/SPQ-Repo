@@ -142,7 +142,7 @@ public class VentanaReserva extends JFrame {
         GridBagConstraints gbc_button = new GridBagConstraints();
         gbc_button.insets = new Insets(0, 0, 0, 5);
         gbc_button.gridx = 0;
-        gbc_button.gridy = 5;
+        gbc_button.gridy = 6;
         panel.add(bMenu, gbc_button);
 
         // Agregar JButton "Realizar pedido"
@@ -196,8 +196,31 @@ public class VentanaReserva extends JFrame {
         GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
         gbc_btnNewButton.fill = GridBagConstraints.BOTH;
         gbc_btnNewButton.gridx = 1;
-        gbc_btnNewButton.gridy = 5;
+        gbc_btnNewButton.gridy = 6;
         panel.add(bConfirmar, gbc_btnNewButton);
+
+
+        JLabel laparcamiento = new JLabel("Aparcamiento:");
+        GridBagConstraints gbc_laparcamiento = new GridBagConstraints();
+        gbc_laparcamiento.insets = new Insets(0, 0, 5, 5);
+        gbc_laparcamiento.gridx = 0;
+        gbc_laparcamiento.gridy = 5;
+        panel.add(laparcamiento, gbc_laparcamiento);
+
+
+        JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
+        GridBagConstraints gbc_boxAparcamiento = new GridBagConstraints();
+        gbc_boxAparcamiento.anchor = GridBagConstraints.WEST;
+        gbc_boxAparcamiento.insets = new Insets(0, 0, 5, 0);
+        gbc_boxAparcamiento.gridx = 1;
+        gbc_boxAparcamiento.gridy = 5;
+        panel.add(boxAparcamiento, gbc_boxAparcamiento);
+        boxAparcamiento.addItem(0);
+        boxAparcamiento.addItem(1);
+        boxAparcamiento.addItem(2);
+        boxAparcamiento.addItem(3);
+        boxAparcamiento.addItem(4);
+        boxAparcamiento.addItem(5);
         
        
 
