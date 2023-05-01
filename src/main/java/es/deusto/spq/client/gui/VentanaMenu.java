@@ -25,6 +25,7 @@ public class VentanaMenu extends JFrame {
 	JButton BBuzon;
 	JButton BContacto;
 	JButton bModificarReserva;
+	JButton bVisualizarCarta;
 
 	// private Thread t;
 
@@ -56,9 +57,12 @@ public class VentanaMenu extends JFrame {
 		//boton consultar reserva y añado el boton buzon al panel
 		bConsultarReservas = new JButton("Consultar Reservas");
 		bConsultarReservas.setBackground(Color.LIGHT_GRAY);
+		bVisualizarCarta = new JButton("Visualizar carta");
+		bVisualizarCarta.setBackground(Color.LIGHT_GRAY);
 		panelCentral.add(BBuzon);
 		panelCentral.add(BContacto);
 		panelInferior.add(bConsultarReservas);
+		panelInferior.add(bVisualizarCarta);
 
 		//boton salir
 		bSalir = new JButton("Salir");
@@ -126,6 +130,12 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 
+		bVisualizarCarta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaMenuComida().setVisible(true);
+				dispose();
+			}
+		});
 		
 	}
 }

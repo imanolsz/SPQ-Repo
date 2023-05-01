@@ -80,7 +80,23 @@ public class VentanaContacto extends JFrame {
         mapaLabel.setForeground(Color.black);
         panel.add(mapaLabel);
    
+        URL urlImagenMapa = getClass().getResource("/fotos/imagenMapa.png");
+        ImageIcon imagenMapa = new ImageIcon(urlImagenMapa);
         
+        // Reducir el tamaño de la imagen a 1/4 de su tamaño original
+        int newWidth = imagenMapa.getIconWidth() / 4;
+        int newHeight = imagenMapa.getIconHeight() / 4;
+        Image scaledImage = imagenMapa.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        
+        JLabel etiquetaImgMapa = new JLabel(scaledIcon);
+
+        // Ajustar las coordenadas X e Y de etiquetaImgMapa para que esté a la derecha de mapaLabel
+        int newX = mapaLabel.getX() + mapaLabel.getWidth() + 20;
+        int newY = mapaLabel.getY();
+        etiquetaImgMapa.setBounds(newX, newY, newWidth, newHeight);
+        panel.add(etiquetaImgMapa);
+
         BAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
