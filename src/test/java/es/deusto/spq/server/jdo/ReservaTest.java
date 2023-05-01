@@ -17,7 +17,7 @@ public class ReservaTest {
     @Before
     public void setUp() {
         user = new User("username", "password");
-        reserva = new Reserva(new Date(), LocalTime.of(20, 0), 2, false, "especificacion", user);
+        reserva = new Reserva(new Date(), LocalTime.of(20, 0), 2, false, "especificacion", 0, user);
     }
 
     @Test
