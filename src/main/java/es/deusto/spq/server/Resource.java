@@ -216,37 +216,44 @@ public class Resource {
 
 
 	@POST
-	@Path("/realizarReserva")
-	public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authorization") String authorizationHeader ) {
-		try
-        {	
-			Reserva reserva = null;
-            tx.begin();
-			//Desenmascarar usuario activo
-			String tokenString = authorizationHeader.substring("Bearer ".length()).trim();
-			long token = Long.parseLong(tokenString);
-			System.out.println(token);
-			User foundUser = serverState.get(token);
-			System.out.println(foundUser);
-			if (this.serverState.containsKey(token)) {
-				User usuario = this.serverState.get(token);
-				System.out.println(usuario.getId());
-			
-			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getEspecificacion(),usuario);
-            logger.info("Realizando reserva: '{}'", reservaData.getId());
-			pm.makePersistent(reserva);
-			}
-			tx.commit();
-			return Response.ok().build();
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
+@Path("/realizarReserva")
+public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authorization") String authorizationHeader) {
+    try {	
+        Reserva reserva = null;
+        Pedido pedido = null;
+        List<DetallePedido> alimentos = new ArrayList<>();
+        tx.begin();
+        //Desenmascarar usuario activo
+        String tokenString = authorizationHeader.substring("Bearer ".length()).trim();
+        long token = Long.parseLong(tokenString);
+        System.out.println(token);
+        User foundUser = serverState.get(token);
+        System.out.println(foundUser);
+        if (this.serverState.containsKey(token)) {
+            User usuario = this.serverState.get(token);
+            System.out.println(usuario.getId());
+            reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(), reservaData.getCancelada(), reservaData.getEspecificacion(), usuario);
+			pedido = new Pedido(alimentos, reserva);
+            Map<String, Integer> mapa = reservaData.getPedido().getMapaComidaCantidad();
+            for (Map.Entry<String, Integer> entry : mapa.entrySet()) {
+                DetallePedido alimento = new DetallePedido(entry.getKey(), entry.getValue(), pedido);
+                alimentos.add(alimento);
             }
-		}
-	}
+        }
+        logger.info("Realizando reserva: '{}'", reservaData.getId());
+        pm.makePersistent(reserva);
+        for (DetallePedido alimento : alimentos) {
+            pm.makePersistent(alimento);
+        }
+        tx.commit();
+        return Response.ok().build();
+    } finally {
+        if (tx.isActive()) {
+            tx.rollback();
+        }
+    }
+}
+
 
 	@POST
 	@Path("/realizarNotificacion")
