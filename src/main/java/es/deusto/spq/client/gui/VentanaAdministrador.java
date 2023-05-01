@@ -3,6 +3,7 @@ package es.deusto.spq.client.gui;
 import java.time.LocalTime;
 import java.util.List;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
@@ -15,10 +16,13 @@ public class VentanaAdministrador extends JFrame {
     private JTable tablaReservas;
     
     public VentanaAdministrador() {
-        super("Ventana de Administración");
 
+        
+        super("Ventana de Administración");
+        setSize(800, 600);
         // Crear etiqueta para el título
         JLabel titleLabel = new JLabel("Bienvenido al Panel de Administración");
+        titleLabel.setBounds(0, 0, 800, 50);
 
         // Crear botones para las distintas funcionalidades
         JButton crearReservaButton = new JButton("Crear Reserva");
@@ -58,7 +62,8 @@ public class VentanaAdministrador extends JFrame {
 	    gbc_boxHora.insets = new Insets(0, 0, 5, 0);
 	    gbc_boxHora.gridx = 1;
 	    gbc_boxHora.gridy = 2;
-	 //   getContentPane().add(boxHora, gbc_boxHora);
+        GridBagLayout layout = new GridBagLayout();
+
 	    boxHora.addItem(LocalTime.of(13, 0));
         boxHora.addItem(LocalTime.of(13, 30));
         boxHora.addItem(LocalTime.of(14, 0));
@@ -76,6 +81,8 @@ public class VentanaAdministrador extends JFrame {
         this.setSize(400, 300);
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
+        getContentPane().setLayout(layout);
+	    getContentPane().add(boxHora, gbc_boxHora);
     }
 
 }
