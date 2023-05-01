@@ -15,6 +15,7 @@ public class GestorVentanas {
 	VentanaContacto ventanaContacto;
 	VentanaConsultaReserva ventanaConsultaReserva;
 	VentanaMenuComida ventanaMenuComida;
+	VentanaComidaPedido ventanaComidaPedido;
 	
 	public GestorVentanas() {
 		VentanaPrincipal = new VentanaPrincipal();
@@ -70,5 +71,9 @@ public class GestorVentanas {
 
 	public VentanaMenuComida getVentanaMenuComida(){
 		return ventanaMenuComida;
+	}
+
+	public VentanaComidaPedido getVentanaComidaPedido(){
+		return ventanaComidaPedido;
 	}
 }
