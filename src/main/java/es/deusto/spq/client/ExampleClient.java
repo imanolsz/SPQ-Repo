@@ -156,7 +156,7 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
-	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, PedidoData pedido, long token) {
+	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, PedidoData pedido, int aparcamiento, long token) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		//Date date = fecha; // crea un objeto Date
@@ -180,7 +180,9 @@ public class ExampleClient {
 		reservaData.setHora(hora);
 		reservaData.setCancelada(cancelada);
 		reservaData.setNumPersonas(numPersonas);
+		reservaData.setEspecificacion(especificacion);
 		reservaData.setPedido(pedido);
+		reservaData.setAparcamiento(aparcamiento);
 		Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
 		
 		if (response.getStatus() != Status.OK.getStatusCode()) {

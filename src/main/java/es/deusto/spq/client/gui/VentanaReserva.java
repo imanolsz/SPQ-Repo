@@ -167,13 +167,26 @@ public class VentanaReserva extends JFrame {
           gbc_textEspecificacion.gridy = 4;
           panel.add(textEspecificacion, gbc_textEspecificacion);
           textEspecificacion.setColumns(10);
+
+          JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
+        GridBagConstraints gbc_boxAparcamiento = new GridBagConstraints();
+        gbc_boxAparcamiento.anchor = GridBagConstraints.WEST;
+        gbc_boxAparcamiento.insets = new Insets(0, 0, 5, 0);
+        gbc_boxAparcamiento.gridx = 1;
+        gbc_boxAparcamiento.gridy = 5;
+        panel.add(boxAparcamiento, gbc_boxAparcamiento);
+        boxAparcamiento.addItem(0);
+        boxAparcamiento.addItem(1);
+        boxAparcamiento.addItem(2);
+        boxAparcamiento.addItem(3);
+        boxAparcamiento.addItem(4);
+        boxAparcamiento.addItem(5);
         
         JButton bConfirmar = new JButton("Confirmar");
         bConfirmar.setBackground(new Color(50, 205, 50));
         bConfirmar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 //Obtener la fecha en formato Date
-                String nombre = textFecha.getText();
                 SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
                 Date fechaReserva;
                 long token = Main.getExampleClient().getToken();
@@ -183,7 +196,8 @@ public class VentanaReserva extends JFrame {
                     int comensales = (int) boxComensales.getSelectedItem();
                     LocalTime hora = (LocalTime) boxHora.getSelectedItem();
                     PedidoData pedido = new PedidoData(null);
-                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion,pedido, token);
+                    int aparcamiento = (int) boxAparcamiento.getSelectedItem();
+                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion,pedido, aparcamiento, token);
                 } catch (ParseException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -209,21 +223,6 @@ public class VentanaReserva extends JFrame {
         panel.add(laparcamiento, gbc_laparcamiento);
 
 
-        JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
-        GridBagConstraints gbc_boxAparcamiento = new GridBagConstraints();
-        gbc_boxAparcamiento.anchor = GridBagConstraints.WEST;
-        gbc_boxAparcamiento.insets = new Insets(0, 0, 5, 0);
-        gbc_boxAparcamiento.gridx = 1;
-        gbc_boxAparcamiento.gridy = 5;
-        panel.add(boxAparcamiento, gbc_boxAparcamiento);
-        boxAparcamiento.addItem(0);
-        boxAparcamiento.addItem(1);
-        boxAparcamiento.addItem(2);
-        boxAparcamiento.addItem(3);
-        boxAparcamiento.addItem(4);
-        boxAparcamiento.addItem(5);
-        
-       
 
         // Configurar las propiedades de la ventana
         setTitle("Reserva");
