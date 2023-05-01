@@ -4,7 +4,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Panel;
+import java.awt.ScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,53 +18,65 @@ import es.deusto.spq.main.Main;
 
 public class VentanaComidaPedido extends JFrame {
 
-	private JFrame frame;
-	private JTable tablaMenu;
+	//private JFrame frame;
+	private TablaMenu tablaMenu;
+	private JButton btnMenuVegetariano, btnPedir, btnAtras;
+	private boolean verVegetariano = true;
+	JScrollPane scrollPane;
 
-	/**
-	 * Create the application.
-	 */
 	public VentanaComidaPedido() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-	    frame = new JFrame("Menu");
-	    frame.setBounds(100, 100, 450, 300);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.getContentPane().setLayout(new BorderLayout(0, 0));
-
-	    tablaMenu = new TablaMenu();
-	    
-	    JScrollPane scrollPane = new JScrollPane(tablaMenu);
-	    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-	    Panel panel = new Panel();
-	    panel.setBackground(Color.PINK);
-	    panel.setForeground(Color.BLACK);
-	    frame.getContentPane().add(panel, BorderLayout.SOUTH);
-	    panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-        //Boton que vuelve a la ventana reserva
-	    JButton btnAtras = new JButton("Atras");
-	    btnAtras.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-                Main.getGestorVentanas().getVentanaReserva().setVisible(true);
-				frame.dispose();
-	        }
-	    });
-	    panel.add(btnAtras);
-
-        //Boton que hace que se realice el pedido PORHACER
-	    JButton btnPedir = new JButton("Pedir");
-	    btnPedir.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent arg0) {
-	        }
-	    });
-	    panel.add(btnPedir);
+		this.setTitle("Menu");
+		this.setBounds(100, 100, 450, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.setLocationRelativeTo(null);
+	
+		tablaMenu = new TablaMenu();
+		scrollPane = new JScrollPane(tablaMenu);
+		this.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		this.pack();
+	
+		Panel panel = new Panel();
+		panel.setBackground(Color.PINK);
+		panel.setForeground(Color.BLACK);
+		this.getContentPane().add(panel, BorderLayout.SOUTH);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		btnMenuVegetariano = new JButton("Menu vegetariano");
+		btnMenuVegetariano.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(verVegetariano){
+					Object[][] filas = tablaMenu.getMenuVegetariano();
+					DefaultTableModel modelVeggie = new DefaultTableModel(filas, tablaMenu.getColumnas());
+					tablaMenu.setModel(modelVeggie);
+					btnMenuVegetariano.setText("Menu completo");
+					verVegetariano = false;
+				}else{
+					tablaMenu = new TablaMenu();
+					btnMenuVegetariano.setText("Menu vegetariano");
+					verVegetariano = true;
+				}
+				scrollPane.setViewportView(tablaMenu);
+			}
+		});
+		panel.add(btnMenuVegetariano);
+		//Boton que vuelve a la ventana reserva
+		btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaReserva().setVisible(true);
+				dispose();
+			}
+		});
+		panel.add(btnAtras);
+	
+		//Boton que hace que se realice el pedido PORHACER
+		btnPedir = new JButton("Pedir");
+		btnPedir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panel.add(btnPedir);
 	}
 
 	public JTable getTablaMenu() {
