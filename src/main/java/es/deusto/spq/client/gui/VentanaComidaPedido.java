@@ -11,9 +11,14 @@ import java.awt.ScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.DetallePedidoData;
+import es.deusto.spq.pojo.PedidoData;
+import es.deusto.spq.server.jdo.DetallePedido;
 
 
 public class VentanaComidaPedido extends JFrame {
@@ -72,15 +77,32 @@ public class VentanaComidaPedido extends JFrame {
 	
 		//Boton que hace que se realice el pedido PORHACER
 		btnPedir = new JButton("Pedir");
+		panel.add(btnPedir);
 		btnPedir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int row = tablaMenu.getRowCount();
+				for (int i = 0; i < row; i++) {
+					String cantidadStr = (String) tablaMenu.getValueAt(i, 2);
+					try {
+						int cantidad = Integer.parseInt(cantidadStr);
+						if (cantidad >= 1) {
+							String comida = (String) tablaMenu.getValueAt(i,0);
+							DetallePedidoData alimento = new DetallePedidoData(comida, cantidad); 
+							System.out.println(comida);
+							Main.getExampleClient().getPedidoActivo().getListaAlimentos().add(alimento);
+						}
+						
+					} catch (NumberFormatException e) {
+						System.out.println("mal conversión");
+					}
+				}
 			}
 		});
-		panel.add(btnPedir);
+		
 	}
 
 	public JTable getTablaMenu() {
 		return tablaMenu;
 	}
-
+	
 }
