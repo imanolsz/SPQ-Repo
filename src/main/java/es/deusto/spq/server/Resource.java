@@ -16,7 +16,7 @@ import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
 
-
+import es.deusto.spq.pojo.DetallePedidoData;
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.NotaData;
@@ -237,20 +237,25 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
             User usuario = this.serverState.get(token);
             System.out.println(usuario.getId());
             reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(), reservaData.getCancelada(), reservaData.getEspecificacion(), usuario);
-			pedido = new Pedido(alimentos, reserva);
-            Map<String, Integer> mapa = reservaData.getPedido().getMapaComidaCantidad();
-            for (Map.Entry<String, Integer> entry : mapa.entrySet()) {
-                DetallePedido alimento = new DetallePedido(entry.getKey(), entry.getValue(), pedido);
-                alimentos.add(alimento);
-            }
-        }
+            for (DetallePedidoData detallePedidoData : reservaData.getPedido().getListaAlimentos()) {
+                DetallePedido detallePedido = new DetallePedido(
+                    detallePedidoData.getAlimento(),
+                    detallePedidoData.getCantidad(),pedido
+                );
+					alimentos.add(detallePedido);
+       		 }
+		pedido = new Pedido(alimentos, reserva);
         logger.info("Realizando reserva: '{}'", reservaData.getId());
         pm.makePersistent(reserva);
+		pm.makePersistent(pedido);
         for (DetallePedido alimento : alimentos) {
             pm.makePersistent(alimento);
-        }
+        }}else{
+			logger.info("No se ha podido hacer la reserva : '{}'");
+		}
         tx.commit();
         return Response.ok().build();
+		
     } finally {
         if (tx.isActive()) {
             tx.rollback();

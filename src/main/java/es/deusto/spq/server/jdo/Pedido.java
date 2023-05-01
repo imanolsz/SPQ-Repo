@@ -47,8 +47,8 @@ public class Pedido {
         return listaAlimentos;
     }
 
-    public void setMapaComidaCantidad(Map<String, Integer> listaAlimentos) {
-        this.listaAlimentos = listaAlimentos;
+    public void setMapaComidaCantidad(List<DetallePedido> listaAlimentoss) {
+        this.listaAlimentos = listaAlimentoss ;
     }
 
 }

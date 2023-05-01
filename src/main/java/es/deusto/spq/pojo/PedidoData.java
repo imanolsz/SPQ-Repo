@@ -1,29 +1,19 @@
 package es.deusto.spq.pojo;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.jdo.JDOHelper;
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.Transaction;
-
-import es.deusto.spq.server.jdo.Reserva;
+import java.util.List;
 
 public class PedidoData {
-        private static Map<String, Integer> mapaComidaCantidad;
-    
-        public PedidoData(Map<String, Integer> mapaComidaCantida) {
-            this.mapaComidaCantidad = mapaComidaCantida;
-        }
+    private List<DetallePedidoData> listaAlimentos;
 
-        public Map getMapaComidaCantidad() {
-            return mapaComidaCantidad;
-        }
-        
-        public void setMapaComidaCantidad(Map<String, Integer> mapaComidaCantidad) {
-            this.mapaComidaCantidad = mapaComidaCantidad;
-        }
+    public PedidoData(List<DetallePedidoData> listaAlimentos) {
+        this.listaAlimentos = listaAlimentos;
+    }
 
-        
+    public List<DetallePedidoData> getListaAlimentos() {
+        return listaAlimentos;
+    }
+
+    public void setListaAlimentos(List<DetallePedidoData> listaAlimentos) {
+        this.listaAlimentos = listaAlimentos;
+    }
 }
