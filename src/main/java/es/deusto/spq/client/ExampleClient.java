@@ -12,11 +12,11 @@ import javax.ws.rs.core.Response.Status;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.NotaData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 
 import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -71,7 +71,7 @@ public class ExampleClient {
 		userData.setPassword(password);
 		Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
-			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			logger.error("Error connecting with the server. Code: {}", response.getStatus()); 
 		} else {
 			logger.info("User correctly registered");
 		}
@@ -133,7 +133,6 @@ public class ExampleClient {
 		}
 	}
 	public List<NotificacionData> getNotifications(UserData userParam) {
-		WebTarget webTarget = client.target("http://example.com/api/");
 		WebTarget notificationsTarget = webTarget.path("getNotifications");
 		Invocation.Builder invocationBuilder = notificationsTarget.request(MediaType.APPLICATION_JSON);
 		Response response = invocationBuilder.post(Entity.entity(userParam, MediaType.APPLICATION_JSON));
@@ -147,6 +146,7 @@ public class ExampleClient {
 			logger.info("* Notifications: {}", notifications);
 		}
 		
+		System.out.println(notifications);
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
@@ -155,18 +155,18 @@ public class ExampleClient {
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		//Date date = fecha; // crea un objeto Date
 		//java.time.Instant instant = date.toInstant(); // convierte Date a Instant
-		//LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
+		//Date Date = instant.atZone(ZoneId.systemDefault()).toLDate(); // convierte Instant a LocalDate
 
 		// Agregar token como header personalizado
 		invocationBuilder.header("Authorization", "Bearer " + token);
 
-		//creo una notificacionData para el usuario
-		/*NotificacionData notificacionData = new NotificacionData();
-		notificacionData.setIDNotificacionData(ID);
+		//creo una NotificacionData para el usuario
+		/*NotificacionData NotificacionData = new NotificacionData();
+		NotificacionData.setIDNotificacionData(ID);
 		ID += 1;
-		notificacionData.setFecha(localDate);
-		notificacionData.setAsunto("Confirmacion de reserva");
-		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
+		NotificacionData.setFecha(Date);
+		NotificacionData.setAsunto("Confirmacion de reserva");
+		NotificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
 		*/
 		
 		ReservaData reservaData = new ReservaData();
@@ -179,6 +179,7 @@ public class ExampleClient {
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
+			realizarNotificacion(reservaData,token);
 			logger.info("La reserva se ha realizado");
 		
 		}
@@ -187,24 +188,49 @@ public class ExampleClient {
 
 	
 
-	public void realizarNotificacion(ReservaData reserva) {
-		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
+	public void realizarNotificacion(ReservaData reserva, Long token) {
+		WebTarget registerUserWebTarget = webTarget.path("realizarNotificacion");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Date date = reserva.getFecha(); // crea un objeto Date
 		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
-		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); // convierte Instant a LocalDate
+		Date date2 = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant()); // convierte Instant a LocalDate
 
 
-		//creo una notificacionData para el usuario
-		NotificacionData notificacionData = new NotificacionData();
-		notificacionData.setIDNotificacionData(ID);
-		ID += 1;
-		notificacionData.setFecha(localDate);
-		notificacionData.setAsunto("Confirmacion de reserva");
-		notificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + reserva.getFecha() + " a las " + reserva.getHora() + " para " + reserva.getNumPersonas() + " personas.");
+		//creo una NotificacionData para el usuario
+		NotificacionData NotificacionData = new NotificacionData();
+		NotificacionData.setIDNotificacion(token);
+		NotificacionData.setFecha(date2);
+		NotificacionData.setAsunto("Confirmacion de reserva");
+		NotificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + reserva.getFecha() + " a las " + reserva.getHora() + " para " + reserva.getNumPersonas() + " personas.");
 		
 		
-		Response response = invocationBuilder.post(Entity.entity(notificacionData, MediaType.APPLICATION_JSON));
+		Response response = invocationBuilder.post(Entity.entity(NotificacionData, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
+		}
+	}
+
+
+
+	public void realizarNota(ReservaData reserva, String asunto, String contenido) {
+		WebTarget registerUserWebTarget = webTarget.path("realizarNota");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Date date = reserva.getFecha(); // crea un objeto Date
+		java.time.Instant instant = date.toInstant(); // convierte Date a Instant
+		Date date2 = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant()); // convierte Instant a LocalDate
+
+
+		//creo una NotificacionData para el usuario
+		NotaData NotaData= new NotaData();
+		NotaData.setIDNota(token);
+		NotaData.setFecha(date2);
+		NotaData.setAsunto(asunto);
+		NotaData.setContenido(contenido + reserva.getFecha() + " a las " + reserva.getHora() + " para " + reserva.getNumPersonas() + " personas.");
+		
+		
+		Response response = invocationBuilder.post(Entity.entity(NotaData, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {

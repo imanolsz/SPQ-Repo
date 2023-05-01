@@ -19,6 +19,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.NotaData;
 import es.deusto.spq.pojo.NotificacionData;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
@@ -144,85 +145,50 @@ public class Resource {
 	@POST
 	@Path("/login")
 	public Response loginUser(UserData userData) {
-		try
-        {	
+		try {
 			User user = null;
-            tx.begin();
-            logger.info("Checking whether the user already exits or not: '{}'", userData.getId());
+			tx.begin();
+			logger.info("Checking whether the user already exists or not: '{}'", userData.getId());
 			try {
 				user = pm.getObjectById(User.class, userData.getId());
-				System.out.println("hola cararcola");
 			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
 				logger.info("Exception launched: {}", jonfe.getMessage());
-				System.out.println("hola ");
 			}
-			try (Query<?> q = pm.newQuery("SELECT FROM " + User.class.getName() + " WHERE id == \"" + user.getId() + "\" && password == \"" + user.getPassword() + "\" && admin == " + user.isAdmin())) {
-				q.setUnique(true);
-				user = (User)q.execute();
-				
-				logger.info("User: {}", user);
-				if (user != null)  {
-					if(user.isAdmin()){
-						logger.info("Admin logged: {}", user);
-					}else{
-						logger.info("User logged: {}", user);
-					}
-					pm.makePersistent(user);
-					Long token = Calendar.getInstance().getTimeInMillis();
-                	this.serverState.put(token, user);
-                	return Response.ok().entity(token.toString()).build();
-						 
-				}else{
-					try {
-						user = pm.getObjectById(User.class, userData.getId());
-					} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
-						logger.info("Exception launched: {}", jonfe.getMessage());
-					}
-					try (Query<?> q2 = pm.newQuery("SELECT FROM" + User.class.getName() + " WHERE login == \"" + user.getId() + " \"")){
-						q2.setUnique(true);
-						user = (User)q.execute();
-						logger.info("User: {}", user);
-						if (user != null)  {
-							logger.info("Contraseña incorrecta");
-							pm.makePersistent(user);					 
-						}else{
-							try {
-								user = pm.getObjectById(User.class, userData.getId());
-							} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
-								logger.info("Exception launched: {}", jonfe.getMessage());
-							}
-							try (Query<?> q3= pm.newQuery("SELECT FROM" + User.class.getName() + " WHERE password == \"" + user.getId() + " \"")){
-								q3.setUnique(true);
-								user = (User)q.execute();
-								logger.info("User: {}", user);
-								if (user != null)  {
-									logger.info("Nombre de usuario  	incorrecto");
-									pm.makePersistent(user);		 
-								}
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-							
+			if (user != null && user.getPassword().equals(userData.getPassword())) {
+				try (Query<?> q = pm.newQuery("SELECT FROM " + User.class.getName() + " WHERE id == \"" + user.getId() + "\" && password == \"" + user.getPassword() + "\" && admin == " + user.isAdmin())) {
+					q.setUnique(true);
+					user = (User)q.execute();
+					logger.info("User: {}", user);
+					if (user != null) {
+						if (user.isAdmin()) {
+							logger.info("Admin logged: {}", user);
+						} else {
+							logger.info("User logged: {}", user);
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
+						pm.makePersistent(user);
+						Long token = Calendar.getInstance().getTimeInMillis();
+						this.serverState.put(token, user);
+						return Response.ok().entity(token.toString()).build();
+					} else {
+						logger.info("User not found");
+						return Response.status(Response.Status.NOT_FOUND).entity("User not found").build();
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			} else {
+				logger.info("Incorrect password for user '{}'", userData.getId());
+				return Response.status(Response.Status.UNAUTHORIZED).entity("Incorrect password").build();
 			}
-			
-			tx.commit();
-			return Response.ok().build();
-        }
-        finally
-        {
-			if (tx.isActive())
-            {
+		} finally {
+			if (tx.isActive()) {
 				tx.rollback();
-            }
+			}
 		}
 	}
+	
+	
 	@POST
 	@Path("/logout")
 	public Response logout(long token) throws RemoteException {
@@ -285,16 +251,43 @@ public class Resource {
 	@POST
 	@Path("/realizarNotificacion")
 	public Response realizarNotificacion(NotificacionData notificacionData ) {
+		System.out.println("JEJEJEJE");
 		try
         {	
 			Notificacion notificacion = null;
             tx.begin();
 			//paso de notificacionData a notificacion
-			notificacion = new Notificacion(notificacionData.getAsunto(), notificacionData.getContenido(), notificacionData.getFecha(),notificacionData.getIDNotificacionData());
-            logger.info("Realizando notificacion: '{}'", notificacionData.getIDNotificacionData());
+			notificacion = new Notificacion(notificacionData.getAsunto(), notificacionData.getContenido(), notificacionData.getFecha(),notificacionData.getIDNotificacion());
+            logger.info("Realizando notificacion: '{}'", notificacionData.getIDNotificacion());
 			pm.makePersistent(notificacion);
 			tx.commit();
 			NotificacionData.guardarNotificacionDataBD(notificacionData);
+			return Response.ok().build();
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+		}
+	}
+
+
+	@POST
+	@Path("/realizarNota")
+	public Response realizarNota(NotaData notaData ) {
+		System.out.println("JEJEJEJE");
+		try
+        {	
+			Nota nota = null;
+            tx.begin();
+			//paso de notificacionData a notificacion
+			nota = new Nota(notaData.getAsunto(), notaData.getContenido(), notaData.getFecha(),notaData.getIDNota());
+            logger.info("Realizando notificacion: '{}'", notaData.getIDNota());
+			pm.makePersistent(nota);
+			tx.commit();
+			NotaData.guardarNotaDataBD(notaData);
 			return Response.ok().build();
         }
         finally
@@ -318,15 +311,12 @@ public class Resource {
 	
 		try {
 			tx.begin();
-	
-			Query<Notificacion> query = pm.newQuery(Notificacion.class, "usuario == userParam");
-			query.declareParameters(User.class.getName() + " userParam");
-	
 			
-			notifications.add((Notificacion)query.execute(userParam));
-	
-			
-	
+			// find in notification where userParam.getId is equal to IDNotificacion
+			Query<Notificacion> query = pm.newQuery(Notificacion.class);
+			//userParam.setId("1");
+			//query.setFilter("IDNOTIFICACION == " + Long.parseLong(userParam.getId()));
+			notifications = query.executeList();
 			tx.commit();
 		} catch (Exception ex) {
 			System.out.println(" $ Error retrieving notifications: " + ex.getMessage());
@@ -336,6 +326,8 @@ public class Resource {
 			}
 			pm.close();
 		}
+
+		System.out.println(" $ Notifications retrieved: " + notifications.size());
 	
 		return Response.ok(notifications).build();
 	}
@@ -369,7 +361,7 @@ public class Resource {
 		}
 	}
 
-	/* 
+	 /*
 	 @GET
 	 @Path("/admin/getReservasFiltradas")
 	 public Response getReservasFiltradas(Date fecha, LocalTime hora) {
@@ -397,8 +389,7 @@ public class Resource {
 	 		}
 	 	}
 	 }
-	 */
-
+	  */
 	@GET
     @Path("/hayMesaLibre")
     @Produces(MediaType.APPLICATION_JSON) //  Anotación que indica que el método produce una respuesta en formato JSON.

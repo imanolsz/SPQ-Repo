@@ -1,6 +1,5 @@
 package es.deusto.spq.server.jdo;
 
-import java.time.LocalDate;
 import java.util.Date;
 import javax.jdo.annotations.PersistenceCapable;
 
@@ -8,12 +7,12 @@ import javax.jdo.annotations.PersistenceCapable;
 public class Message {
     private String asunto;
     private String contenido;
-    private LocalDate fecha;
+    private Date fecha;
     User user=null;
     String text = null;
 	long timestamp;
 
-    public Message(String asunto, String contenido, LocalDate fecha) {
+    public Message(String asunto, String contenido, Date fecha) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
@@ -40,11 +39,11 @@ public class Message {
         this.contenido = contenido;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

@@ -5,7 +5,7 @@ import javax.jdo.annotations.*;
 
 
 @PersistenceCapable(detachable="true")
-public class Notificacion {
+public class Nota {
 
     @Persistent   
     private String asunto;
@@ -18,13 +18,13 @@ public class Notificacion {
     
     @PrimaryKey
     @Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
-    private Long IDNotificacion;
+    private Long IDNota;
 
-    public Notificacion(String asunto, String contenido, Date fecha, Long IDNotificacion) {
+    public Nota(String asunto, String contenido, Date fecha, Long IDNota) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
-        this.IDNotificacion = IDNotificacion;
+        this.IDNota = IDNota;
     }
 
 
@@ -52,12 +52,12 @@ public class Notificacion {
         this.fecha = fecha;
     }
 
-    public Long getIDNotificacion() {
-        return IDNotificacion;
+    public Long getIDNota() {
+        return IDNota;
     }
 
-    public void setIDNotificacion(Long IDNotificacion) {
-        this.IDNotificacion = IDNotificacion;
+    public void setIDNota(Long IDNota) {
+        this.IDNota = IDNota;
     }
 
 

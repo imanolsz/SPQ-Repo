@@ -25,8 +25,7 @@ public class GestorVentanas {
 		VentanaModificar= new VentanaModificar();
 		ventanaReserva = new VentanaReserva();
 		ventanaConsultaReserva = new VentanaConsultaReserva();
-		UserData user = new UserData();
-		VentanaBuzon = new VentanaBuzon(user);
+		//VentanaBuzon = new VentanaBuzon();
 	}
 	
 	public VentanaPrincipal getVentanaPrincipal() {
@@ -48,7 +47,7 @@ public class GestorVentanas {
 		return VentanaMenu;
 	}
 	public VentanaBuzon getVentanaBuzon() {
-		return VentanaBuzon;
+		return (VentanaBuzon = new VentanaBuzon());
 	}
 
 	public VentanaConfirmacion getVentanaConfirmacion() {

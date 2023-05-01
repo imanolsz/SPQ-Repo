@@ -7,29 +7,21 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
-
-public class NotificacionData {
-
-
-    private String asunto;
-
-
-    private String contenido;
+public class NotaData {
     
-
+    private String asunto;
+    private String contenido;
     private Date fecha;
+    private Long IDNota;
 
-
-    private Long IDNotificacion;
-
-    public NotificacionData(String asunto, String contenido, Date fecha, Long IDNotificacion) {
+    public NotaData(String asunto, String contenido, Date fecha, Long IDNota) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
-        this.IDNotificacion = IDNotificacion;
+        this.IDNota = IDNota;
     }
 
-    public NotificacionData() {
+    public NotaData(){
         // required by serialization
     }
 
@@ -57,17 +49,17 @@ public class NotificacionData {
         this.fecha = fecha;
     }
 
-    public Long getIDNotificacion() {
-        return IDNotificacion;
+    public Long getIDNota() {
+        return IDNota;
     }
 
-    public void setIDNotificacion(Long IDNotificacionData) {
-        this.IDNotificacion = IDNotificacionData;
+    public void setIDNota(Long IDNota) {
+        this.IDNota = IDNota;
     }
 
-
-
-    public static void guardarNotificacionDataBD(NotificacionData notificaciondata) {
+    
+    
+    public static void guardarNotaDataBD(NotaData Notadata) {
         // insert to notification a test notification
         PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
         PersistenceManager pm = pmf.getPersistenceManager();
@@ -75,7 +67,7 @@ public class NotificacionData {
     
         try {
             tx.begin();
-            pm.makePersistent(notificaciondata);
+            pm.makePersistent(Notadata);
             tx.commit();
         } catch (Exception ex) {
             System.err.println("Error almacenando el objeto: " + ex.getMessage());
@@ -86,7 +78,5 @@ public class NotificacionData {
             pm.close();
         }
     }
-    
-
 
 }
