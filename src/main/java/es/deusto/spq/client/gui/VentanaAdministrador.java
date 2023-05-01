@@ -54,7 +54,6 @@ public class VentanaAdministrador extends JFrame {
         this.setSize(400, 300);
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
-        this.setVisible(true);
     }
 
 }
