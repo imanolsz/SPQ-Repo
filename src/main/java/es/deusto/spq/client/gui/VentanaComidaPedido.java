@@ -36,35 +36,35 @@ public class VentanaComidaPedido extends JFrame {
 
 	    // Definir datos para la tabla
 	    Object[][] data = {
-	            {"Croquetas de la abuela", 10.20, 0},
-	            {"Rabas", 4.30, 0},
-	            {"Bravas", 3.50, 0},
-	            {"Tabla de surtidos ibericos", 7.30, 0},
-	            {"Patatas bacon-queso", 5.00, 0},
+	            {"Croquetas de la abuela", 10.20, 0, "No"},
+	            {"Rabas", 4.30, 0, "No"},
+	            {"Bravas", 3.50, 0, "Si"},
+	            {"Tabla de surtidos ibericos", 7.30, 0, "No"},
+	            {"Patatas bacon-queso", 5.00, 0, "No"},
 
-	            {"Ensalada de bogavante", 10.20, 0},
-	            {"Menestra de verduras", 7.10, 0},
-	            {"Risotto", 8.10, 0},
-	            {"Pasta cabonara con trufa", 9.20, 0},
-	            {"Cocido", 9.00, 0},
+	            {"Ensalada de bogavante", 10.20, 0, "No"},
+	            {"Menestra de verduras", 7.10, 0, "Si"},
+	            {"Risotto", 8.10, 0, "Si"},
+	            {"Pasta cabonara con trufa", 9.20, 0, "Si"},
+	            {"Cocido", 9.00, 0, "No"},
 
-	            {"Rodavallo", 40.00, 0},
-	            {"Bacalao a la bizkaina", 25.20, 0},
-	            {"Chuleton", 45.00, 0},
-	            {"Chuletillas", 30.15, 0},
-	            {"Calamares en su tinta", 15.35, 0},
+	            {"Rodavallo", 40.00, 0, "No"},
+	            {"Bacalao a la bizkaina", 25.20, 0, "No"},
+	            {"Chuleton", 45.00, 0, "No"},
+	            {"Chuletillas", 30.15, 0, "No"},
+	            {"Calamares en su tinta", 15.35, 0, "No"},
 
-	            {"Coulant de chocolate", 8.50, 0},
-	            {"Tarta de queso", 8.00, 0},
-	            {"Brownie de chocolate", 7.50, 0},
-	            {"Torrijas", 6.30, 0},
+	            {"Coulant de chocolate", 8.50, 0, "Si"},
+	            {"Tarta de queso", 8.00, 0, "Si"},
+	            {"Brownie de chocolate", 7.50, 0, "Si"},
+	            {"Torrijas", 6.30, 0, "Si"},
 
-	            {"Vino tinto", 20.20, 0},
-	            {"Vino blanco", 18.30, 0},
-	            {"Agua", 2.50, 0},
-	            {"Refresco", 2.30, 0},
+	            {"Vino tinto", 20.20, 0, ""},
+	            {"Vino blanco", 18.30, 0, ""},
+	            {"Agua", 2.50, 0, ""},
+	            {"Refresco", 2.30, 0, ""},
 	    };
-	    String[] columnNames = {"Comida", "Precio", "Cantidad"};
+	    String[] columnNames = {"Comida", "Precio", "Cantidad", "Vegetariano"};
 
 	    TablaMenu = new JTable(data, columnNames);
 	    
@@ -101,6 +101,10 @@ public class VentanaComidaPedido extends JFrame {
 	        }
 	    });
 	    panel.add(btnPedir);
+	}
+
+	public JTable getTablaMenu() {
+		return TablaMenu;
 	}
 
 }
