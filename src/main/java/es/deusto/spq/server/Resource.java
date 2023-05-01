@@ -160,15 +160,16 @@ public class Resource {
 					user = (User)q.execute();
 					logger.info("User: {}", user);
 					if (user != null) {
-						if (user.isAdmin()) {
-							logger.info("Admin logged: {}", user);
-						} else {
-							logger.info("User logged: {}", user);
-						}
 						pm.makePersistent(user);
 						Long token = Calendar.getInstance().getTimeInMillis();
 						this.serverState.put(token, user);
-						return Response.ok().entity(token.toString()).build();
+						if (user.isAdmin()) {
+							logger.info("Admin logged: {}", user);
+							return Response.ok().entity(new AuthService(token.toString(), true)).build();
+						} else {
+							logger.info("User logged: {}", user);
+							return Response.ok().entity(new AuthService(token.toString(), false)).build();
+						}
 					} else {
 						logger.info("User not found");
 						return Response.status(Response.Status.NOT_FOUND).entity("User not found").build();
@@ -177,9 +178,12 @@ public class Resource {
 					e.printStackTrace();
 					return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 				}
-			} else {
+			} else if(user != null && user.getPassword().equals(userData.getPassword()) == false ){
 				logger.info("Incorrect password for user '{}'", userData.getId());
 				return Response.status(Response.Status.UNAUTHORIZED).entity("Incorrect password").build();
+			} else {
+				logger.info("Incorrect user '{}'", userData.getId());
+				return Response.status(Response.Status.UNAUTHORIZED).entity("Incorrect User").build();
 			}
 		} finally {
 			if (tx.isActive()) {
