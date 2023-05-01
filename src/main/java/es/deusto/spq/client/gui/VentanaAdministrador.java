@@ -28,6 +28,7 @@ public class VentanaAdministrador extends JFrame {
         JButton editarReservaButton = new JButton("Editar Reserva");
         JButton eliminarReservaButton = new JButton("Eliminar Reserva");
         JButton mostrarMenuButton = new JButton("Mostrar menú");
+        JButton atras = new JButton("Atrás");
 
         // Crear contenedor para organizar los componentes
         JPanel container = new JPanel();
@@ -36,6 +37,7 @@ public class VentanaAdministrador extends JFrame {
         container.add(editarReservaButton);
         container.add(eliminarReservaButton);
         container.add(mostrarMenuButton);
+        container.add(atras);
 
         //Crear la tabla
         tablaReservas = new JTable();
@@ -79,6 +81,13 @@ public class VentanaAdministrador extends JFrame {
 
         
         //Activar boton para CREAR y MOSTRAR la tabla
+        atras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
+                dispose();
+            }
+        });
+
         mostrarMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 tablaMenu = new TablaMenu();
