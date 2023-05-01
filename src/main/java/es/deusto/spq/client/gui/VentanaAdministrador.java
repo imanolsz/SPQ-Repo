@@ -55,9 +55,9 @@ public class VentanaAdministrador extends JFrame {
             model.addColumn("NumPersonas");
             model.addColumn("UserData");
             model.addColumn("Especificación");
-            model.addColumn("Cancelada");
+            
             for (ReservaData reserva : reservas) {
-                model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser(), reserva.getEspecificacion(),reserva.getCancelada()});
+                model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser(), reserva.getEspecificacion()});
             }
             tablaReservas.setModel(model);
 
