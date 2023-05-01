@@ -44,14 +44,16 @@ public class VentanaBuzon extends JFrame {
 
 
         // Ejemplo de creación de un objeto ReservaData
+        /* 
         Date fecha = new Date();
         LocalTime hora = LocalTime.now();
         int numPersonas = 2;
         boolean cancelada = false;
         UserData user2 = new UserData();
         ReservaData reserva = new ReservaData(fecha, hora, numPersonas, cancelada, user2);
+        */
 
-        Main.getExampleClient().realizarNota(reserva, "prueba", "dar");
+       // Main.getExampleClient().realizarNota(reserva, "prueba", "dar");
         //creo userdata
         UserData user = new UserData();
         user.setId((Long.toString(Main.getExampleClient().getToken())));

@@ -170,11 +170,12 @@ public class VentanaReserva extends JFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
                 Date fechaReserva;
                 long token = Main.getExampleClient().getToken();
+                String especificacion = textEspecificacion.getText();
                 try {
                     fechaReserva = sdf.parse(textFecha.getText());
                     int comensales = (int) boxComensales.getSelectedItem();
                     LocalTime hora = (LocalTime) boxHora.getSelectedItem();
-                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,token);
+                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion, token);
                 } catch (ParseException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
