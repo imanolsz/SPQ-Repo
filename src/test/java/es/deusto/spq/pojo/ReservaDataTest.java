@@ -21,7 +21,7 @@ public class ReservaDataTest {
     public void setUp() {
         UserData user = new UserData();
         PedidoData pedidoData = new PedidoData(new ArrayList<DetallePedidoData>( ));
-        reserva = new ReservaData(new Date(), LocalTime.now(), 2, false, "especificacion",pedidoData, user);
+        reserva = new ReservaData(new Date(), LocalTime.now(), 2, false, "especificacion",pedidoData, 0, user);
     }
 
     @Test

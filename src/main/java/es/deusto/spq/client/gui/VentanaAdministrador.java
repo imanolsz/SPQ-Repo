@@ -18,10 +18,13 @@ public class VentanaAdministrador extends JFrame {
     private JFrame ventanaTablaMenu;
     
     public VentanaAdministrador() {
-        super("Ventana de Administración");
 
+        
+        super("Ventana de Administración");
+        setSize(800, 600);
         // Crear etiqueta para el título
         JLabel titleLabel = new JLabel("Bienvenido al Panel de Administración");
+        titleLabel.setBounds(0, 0, 800, 50);
 
         // Crear botones para las distintas funcionalidades
         JButton crearReservaButton = new JButton("Crear Reserva");
@@ -99,7 +102,7 @@ public class VentanaAdministrador extends JFrame {
 	    gbc_boxHora.insets = new Insets(0, 0, 5, 0);
 	    gbc_boxHora.gridx = 1;
 	    gbc_boxHora.gridy = 2;
-	    // getContentPane().add(boxHora, gbc_boxHora);
+	 //   getContentPane().add(boxHora, gbc_boxHora);
 	    boxHora.addItem(LocalTime.of(13, 0));
         boxHora.addItem(LocalTime.of(13, 30));
         boxHora.addItem(LocalTime.of(14, 0));

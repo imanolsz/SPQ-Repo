@@ -236,7 +236,7 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
         if (this.serverState.containsKey(token)) {
             User usuario = this.serverState.get(token);
             System.out.println(usuario.getId());
-            reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(), reservaData.getCancelada(), reservaData.getEspecificacion(), usuario);
+            reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(), reservaData.getCancelada(), reservaData.getEspecificacion(), reservaData.getAparcamiento(),usuario);
             for (DetallePedidoData detallePedidoData : reservaData.getPedido().getListaAlimentos()) {
                 DetallePedido detallePedido = new DetallePedido(
                     detallePedidoData.getAlimento(),
