@@ -34,50 +34,10 @@ public class VentanaComidaPedido extends JFrame {
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
-	    // Definir datos para la tabla
-	    Object[][] data = {
-	            {"Croquetas de la abuela", 10.20, 0, "No"},
-	            {"Rabas", 4.30, 0, "No"},
-	            {"Bravas", 3.50, 0, "Si"},
-	            {"Tabla de surtidos ibericos", 7.30, 0, "No"},
-	            {"Patatas bacon-queso", 5.00, 0, "No"},
-
-	            {"Ensalada de bogavante", 10.20, 0, "No"},
-	            {"Menestra de verduras", 7.10, 0, "Si"},
-	            {"Risotto", 8.10, 0, "Si"},
-	            {"Pasta cabonara con trufa", 9.20, 0, "Si"},
-	            {"Cocido", 9.00, 0, "No"},
-
-	            {"Rodavallo", 40.00, 0, "No"},
-	            {"Bacalao a la bizkaina", 25.20, 0, "No"},
-	            {"Chuleton", 45.00, 0, "No"},
-	            {"Chuletillas", 30.15, 0, "No"},
-	            {"Calamares en su tinta", 15.35, 0, "No"},
-
-	            {"Coulant de chocolate", 8.50, 0, "Si"},
-	            {"Tarta de queso", 8.00, 0, "Si"},
-	            {"Brownie de chocolate", 7.50, 0, "Si"},
-	            {"Torrijas", 6.30, 0, "Si"},
-
-	            {"Vino tinto", 20.20, 0, ""},
-	            {"Vino blanco", 18.30, 0, ""},
-	            {"Agua", 2.50, 0, ""},
-	            {"Refresco", 2.30, 0, ""},
-	    };
-	    String[] columnNames = {"Comida", "Precio", "Cantidad", "Vegetariano"};
-
-	    tablaMenu = new JTable(data, columnNames);
-	    
-	    // Establecer el renderer de celda personalizado
-        tablaMenu.setDefaultRenderer(Object.class, new MiRenderer());
+	    tablaMenu = new TablaMenu();
 	    
 	    JScrollPane scrollPane = new JScrollPane(tablaMenu);
 	    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-	    // establecer el ancho de las columnas de la tabla
-	    tablaMenu.getColumnModel().getColumn(0).setPreferredWidth(200);
-	    tablaMenu.getColumnModel().getColumn(1).setPreferredWidth(100);
-	    tablaMenu.getColumnModel().getColumn(2).setPreferredWidth(50);
-		tablaMenu.getColumnModel().getColumn(3).setPreferredWidth(50);
 
 	    Panel panel = new Panel();
 	    panel.setBackground(Color.PINK);
