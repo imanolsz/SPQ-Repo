@@ -25,16 +25,20 @@ public class Reserva {
     @Persistent
     private boolean cancelada;
 
+    @Persistent
+    private String especificacion;
+
     @ForeignKey
     @Persistent
     private User user;
 
-    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, User user){
+    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, User user){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
         this.user = user;
+        this.especificacion = especificacion;
     }
 
     public Reserva(){
@@ -94,6 +98,14 @@ public class Reserva {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getEspecificacion() {
+        return especificacion;
+    }
+
+    public void setEspecificacion(String especificacion) {
+        this.especificacion = especificacion;
     }
     
 }

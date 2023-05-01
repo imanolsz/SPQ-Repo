@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
 import es.deusto.spq.main.Main;
 
 public class VentanaReserva extends JFrame {
@@ -27,6 +28,7 @@ public class VentanaReserva extends JFrame {
     private GridBagConstraints c_2;
     private JTextField textFecha;
     private GridBagConstraints gbc_lhora;
+    private JTextField textEspecificacion;
 
 	public VentanaReserva() {
         // Crear un panel principal y establecer un GridBagLayout
@@ -53,6 +55,22 @@ public class VentanaReserva extends JFrame {
         gbc_textFecha.gridy = 1;
         panel.add(textFecha, gbc_textFecha);
         textFecha.setColumns(10);
+
+        // Agregar JLabel "Pedido"
+        JLabel lpedido = new JLabel("Pedido:");
+        GridBagConstraints gbc_lpedido = new GridBagConstraints();
+        gbc_lpedido.insets = new Insets(0, 0, 5, 5);
+        gbc_lpedido.gridx = 0;
+        gbc_lpedido.gridy = 0;
+        panel.add(lpedido, gbc_lpedido);
+
+        // Agregar JLabel "Añadir especificación"
+        JLabel lespecificacion = new JLabel("Añadir especificación:");
+        GridBagConstraints gbc_lespecificacion = new GridBagConstraints();
+        gbc_lespecificacion.insets = new Insets(0, 0, 5, 5);
+        gbc_lespecificacion.gridx = 0;
+        gbc_lespecificacion.gridy = 4;
+        panel.add(lespecificacion, gbc_lespecificacion);
 
         // Crear las restricciones para los componentes
         GridBagConstraints c;
@@ -125,6 +143,29 @@ public class VentanaReserva extends JFrame {
         gbc_button.gridx = 0;
         gbc_button.gridy = 5;
         panel.add(bMenu, gbc_button);
+
+        // Agregar JButton "Realizar pedido"
+        JButton bRealizarPedido = new JButton("Realizar pedido");
+        GridBagConstraints gbc_bRealizarPedido = new GridBagConstraints();
+        gbc_bRealizarPedido.insets = new Insets(0, 0, 5, 0);
+        gbc_bRealizarPedido.gridx = 1;
+        gbc_bRealizarPedido.gridy = 0;
+        panel.add(bRealizarPedido, gbc_bRealizarPedido);
+        bRealizarPedido.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+                Main.getGestorVentanas().getVentanaComidaPedido().setVisible(true);
+				dispose();
+	        }
+	    });
+
+          // Agregar JTextField para especificación
+          textEspecificacion = new JTextField();
+          GridBagConstraints gbc_textEspecificacion = new GridBagConstraints();
+          gbc_textEspecificacion.insets = new Insets(0, 0, 5, 0);
+          gbc_textEspecificacion.gridx = 1;
+          gbc_textEspecificacion.gridy = 4;
+          panel.add(textEspecificacion, gbc_textEspecificacion);
+          textEspecificacion.setColumns(10);
         
         JButton bConfirmar = new JButton("Confirmar");
         bConfirmar.setBackground(new Color(50, 205, 50));
@@ -135,11 +176,12 @@ public class VentanaReserva extends JFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
                 Date fechaReserva;
                 long token = Main.getExampleClient().getToken();
+                String especificacion = textEspecificacion.getText();
                 try {
                     fechaReserva = sdf.parse(textFecha.getText());
                     int comensales = (int) boxComensales.getSelectedItem();
                     LocalTime hora = (LocalTime) boxHora.getSelectedItem();
-                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,token);
+                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion, token);
                 } catch (ParseException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();

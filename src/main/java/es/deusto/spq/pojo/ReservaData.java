@@ -12,17 +12,19 @@ public class ReservaData {
     private int numPersonas;
     private boolean cancelada;
     private UserData user;
+    private String especificacion;
     
     public ReservaData() {
         // Requerido por la serialización (Para poder ser almacenada en un archivo o enviada a través de una red)
     }
     
-    public ReservaData(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, UserData user) {
+    public ReservaData(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion,UserData user) {
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
         this.user = user;
+        this.especificacion = especificacion;
     }
     
     public long getId() {
@@ -72,7 +74,13 @@ public class ReservaData {
     public void setUser(UserData user) {
         this.user = user;
     }
-    
+    public String getEspecificacion() {
+        return especificacion;
+    }
+
+    public void setEspecificacion(String especificacion) {
+        this.especificacion = especificacion;
+    }
     public boolean getCancelada() {
         return false;
     }

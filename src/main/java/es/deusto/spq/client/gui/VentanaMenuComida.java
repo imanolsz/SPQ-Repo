@@ -74,11 +74,21 @@ public class VentanaMenuComida extends JFrame {
 		panelInferior.setBackground(Color.decode("#e0a370"));
 
 		
-		
+		//Etiqueta de la imagen
+		URL urlImagen = getClass().getResource("/fotos/imagenCarta.png"); // // Obtener URL de la imagen	
+        ImageIcon imagen = new ImageIcon(urlImagen); // Crear ImageIcon a partir de la URL
+		JLabel etiquetaImg = new JLabel(imagen); // Crear JLabel con la imagen 
+		etiquetaImg.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panelCentrado.add(etiquetaImg);
 		
 		
 
-		
+		bCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
+			}
+		});
 
 		
 

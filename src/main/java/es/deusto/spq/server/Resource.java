@@ -236,7 +236,7 @@ public class Resource {
 				User usuario = this.serverState.get(token);
 				System.out.println(usuario.getId());
 			
-			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),usuario);
+			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getEspecificacion(),usuario);
             logger.info("Realizando reserva: '{}'", reservaData.getId());
 			pm.makePersistent(reserva);
 			}

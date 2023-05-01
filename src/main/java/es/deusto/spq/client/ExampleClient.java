@@ -154,7 +154,7 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
-	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, long token) {
+	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, long token) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		//Date date = fecha; // crea un objeto Date

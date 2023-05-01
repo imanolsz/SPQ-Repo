@@ -14,6 +14,8 @@ public class GestorVentanas {
 	VentanaReserva ventanaReserva;
 	VentanaContacto ventanaContacto;
 	VentanaConsultaReserva ventanaConsultaReserva;
+	VentanaMenuComida ventanaMenuComida;
+	VentanaComidaPedido ventanaComidaPedido;
 	VentanaAdministrador ventanaAdministrador;
 	
 	public GestorVentanas() {
@@ -28,6 +30,8 @@ public class GestorVentanas {
 		ventanaConsultaReserva = new VentanaConsultaReserva();
 		ventanaAdministrador = new VentanaAdministrador();
 		//VentanaBuzon = new VentanaBuzon();
+		ventanaMenuComida = new VentanaMenuComida();
+		ventanaComidaPedido = new VentanaComidaPedido();
 	}
 	
 	public VentanaAdministrador getVentanaAdministrador() {
@@ -73,5 +77,13 @@ public class GestorVentanas {
 
 	public VentanaConsultaReserva getVentanaConsultaReserva(){
 		return ventanaConsultaReserva;
+	}
+
+	public VentanaMenuComida getVentanaMenuComida(){
+		return ventanaMenuComida;
+	}
+
+	public VentanaComidaPedido getVentanaComidaPedido(){
+		return ventanaComidaPedido;
 	}
 }
