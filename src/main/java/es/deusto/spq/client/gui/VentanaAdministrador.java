@@ -54,10 +54,43 @@ public class VentanaAdministrador extends JFrame {
             model.addColumn("Canelada");
             model.addColumn("NumPersonas");
             model.addColumn("UserData");
+            model.addColumn("Especificación");
+            model.addColumn("Cancelada");
             for (ReservaData reserva : reservas) {
-                model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
+                model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser(), reserva.getEspecificacion(),reserva.getCancelada()});
             }
             tablaReservas.setModel(model);
+
+            //COLORES PARA EVENTOS
+            // Crear el renderizador para las filas que cumplen la condición
+            TableCellRenderer renderer = new DefaultTableCellRenderer() {
+                public Component getTableCellRendererComponent(JTable table, Object value,
+                        boolean isSelected, boolean hasFocus, int row, int column) {
+                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+                            row, column);
+                    String espec = (String) table.getModel().getValueAt(row, 6);
+                    if (espec != null && espec.equals("cumpleaños")) {
+                        c.setBackground(new Color(200, 255, 200)); // Pintar fila de color verde claro
+                    } 
+                    else if(espec != null && espec.equals("boda")){
+                        c.setBackground(new Color(255, 255, 153)); // Pintar fila de color amarillo claro
+                    }
+                    else if(espec != null && espec.equals("comunion")){
+                        c.setBackground(new Color(173, 216, 230)); // Pintar fila de color azul claro
+                    }
+                    else if(espec != null && espec.equals("graduacion")){
+                        c.setBackground(new Color(255, 182, 193)); // Pintar fila de color rosa claro
+                    }
+                    else if(espec != null && espec.equals("babyshower")){
+                        c.setBackground(new Color(255, 165, 0, 100)); // Pintar fila de color naranja claro
+                    }
+                    else {
+                        c.setBackground(Color.WHITE); // Dejar fondo en blanco
+                    }
+                    return c;
+                }
+            };
+            tablaReservas.setDefaultRenderer(Object.class, renderer);
         }
 
         JComboBox<LocalTime> boxHora = new JComboBox<LocalTime>();
