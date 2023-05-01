@@ -180,6 +180,7 @@ public class ExampleClient {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
 			logger.info("La reserva se ha realizado");
+		
 		}
 	}
 
