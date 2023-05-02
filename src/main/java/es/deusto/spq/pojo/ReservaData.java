@@ -119,4 +119,16 @@ public class ReservaData {
     public boolean getCancelada() {
         return false;
     }
+    @Override
+    public String toString() {
+        return "ReservaData{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", hora=" + hora +
+                ", numPersonas=" + numPersonas +
+                ", cancelada=" + cancelada +
+                ", user=" + user +
+                ", especificacion='" + especificacion + '\'' +
+                '}';
+    }
 }

@@ -7,13 +7,19 @@ import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.table.*;
+
+import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.ReservaData;
 
 public class VentanaAdministrador extends JFrame {
     private JTable tablaReservas;
     private JTable tablaMenu;
     private JFrame ventanaTablaMenu;
+    private List<ReservaData> r;
+    private Timer timer;
     
     public VentanaAdministrador() {
 
@@ -36,7 +42,7 @@ public class VentanaAdministrador extends JFrame {
         JButton editarReservaButton = new JButton("Editar Reserva");
         JButton eliminarReservaButton = new JButton("Eliminar Reserva");
         JButton mostrarMenuButton = new JButton("Mostrar menú");
-        JButton atras = new JButton("Atrás");
+        JButton atras = new JButton("Atras");
 
         // Crear contenedor para organizar los componentes
         JPanel container = new JPanel();
@@ -55,56 +61,32 @@ public class VentanaAdministrador extends JFrame {
         container.add(tablaReservas);
         container.add(tablaMenu);
 
-        List<ReservaData> reservas = Main.getExampleClient().getReservas();
-        if (reservas != null) {
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("ID");
-            model.addColumn("Fecha");
-            model.addColumn("Hora");
-            model.addColumn("Canelada");
-            model.addColumn("NumPersonas");
-            model.addColumn("UserData");
-            model.addColumn("Especificación");
-            
-            for (ReservaData reserva : reservas) {
-                model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser(), reserva.getEspecificacion()});
-            }
-            tablaReservas.setModel(model);
-
-            //COLORES PARA EVENTOS
-            // Crear el renderizador para las filas que cumplen la condición
-            TableCellRenderer renderer = new DefaultTableCellRenderer() {
-                public Component getTableCellRendererComponent(JTable table, Object value,
-                        boolean isSelected, boolean hasFocus, int row, int column) {
-                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-                            row, column);
-                    String espec = (String) table.getModel().getValueAt(row, 6);
-                    if (espec != null && espec.equals("cumpleaños")) {
-                        c.setBackground(new Color(200, 255, 200)); // Pintar fila de color verde claro
-                    } 
-                    else if(espec != null && espec.equals("boda")){
-                        c.setBackground(new Color(255, 255, 153)); // Pintar fila de color amarillo claro
-                    }
-                    else if(espec != null && espec.equals("comunion")){
-                        c.setBackground(new Color(173, 216, 230)); // Pintar fila de color azul claro
-                    }
-                    else if(espec != null && espec.equals("graduacion")){
-                        c.setBackground(new Color(255, 182, 193)); // Pintar fila de color rosa claro
-                    }
-                    else if(espec != null && espec.equals("babyshower")){
-                        c.setBackground(new Color(255, 165, 0, 100)); // Pintar fila de color naranja claro
-                    }
-                    else {
-                        c.setBackground(Color.WHITE); // Dejar fondo en blanco
-                    }
-                    return c;
-                }
-            };
-            tablaReservas.setDefaultRenderer(Object.class, renderer);
-        }
-
         
-
+        
+        timer = new Timer(5000, e -> {
+            List<ReservaData> reservas = Main.getExampleClient().getReservas();
+            if (reservas != null && !reservas.equals(r)) {
+                r = reservas;
+                for (ReservaData reserva : reservas) {
+                    System.out.println(reserva.toString()); // Imprimir la reserva en la pantalla
+                }
+                DefaultTableModel model = new DefaultTableModel();
+                model.addColumn("ID");
+                model.addColumn("Fecha");
+                model.addColumn("Hora");
+                model.addColumn("Canelada");
+                model.addColumn("NumPersonas");
+                model.addColumn("UserData");
+                for (ReservaData reserva : reservas) {
+                    model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
+                }
+                tablaReservas.setModel(model);
+                //tablaReservas.setDefaultRenderer(Object.class, renderer);    NO SE PORQUE EL RENDERER DA MAL, SI LOS COLORES DEL MENU NO SALEN ES POR ESTO
+        
+            }
+        });
+        timer.start();
+    
         
         //Activar boton para CREAR y MOSTRAR la tabla
         atras.addActionListener(new ActionListener() {
@@ -123,6 +105,20 @@ public class VentanaAdministrador extends JFrame {
                 ventanaTablaMenu.pack(); // la ventana se ajusta a la tabla
                 ventanaTablaMenu.setLocationRelativeTo(null);
                 ventanaTablaMenu.setVisible(true);
+            }
+        });
+
+        atras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
+                dispose();
+            }
+        });
+
+        atras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
+                dispose();
             }
         });
 
@@ -146,6 +142,6 @@ public class VentanaAdministrador extends JFrame {
         this.setSize(400, 300);
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
-       // this.setVisible(true);
+        this.setVisible(true);
     }
 }

@@ -1,28 +1,50 @@
 package es.deusto.spq.client;
 
-import es.deusto.spq.pojo.*;
-
-import java.util.*;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import java.time.*;
+
+import es.deusto.spq.pojo.DetallePedidoData;
+import es.deusto.spq.pojo.DirectMessage;
+import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.NotaData;
+import es.deusto.spq.pojo.ReservaData;
+import es.deusto.spq.pojo.UserData;
+
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.glassfish.jersey.client.ClientConfig;
-import org.apache.logging.log4j.*;
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import es.deusto.spq.pojo.NotificacionData;
+import es.deusto.spq.pojo.PedidoData;
 
 public class ExampleClient {
 
 	protected static final Logger logger = LogManager.getLogger();
 	private Client client;
-	private WebTarget webTarget;
+	WebTarget webTarget;
 	private long token = -1;
 	private PedidoData pedidoActivo;
 	int ID = 0;
+
 
 	public ExampleClient(String hostname, String port) {
 		ClientConfig config = new ClientConfig();
@@ -96,6 +118,7 @@ public class ExampleClient {
 		this.token = -1;
 	}
 
+	
 	public void sayMessage(String login, String password, String message) {
 		WebTarget sayHelloWebTarget = webTarget.path("sayMessage");
 		Invocation.Builder invocationBuilder = sayHelloWebTarget.request(MediaType.APPLICATION_JSON);
@@ -119,6 +142,8 @@ public class ExampleClient {
 			logger.info("* Message coming from the server: '{}'", responseMessage);
 		}
 	}
+	
+	
 	public List<NotificacionData> getNotifications(UserData userParam) {
 		WebTarget notificationsTarget = webTarget.path("getNotifications");
 		Invocation.Builder invocationBuilder = notificationsTarget.request(MediaType.APPLICATION_JSON);
@@ -250,6 +275,7 @@ public class ExampleClient {
 			}
 		}
 	}
+
 	public long getToken() {
 		return token;
 	}
