@@ -89,12 +89,7 @@ public class VentanaAdministrador extends JFrame {
     
         
         //Activar boton para CREAR y MOSTRAR la tabla
-        atras.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
-                dispose();
-            }
-        });
+        
 
         mostrarMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -105,13 +100,6 @@ public class VentanaAdministrador extends JFrame {
                 ventanaTablaMenu.pack(); // la ventana se ajusta a la tabla
                 ventanaTablaMenu.setLocationRelativeTo(null);
                 ventanaTablaMenu.setVisible(true);
-            }
-        });
-
-        atras.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
-                dispose();
             }
         });
 
