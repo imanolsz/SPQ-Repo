@@ -3,8 +3,8 @@ Cooking Mama
 
 Ejecutar desde la terminal en la carpeta del proyecto
 
-Comandos.bat
+      Comandos.bat
 
 Ejecutar en otra terminal 
 
-mvn exec:java -Pclient
+      mvn exec:java -Pclient
