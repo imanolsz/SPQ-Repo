@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.jdo.*;
 
@@ -193,7 +194,7 @@ public class Resource {
 	}
 
 
-	@POST
+@POST
 @Path("/realizarReserva")
 public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authorization") String authorizationHeader) {
     try {	

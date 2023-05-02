@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.jdo.annotations.*;
 
+import es.deusto.spq.pojo.PedidoData;
+
 @PersistenceCapable(detachable="true")
 public class Reserva {
 
@@ -30,11 +32,25 @@ public class Reserva {
     @Persistent
     private int aparcamiento;
 
+    @Persistent
+    private PedidoData pedido;
+
     @ForeignKey
     @Persistent
     private User user;
 
-    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion,int aparcamiento, User user){
+    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, PedidoData pedido, int aparcamiento, User user){
+        this.fecha = fecha;
+        this.hora = hora;
+        this.numPersonas = numPersonas;
+        this.cancelada = cancelada;
+        this.user = user;
+        this.pedido = pedido;
+        this.especificacion = especificacion;
+        this.aparcamiento = aparcamiento;
+    }
+
+    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, int aparcamiento, User user){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
@@ -44,9 +60,18 @@ public class Reserva {
         this.aparcamiento = aparcamiento;
     }
 
-    public Reserva(){
-        
+    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, User user){
+        this.fecha = fecha;
+        this.hora = hora;
+        this.numPersonas = numPersonas;
+        this.cancelada = cancelada;
+        this.user = user;
+        this.especificacion = especificacion;
     }
+
+    public Reserva(){
+    }
+
     
     public void actualizarReserva(Reserva reserva) {
         this.setFecha(reserva.getFecha());
@@ -63,6 +88,14 @@ public class Reserva {
     
     public void setHora(LocalTime hora) {
         this.hora = hora;
+    }
+    
+    public PedidoData getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoData pedido) {
+        this.pedido = pedido;
     }
     
     public void setFecha(Date fecha) {

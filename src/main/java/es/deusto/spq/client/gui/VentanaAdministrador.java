@@ -4,6 +4,7 @@ import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,6 +77,7 @@ public class VentanaAdministrador extends JFrame {
         });
         timer.start();
 
+        
         JComboBox<LocalTime> boxHora = new JComboBox<LocalTime>();
 	    GridBagConstraints gbc_boxHora = new GridBagConstraints();
 	    gbc_boxHora.anchor = GridBagConstraints.WEST;
@@ -128,6 +130,5 @@ public class VentanaAdministrador extends JFrame {
         this.setSize(400, 300);
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
-        this.setVisible(true);
     }
 }

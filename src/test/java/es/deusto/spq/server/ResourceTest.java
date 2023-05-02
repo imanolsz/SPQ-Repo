@@ -2,12 +2,14 @@ package es.deusto.spq.server;
 
 import org.junit.*;
 
+import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.server.jdo.Reserva;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 public class ResourceTest {
@@ -46,6 +48,7 @@ public class ResourceTest {
 	@Test
 	public void realizarReserva(){
 	}
+
 	@Test
 	public void realizarNotificacion() {
 
@@ -76,6 +79,7 @@ public class ResourceTest {
         assertNotNull(reservas);
         // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
     }
+
 
 	@Test
     public void hayMesaLibre() { 
