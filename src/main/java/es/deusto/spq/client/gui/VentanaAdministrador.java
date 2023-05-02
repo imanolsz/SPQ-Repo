@@ -35,6 +35,7 @@ public class VentanaAdministrador extends JFrame {
         JButton editarReservaButton = new JButton("Editar Reserva");
         JButton eliminarReservaButton = new JButton("Eliminar Reserva");
         JButton mostrarMenuButton = new JButton("Mostrar menú");
+        JButton atras = new JButton("Atras");
 
         // Crear contenedor para organizar los componentes
         JPanel container = new JPanel();
