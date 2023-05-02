@@ -1,9 +1,9 @@
 package es.deusto.spq.modelos;
 
-import java.util.List;
-import javax.swing.table.AbstractTableModel;
+import java.util.*;
+import javax.swing.table.*;
 
-import es.deusto.spq.pojo.NotificacionData;
+import es.deusto.spq.pojo.*;
 
 
 public class ModeloTablaNotificacionData extends AbstractTableModel {

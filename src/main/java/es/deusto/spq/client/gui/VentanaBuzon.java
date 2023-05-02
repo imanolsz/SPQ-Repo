@@ -1,53 +1,30 @@
 package es.deusto.spq.client.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Image;
+import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.*;
+import es.deusto.spq.client.*;
+import es.deusto.spq.modelos.*;
 
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
-
-
-
-import es.deusto.spq.pojo.NotificacionData;
-import es.deusto.spq.pojo.ReservaData;
-
 import java.net.URL;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
-import es.deusto.spq.pojo.UserData;
-import es.deusto.spq.client.ExampleClient;
-import es.deusto.spq.main.Main;
-import es.deusto.spq.modelos.ModeloTablaNotificacionData;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-
+import java.awt.event.*;
 public class VentanaBuzon extends JFrame {
 
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 	// private Thread t;
 
     public VentanaBuzon() {
 
-        
-
         ExampleClient ec = Main.getExampleClient();
-
 
         //creo userdata
         UserData user = new UserData();
         user.setId((Long.toString(Main.getExampleClient().getToken())));
         List<NotificacionData> notificaciones = ec.getNotifications(user);
         
-
         JButton BAtras = new JButton();
         // Código ejemplo para importar una foto
          URL urlImagenA = getClass().getResource("/fotos/atras.png"); // Obtener URL de la imagen
@@ -55,8 +32,6 @@ public class VentanaBuzon extends JFrame {
          BAtras.setBounds(100, 100, 50, 50);
          Icon imagA = new ImageIcon(imagenA.getImage().getScaledInstance(BAtras.getWidth(), BAtras.getHeight(), Image.SCALE_DEFAULT)); 
          BAtras.setIcon(imagA);
-        
-
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("BUZÓN");
@@ -106,14 +81,11 @@ public class VentanaBuzon extends JFrame {
                 }
             }
         });
-
         BAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
 				dispose();
 			}
 		});	
-
     }
-
 }

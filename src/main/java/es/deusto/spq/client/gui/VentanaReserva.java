@@ -1,25 +1,15 @@
 package es.deusto.spq.client.gui;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.DetallePedidoData;
+import es.deusto.spq.pojo.PedidoData;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.text.*;
 import java.time.LocalTime;
 import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-
-import es.deusto.spq.main.Main;
+import javax.swing.*;
 
 public class VentanaReserva extends JFrame {
 
@@ -99,15 +89,12 @@ public class VentanaReserva extends JFrame {
         boxHora.addItem(LocalTime.of(22, 0));
         boxHora.addItem(LocalTime.of(22, 30));
 	    
-	    
 	    c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 3;
         c.insets = new Insets(10, 10, 10, 10); // Agregar un margen
         panel.add(lnumpersonas, c);
 	    
-	 
-
         // Agregar el panel a la ventana
         getContentPane().add(panel);
         JComboBox<Integer> boxComensales = new JComboBox<Integer>();
@@ -166,13 +153,26 @@ public class VentanaReserva extends JFrame {
           gbc_textEspecificacion.gridy = 4;
           panel.add(textEspecificacion, gbc_textEspecificacion);
           textEspecificacion.setColumns(10);
+
+          JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
+        GridBagConstraints gbc_boxAparcamiento = new GridBagConstraints();
+        gbc_boxAparcamiento.anchor = GridBagConstraints.WEST;
+        gbc_boxAparcamiento.insets = new Insets(0, 0, 5, 0);
+        gbc_boxAparcamiento.gridx = 1;
+        gbc_boxAparcamiento.gridy = 5;
+        panel.add(boxAparcamiento, gbc_boxAparcamiento);
+        boxAparcamiento.addItem(0);
+        boxAparcamiento.addItem(1);
+        boxAparcamiento.addItem(2);
+        boxAparcamiento.addItem(3);
+        boxAparcamiento.addItem(4);
+        boxAparcamiento.addItem(5);
         
         JButton bConfirmar = new JButton("Confirmar");
         bConfirmar.setBackground(new Color(50, 205, 50));
         bConfirmar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 //Obtener la fecha en formato Date
-                String nombre = textFecha.getText();
                 SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy");
                 Date fechaReserva;
                 long token = Main.getExampleClient().getToken();
@@ -181,7 +181,12 @@ public class VentanaReserva extends JFrame {
                     fechaReserva = sdf.parse(textFecha.getText());
                     int comensales = (int) boxComensales.getSelectedItem();
                     LocalTime hora = (LocalTime) boxHora.getSelectedItem();
-                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion, token);
+                    PedidoData pedido = Main.getExampleClient().getPedidoActivo();
+                    for(DetallePedidoData detallePedido: pedido.getListaAlimentos()){
+                        System.out.println(detallePedido.getAlimento());
+                    }
+                    int aparcamiento = (int) boxAparcamiento.getSelectedItem();
+                    Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion,pedido, aparcamiento, token);
                 } catch (ParseException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -206,28 +211,10 @@ public class VentanaReserva extends JFrame {
         gbc_laparcamiento.gridy = 5;
         panel.add(laparcamiento, gbc_laparcamiento);
 
-
-        JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
-        GridBagConstraints gbc_boxAparcamiento = new GridBagConstraints();
-        gbc_boxAparcamiento.anchor = GridBagConstraints.WEST;
-        gbc_boxAparcamiento.insets = new Insets(0, 0, 5, 0);
-        gbc_boxAparcamiento.gridx = 1;
-        gbc_boxAparcamiento.gridy = 5;
-        panel.add(boxAparcamiento, gbc_boxAparcamiento);
-        boxAparcamiento.addItem(0);
-        boxAparcamiento.addItem(1);
-        boxAparcamiento.addItem(2);
-        boxAparcamiento.addItem(3);
-        boxAparcamiento.addItem(4);
-        boxAparcamiento.addItem(5);
-        
-       
-
         // Configurar las propiedades de la ventana
         setTitle("Reserva");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
-    
 }

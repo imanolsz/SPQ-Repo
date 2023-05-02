@@ -1,20 +1,13 @@
 package es.deusto.spq.client.gui;
 
-
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
-
 import es.deusto.spq.main.Main;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class VentanaRegistro extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JLabel lemail;
 	JTextField tfemail;

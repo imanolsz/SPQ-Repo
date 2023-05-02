@@ -1,15 +1,7 @@
 package es.deusto.spq.server.jdo;
 
-import java.util.Set;
-
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Join;
-import javax.jdo.annotations.Persistent;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
-
+import javax.jdo.annotations.*;
+import java.util.*;
 @PersistenceCapable
 public class User {
 	@PrimaryKey
@@ -78,9 +70,8 @@ public class User {
 	 
 	 public String toString() {
 		StringBuilder messagesStr = new StringBuilder();
-		for (Message message: this.messages) {
-			messagesStr.append(message.toString() + " - ");
-		}
+		for (Message message: this.messages) 
+			messagesStr.append(message.toString());
         return "User: login --> " + this.id + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
     }
 

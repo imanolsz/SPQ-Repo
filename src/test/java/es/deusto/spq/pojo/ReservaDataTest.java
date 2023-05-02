@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import es.deusto.spq.pojo.UserData;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
@@ -19,7 +19,8 @@ public class ReservaDataTest {
     @Before
     public void setUp() {
         UserData user = new UserData();
-        reserva = new ReservaData(new Date(), LocalTime.now(), 2, false, "especificacion", user);
+        PedidoData pedidoData = new PedidoData(new ArrayList<DetallePedidoData>( ));
+        reserva = new ReservaData(new Date(), LocalTime.now(), 2, false, "especificacion",pedidoData, 0, user);
     }
 
     @Test

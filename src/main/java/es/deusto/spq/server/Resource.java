@@ -3,45 +3,19 @@ package es.deusto.spq.server;
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.Query;
-import javax.jdo.JDOHelper;
-import javax.jdo.Transaction;
+import javax.jdo.*;
 
-
-import es.deusto.spq.pojo.DirectMessage;
-import es.deusto.spq.pojo.MessageData;
-import es.deusto.spq.pojo.NotaData;
-import es.deusto.spq.pojo.NotificacionData;
-import es.deusto.spq.pojo.ReservaData;
-import es.deusto.spq.pojo.UserData;
+import es.deusto.spq.pojo.*;
 import es.deusto.spq.server.jdo.*;
 
-
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import javax.ws.rs.core.Response.Status;
 import javax.inject.Singleton;
 
-import es.deusto.spq.server.jdo.Notificacion;
-
-import org.apache.logging.log4j.Logger;
-
-import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.*;
 
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)
@@ -220,37 +194,47 @@ public class Resource {
 
 
 	@POST
-	@Path("/realizarReserva")
-	public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authorization") String authorizationHeader ) {
-		try
-        {	
-			Reserva reserva = null;
-            tx.begin();
-			//Desenmascarar usuario activo
-			String tokenString = authorizationHeader.substring("Bearer ".length()).trim();
-			long token = Long.parseLong(tokenString);
-			System.out.println(token);
-			User foundUser = serverState.get(token);
-			System.out.println(foundUser);
-			if (this.serverState.containsKey(token)) {
-				User usuario = this.serverState.get(token);
-				System.out.println(usuario.getId());
-			
-			reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(),reservaData.getCancelada(),reservaData.getEspecificacion(),usuario);
-            logger.info("Realizando reserva: '{}'", reservaData.getId());
-			pm.makePersistent(reserva);
-			}
-			tx.commit();
-			return Response.ok().build();
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
+@Path("/realizarReserva")
+public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authorization") String authorizationHeader) {
+    try {	
+        Reserva reserva = null;
+        Pedido pedido = null;
+        List<DetallePedido> alimentos = new ArrayList<>();
+        tx.begin();
+        //Desenmascarar usuario activo
+        String tokenString = authorizationHeader.substring("Bearer ".length()).trim();
+        long token = Long.parseLong(tokenString);
+        System.out.println(token);
+        User foundUser = serverState.get(token);
+        System.out.println(foundUser);
+        if (this.serverState.containsKey(token)) {
+            User usuario = this.serverState.get(token);
+            System.out.println(usuario.getId());
+            reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(), reservaData.getCancelada(), reservaData.getEspecificacion(), reservaData.getAparcamiento(),usuario);
+			pedido = new Pedido(new ArrayList<DetallePedido>(), reserva);
+            for (DetallePedidoData detallePedidoData : reservaData.getPedido().getListaAlimentos()) {
+                DetallePedido detallePedido = new DetallePedido(detallePedidoData.getAlimento(),detallePedidoData.getCantidad(),pedido);
+				pedido.getlistaAlimentos().add(detallePedido);
+       		 }
+		
+        logger.info("Realizando reserva: '{}'", reservaData.getId());
+        pm.makePersistent(reserva);
+		pm.makePersistent(pedido);
+        for (DetallePedido alimento : alimentos) {
+            pm.makePersistent(alimento);
+        }}else{
+			logger.info("No se ha podido hacer la reserva : '{}'");
 		}
-	}
+        tx.commit();
+        return Response.ok().build();
+		
+    } finally {
+        if (tx.isActive()) {
+            tx.rollback();
+        }
+    }
+}
+
 
 	@POST
 	@Path("/realizarNotificacion")

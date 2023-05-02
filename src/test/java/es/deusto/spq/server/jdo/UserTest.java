@@ -2,9 +2,7 @@ package es.deusto.spq.server.jdo;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.After;
@@ -62,13 +60,8 @@ public class UserTest {
 	@Test
 	public void testToString() {
 		Message message1 = new Message("test_subject1");
-		Message message2 = new Message("test_subject2");
-
 		user.addMessage(message1);
-		user.addMessage(message2);
-
-		String expectedString = "User: login --> " + id + ", password -->  " + password + ", messages --> [" + message1.toString() + " - " + message2.toString() + "]";
-
+		String expectedString = "User: login --> " + this.id + ", password -->  " + this.password + ", messages --> [" + message1 + "]";
 		assertEquals(expectedString, user.toString());
 	}
 	*/

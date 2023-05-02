@@ -1,111 +1,98 @@
 package es.deusto.spq.client.gui;
 
-import javax.swing.JScrollPane;
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import javax.swing.JTable;
-import java.awt.Panel;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
+import java.awt.event.*;
 import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.*;
 
 
 public class VentanaComidaPedido extends JFrame {
 
-	private JFrame frame;
-	private JTable tablaMenu;
+	//private JFrame frame;
+	private TablaMenu tablaMenu;
+	private JButton btnMenuVegetariano, btnPedir, btnAtras;
+	private boolean verVegetariano = true;
+	JScrollPane scrollPane;
 
-	/**
-	 * Create the application.
-	 */
 	public VentanaComidaPedido() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-	    frame = new JFrame("Menu");
-	    frame.setBounds(100, 100, 450, 300);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.getContentPane().setLayout(new BorderLayout(0, 0));
-
-	    // Definir datos para la tabla
-	    Object[][] data = {
-	            {"Croquetas de la abuela", 10.20, 0, "No"},
-	            {"Rabas", 4.30, 0, "No"},
-	            {"Bravas", 3.50, 0, "Si"},
-	            {"Tabla de surtidos ibericos", 7.30, 0, "No"},
-	            {"Patatas bacon-queso", 5.00, 0, "No"},
-
-	            {"Ensalada de bogavante", 10.20, 0, "No"},
-	            {"Menestra de verduras", 7.10, 0, "Si"},
-	            {"Risotto", 8.10, 0, "Si"},
-	            {"Pasta cabonara con trufa", 9.20, 0, "Si"},
-	            {"Cocido", 9.00, 0, "No"},
-
-	            {"Rodavallo", 40.00, 0, "No"},
-	            {"Bacalao a la bizkaina", 25.20, 0, "No"},
-	            {"Chuleton", 45.00, 0, "No"},
-	            {"Chuletillas", 30.15, 0, "No"},
-	            {"Calamares en su tinta", 15.35, 0, "No"},
-
-	            {"Coulant de chocolate", 8.50, 0, "Si"},
-	            {"Tarta de queso", 8.00, 0, "Si"},
-	            {"Brownie de chocolate", 7.50, 0, "Si"},
-	            {"Torrijas", 6.30, 0, "Si"},
-
-	            {"Vino tinto", 20.20, 0, ""},
-	            {"Vino blanco", 18.30, 0, ""},
-	            {"Agua", 2.50, 0, ""},
-	            {"Refresco", 2.30, 0, ""},
-	    };
-	    String[] columnNames = {"Comida", "Precio", "Cantidad", "Vegetariano"};
-
-	    tablaMenu = new JTable(data, columnNames);
-	    
-	    // Establecer el renderer de celda personalizado
-        tablaMenu.setDefaultRenderer(Object.class, new MiRenderer());
-	    
-	    JScrollPane scrollPane = new JScrollPane(tablaMenu);
-	    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-	    // establecer el ancho de las columnas de la tabla
-	    tablaMenu.getColumnModel().getColumn(0).setPreferredWidth(200);
-	    tablaMenu.getColumnModel().getColumn(1).setPreferredWidth(100);
-	    tablaMenu.getColumnModel().getColumn(2).setPreferredWidth(50);
-		tablaMenu.getColumnModel().getColumn(3).setPreferredWidth(50);
-
-	    Panel panel = new Panel();
-	    panel.setBackground(Color.PINK);
-	    panel.setForeground(Color.BLACK);
-	    frame.getContentPane().add(panel, BorderLayout.SOUTH);
-	    panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-        //Boton que vuelve a la ventana reserva
-	    JButton btnAtras = new JButton("Atras");
-	    btnAtras.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-                Main.getGestorVentanas().getVentanaReserva().setVisible(true);
-				frame.dispose();
-	        }
-	    });
-	    panel.add(btnAtras);
-
-        //Boton que hace que se realice el pedido PORHACER
-	    JButton btnPedir = new JButton("Pedir");
-	    btnPedir.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent arg0) {
-	        }
-	    });
-	    panel.add(btnPedir);
+		this.setTitle("Menu");
+		this.setBounds(100, 100, 450, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.setLocationRelativeTo(null);
+	
+		tablaMenu = new TablaMenu();
+		scrollPane = new JScrollPane(tablaMenu);
+		this.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		this.pack();
+	
+		Panel panel = new Panel();
+		panel.setBackground(Color.PINK);
+		panel.setForeground(Color.BLACK);
+		this.getContentPane().add(panel, BorderLayout.SOUTH);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		btnMenuVegetariano = new JButton("Menu vegetariano");
+		btnMenuVegetariano.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(verVegetariano){
+					Object[][] filas = tablaMenu.getMenuVegetariano();
+					DefaultTableModel modelVeggie = new DefaultTableModel(filas, tablaMenu.getColumnas());
+					tablaMenu.setModel(modelVeggie);
+					btnMenuVegetariano.setText("Menu completo");
+					verVegetariano = false;
+				}else{
+					tablaMenu = new TablaMenu();
+					btnMenuVegetariano.setText("Menu vegetariano");
+					verVegetariano = true;
+				}
+				scrollPane.setViewportView(tablaMenu);
+			}
+		});
+		panel.add(btnMenuVegetariano);
+		//Boton que vuelve a la ventana reserva
+		btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaReserva().setVisible(true);
+				dispose();
+			}
+		});
+		panel.add(btnAtras);
+	
+		//Boton que hace que se realice el pedido PORHACER
+		btnPedir = new JButton("Pedir");
+		panel.add(btnPedir);
+		btnPedir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int row = tablaMenu.getRowCount();
+				for (int i = 0; i < row; i++) {
+					String cantidadStr = (String) tablaMenu.getValueAt(i, 2);
+					try {
+						int cantidad = Integer.parseInt(cantidadStr);
+						if (cantidad >= 1) {
+							String comida = (String) tablaMenu.getValueAt(i,0);
+							DetallePedidoData alimento = new DetallePedidoData(comida, cantidad); 
+							System.out.println(comida);
+							Main.getExampleClient().getPedidoActivo().getListaAlimentos().add(alimento);
+						}
+			
+					} catch (NumberFormatException e) {
+						System.out.println("mal conversión");
+					}
+					Main.getGestorVentanas().getVentanaReserva().setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
 	}
 
 	public JTable getTablaMenu() {
 		return tablaMenu;
 	}
-
+	
 }

@@ -1,38 +1,19 @@
 package es.deusto.spq.client;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import es.deusto.spq.pojo.*;
+
+import java.util.*;
+import javax.ws.rs.client.*;
+import javax.ws.rs.core.*;
 import javax.ws.rs.core.Response.Status;
-
-import es.deusto.spq.pojo.DirectMessage;
-import es.deusto.spq.pojo.MessageData;
-import es.deusto.spq.pojo.NotaData;
-import es.deusto.spq.pojo.ReservaData;
-import es.deusto.spq.pojo.UserData;
-
-import java.sql.Time;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.glassfish.jersey.client.ClientConfig;
-
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import es.deusto.spq.pojo.NotificacionData;
+import org.apache.logging.log4j.*;
 
 public class ExampleClient {
 
@@ -40,11 +21,13 @@ public class ExampleClient {
 	private Client client;
 	WebTarget webTarget;
 	private long token = -1;
+	private PedidoData pedidoActivo;
 	int ID = 0;
 
 
 	public ExampleClient(String hostname, String port) {
 		ClientConfig config = new ClientConfig();
+		this.pedidoActivo = new PedidoData(new ArrayList<DetallePedidoData>());
 
     // Crear un ObjectMapper y registrar el módulo JavaTimeModule
     ObjectMapper objectMapper = new ObjectMapper();
@@ -158,15 +141,15 @@ public class ExampleClient {
 		return notifications; // Devuelve la lista, aunque esté vacía si hay un error
 	}
 
-	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, long token) {
+	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, PedidoData pedido, int aparcamiento, long token) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		invocationBuilder.header("Authorization", "Bearer " + token);
 		//Date date = fecha; // crea un objeto Date
 		//java.time.Instant instant = date.toInstant(); // convierte Date a Instant
 		//Date Date = instant.atZone(ZoneId.systemDefault()).toLDate(); // convierte Instant a LocalDate
 
-		// Agregar token como header personalizado
-		invocationBuilder.header("Authorization", "Bearer " + token);
+		
 
 		//creo una NotificacionData para el usuario
 		/*NotificacionData NotificacionData = new NotificacionData();
@@ -182,6 +165,9 @@ public class ExampleClient {
 		reservaData.setHora(hora);
 		reservaData.setCancelada(cancelada);
 		reservaData.setNumPersonas(numPersonas);
+		reservaData.setEspecificacion(especificacion);
+		reservaData.setPedido(pedido);
+		reservaData.setAparcamiento(aparcamiento);
 		Response response = invocationBuilder.post(Entity.entity(reservaData, MediaType.APPLICATION_JSON));
 		
 		if (response.getStatus() != Status.OK.getStatusCode()) {
@@ -272,6 +258,13 @@ public class ExampleClient {
 	public long getToken() {
 		return token;
 	}
+	public PedidoData getPedidoActivo() {
+		return pedidoActivo;
+	}
+	public void setPedidoActivo(PedidoData pedidoActivo){
+		this.pedidoActivo = pedidoActivo;
+	}
+
 
 
 	public List<ReservaData> getReservasFiltradas(Date fecha, LocalTime hora) {

@@ -4,9 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 public class VentanaModificar extends JFrame {
@@ -141,8 +138,6 @@ public class VentanaModificar extends JFrame {
         gbc_btnNewButton.gridx = 1;
         gbc_btnNewButton.gridy = 5;
         panel.add(bConfirmar, gbc_btnNewButton);
-        
-       
 
         // Configurar las propiedades de la ventana
         setTitle("Reserva");

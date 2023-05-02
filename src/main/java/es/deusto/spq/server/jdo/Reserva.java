@@ -1,6 +1,5 @@
 package es.deusto.spq.server.jdo;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -28,17 +27,21 @@ public class Reserva {
     @Persistent
     private String especificacion;
 
+    @Persistent
+    private int aparcamiento;
+
     @ForeignKey
     @Persistent
     private User user;
 
-    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, User user){
+    public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion,int aparcamiento, User user){
         this.fecha = fecha;
         this.hora = hora;
         this.numPersonas = numPersonas;
         this.cancelada = cancelada;
         this.user = user;
         this.especificacion = especificacion;
+        this.aparcamiento = aparcamiento;
     }
 
     public Reserva(){
@@ -51,6 +54,7 @@ public class Reserva {
         this.setNumPersonas(reserva.getNumPersonas());
         this.setCancelada(reserva.getCancelada());
         this.setUser(reserva.getUser());
+        this.setAparcamiento(reserva.getAparcamiento());
     }
     
     public LocalTime getHora() {
@@ -106,6 +110,14 @@ public class Reserva {
 
     public void setEspecificacion(String especificacion) {
         this.especificacion = especificacion;
+    }
+
+    public int getAparcamiento() {
+        return aparcamiento;
+    }
+
+    public void setAparcamiento(int aparcamiento) {
+        this.aparcamiento = aparcamiento;
     }
     
 }
