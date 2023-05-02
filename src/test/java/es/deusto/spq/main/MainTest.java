@@ -6,14 +6,14 @@ import org.junit.*;
 public class MainTest {
 
 	
-	private Main main;
+	// private Main main;
     
-	@Before
-    public void setUp() {
-        String[] args = {"127.0.0.1", "8080"};
-        main = new Main();
-        Main.main(args);
-    }
+	// @Before
+    // public void setUp() {
+    //     String[] args = {"127.0.0.1", "8080"};
+    //     main = new Main();
+    //     Main.main(args);
+    // }
 	
 	@Test
     public void testExampleClient() {

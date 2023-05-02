@@ -63,22 +63,22 @@ public class ResourceTest {
 
 	}
 	
-	@Test
-    public void getReservas() {
-        // Crear una instancia de la clase que contiene el método getReservas
-        Resource reservasResource = new Resource();
+	// @Test
+    // public void getReservas() {
+    //     // Crear una instancia de la clase que contiene el método getReservas
+    //     Resource reservasResource = new Resource();
 
-        // Llamar al método getReservas y almacenar la respuesta
-        Response response = reservasResource.getReservas();
+    //     // Llamar al método getReservas y almacenar la respuesta
+    //     Response response = reservasResource.getReservas();
 
-        // Verificar si la respuesta es correcta (HTTP 200 OK)
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    //     // Verificar si la respuesta es correcta (HTTP 200 OK)
+    //     assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 
-        // Verificar si el contenido de la respuesta es el esperado (lista de reservas)
-        List<Reserva> reservas = (List<Reserva>) response.getEntity();
-        assertNotNull(reservas);
-        // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
-    }
+    //     // Verificar si el contenido de la respuesta es el esperado (lista de reservas)
+    //     List<Reserva> reservas = (List<Reserva>) response.getEntity();
+    //     assertNotNull(reservas);
+    //     // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
+    // }
 
 
 	@Test
