@@ -3,7 +3,8 @@ package es.deusto.spq.client.gui;
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.DetallePedidoData;
 import es.deusto.spq.pojo.PedidoData;
-
+import es.deusto.spq.pojo.ReservaData;
+import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.*;
@@ -20,7 +21,7 @@ public class VentanaReserva extends JFrame {
     private JTextField textFecha;
     private GridBagConstraints gbc_lhora;
     private JTextField textEspecificacion;
-    private int parkingTotal = 0;
+    private int parkingTotal = 100;
     private int parkingOcupado = 0;
     private int parkingLibre = 0;
     private Date fechaD;
@@ -248,10 +249,8 @@ public class VentanaReserva extends JFrame {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-             //   parking(fechaD);
-             lparking.setText("Plazas libres: " + parkingLibre);
-             lparking.setForeground(Color.yellow);
-				dispose();
+                lparking.setText("Plazas libres: " + parking(fechaD));
+                lparking.setForeground(Color.green);
         	}
         });
         GridBagConstraints gbc_button1 = new GridBagConstraints();
@@ -265,4 +264,19 @@ public class VentanaReserva extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
+
+    public int parking(Date fecha){
+        int parkingLibre = 0;
+        parkingOcupado = 0;
+        List<ReservaData> reservas = Main.getExampleClient().getReservas();
+        for(ReservaData reserva: reservas){
+            if(reserva.getFecha().equals(fecha)){
+                parkingOcupado += reserva.getAparcamiento();
+            }
+        }
+        parkingLibre = parkingTotal-parkingOcupado;    
+        
+    
+    return parkingLibre;
+}
 }
