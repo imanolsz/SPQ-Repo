@@ -31,6 +31,7 @@ public class User {
 		this.password = password;
 		this.admin = admin;
 	}
+	
 	public void addMessage(Message message) {
 		messages.add(message);
 	}
@@ -38,6 +39,7 @@ public class User {
 	public void removeMessage(Message message) {
 		messages.remove(message);
 	}
+	
 
 	public String getId() {
 		return this.id;
@@ -63,6 +65,7 @@ public class User {
 		this.admin = admin;
 	}
 
+	
 	public Set<Message> getMessages() {return this.messages;}
 	 
 	 public String toString() {
@@ -71,4 +74,5 @@ public class User {
 			messagesStr.append(message.toString());
         return "User: login --> " + this.id + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
     }
+
 }

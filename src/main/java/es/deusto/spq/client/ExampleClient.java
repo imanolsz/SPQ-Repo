@@ -40,10 +40,11 @@ public class ExampleClient {
 
 	protected static final Logger logger = LogManager.getLogger();
 	private Client client;
-	private WebTarget webTarget;
+	WebTarget webTarget;
 	private long token = -1;
 	private PedidoData pedidoActivo;
 	int ID = 0;
+
 
 	public ExampleClient(String hostname, String port) {
 		ClientConfig config = new ClientConfig();
@@ -117,6 +118,7 @@ public class ExampleClient {
 		this.token = -1;
 	}
 
+	
 	public void sayMessage(String login, String password, String message) {
 		WebTarget sayHelloWebTarget = webTarget.path("sayMessage");
 		Invocation.Builder invocationBuilder = sayHelloWebTarget.request(MediaType.APPLICATION_JSON);
@@ -140,6 +142,8 @@ public class ExampleClient {
 			logger.info("* Message coming from the server: '{}'", responseMessage);
 		}
 	}
+	
+	
 	public List<NotificacionData> getNotifications(UserData userParam) {
 		WebTarget notificationsTarget = webTarget.path("getNotifications");
 		Invocation.Builder invocationBuilder = notificationsTarget.request(MediaType.APPLICATION_JSON);
@@ -271,6 +275,7 @@ public class ExampleClient {
 			}
 		}
 	}
+
 	public long getToken() {
 		return token;
 	}
