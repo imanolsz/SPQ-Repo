@@ -1,12 +1,9 @@
 
 package es.deusto.spq.client.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.Image;
 import java.util.List;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,9 +16,7 @@ import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
 
 public class VentanaConsultaReserva extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	JButton bConsultarReservas;
 	JButton bSalir;
@@ -104,10 +99,7 @@ public class VentanaConsultaReserva extends JFrame {
 			tableReservasUsuario.setModel(model);
 		}
 
-
-
 		//Action listener de los botones
-
 		bSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
@@ -134,7 +126,5 @@ public class VentanaConsultaReserva extends JFrame {
 				dispose();
 			}
 		});
-
-		
 	}
 }

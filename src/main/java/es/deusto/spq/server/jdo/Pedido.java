@@ -1,13 +1,8 @@
 package es.deusto.spq.server.jdo;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import javax.jdo.annotations.ForeignKey;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.*;
 
 @PersistenceCapable(detachable="true")
 public class Pedido {

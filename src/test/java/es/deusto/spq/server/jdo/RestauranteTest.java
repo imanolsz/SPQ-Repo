@@ -62,6 +62,7 @@ public class RestauranteTest {
     @Test
     public void testEstaLleno() {
         assertFalse(restaurante.estaLleno());
+        restaurante.setNumReservas(2);
         restaurante.setCapacidadTotal(2);
         assertTrue(restaurante.estaLleno());
         restaurante.setCapacidadTotal(5);

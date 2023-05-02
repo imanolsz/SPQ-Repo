@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import es.deusto.spq.pojo.UserData;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

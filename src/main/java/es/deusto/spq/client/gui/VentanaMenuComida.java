@@ -1,34 +1,11 @@
 package es.deusto.spq.client.gui;
 
-import java.net.URL;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import es.deusto.spq.main.Main;
 
-
-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.net.URL;
 
 public class VentanaMenuComida extends JFrame {
 	
@@ -39,7 +16,6 @@ public class VentanaMenuComida extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JButton bCerrar;
-	
 	
 	public VentanaMenuComida(){
 		        // Título de la ventana
@@ -57,7 +33,6 @@ public class VentanaMenuComida extends JFrame {
 		JPanel panelSuperior = new JPanel(new BorderLayout());
 		
 		//PanelCentral
-	
 
 		JPanel panelCentrado = new JPanel(new GridBagLayout());
 		panelCentrado.add(panelSuperior, new GridBagConstraints());
@@ -81,19 +56,11 @@ public class VentanaMenuComida extends JFrame {
 		etiquetaImg.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelCentrado.add(etiquetaImg);
 		
-		
-
 		bCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
 			}
 		});
-
-		
-
-
-		
 	}
-
 }

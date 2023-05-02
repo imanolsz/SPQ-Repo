@@ -1,7 +1,5 @@
 package es.deusto.spq.client.gui;
 
-import es.deusto.spq.pojo.UserData;
-
 public class GestorVentanas {
 	
 	VentanaInicio VentanaInicioSesion;
@@ -85,5 +83,61 @@ public class GestorVentanas {
 
 	public VentanaComidaPedido getVentanaComidaPedido(){
 		return ventanaComidaPedido;
+	}
+
+	public VentanaInicio getVentanaInicioSesion() {
+		return VentanaInicioSesion;
+	}
+
+	public void setVentanaInicioSesion(VentanaInicio ventanaInicioSesion) {
+		VentanaInicioSesion = ventanaInicioSesion;
+	}
+
+	public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+		VentanaPrincipal = ventanaPrincipal;
+	}
+
+	public void setVentanaRegistro(VentanaRegistro ventanaRegistro) {
+		VentanaRegistro = ventanaRegistro;
+	}
+
+	public void setVentanaMenu(VentanaMenu ventanaMenu) {
+		VentanaMenu = ventanaMenu;
+	}
+
+	public void setVentanaBuzon(VentanaBuzon ventanaBuzon) {
+		VentanaBuzon = ventanaBuzon;
+	}
+
+	public void setVentanaConfirmacion(VentanaConfirmacion ventanaConfirmacion) {
+		VentanaConfirmacion = ventanaConfirmacion;
+	}
+
+	public void setVentanaModificar(VentanaModificar ventanaModificar) {
+		VentanaModificar = ventanaModificar;
+	}
+
+	public void setVentanaReserva(VentanaReserva ventanaReserva) {
+		this.ventanaReserva = ventanaReserva;
+	}
+
+	public void setVentanaContacto(VentanaContacto ventanaContacto) {
+		this.ventanaContacto = ventanaContacto;
+	}
+
+	public void setVentanaConsultaReserva(VentanaConsultaReserva ventanaConsultaReserva) {
+		this.ventanaConsultaReserva = ventanaConsultaReserva;
+	}
+
+	public void setVentanaMenuComida(VentanaMenuComida ventanaMenuComida) {
+		this.ventanaMenuComida = ventanaMenuComida;
+	}
+
+	public void setVentanaComidaPedido(VentanaComidaPedido ventanaComidaPedido) {
+		this.ventanaComidaPedido = ventanaComidaPedido;
+	}
+
+	public void setVentanaAdministrador(VentanaAdministrador ventanaAdministrador) {
+		this.ventanaAdministrador = ventanaAdministrador;
 	}
 }

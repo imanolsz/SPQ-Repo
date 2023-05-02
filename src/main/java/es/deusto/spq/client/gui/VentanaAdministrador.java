@@ -1,16 +1,14 @@
 package es.deusto.spq.client.gui;
 
+import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.ReservaData;
 import java.time.LocalTime;
 import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.table.*;
-
-import es.deusto.spq.main.Main;
-import es.deusto.spq.pojo.ReservaData;
 
 public class VentanaAdministrador extends JFrame {
     private JTable tablaReservas;

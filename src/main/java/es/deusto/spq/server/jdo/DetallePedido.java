@@ -1,11 +1,6 @@
 package es.deusto.spq.server.jdo;
 
-import javax.jdo.annotations.ForeignKey;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
-
+import javax.jdo.annotations.*;
 @PersistenceCapable(detachable="true")
 public class DetallePedido {
 

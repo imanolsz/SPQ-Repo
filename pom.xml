@@ -42,6 +42,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>4.6.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
 			<version>[3.2.0-release, )</version>
@@ -120,6 +126,25 @@
 		</resources>
 
 		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.8</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>	
 			<plugin> <!-- Este plugin se utiliza para limpiar los archivos generados en la última compilación. En este caso, se eliminan todos los archivos con extensión .log y .ods que se encuentren en el directorio principal del proyecto (${basedir}). -->
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.2.0</version>

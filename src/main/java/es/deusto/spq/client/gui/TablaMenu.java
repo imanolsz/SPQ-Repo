@@ -1,7 +1,7 @@
 package es.deusto.spq.client.gui;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 
 //La tabla donde se muestran todos los ingredientes
 public class TablaMenu extends JTable{
@@ -59,7 +59,7 @@ public class TablaMenu extends JTable{
                 rows[contadorFilas][0] = model.getValueAt(i, 0);
                 rows[contadorFilas][1] = model.getValueAt(i, 1);
                 rows[contadorFilas][2] = model.getValueAt(i, 2);
-                rows[contadorFilas][3] = model.getValueAt(i, 3);
+                rows[contadorFilas][3] = vegetariano;
                 contadorFilas++;
             }
         }

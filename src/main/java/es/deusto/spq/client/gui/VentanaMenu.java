@@ -1,15 +1,8 @@
 package es.deusto.spq.client.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
-
 import java.net.URL;
 
 import es.deusto.spq.main.Main;
@@ -134,6 +127,6 @@ public class VentanaMenu extends JFrame {
 				dispose();
 			}
 		});
-		
+
 	}
 }
