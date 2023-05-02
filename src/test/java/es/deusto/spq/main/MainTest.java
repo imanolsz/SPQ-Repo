@@ -5,7 +5,7 @@ import org.junit.*;
 
 public class MainTest {
 
-	/* 
+	
 	private Main main;
     
 	@Before
@@ -25,5 +25,5 @@ public class MainTest {
         assertNotNull(Main.getGestorVentanas());
     }
 	
-	*/
+	
 }
