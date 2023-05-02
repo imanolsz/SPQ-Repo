@@ -17,9 +17,8 @@
 		<jersey.version>2.35</jersey.version> <!-- Indica la versión de la biblioteca Jersey que se utilizará en el proyecto. Jersey es una biblioteca de Java que se utiliza para crear servicios web RESTful. -->
 		<server.hostname>127.0.0.1</server.hostname> <!-- Indican el nombre y del servidor en el que se ejecutará el proyecto.-->
 		<server.port>8080</server.port>  <!-- Indica el número de puerto del servidor en el que se ejecutará el proyecto.-->
-		<sonar.organization>imanolsz</sonar.organization>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.analysis.mode>preview</sonar.analysis.mode>
+		<!-- <sonar.organization>imanolsz</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url> -->
 	</properties>
 
 	<dependencyManagement> <!-- Para manejar todas las versiones de las dependencias del proyecto-->
