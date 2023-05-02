@@ -3,45 +3,19 @@ package es.deusto.spq.server;
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.Query;
-import javax.jdo.JDOHelper;
-import javax.jdo.Transaction;
+import javax.jdo.*;
 
-import es.deusto.spq.pojo.DetallePedidoData;
-import es.deusto.spq.pojo.DirectMessage;
-import es.deusto.spq.pojo.MessageData;
-import es.deusto.spq.pojo.NotaData;
-import es.deusto.spq.pojo.NotificacionData;
-import es.deusto.spq.pojo.ReservaData;
-import es.deusto.spq.pojo.UserData;
+import es.deusto.spq.pojo.*;
 import es.deusto.spq.server.jdo.*;
 
-
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import javax.ws.rs.core.Response.Status;
 import javax.inject.Singleton;
 
-import es.deusto.spq.server.jdo.Notificacion;
-
-import org.apache.logging.log4j.Logger;
-
-import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.*;
 
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)

@@ -1,24 +1,12 @@
 package es.deusto.spq.client.gui;
 
-import javax.swing.JScrollPane;
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.Panel;
-import java.awt.ScrollPane;
-import java.awt.FlowLayout;
+import java.awt.*;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
+import java.awt.event.*;
 import es.deusto.spq.main.Main;
-import es.deusto.spq.pojo.DetallePedidoData;
-import es.deusto.spq.pojo.PedidoData;
-import es.deusto.spq.server.jdo.DetallePedido;
+import es.deusto.spq.pojo.*;
 
 
 public class VentanaComidaPedido extends JFrame {

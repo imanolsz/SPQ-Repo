@@ -1,11 +1,8 @@
 package es.deusto.spq.client.gui;
 
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.table.*;
 
 // Clase de renderizado personalizada para colorear filas
 public class MiRenderer extends DefaultTableCellRenderer {

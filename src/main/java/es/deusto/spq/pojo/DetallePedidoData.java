@@ -32,5 +32,13 @@ public class DetallePedidoData {
         this.cantidad = cantidad;
     }
 
+    public long getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(long pedidoId) {
+        this.pedidoId = pedidoId;
+    }
+
    
 }

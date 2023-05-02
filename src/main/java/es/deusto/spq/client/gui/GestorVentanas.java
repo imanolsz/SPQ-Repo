@@ -1,7 +1,5 @@
 package es.deusto.spq.client.gui;
 
-import es.deusto.spq.pojo.UserData;
-
 public class GestorVentanas {
 	
 	VentanaInicio VentanaInicioSesion;

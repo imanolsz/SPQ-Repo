@@ -1,7 +1,7 @@
 package es.deusto.spq.client.gui;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 
 //La tabla donde se muestran todos los ingredientes
 public class TablaMenu extends JTable{

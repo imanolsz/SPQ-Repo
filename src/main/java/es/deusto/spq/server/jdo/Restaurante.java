@@ -1,6 +1,5 @@
 package es.deusto.spq.server.jdo;
 
-import java.time.DayOfWeek;
 import java.util.Calendar;
 import java.util.Date;
 import java.time.LocalTime;

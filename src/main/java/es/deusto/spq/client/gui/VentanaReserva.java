@@ -1,26 +1,14 @@
 package es.deusto.spq.client.gui;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.PedidoData;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.text.*;
+import java.time.LocalTime;
+import java.util.Date;
+import javax.swing.*;
 
 public class VentanaReserva extends JFrame {
 
@@ -100,15 +88,12 @@ public class VentanaReserva extends JFrame {
         boxHora.addItem(LocalTime.of(22, 0));
         boxHora.addItem(LocalTime.of(22, 30));
 	    
-	    
 	    c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 3;
         c.insets = new Insets(10, 10, 10, 10); // Agregar un margen
         panel.add(lnumpersonas, c);
 	    
-	 
-
         // Agregar el panel a la ventana
         getContentPane().add(panel);
         JComboBox<Integer> boxComensales = new JComboBox<Integer>();
@@ -222,13 +207,10 @@ public class VentanaReserva extends JFrame {
         gbc_laparcamiento.gridy = 5;
         panel.add(laparcamiento, gbc_laparcamiento);
 
-
-
         // Configurar las propiedades de la ventana
         setTitle("Reserva");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
-    
 }

@@ -1,15 +1,7 @@
 package es.deusto.spq.server.jdo;
 
-import java.util.Set;
-
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Join;
-import javax.jdo.annotations.Persistent;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
-
+import javax.jdo.annotations.*;
+import java.util.*;
 @PersistenceCapable
 public class User {
 	@PrimaryKey
