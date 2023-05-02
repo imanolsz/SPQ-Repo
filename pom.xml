@@ -19,6 +19,7 @@
 		<server.port>8080</server.port>  <!-- Indica el número de puerto del servidor en el que se ejecutará el proyecto.-->
 		<sonar.organization>imanolsz</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.analysis.mode>preview</sonar.analysis.mode>
 	</properties>
 
 	<dependencyManagement> <!-- Para manejar todas las versiones de las dependencias del proyecto-->
