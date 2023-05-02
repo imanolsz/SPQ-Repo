@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 
 import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.DetallePedidoData;
 import es.deusto.spq.pojo.PedidoData;
 
 public class VentanaReserva extends JFrame {
@@ -195,7 +196,10 @@ public class VentanaReserva extends JFrame {
                     fechaReserva = sdf.parse(textFecha.getText());
                     int comensales = (int) boxComensales.getSelectedItem();
                     LocalTime hora = (LocalTime) boxHora.getSelectedItem();
-                    PedidoData pedido = new PedidoData(null);
+                    PedidoData pedido = Main.getExampleClient().getPedidoActivo();
+                    for(DetallePedidoData detallePedido: pedido.getListaAlimentos()){
+                        System.out.println(detallePedido.getAlimento());
+                    }
                     int aparcamiento = (int) boxAparcamiento.getSelectedItem();
                     Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion,pedido, aparcamiento, token);
                 } catch (ParseException e1) {

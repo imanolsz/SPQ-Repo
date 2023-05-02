@@ -91,10 +91,12 @@ public class VentanaComidaPedido extends JFrame {
 							System.out.println(comida);
 							Main.getExampleClient().getPedidoActivo().getListaAlimentos().add(alimento);
 						}
-						
+			
 					} catch (NumberFormatException e) {
 						System.out.println("mal conversión");
 					}
+					Main.getGestorVentanas().getVentanaReserva().setVisible(true);
+					dispose();
 				}
 			}
 		});

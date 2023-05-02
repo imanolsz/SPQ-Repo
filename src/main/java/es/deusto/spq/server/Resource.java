@@ -237,14 +237,12 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
             User usuario = this.serverState.get(token);
             System.out.println(usuario.getId());
             reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(), reservaData.getCancelada(), reservaData.getEspecificacion(), reservaData.getAparcamiento(),usuario);
+			pedido = new Pedido(new ArrayList<DetallePedido>(), reserva);
             for (DetallePedidoData detallePedidoData : reservaData.getPedido().getListaAlimentos()) {
-                DetallePedido detallePedido = new DetallePedido(
-                    detallePedidoData.getAlimento(),
-                    detallePedidoData.getCantidad(),pedido
-                );
-					alimentos.add(detallePedido);
+                DetallePedido detallePedido = new DetallePedido(detallePedidoData.getAlimento(),detallePedidoData.getCantidad(),pedido);
+				pedido.getlistaAlimentos().add(detallePedido);
        		 }
-		pedido = new Pedido(alimentos, reserva);
+		
         logger.info("Realizando reserva: '{}'", reservaData.getId());
         pm.makePersistent(reserva);
 		pm.makePersistent(pedido);
