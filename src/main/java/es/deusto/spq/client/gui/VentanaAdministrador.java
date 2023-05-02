@@ -3,6 +3,8 @@ package es.deusto.spq.client.gui;
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.awt.*;
@@ -132,4 +134,19 @@ public class VentanaAdministrador extends JFrame {
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
     }
+
+
+    public List<ReservaData> filtrarReservas(Date fecha){
+        List<ReservaData> reservas = Main.getExampleClient().getReservas();
+        //creo otra lista para filtrar las reservas
+        List<ReservaData> reservasFiltradas = new ArrayList<ReservaData>();
+        for(ReservaData reserva: reservas){
+            if(reserva.getFecha().equals(fecha)){
+                reservasFiltradas.add(reserva);
+            }
+        }  
+        
+    
+    return reservasFiltradas;
+}
 }
