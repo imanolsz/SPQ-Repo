@@ -75,9 +75,8 @@ public class User {
 	 
 	 public String toString() {
 		StringBuilder messagesStr = new StringBuilder();
-		for (Message message: this.messages) {
-			messagesStr.append(message.toString() + " - ");
-		}
+		for (Message message: this.messages) 
+			messagesStr.append(message.toString());
         return "User: login --> " + this.id + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
     }
 }
