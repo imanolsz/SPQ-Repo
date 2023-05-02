@@ -4,6 +4,7 @@ import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -130,6 +131,5 @@ public class VentanaAdministrador extends JFrame {
         this.setSize(400, 300);
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
-        this.setVisible(true);
     }
 }

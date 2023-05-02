@@ -44,6 +44,15 @@ public class ReservaData {
         this.pedido = pedido;
     }
 
+    public ReservaData(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, UserData user) {
+        this.fecha = fecha;
+        this.hora = hora;
+        this.numPersonas = numPersonas;
+        this.cancelada = cancelada;
+        this.user = user;
+        this.especificacion = especificacion;
+    }
+
     public long getId() {
         return id;
     }
