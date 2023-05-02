@@ -1,19 +1,40 @@
 package es.deusto.spq.client;
 
-import es.deusto.spq.pojo.*;
-
-import java.util.*;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import java.time.*;
+
+import es.deusto.spq.pojo.DetallePedidoData;
+import es.deusto.spq.pojo.DirectMessage;
+import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.NotaData;
+import es.deusto.spq.pojo.ReservaData;
+import es.deusto.spq.pojo.UserData;
+
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.glassfish.jersey.client.ClientConfig;
-import org.apache.logging.log4j.*;
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import es.deusto.spq.pojo.NotificacionData;
+import es.deusto.spq.pojo.PedidoData;
 
 public class ExampleClient {
 
