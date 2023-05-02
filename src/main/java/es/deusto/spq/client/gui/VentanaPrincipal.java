@@ -1,34 +1,11 @@
 package es.deusto.spq.client.gui;
 
-import java.net.URL;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import es.deusto.spq.main.Main;
 
-
-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.net.URL;
 
 public class VentanaPrincipal extends JFrame {
 	
@@ -79,8 +56,6 @@ public class VentanaPrincipal extends JFrame {
 		panelInferior.add(bCerrar);
 		getContentPane().add(panelInferior,"South");
 		panelInferior.setBackground(Color.decode("#e0a370"));
-
-		
 		
 		bInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,8 +87,6 @@ public class VentanaPrincipal extends JFrame {
 		etiquetaImg.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelImagenTexto.add(etiquetaImg);
 
-		
-
 		// Enlace a ventana de políticas de privacidad
 		JLabel texto = new JLabel("Política de privacidad y cookies");
 		texto.setBackground(Color.red);
@@ -136,12 +109,10 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 
-
 		//Agregar elementos a paneles
         texto.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelImagenTexto.add(texto);
 		panelCentral.add(panelImagenTexto);
 		getContentPane().add(panelCentral, BorderLayout.CENTER);
 	}
-
 }

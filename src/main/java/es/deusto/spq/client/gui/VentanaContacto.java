@@ -1,33 +1,14 @@
 package es.deusto.spq.client.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.net.URL;
-
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.plaf.TreeUI;
-import javax.validation.constraints.Null;
-
-import es.deusto.spq.pojo.NotificacionData;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
-import es.deusto.spq.pojo.UserData;
-import es.deusto.spq.client.ExampleClient;
 import es.deusto.spq.main.Main;
-import es.deusto.spq.modelos.ModeloTablaNotificacionData;
 
+import java.awt.*;
+import java.net.URL;
+import javax.swing.*;
+import java.awt.event.*;
 
 public class VentanaContacto extends JFrame {
 
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	// private Thread t;
@@ -107,10 +88,6 @@ public class VentanaContacto extends JFrame {
 			}
 		});	
 
-        
         getContentPane().add(panel);
-
-
     }
-
 }

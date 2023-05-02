@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import es.deusto.spq.pojo.DetallePedidoData;
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.NotaData;
@@ -39,13 +40,15 @@ public class ExampleClient {
 
 	protected static final Logger logger = LogManager.getLogger();
 	private Client client;
-	private WebTarget webTarget;
+	WebTarget webTarget;
 	private long token = -1;
-	static private PedidoData pedidoActivo;
+	private PedidoData pedidoActivo;
 	int ID = 0;
+
 
 	public ExampleClient(String hostname, String port) {
 		ClientConfig config = new ClientConfig();
+		this.pedidoActivo = new PedidoData(new ArrayList<DetallePedidoData>());
 
     // Crear un ObjectMapper y registrar el módulo JavaTimeModule
     ObjectMapper objectMapper = new ObjectMapper();
@@ -115,6 +118,7 @@ public class ExampleClient {
 		this.token = -1;
 	}
 
+	
 	public void sayMessage(String login, String password, String message) {
 		WebTarget sayHelloWebTarget = webTarget.path("sayMessage");
 		Invocation.Builder invocationBuilder = sayHelloWebTarget.request(MediaType.APPLICATION_JSON);
@@ -138,6 +142,8 @@ public class ExampleClient {
 			logger.info("* Message coming from the server: '{}'", responseMessage);
 		}
 	}
+	
+	
 	public List<NotificacionData> getNotifications(UserData userParam) {
 		WebTarget notificationsTarget = webTarget.path("getNotifications");
 		Invocation.Builder invocationBuilder = notificationsTarget.request(MediaType.APPLICATION_JSON);
@@ -159,12 +165,12 @@ public class ExampleClient {
 	public void realizarReserva(Date fecha, LocalTime hora,  int numPersonas, boolean cancelada, String especificacion, PedidoData pedido, int aparcamiento, long token) {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		invocationBuilder.header("Authorization", "Bearer " + token);
 		//Date date = fecha; // crea un objeto Date
 		//java.time.Instant instant = date.toInstant(); // convierte Date a Instant
 		//Date Date = instant.atZone(ZoneId.systemDefault()).toLDate(); // convierte Instant a LocalDate
 
-		// Agregar token como header personalizado
-		invocationBuilder.header("Authorization", "Bearer " + token);
+		
 
 		//creo una NotificacionData para el usuario
 		/*NotificacionData NotificacionData = new NotificacionData();
@@ -269,6 +275,7 @@ public class ExampleClient {
 			}
 		}
 	}
+
 	public long getToken() {
 		return token;
 	}

@@ -1,40 +1,40 @@
 package es.deusto.spq.client.gui;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 
 //La tabla donde se muestran todos los ingredientes
 public class TablaMenu extends JTable{
     String[] columnas = {"Comida", "Precio", "Cantidad", "Vegetariano"};
     public TablaMenu(){
         Object[][] platos= {
-            {"Croquetas de la abuela", 10.20, 0, "No"},
-            {"Rabas", 4.30, 0, "No"},
-            {"Bravas", 3.50, 0, "Si"},
-            {"Tabla de surtidos ibericos", 7.30, 0, "No"},
-            {"Patatas bacon-queso", 5.00, 0, "No"},
-    
-            {"Ensalada de bogavante", 10.20, 0, "No"},
-            {"Menestra de verduras", 7.10, 0, "Si"},
-            {"Risotto", 8.10, 0, "Si"},
-            {"Pasta cabonara con trufa", 9.20, 0, "Si"},
-            {"Cocido", 9.00, 0, "No"},
-    
-            {"Rodavallo", 40.00, 0, "No"},
-            {"Bacalao a la bizkaina", 25.20, 0, "No"},
-            {"Chuleton", 45.00, 0, "No"},
-            {"Chuletillas", 30.15, 0, "No"},
-            {"Calamares en su tinta", 15.35, 0, "No"},
-    
-            {"Coulant de chocolate", 8.50, 0, "Si"},
-            {"Tarta de queso", 8.00, 0, "Si"},
-            {"Brownie de chocolate", 7.50, 0, "Si"},
-            {"Torrijas", 6.30, 0, "Si"},
-    
-            {"Vino tinto", 20.20, 0, ""},
-            {"Vino blanco", 18.30, 0, ""},
-            {"Agua", 2.50, 0, ""},
-            {"Refresco", 2.30, 0, ""},
+            {"Croquetas de la abuela", 10.20, "0", "No"},
+                {"Rabas", 4.30, "0", "No"},
+                {"Bravas", 3.50, "0", "Si"},
+                {"Tabla de surtidos ibericos", 7.30, "0", "No"},
+                {"Patatas bacon-queso", 5.00, "0", "No"},
+
+                {"Ensalada de bogavante", 10.20, "0", "No"},
+                {"Menestra de verduras", 7.10, "0", "Si"},
+                {"Risotto", 8.10, "0", "Si"},
+                {"Pasta cabonara con trufa", 9.20, "0", "Si"},
+                {"Cocido", 9.00, "0", "No"},
+
+                {"Rodavallo", 40.00, "0", "No"},
+                {"Bacalao a la bizkaina", 25.20, "0", "No"},
+                {"Chuleton", 45.00, "0", "No"},
+                {"Chuletillas", 30.15, "0", "No"},
+                {"Calamares en su tinta", 15.35, "0", "No"},
+
+                {"Coulant de chocolate", 8.50, "0", "Si"},
+                {"Tarta de queso", 8.00, "0", "Si"},
+                {"Brownie de chocolate", 7.50, "0", "Si"},
+                {"Torrijas", 6.30, "0", "Si"},
+
+                {"Vino tinto", 20.20, "0", ""},
+                {"Vino blanco", 18.30, "0", ""},
+                {"Agua", 2.50, "0", ""},
+                {"Refresco", 2.30, "0", ""},
         };
         DefaultTableModel model = new DefaultTableModel(platos, columnas);
         setModel(model);
@@ -59,7 +59,7 @@ public class TablaMenu extends JTable{
                 rows[contadorFilas][0] = model.getValueAt(i, 0);
                 rows[contadorFilas][1] = model.getValueAt(i, 1);
                 rows[contadorFilas][2] = model.getValueAt(i, 2);
-                rows[contadorFilas][3] = model.getValueAt(i, 3);
+                rows[contadorFilas][3] = vegetariano;
                 contadorFilas++;
             }
         }

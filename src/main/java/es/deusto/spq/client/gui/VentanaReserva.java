@@ -1,30 +1,16 @@
 package es.deusto.spq.client.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.DetallePedidoData;
+import es.deusto.spq.pojo.PedidoData;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.text.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.validation.constraints.Null;
-
-import es.deusto.spq.main.Main;
-import es.deusto.spq.pojo.PedidoData;
-import es.deusto.spq.pojo.ReservaData;
+import javax.swing.*;
 
 public class VentanaReserva extends JFrame {
 
@@ -115,6 +101,7 @@ public class VentanaReserva extends JFrame {
         gbc_lhora.insets = new Insets(10, 10, 10, 10); // Agregar un margen
         panel.add(lhora, gbc_lhora);
 	    
+        //Box horas
 	    JComboBox<LocalTime> boxHora = new JComboBox<LocalTime>();
 	    GridBagConstraints gbc_boxHora = new GridBagConstraints();
 	    gbc_boxHora.anchor = GridBagConstraints.WEST;
@@ -134,15 +121,12 @@ public class VentanaReserva extends JFrame {
         boxHora.addItem(LocalTime.of(22, 0));
         boxHora.addItem(LocalTime.of(22, 30));
 	    
-	    
 	    c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 3;
         c.insets = new Insets(10, 10, 10, 10); // Agregar un margen
         panel.add(lnumpersonas, c);
 	    
-	 
-
         // Agregar el panel a la ventana
         getContentPane().add(panel);
         JComboBox<Integer> boxComensales = new JComboBox<Integer>();
@@ -164,6 +148,7 @@ public class VentanaReserva extends JFrame {
         boxComensales.addItem(9);
         boxComensales.addItem(10);
         
+        //JButton menu
         JButton bMenu = new JButton("Menu");
         bMenu.setBackground(new Color(255, 0, 0));
         bMenu.addActionListener(new ActionListener() {
@@ -176,7 +161,7 @@ public class VentanaReserva extends JFrame {
         GridBagConstraints gbc_button = new GridBagConstraints();
         gbc_button.insets = new Insets(0, 0, 0, 5);
         gbc_button.gridx = 0;
-        gbc_button.gridy = 6;
+        gbc_button.gridy = 8;
         panel.add(bMenu, gbc_button);
 
         // Agregar JButton "Realizar pedido"
@@ -202,7 +187,8 @@ public class VentanaReserva extends JFrame {
           panel.add(textEspecificacion, gbc_textEspecificacion);
           textEspecificacion.setColumns(10);
 
-          JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
+        //box aparcamiento
+        JComboBox<Integer> boxAparcamiento = new JComboBox<Integer>();
         GridBagConstraints gbc_boxAparcamiento = new GridBagConstraints();
         gbc_boxAparcamiento.anchor = GridBagConstraints.WEST;
         gbc_boxAparcamiento.insets = new Insets(0, 0, 5, 0);
@@ -215,8 +201,8 @@ public class VentanaReserva extends JFrame {
         boxAparcamiento.addItem(3);
         boxAparcamiento.addItem(4);
         boxAparcamiento.addItem(5);
-
-
+        
+        //Jbutton confirmar
         JButton bConfirmar = new JButton("Confirmar");
         bConfirmar.setBackground(new Color(50, 205, 50));
         bConfirmar.addActionListener(new ActionListener() {
@@ -230,7 +216,10 @@ public class VentanaReserva extends JFrame {
                     fechaReserva = sdf.parse(textFecha.getText());
                     int comensales = (int) boxComensales.getSelectedItem();
                     LocalTime hora = (LocalTime) boxHora.getSelectedItem();
-                    PedidoData pedido = new PedidoData(null);
+                    PedidoData pedido = Main.getExampleClient().getPedidoActivo();
+                    for(DetallePedidoData detallePedido: pedido.getListaAlimentos()){
+                        System.out.println(detallePedido.getAlimento());
+                    }
                     int aparcamiento = (int) boxAparcamiento.getSelectedItem();
                     Main.getExampleClient().realizarReserva(fechaReserva, hora, comensales,true,especificacion,pedido, aparcamiento, token);
                 } catch (ParseException e1) {
@@ -246,10 +235,10 @@ public class VentanaReserva extends JFrame {
         GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
         gbc_btnNewButton.fill = GridBagConstraints.BOTH;
         gbc_btnNewButton.gridx = 1;
-        gbc_btnNewButton.gridy = 6;
+        gbc_btnNewButton.gridy = 8;
         panel.add(bConfirmar, gbc_btnNewButton);
 
-
+        //Jlabel aparcamiento
         JLabel laparcamiento = new JLabel("Aparcamiento:");
         GridBagConstraints gbc_laparcamiento = new GridBagConstraints();
         gbc_laparcamiento.insets = new Insets(0, 0, 5, 5);
@@ -257,31 +246,31 @@ public class VentanaReserva extends JFrame {
         gbc_laparcamiento.gridy = 5;
         panel.add(laparcamiento, gbc_laparcamiento);
 
-        
+        //JLabel plazas libres
+        JLabel lparking = new JLabel("Plazas libres parking:");
+        GridBagConstraints gbc_lparking = new GridBagConstraints();
+        gbc_lparking.insets = new Insets(0, 0, 5, 5);
+        gbc_lparking.gridx = 0;
+        gbc_lparking.gridy = 6;
+        panel.add(lparking, gbc_lparking);
 
+
+        //Boton parking
+        JButton bParking = new JButton("Ver Parking");
+        bParking.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        	}
+        });
+        GridBagConstraints gbc_button1 = new GridBagConstraints();
+        gbc_button1.insets = new Insets(0, 0, 0, 5);
+        gbc_button1.gridx = 1;
+        gbc_button1.gridy = 6;
+        panel.add(bParking, gbc_button1);
 
         // Configurar las propiedades de la ventana
         setTitle("Reserva");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
-
-
-    public int parking(Date fecha){
-        //creo un  array de reservas
-        List<ReservaData> reservas = Main.getExampleClient().getReservas();
-        List<ReservaData> reservasPorFecha = new ArrayList<>();
-        for (ReservaData reserva : reservas) {
-            if (reserva.getFecha().equals(fecha)) {
-                reservasPorFecha.add(reserva);
-            }
-        }
-        for (ReservaData reserva : reservasPorFecha){
-            parkingOcupado += reserva.getAparcamiento();
-        }
-        parkingLibre = parkingTotal - parkingOcupado;
-        return parkingLibre;
-        
-    }
-    
 }

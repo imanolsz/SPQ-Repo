@@ -1,6 +1,5 @@
 package es.deusto.spq.server.jdo;
 
-import java.time.DayOfWeek;
 import java.util.Calendar;
 import java.util.Date;
 import java.time.LocalTime;
@@ -81,6 +80,10 @@ public class Restaurante {
     public String toString() {
         return "Restaurante [fechaApertura=" + fechaApertura + ", fechaCierre=" + fechaCierre + ", horaApertura="
                 + horaApertura + ", horaCierre=" + horaCierre + ", capacidadTotal=" + capacidadTotal + "]";
+    }
+
+    public void setNumReservas(int numReservas) {
+        this.numReservas = numReservas;
     }
     
 }

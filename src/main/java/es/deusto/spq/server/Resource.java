@@ -3,45 +3,20 @@ package es.deusto.spq.server;
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.Query;
-import javax.jdo.JDOHelper;
-import javax.jdo.Transaction;
+import javax.jdo.*;
 
-import es.deusto.spq.pojo.DetallePedidoData;
-import es.deusto.spq.pojo.DirectMessage;
-import es.deusto.spq.pojo.MessageData;
-import es.deusto.spq.pojo.NotaData;
-import es.deusto.spq.pojo.NotificacionData;
-import es.deusto.spq.pojo.ReservaData;
-import es.deusto.spq.pojo.UserData;
+import es.deusto.spq.pojo.*;
 import es.deusto.spq.server.jdo.*;
 
-
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import javax.ws.rs.core.Response.Status;
 import javax.inject.Singleton;
 
-import es.deusto.spq.server.jdo.Notificacion;
-
-import org.apache.logging.log4j.Logger;
-
-import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.*;
 
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)
@@ -219,7 +194,7 @@ public class Resource {
 	}
 
 
-	@POST
+@POST
 @Path("/realizarReserva")
 public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authorization") String authorizationHeader) {
     try {	
@@ -237,14 +212,12 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
             User usuario = this.serverState.get(token);
             System.out.println(usuario.getId());
             reserva = new Reserva(reservaData.getFecha(), reservaData.getHora(), reservaData.getNumPersonas(), reservaData.getCancelada(), reservaData.getEspecificacion(), reservaData.getAparcamiento(),usuario);
+			pedido = new Pedido(new ArrayList<DetallePedido>(), reserva);
             for (DetallePedidoData detallePedidoData : reservaData.getPedido().getListaAlimentos()) {
-                DetallePedido detallePedido = new DetallePedido(
-                    detallePedidoData.getAlimento(),
-                    detallePedidoData.getCantidad(),pedido
-                );
-					alimentos.add(detallePedido);
+                DetallePedido detallePedido = new DetallePedido(detallePedidoData.getAlimento(),detallePedidoData.getCantidad(),pedido);
+				pedido.getlistaAlimentos().add(detallePedido);
        		 }
-		pedido = new Pedido(alimentos, reserva);
+		
         logger.info("Realizando reserva: '{}'", reservaData.getId());
         pm.makePersistent(reserva);
 		pm.makePersistent(pedido);
@@ -362,7 +335,6 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
 			tx.begin(); // Comienza una transacción para realizar operaciones en la base de datos.
 			List<Reserva> reservas = new ArrayList<>();
 			Query<Reserva> query = pm.newQuery(Reserva.class); // Crea una instancia de una consulta
-			query.setFilter("cancelada == true || cancelada == false"); // Filtro para la consulta, devolverá todas las reservas, tanto canceladas como no canceladas
 			query.setOrdering("fecha desc, hora asc"); // Orden de la consulta, Las reservas se ordenan primero por fecha y luego por hora
 			reservas = query.executeList(); // Ejecuta una consulta en la base de datos y devuelve los resultados en forma de una lista de objetos
 			tx.commit(); // Confirma la transacción.

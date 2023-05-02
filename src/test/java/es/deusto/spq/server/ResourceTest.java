@@ -2,7 +2,15 @@ package es.deusto.spq.server;
 
 import org.junit.*;
 
+import es.deusto.spq.pojo.ReservaData;
+import es.deusto.spq.server.jdo.Reserva;
+
 import static org.junit.Assert.*;
+
+import java.util.List;
+
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 public class ResourceTest {
 
@@ -40,6 +48,7 @@ public class ResourceTest {
 	@Test
 	public void realizarReserva(){
 	}
+
 	@Test
 	public void realizarNotificacion() {
 
@@ -53,10 +62,24 @@ public class ResourceTest {
 	public void sayHello() {
 
 	}
+	
 	@Test
-	public void getReservas() {
+    public void getReservas() {
+        // Crear una instancia de la clase que contiene el método getReservas
+        Resource reservasResource = new Resource();
 
-	}
+        // Llamar al método getReservas y almacenar la respuesta
+        Response response = reservasResource.getReservas();
+
+        // Verificar si la respuesta es correcta (HTTP 200 OK)
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+
+        // Verificar si el contenido de la respuesta es el esperado (lista de reservas)
+        List<Reserva> reservas = (List<Reserva>) response.getEntity();
+        assertNotNull(reservas);
+        // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
+    }
+
 
 	@Test
     public void hayMesaLibre() { 

@@ -1,10 +1,9 @@
 package es.deusto.spq.main;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import es.deusto.spq.client.ExampleClient;
-import es.deusto.spq.client.gui.GestorVentanas;
+import org.apache.logging.log4j.*;
+import es.deusto.spq.client.*;
+import es.deusto.spq.client.gui.*;
 
 public class Main {
     private static GestorVentanas gestorVentanas;
