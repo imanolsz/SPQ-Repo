@@ -82,6 +82,10 @@ public class Restaurante {
         return "Restaurante [fechaApertura=" + fechaApertura + ", fechaCierre=" + fechaCierre + ", horaApertura="
                 + horaApertura + ", horaCierre=" + horaCierre + ", capacidadTotal=" + capacidadTotal + "]";
     }
+
+    public void setNumReservas(int numReservas) {
+        this.numReservas = numReservas;
+    }
     
 }
 
