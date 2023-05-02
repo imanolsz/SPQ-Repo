@@ -280,7 +280,7 @@ public class ExampleClient {
 	}
 
 
-
+/* 
 	public List<ReservaData> getReservasFiltradas(Date fecha, LocalTime hora) {
 		WebTarget getReservasWebTarget = webTarget.path("admin/getReservasFiltradas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar
 		Invocation.Builder invocationBuilder = getReservasWebTarget.request(MediaType.APPLICATION_JSON); //  Se crea un objeto Invocation.Builder, que se utiliza para configurar la solicitud REST
@@ -308,7 +308,7 @@ public class ExampleClient {
 			}
 		}
 	}
-
+*/
 	/*borrar
 	public void cancelarReserva(ReservaData reserva) {
         WebTarget registerUserWebTarget = webTarget.path("cancelarReserva");

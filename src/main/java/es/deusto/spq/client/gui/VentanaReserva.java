@@ -1,5 +1,6 @@
 package es.deusto.spq.client.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,10 +20,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import javax.validation.constraints.Null;
 
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.PedidoData;
+import es.deusto.spq.pojo.ReservaData;
 
 public class VentanaReserva extends JFrame {
 
@@ -30,13 +34,43 @@ public class VentanaReserva extends JFrame {
     private JTextField textFecha;
     private GridBagConstraints gbc_lhora;
     private JTextField textEspecificacion;
+    private int parkingTotal = 0;
+    private int parkingOcupado = 0;
+    private int parkingLibre = 0;
+    private Date fechaD;
 
 	public VentanaReserva() {
+        setSize(600, 400);
         // Crear un panel principal y establecer un GridBagLayout
         GridBagLayout gbl_panel = new GridBagLayout();
         gbl_panel.columnWeights = new double[]{0.0, 0.0};
         gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
         JPanel panel = new JPanel(gbl_panel);
+
+        JLabel lPlazas = new JLabel("Plazas libres: ");
+        lPlazas.setLocation(100, 200);
+        
+        JButton BParking = new JButton("VER PLAZAS DE APARCAMIENTO LIBRES");
+        BParking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date fecha = formato.parse(textFecha.getText());
+                    fechaD = fecha;
+                } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                parking(fechaD);
+                lPlazas.setText("Plazas libres: " + parkingLibre);
+                lPlazas.setForeground(Color.yellow);
+				dispose();
+			}
+		});	
+        
+
+        panel.add(lPlazas);
+        panel.add(BParking);
 
         // Crear los componentes que se van a agregar al panel
         JLabel lhora = new JLabel("Hora de la reserva:");
@@ -181,7 +215,8 @@ public class VentanaReserva extends JFrame {
         boxAparcamiento.addItem(3);
         boxAparcamiento.addItem(4);
         boxAparcamiento.addItem(5);
-        
+
+
         JButton bConfirmar = new JButton("Confirmar");
         bConfirmar.setBackground(new Color(50, 205, 50));
         bConfirmar.addActionListener(new ActionListener() {
@@ -222,13 +257,31 @@ public class VentanaReserva extends JFrame {
         gbc_laparcamiento.gridy = 5;
         panel.add(laparcamiento, gbc_laparcamiento);
 
+        
 
 
         // Configurar las propiedades de la ventana
         setTitle("Reserva");
-        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+    }
+
+
+    public int parking(Date fecha){
+        //creo un  array de reservas
+        List<ReservaData> reservas = Main.getExampleClient().getReservas();
+        List<ReservaData> reservasPorFecha = new ArrayList<>();
+        for (ReservaData reserva : reservas) {
+            if (reserva.getFecha().equals(fecha)) {
+                reservasPorFecha.add(reserva);
+            }
+        }
+        for (ReservaData reserva : reservasPorFecha){
+            parkingOcupado += reserva.getAparcamiento();
+        }
+        parkingLibre = parkingTotal - parkingOcupado;
+        return parkingLibre;
+        
     }
     
 }
