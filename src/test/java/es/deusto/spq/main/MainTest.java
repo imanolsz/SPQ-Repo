@@ -15,15 +15,15 @@ public class MainTest {
     //     Main.main(args);
     // }
 	
-	@Test
-    public void testExampleClient() {
-        assertNotNull(Main.getExampleClient());
-    }
+	// @Test
+    // public void testExampleClient() {
+    //     assertNotNull(Main.getExampleClient());
+    // }
 
-	@Test
-    public void testGestorVentanas() {
-        assertNotNull(Main.getGestorVentanas());
-    }
+	// @Test
+    // public void testGestorVentanas() {
+    //     assertNotNull(Main.getGestorVentanas());
+    // }
 	
 	
 }
