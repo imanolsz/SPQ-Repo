@@ -14,19 +14,19 @@ import javax.ws.rs.core.Response;
 
 public class ResourceTest {
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-		// Code executed before the first test method
-	}
+	// @BeforeClass
+	// public static void setUpClass() throws Exception {
+	// 	// Code executed before the first test method
+	// }
 
-	private Resource r1;
-	private Resource r2;
+	// private Resource r1;
+	// private Resource r2;
 
-	@Before
-	public void setUp() throws Exception{
-		r1 = new Resource();
-		r2 = new Resource();
-	}
+	// @Before
+	// public void setUp() throws Exception{
+	// 	r1 = new Resource();
+	// 	r2 = new Resource();
+	// }
 
 	@Test
 	public void sayMessage() {

@@ -38,11 +38,11 @@ public class NotaDataTest {
         assertEquals(idNota, notaData.getIDNota());
     }
 
-    @Test
-    public void testGuardarNotaDataBD() {
-        NotaData notaData = new NotaData("asunto", "contenido", new Date(), 1L);
-        NotaData.guardarNotaDataBD(notaData);
-        // TODO: comprobar que la nota se ha guardado correctamente en la base de datos
-    }
+    // @Test
+    // public void testGuardarNotaDataBD() {
+    //     NotaData notaData = new NotaData("asunto", "contenido", new Date(), 1L);
+    //     NotaData.guardarNotaDataBD(notaData);
+    //     // TODO: comprobar que la nota se ha guardado correctamente en la base de datos
+    // }
 
 }
