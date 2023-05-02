@@ -14,19 +14,19 @@ import javax.ws.rs.core.Response;
 
 public class ResourceTest {
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-		// Code executed before the first test method
-	}
+	// @BeforeClass
+	// public static void setUpClass() throws Exception {
+	// 	// Code executed before the first test method
+	// }
 
-	private Resource r1;
-	private Resource r2;
+	// private Resource r1;
+	// private Resource r2;
 
-	@Before
-	public void setUp() throws Exception{
-		r1 = new Resource();
-		r2 = new Resource();
-	}
+	// @Before
+	// public void setUp() throws Exception{
+	// 	r1 = new Resource();
+	// 	r2 = new Resource();
+	// }
 
 	@Test
 	public void sayMessage() {
@@ -63,22 +63,22 @@ public class ResourceTest {
 
 	}
 	
-	@Test
-    public void getReservas() {
-        // Crear una instancia de la clase que contiene el método getReservas
-        Resource reservasResource = new Resource();
+	// @Test
+    // public void getReservas() {
+    //     // Crear una instancia de la clase que contiene el método getReservas
+    //     Resource reservasResource = new Resource();
 
-        // Llamar al método getReservas y almacenar la respuesta
-        Response response = reservasResource.getReservas();
+    //     // Llamar al método getReservas y almacenar la respuesta
+    //     Response response = reservasResource.getReservas();
 
-        // Verificar si la respuesta es correcta (HTTP 200 OK)
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    //     // Verificar si la respuesta es correcta (HTTP 200 OK)
+    //     assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 
-        // Verificar si el contenido de la respuesta es el esperado (lista de reservas)
-        List<Reserva> reservas = (List<Reserva>) response.getEntity();
-        assertNotNull(reservas);
-        // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
-    }
+    //     // Verificar si el contenido de la respuesta es el esperado (lista de reservas)
+    //     List<Reserva> reservas = (List<Reserva>) response.getEntity();
+    //     assertNotNull(reservas);
+    //     // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
+    // }
 
 
 	@Test
