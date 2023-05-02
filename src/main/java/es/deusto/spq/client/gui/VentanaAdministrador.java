@@ -1,13 +1,18 @@
 package es.deusto.spq.client.gui;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 import javax.swing.table.*;
+
+import com.google.protobuf.TextFormat.ParseException;
 
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
@@ -33,6 +38,27 @@ public class VentanaAdministrador extends JFrame {
         JButton mostrarMenuButton = new JButton("Mostrar menú");
         JButton atras = new JButton("Atrás");
 
+        JTextField textFecha = new JTextField();
+        
+
+        JButton BFiltrar = new JButton("VER RESERVAS FILTRADAS");
+        BFiltrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                Date fechaD;
+                try {
+                    Date fecha = formato.parse(textFecha.getText());
+                    fechaD = fecha;
+                } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                reservasFiltradas(fechaD, );
+
+				dispose();
+			}
+		});	
+
         // Crear contenedor para organizar los componentes
         JPanel container = new JPanel();
         container.add(titleLabel);
@@ -41,6 +67,8 @@ public class VentanaAdministrador extends JFrame {
         container.add(eliminarReservaButton);
         container.add(mostrarMenuButton);
         container.add(atras);
+        container.add(textFecha);
+
 
         //Crear la tabla
         tablaReservas = new JTable();
@@ -102,7 +130,7 @@ public class VentanaAdministrador extends JFrame {
 	    gbc_boxHora.insets = new Insets(0, 0, 5, 0);
 	    gbc_boxHora.gridx = 1;
 	    gbc_boxHora.gridy = 2;
-	 //   getContentPane().add(boxHora, gbc_boxHora);
+	    container.add(boxHora);
 	    boxHora.addItem(LocalTime.of(13, 0));
         boxHora.addItem(LocalTime.of(13, 30));
         boxHora.addItem(LocalTime.of(14, 0));
@@ -138,8 +166,21 @@ public class VentanaAdministrador extends JFrame {
 
         // Configurar la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400, 300);
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
     }
+
+
+    public List<ReservaData> reservasFiltradas(Date fecha, LocalTime hora){
+        //creo un  array de reservas
+        List<ReservaData> reservas = Main.getExampleClient().getReservas();
+        List<ReservaData> reservasPorFecha = new ArrayList<>();
+        for (ReservaData reserva : reservas) {
+            if (reserva.getFecha().equals(fecha)) {
+                reservasPorFecha.add(reserva);
+            }
+        }
+        return reservasPorFecha;
+    }
+
 }
