@@ -36,27 +36,9 @@ public class VentanaReserva extends JFrame {
         JLabel lPlazas = new JLabel("Plazas libres: ");
         lPlazas.setLocation(100, 200);
         
-        JButton BParking = new JButton("VER PLAZAS DE APARCAMIENTO LIBRES");
-        BParking.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    Date fecha = formato.parse(textFecha.getText());
-                    fechaD = fecha;
-                } catch (ParseException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-                parking(fechaD);
-                lPlazas.setText("Plazas libres: " + parkingLibre);
-                lPlazas.setForeground(Color.yellow);
-				dispose();
-			}
-		});	
+        
         
 
-        panel.add(lPlazas);
-        panel.add(BParking);
 
         // Crear los componentes que se van a agregar al panel
         JLabel lhora = new JLabel("Hora de la reserva:");
@@ -254,12 +236,22 @@ public class VentanaReserva extends JFrame {
         gbc_lparking.gridy = 6;
         panel.add(lparking, gbc_lparking);
 
-
         //Boton parking
         JButton bParking = new JButton("Ver Parking");
         bParking.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date fecha = formato.parse(textFecha.getText());
+                    fechaD = fecha;
+                } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+             //   parking(fechaD);
+             lparking.setText("Plazas libres: " + parkingLibre);
+             lparking.setForeground(Color.yellow);
+				dispose();
         	}
         });
         GridBagConstraints gbc_button1 = new GridBagConstraints();
