@@ -350,7 +350,6 @@ public class Resource {
 			tx.begin(); // Comienza una transacción para realizar operaciones en la base de datos.
 			List<Reserva> reservas = new ArrayList<>();
 			Query<Reserva> query = pm.newQuery(Reserva.class); // Crea una instancia de una consulta
-			query.setFilter("cancelada == true || cancelada == false"); // Filtro para la consulta, devolverá todas las reservas, tanto canceladas como no canceladas
 			query.setOrdering("fecha desc, hora asc"); // Orden de la consulta, Las reservas se ordenan primero por fecha y luego por hora
 			reservas = query.executeList(); // Ejecuta una consulta en la base de datos y devuelve los resultados en forma de una lista de objetos
 			tx.commit(); // Confirma la transacción.

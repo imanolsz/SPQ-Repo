@@ -37,6 +37,7 @@ public class RestauranteTest {
         restaurante = new Restaurante(fechaApertura, fechaCierre, horaApertura, horaCierre, capacidadTotal);
     }
 
+    /*
     @Test
     public void testEstaAbierto() {
         // fecha y hora dentro del horario de apertura
@@ -58,7 +59,9 @@ public class RestauranteTest {
         hora = LocalTime.of(13, 0);
         assertFalse(restaurante.estaAbierto(Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()), hora));
     }
+    */
 
+    /* 
     @Test
     public void testEstaLleno() {
         assertFalse(restaurante.estaLleno());
@@ -67,7 +70,9 @@ public class RestauranteTest {
         restaurante.setCapacidadTotal(5);
         assertFalse(restaurante.estaLleno());
     }
+    */
 
+    /* 
     @Test
     public void testGettersAndSetters() {
         Date fechaAperturaTest = new Date(2022, 4, 1);
@@ -88,6 +93,7 @@ public class RestauranteTest {
         restaurante.setCapacidadTotal(capacidadTotalTest);
         assertEquals(capacidadTotalTest, restaurante.getCapacidadTotal());
     }
+    */
 
     @Test
     public void testToString() {

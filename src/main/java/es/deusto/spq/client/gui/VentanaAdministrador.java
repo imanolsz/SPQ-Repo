@@ -5,17 +5,21 @@ import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.*;
 import javax.swing.table.*;
 
 import es.deusto.spq.main.Main;
-import es.deusto.spq.pojo.ReservaData;
+import es.deusto.spq.pojo.*;
+import es.deusto.spq.server.jdo.User;
 
 public class VentanaAdministrador extends JFrame {
     private JTable tablaReservas;
     private JTable tablaMenu;
     private JFrame ventanaTablaMenu;
+    private List<ReservaData> r;
+    private Timer timer;
     
     public VentanaAdministrador() {
         super("Ventana de Administración");
@@ -28,6 +32,7 @@ public class VentanaAdministrador extends JFrame {
         JButton editarReservaButton = new JButton("Editar Reserva");
         JButton eliminarReservaButton = new JButton("Eliminar Reserva");
         JButton mostrarMenuButton = new JButton("Mostrar menú");
+        JButton atras = new JButton("Atras");
 
         // Crear contenedor para organizar los componentes
         JPanel container = new JPanel();
@@ -36,6 +41,7 @@ public class VentanaAdministrador extends JFrame {
         container.add(editarReservaButton);
         container.add(eliminarReservaButton);
         container.add(mostrarMenuButton);
+        container.add(atras);
 
         //Crear la tabla
         tablaReservas = new JTable();
@@ -43,20 +49,29 @@ public class VentanaAdministrador extends JFrame {
         container.add(tablaReservas);
         container.add(tablaMenu);
 
-        List<ReservaData> reservas = Main.getExampleClient().getReservas();
-        if (reservas != null) {
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("ID");
-            model.addColumn("Fecha");
-            model.addColumn("Hora");
-            model.addColumn("Canelada");
-            model.addColumn("NumPersonas");
-            model.addColumn("UserData");
-            for (ReservaData reserva : reservas) {
-                model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
+        
+        
+        timer = new Timer(5000, e -> {
+            List<ReservaData> reservas = Main.getExampleClient().getReservas();
+            if (reservas != null && !reservas.equals(r)) {
+                r = reservas;
+                for (ReservaData reserva : reservas) {
+                    System.out.println(reserva.toString()); // Imprimir la reserva en la pantalla
+                }
+                DefaultTableModel model = new DefaultTableModel();
+                model.addColumn("ID");
+                model.addColumn("Fecha");
+                model.addColumn("Hora");
+                model.addColumn("Canelada");
+                model.addColumn("NumPersonas");
+                model.addColumn("UserData");
+                for (ReservaData reserva : reservas) {
+                    model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
+                }
+                tablaReservas.setModel(model);
             }
-            tablaReservas.setModel(model);
-        }
+        });
+        timer.start();
 
         JComboBox<LocalTime> boxHora = new JComboBox<LocalTime>();
 	    GridBagConstraints gbc_boxHora = new GridBagConstraints();
@@ -134,11 +149,17 @@ public class VentanaAdministrador extends JFrame {
             }
         });
 
+        atras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
+                dispose();
+            }
+        });
+
         // Configurar la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(400, 300);
         this.setLocationRelativeTo(null);
         this.setContentPane(container);
-        this.setVisible(true);
     }
 }

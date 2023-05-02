@@ -1,13 +1,33 @@
 package es.deusto.spq.pojo;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class UserData {
 
     private String id;
     private String password;
     private boolean admin;
 
+    public UserData(String id, String password, boolean admin) {
+        this.id = id;
+        this.password = password;
+        this.admin = admin;
+    }
+
     public UserData() {
-        // required by serialization
+    }
+
+    private List<String> messages; // Asume que es una lista de mensajes de texto
+
+    // Agrega los getters y setters correspondientes
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
     }
 
     public String getId() {
