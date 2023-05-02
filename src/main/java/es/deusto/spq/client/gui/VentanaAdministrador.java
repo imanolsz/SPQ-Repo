@@ -31,6 +31,13 @@ public class VentanaAdministrador extends JFrame {
         JLabel titleLabel = new JLabel("Bienvenido al Panel de Administración");
         titleLabel.setBounds(0, 0, 800, 50);
 
+        //Crear jcombobox hora para el parking
+        JComboBox<LocalTime> boxHora = new JComboBox<LocalTime>();
+
+        //Crear textfield para fecha
+        JTextField textFecha;
+        textFecha = new JTextField();
+
         // Crear botones para las distintas funcionalidades
         JButton crearReservaButton = new JButton("Crear Reserva");
         JButton editarReservaButton = new JButton("Editar Reserva");
@@ -45,6 +52,8 @@ public class VentanaAdministrador extends JFrame {
         container.add(editarReservaButton);
         container.add(eliminarReservaButton);
         container.add(mostrarMenuButton);
+        container.add(boxHora);
+        container.add(textFecha);
         container.add(atras);
 
         //Crear la tabla
@@ -73,30 +82,12 @@ public class VentanaAdministrador extends JFrame {
                     model.addRow(new Object[]{reserva.getId(),reserva.getFecha(), reserva.getHora(), reserva.getCancelada(), reserva.getNumPersonas(), reserva.getUser()});
                 }
                 tablaReservas.setModel(model);
+                //tablaReservas.setDefaultRenderer(Object.class, renderer);    NO SE PORQUE EL RENDERER DA MAL, SI LOS COLORES DEL MENU NO SALEN ES POR ESTO
+        
             }
         });
         timer.start();
-
-        
-        JComboBox<LocalTime> boxHora = new JComboBox<LocalTime>();
-	    GridBagConstraints gbc_boxHora = new GridBagConstraints();
-	    gbc_boxHora.anchor = GridBagConstraints.WEST;
-	    gbc_boxHora.insets = new Insets(0, 0, 5, 0);
-	    gbc_boxHora.gridx = 1;
-	    gbc_boxHora.gridy = 2;
-	 //   getContentPane().add(boxHora, gbc_boxHora);
-	    boxHora.addItem(LocalTime.of(13, 0));
-        boxHora.addItem(LocalTime.of(13, 30));
-        boxHora.addItem(LocalTime.of(14, 0));
-        boxHora.addItem(LocalTime.of(14, 30));
-        boxHora.addItem(LocalTime.of(15, 0));
-        boxHora.addItem(LocalTime.of(15, 30));
-        boxHora.addItem(LocalTime.of(20, 30));
-        boxHora.addItem(LocalTime.of(21, 0));
-        boxHora.addItem(LocalTime.of(21, 30));
-        boxHora.addItem(LocalTime.of(22, 0));
-        boxHora.addItem(LocalTime.of(22, 30));
-
+    
         
         //Activar boton para CREAR y MOSTRAR la tabla
         atras.addActionListener(new ActionListener() {
@@ -125,6 +116,28 @@ public class VentanaAdministrador extends JFrame {
             }
         });
 
+        atras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
+                dispose();
+            }
+        });
+
+        //Combobox hora
+        boxHora.addItem(LocalTime.of(13, 0));
+        boxHora.addItem(LocalTime.of(13, 30));
+        boxHora.addItem(LocalTime.of(14, 0));
+        boxHora.addItem(LocalTime.of(14, 30));
+        boxHora.addItem(LocalTime.of(15, 0));
+        boxHora.addItem(LocalTime.of(15, 30));
+        boxHora.addItem(LocalTime.of(20, 30));
+        boxHora.addItem(LocalTime.of(21, 0));
+        boxHora.addItem(LocalTime.of(21, 30));
+        boxHora.addItem(LocalTime.of(22, 0));
+        boxHora.addItem(LocalTime.of(22, 30));
+
+        //Textfield hora
+        textFecha.setText("Fecha: DD-MM-AAAA");
         // Configurar la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(400, 300);
