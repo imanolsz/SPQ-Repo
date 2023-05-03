@@ -3,10 +3,58 @@ package es.deusto.spq.modelos;
 import org.junit.*;
 
 
+import static org.junit.Assert.*;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import es.deusto.spq.pojo.NotificacionData;
+
 public class ModeloTablaNotificacionDataTest{
-    @Before
+	
+    private ModeloTablaNotificacionData modelo;
+    private List<NotificacionData> notificaciones;
+
+	@Before
 	public void setUp() throws Exception {
-		// Code executed before each test
+		notificaciones = new ArrayList<>();
+		notificaciones.add(new NotificacionData("Asunto 1", "Contenido 1", new Date(2021 - 1900, 0, 1), 1L));
+		notificaciones.add(new NotificacionData("Asunto 2", "Contenido 2", new Date(2021 - 1900, 0, 1), 2L));
+		notificaciones.add(new NotificacionData("Asunto 3", "Contenido 3", new Date(2021 - 1900, 0, 1), 3L));
+		modelo = new ModeloTablaNotificacionData(notificaciones);
 	}
+	
+
+    @Test
+    public void testGetRowCount() {
+        assertEquals(3, modelo.getRowCount());
+    }
+
+    @Test
+    public void testGetColumnCount() {
+        assertEquals(2, modelo.getColumnCount());
+    }
+
+    @Test
+    public void testGetColumnName() {
+        assertEquals("Asunto", modelo.getColumnName(0));
+        assertEquals("Fecha", modelo.getColumnName(1));
+    }
+
+	@Test
+	public void testGetValueAt() {
+		assertEquals("Asunto 1", modelo.getValueAt(0, 0));
+		assertNotNull(modelo.getValueAt(0, 1)); // la fecha no debe ser nula
+		assertEquals("Asunto 2", modelo.getValueAt(1, 0));
+		assertNotNull(modelo.getValueAt(1, 1)); // la fecha no debe ser nula
+		assertEquals("Asunto 3", modelo.getValueAt(2, 0));
+		assertNotNull(modelo.getValueAt(2, 1)); // la fecha no debe ser nula
+		assertNull(modelo.getValueAt(2, 2));    // la posición 2,2 debe ser nula
+	}
+	
 }
 
