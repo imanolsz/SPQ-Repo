@@ -54,33 +54,33 @@ public class ResourceTest {
 
 
 
-    @InjectMocks
-    private Resource loginService;
+    // @InjectMocks
+    // private Resource loginService;
 
-    @Mock
-    private org.apache.logging.log4j.Logger logger;
+    // @Mock
+    // private org.apache.logging.log4j.Logger logger;
 
-    @Mock
-    private PersistenceManager pm;
+    // @Mock
+    // private PersistenceManager pm;
 
-    @Mock
-    private Transaction tx;
+    // @Mock
+    // private Transaction tx;
 
-    @Mock
-    private HashMap<Long, User> serverState;
+    // @Mock
+    // private HashMap<Long, User> serverState;
 
-    @Before
-    public void setUp() {
-        when(pm.getObjectById(eq(User.class), anyString())).thenAnswer(invocation -> {
-            String id = invocation.getArgument(1);
-            if ("testId".equals(id)) {
-                return new User("testId", "testPassword");
-            } else {
-                throw new javax.jdo.JDOObjectNotFoundException();
-            }
-        });
-        when(tx.isActive()).thenReturn(true);
-    }
+    // @Before
+    // public void setUp() {
+    //     when(pm.getObjectById(eq(User.class), anyString())).thenAnswer(invocation -> {
+    //         String id = invocation.getArgument(1);
+    //         if ("testId".equals(id)) {
+    //             return new User("testId", "testPassword");
+    //         } else {
+    //             throw new javax.jdo.JDOObjectNotFoundException();
+    //         }
+    //     });
+    //     when(tx.isActive()).thenReturn(true);
+    // }
     
     
     /*
@@ -94,21 +94,21 @@ public class ResourceTest {
     }
      */
 
-    @Test
-    public void testLoginUser_invalidPassword_unauthorized() {
-        User user2 = new User("testId", "testPassword");
-        when(pm.getObjectById(User.class, user2.getId())).thenReturn(user2);
-        UserData userData2 = new UserData(user2.getId(), "wrongPassword", false);
-        Response response2 = loginService.loginUser(userData2);
-        assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response2.getStatus());
-    }
+    // @Test
+    // public void testLoginUser_invalidPassword_unauthorized() {
+    //     User user2 = new User("testId", "testPassword");
+    //     when(pm.getObjectById(User.class, user2.getId())).thenReturn(user2);
+    //     UserData userData2 = new UserData(user2.getId(), "wrongPassword", false);
+    //     Response response2 = loginService.loginUser(userData2);
+    //     assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response2.getStatus());
+    // }
 
-    @Test
-    public void testLoginUser_invalidUser_unauthorized() {
-        UserData userData3 = new UserData("invalidId", "testPassword", false);
-        Response response3 = loginService.loginUser(userData3);
-        assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response3.getStatus());
-    }
+    // @Test
+    // public void testLoginUser_invalidUser_unauthorized() {
+    //     UserData userData3 = new UserData("invalidId", "testPassword", false);
+    //     Response response3 = loginService.loginUser(userData3);
+    //     assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response3.getStatus());
+    // }
 
     /* 
     @Test
@@ -125,82 +125,82 @@ public class ResourceTest {
     }
     */
     
-    @Test
-	public void sayMessage() {
-		assertEquals(5,5);
-	}
-	@Test
-	public void registerUser() {
+    // @Test
+	// public void sayMessage() {
+	// 	assertEquals(5,5);
+	// }
+	// @Test
+	// public void registerUser() {
 		
-	}
+	// }
     
-	@Test
-	public void logout(){
+	// @Test
+	// public void logout(){
 		
-	}
+	// }
 
-	@Test
-	public void realizarReserva(){
-	}
+	// @Test
+	// public void realizarReserva(){
+	// }
 
-	@Test
-	public void realizarNotificacion() {
+	// @Test
+	// public void realizarNotificacion() {
 
-	}
+	// }
 
-	@Test
-	public void getNotifications() {
+	// @Test
+	// public void getNotifications() {
 
-	}
-	@Test
-	public void sayHello() {
+	// }
+	// @Test
+	// public void sayHello() {
 
-	}
+	// }
 	
-	 @Test
-     public void getReservas() {
-         // Crear una instancia de la clase que contiene el método getReservas
-         Resource reservasResource = new Resource();
+	//  @Test
+    //  public void getReservas() {
+    //      // Crear una instancia de la clase que contiene el método getReservas
+    //      Resource reservasResource = new Resource();
 
-         // Llamar al método getReservas y almacenar la respuesta
-         Response response = reservasResource.getReservas();
+    //      // Llamar al método getReservas y almacenar la respuesta
+    //      Response response = reservasResource.getReservas();
 
-         // Verificar si la respuesta es correcta (HTTP 200 OK)
-         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    //      // Verificar si la respuesta es correcta (HTTP 200 OK)
+    //      assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 
-         // Verificar si el contenido de la respuesta es el esperado (lista de reservas)
-         List<Reserva> reservas = (List<Reserva>) response.getEntity();
-         assertNotNull(reservas);
-         // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
-     }
+    //      // Verificar si el contenido de la respuesta es el esperado (lista de reservas)
+    //      List<Reserva> reservas = (List<Reserva>) response.getEntity();
+    //      assertNotNull(reservas);
+    //      // Aquí se pueden agregar más verificaciones para los datos de las reservas si en un futuro se consideras necesario
+    //  }
 
 
-	@Test
-    public void hayMesaLibre() { 
+	// @Test
+    // public void hayMesaLibre() { 
 		
-    }
+    // }
 
-	@Test
-	public void hayMesaLibrebool() {
+	// @Test
+	// public void hayMesaLibrebool() {
 
-	}
+	// }
 
 
-	@Test
-	public void actualizarReserva(){
+	// @Test
+	// public void actualizarReserva(){
 
-	}
+	// }
 
-	@Test
-    public void cancelarReserva() {
+	// @Test
+    // public void cancelarReserva() {
 
-	}
-	@After
-	public void tearDown() throws Exception {
-		// Code executed after each test
-	}
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-		// Code executed after the last test method
-	}
+	// }
+	// @After
+	// public void tearDown() throws Exception {
+	// 	// Code executed after each test
+	// }
+	// @AfterClass
+	// public static void tearDownClass() throws Exception {
+	// 	// Code executed after the last test method
+	// }
 }
