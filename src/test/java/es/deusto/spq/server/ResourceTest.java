@@ -1,41 +1,22 @@
 package es.deusto.spq.server;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
-import java.util.HashMap;
-import java.util.List;
-import static org.hamcrest.CoreMatchers.not;
+import java.util.*;
 
-import javax.jdo.Query;
-import javax.jdo.PersistenceManager;
-import javax.jdo.Transaction;
-import javax.ws.rs.core.Response;
+import javax.jdo.*;
+import javax.ws.rs.core.*;
 import static org.mockito.ArgumentMatchers.eq;
 
-import static org.junit.Assert.assertNotNull;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-import static org.junit.Assert.fail;
-import es.deusto.spq.pojo.UserData;
-import es.deusto.spq.server.jdo.Reserva;
-import es.deusto.spq.server.jdo.User;
+import org.junit.*;
+import org.junit.runner.*;
+import org.mockito.*;
+import org.mockito.invocation.*;
+import org.mockito.stubbing.*;
 
-@RunWith(MockitoJUnitRunner.class)
+
 public class ResourceTest {
 
 	// @BeforeClass
