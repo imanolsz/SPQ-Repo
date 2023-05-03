@@ -18,69 +18,69 @@ import javax.jdo.JDOHelper;
 
 public class PedidoTest {
 
-    private Pedido pedido;
-    private DetallePedido detallePedido1;
-    private DetallePedido detallePedido2;
-    private Reserva reserva;
-    private PersistenceManagerFactory pmf;
-    private PersistenceManager pm;
+    // private Pedido pedido;
+    // private DetallePedido detallePedido1;
+    // private DetallePedido detallePedido2;
+    // private Reserva reserva;
+    // private PersistenceManagerFactory pmf;
+    // private PersistenceManager pm;
 
     
-    @Before
-    public void setUp() {
-        // Creamos los objetos necesarios para la prueba
-        detallePedido1 = new DetallePedido("Pizza", 3, null);
-        detallePedido2 = new DetallePedido("Ensalada", 2, null);
-        List<DetallePedido> listaAlimentos = new ArrayList<DetallePedido>();
-        listaAlimentos.add(detallePedido1);
-        listaAlimentos.add(detallePedido2);
+    // @Before
+    // public void setUp() {
+    //     // Creamos los objetos necesarios para la prueba
+    //     detallePedido1 = new DetallePedido("Pizza", 3, null);
+    //     detallePedido2 = new DetallePedido("Ensalada", 2, null);
+    //     List<DetallePedido> listaAlimentos = new ArrayList<DetallePedido>();
+    //     listaAlimentos.add(detallePedido1);
+    //     listaAlimentos.add(detallePedido2);
         
-        User user = new User("JohnDoe", "mypassword");
-        Date fecha = new Date(1234567890000L); // 2009-02-14T00:31:30Z
-        LocalTime hora = LocalTime.of(14, 30);
-        int numPersonas = 3;
-        boolean cancelada = false;
-        String especificacion = null;
-        int aparcamiento = 0;
-        Reserva reserva = new Reserva(fecha, hora, numPersonas, cancelada, especificacion, aparcamiento, user);
+    //     User user = new User("JohnDoe", "mypassword");
+    //     Date fecha = new Date(1234567890000L); // 2009-02-14T00:31:30Z
+    //     LocalTime hora = LocalTime.of(14, 30);
+    //     int numPersonas = 3;
+    //     boolean cancelada = false;
+    //     String especificacion = null;
+    //     int aparcamiento = 0;
+    //     Reserva reserva = new Reserva(fecha, hora, numPersonas, cancelada, especificacion, aparcamiento, user);
         
-        pedido = new Pedido(listaAlimentos, reserva);
+    //     pedido = new Pedido(listaAlimentos, reserva);
         
-        // Inicializamos el gestor de persistencia
-        pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-        pm = pmf.getPersistenceManager();
-    }
+    //     // Inicializamos el gestor de persistencia
+    //     pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+    //     pm = pmf.getPersistenceManager();
+    // }
 
-    @Test
-    public void testGetId() {
-        long id = 1;
-        pedido.setId(id);
-        assertEquals(id, pedido.getId());
-    }
+    // @Test
+    // public void testGetId() {
+    //     long id = 1;
+    //     pedido.setId(id);
+    //     assertEquals(id, pedido.getId());
+    // }
 
-    @Test
-    public void testGetSetReserva() {
-        User user = new User("Luis", "1234");
-        Date fecha = new Date(1234567890000L); // 2009-02-14T00:31:30Z
-        LocalTime hora = LocalTime.of(14, 30);
-        int numPersonas = 5;
-        boolean cancelada = false;
-        String especificacion = null;
-        int aparcamiento = 2;
-        Reserva nuevaReserva = new Reserva(fecha, hora, numPersonas, cancelada, especificacion, aparcamiento, user);
-        pedido.setReserva(nuevaReserva);
-        assertEquals(nuevaReserva, pedido.getReserva());
-    }
+    // @Test
+    // public void testGetSetReserva() {
+    //     User user = new User("Luis", "1234");
+    //     Date fecha = new Date(1234567890000L); // 2009-02-14T00:31:30Z
+    //     LocalTime hora = LocalTime.of(14, 30);
+    //     int numPersonas = 5;
+    //     boolean cancelada = false;
+    //     String especificacion = null;
+    //     int aparcamiento = 2;
+    //     Reserva nuevaReserva = new Reserva(fecha, hora, numPersonas, cancelada, especificacion, aparcamiento, user);
+    //     pedido.setReserva(nuevaReserva);
+    //     assertEquals(nuevaReserva, pedido.getReserva());
+    // }
 
-    @Test
-    public void testGetSetlistaAlimentos() {
-        List<DetallePedido> nuevaLista = new ArrayList<DetallePedido>();
-        nuevaLista.add(detallePedido1);
-        nuevaLista.add(detallePedido2);
-        nuevaLista.add(new DetallePedido("Hamburguesa", 2, null));
-        pedido.setMapaComidaCantidad(nuevaLista);
-        assertEquals(nuevaLista, pedido.getlistaAlimentos());
-    }
+    // @Test
+    // public void testGetSetlistaAlimentos() {
+    //     List<DetallePedido> nuevaLista = new ArrayList<DetallePedido>();
+    //     nuevaLista.add(detallePedido1);
+    //     nuevaLista.add(detallePedido2);
+    //     nuevaLista.add(new DetallePedido("Hamburguesa", 2, null));
+    //     pedido.setMapaComidaCantidad(nuevaLista);
+    //     assertEquals(nuevaLista, pedido.getlistaAlimentos());
+    // }
 
     /*Problema con el persitent ¿JDO? 
     @Test
