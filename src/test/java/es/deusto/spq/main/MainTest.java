@@ -18,22 +18,22 @@ import static org.mockito.Mockito.verify;
 
 public class MainTest {
 
-    // private GestorVentanas gestorVentanas;
-    // private ExampleClient exampleClient;
+     private GestorVentanas gestorVentanas;
+     private ExampleClient exampleClient;
 
-    // @Before
-    // public void setUp() {
-    //     gestorVentanas = mock(GestorVentanas.class);
-    //     exampleClient = mock(ExampleClient.class);
-    // }
+     @Before
+     public void setUp() {
+         gestorVentanas = mock(GestorVentanas.class);
+         exampleClient = mock(ExampleClient.class);
+     }
 
-    // @Test
-    // public void testMain() {
-    //     String[] args = {"localhost", "8080"};
-    //     Main.main(args);
+     @Test
+     public void testMain() {
+         String[] args = {"localhost", "8080"};
+         Main.main(args);
         
-    //     assertNotNull(Main.getExampleClient());
-    //     assertNotNull(Main.getGestorVentanas());
-    // }
+         assertNotNull(Main.getExampleClient());
+         assertNotNull(Main.getGestorVentanas());
+     }
 }
 
