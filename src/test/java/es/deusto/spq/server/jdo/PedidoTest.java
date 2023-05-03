@@ -1,20 +1,20 @@
 package es.deusto.spq.server.jdo;
 
-import static org.junit.Assert.*;
+// import static org.junit.Assert.*;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+// import java.time.LocalTime;
+// import java.util.ArrayList;
+// import java.util.Date;
+// import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+// import org.junit.Before;
+// import org.junit.Test;
 
-import es.deusto.spq.pojo.PedidoData;
+// import es.deusto.spq.pojo.PedidoData;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.JDOHelper;
+// import javax.jdo.PersistenceManager;
+// import javax.jdo.PersistenceManagerFactory;
+// import javax.jdo.JDOHelper;
 
 public class PedidoTest {
 
