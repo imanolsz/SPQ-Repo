@@ -10,9 +10,14 @@ import java.util.stream.Collectors;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 import javax.swing.table.*;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
@@ -23,6 +28,8 @@ public class VentanaAdministrador extends JFrame {
     private JFrame ventanaTablaMenu;
     private List<ReservaData> r;
     private Timer timer;
+    private boolean filtro = false;
+    private Date fechaD;
     
     public VentanaAdministrador() {
 
@@ -63,13 +70,47 @@ public class VentanaAdministrador extends JFrame {
         tablaMenu = new JTable();
         container.add(tablaReservas);
         container.add(tablaMenu);
+        JButton filtrar = new JButton("Filtrar");
+        container.add(filtrar);
 
-        
+        filtrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                filtro = true;
+            }
+        });
+
+        boxHora.addItem(LocalTime.of(13, 0));
+        boxHora.addItem(LocalTime.of(13, 30));
+        boxHora.addItem(LocalTime.of(14, 0));
+        boxHora.addItem(LocalTime.of(14, 30));
+        boxHora.addItem(LocalTime.of(15, 0));
+        boxHora.addItem(LocalTime.of(15, 30));
+        boxHora.addItem(LocalTime.of(20, 30));
+        boxHora.addItem(LocalTime.of(21, 0));
+        boxHora.addItem(LocalTime.of(21, 30));
+        boxHora.addItem(LocalTime.of(22, 0));
+        boxHora.addItem(LocalTime.of(22, 30));
         
         timer = new Timer(5000, e -> {
             List<ReservaData> reservas = Main.getExampleClient().getReservas();
             if (reservas != null && !reservas.equals(r)) {
                 r = reservas;
+            //    if(filtro = true){
+            //        filtro = false;
+            //        boxHora.getSelectedItem();
+             //       SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+                   // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                  //  LocalTime localTime = LocalTime.parse(boxHora.getSelectedItem(), formatter);
+              //  try {
+               //     Date fecha = formato.parse(textFecha.getText());
+               //     fechaD = fecha;
+               // } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                //    e1.printStackTrace();
+               // }
+               //     reservas = filtrarReservas(fechaD,(LocalTime) boxHora.getSelectedItem());
+
+              //  }
                 for (ReservaData reserva : reservas) {
                     System.out.println(reserva.toString()); // Imprimir la reserva en la pantalla
                 }
@@ -89,7 +130,7 @@ public class VentanaAdministrador extends JFrame {
             }
         });
         timer.start();
-    
+
         
         //Activar boton para CREAR y MOSTRAR la tabla
         
@@ -106,6 +147,8 @@ public class VentanaAdministrador extends JFrame {
             }
         });
 
+
+
         atras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
@@ -114,17 +157,7 @@ public class VentanaAdministrador extends JFrame {
         });
 
         //Combobox hora
-        boxHora.addItem(LocalTime.of(13, 0));
-        boxHora.addItem(LocalTime.of(13, 30));
-        boxHora.addItem(LocalTime.of(14, 0));
-        boxHora.addItem(LocalTime.of(14, 30));
-        boxHora.addItem(LocalTime.of(15, 0));
-        boxHora.addItem(LocalTime.of(15, 30));
-        boxHora.addItem(LocalTime.of(20, 30));
-        boxHora.addItem(LocalTime.of(21, 0));
-        boxHora.addItem(LocalTime.of(21, 30));
-        boxHora.addItem(LocalTime.of(22, 0));
-        boxHora.addItem(LocalTime.of(22, 30));
+
 
         //Textfield hora
         textFecha.setText("Fecha: DD-MM-AAAA");
@@ -136,12 +169,15 @@ public class VentanaAdministrador extends JFrame {
     }
 
 
-    public List<ReservaData> filtrarReservas(Date fecha){
+    public List<ReservaData> filtrarReservas(Date fecha, LocalTime hora){
         List<ReservaData> reservas = Main.getExampleClient().getReservas();
         //creo otra lista para filtrar las reservas
         List<ReservaData> reservasFiltradas = new ArrayList<ReservaData>();
         for(ReservaData reserva: reservas){
             if(reserva.getFecha().equals(fecha)){
+                if(reserva.getHora().equals(hora)){
+                    reservasFiltradas.add(reserva);
+                }
                 reservasFiltradas.add(reserva);
             }
         }  

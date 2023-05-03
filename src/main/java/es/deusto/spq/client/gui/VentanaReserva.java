@@ -241,7 +241,7 @@ public class VentanaReserva extends JFrame {
         JButton bParking = new JButton("Ver Parking");
         bParking.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
                 try {
                     Date fecha = formato.parse(textFecha.getText());
                     fechaD = fecha;
