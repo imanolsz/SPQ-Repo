@@ -1,7 +1,7 @@
 .classpath
 target/
-main/resources/html/
-main/resources/latex/
+src/main/resources/html/
+src/main/resources/latex/
 .DS_Store
 
 #GITIGNORE JAVA
