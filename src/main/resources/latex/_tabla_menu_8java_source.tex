@@ -1,0 +1,90 @@
+\hypertarget{_tabla_menu_8java_source}{}\doxysection{Tabla\+Menu.\+java}
+\label{_tabla_menu_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/TablaMenu.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/TablaMenu.java}}
+\mbox{\hyperlink{_tabla_menu_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.client.gui;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00003}00003\ \textcolor{keyword}{import}\ javax.swing.*;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00004}00004\ \textcolor{keyword}{import}\ javax.swing.table.*;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00006}00006\ \textcolor{comment}{//La\ tabla\ donde\ se\ muestran\ todos\ los\ ingredientes}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00007}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu}{TablaMenu}}\ \textcolor{keyword}{extends}\ JTable\{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00008}00008\ \ \ \ \ String[]\ columnas\ =\ \{\textcolor{stringliteral}{"{}Comida"{}},\ \textcolor{stringliteral}{"{}Precio"{}},\ \textcolor{stringliteral}{"{}Cantidad"{}},\ \textcolor{stringliteral}{"{}Vegetariano"{}}\};}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00009}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu_ae1fa676e1c7c64a9842b9f169382f9fe}{00009}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu_ae1fa676e1c7c64a9842b9f169382f9fe}{TablaMenu}}()\{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00010}00010\ \ \ \ \ \ \ \ \ Object[][]\ platos=\ \{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Croquetas\ de\ la\ abuela"{}},\ 10.20,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Rabas"{}},\ 4.30,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Bravas"{}},\ 3.50,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Tabla\ de\ surtidos\ ibericos"{}},\ 7.30,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Patatas\ bacon-\/queso"{}},\ 5.00,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Ensalada\ de\ bogavante"{}},\ 10.20,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Menestra\ de\ verduras"{}},\ 7.10,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Risotto"{}},\ 8.10,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Pasta\ cabonara\ con\ trufa"{}},\ 9.20,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Cocido"{}},\ 9.00,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Rodavallo"{}},\ 40.00,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Bacalao\ a\ la\ bizkaina"{}},\ 25.20,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Chuleton"{}},\ 45.00,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Chuletillas"{}},\ 30.15,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Calamares\ en\ su\ tinta"{}},\ 15.35,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}No"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Coulant\ de\ chocolate"{}},\ 8.50,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Tarta\ de\ queso"{}},\ 8.00,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Brownie\ de\ chocolate"{}},\ 7.50,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Torrijas"{}},\ 6.30,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}Si"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Vino\ tinto"{}},\ 20.20,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Vino\ blanco"{}},\ 18.30,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Agua"{}},\ 2.50,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Refresco"{}},\ 2.30,\ \textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}"{}}\},}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ DefaultTableModel\ model\ =\ \textcolor{keyword}{new}\ DefaultTableModel(platos,\ columnas);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ setModel(model);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Establecer\ el\ renderer\ de\ celda\ personalizado}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ setDefaultRenderer(Object.class,\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_mi_renderer}{MiRenderer}}());}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ establecer\ el\ ancho\ de\ las\ columnas\ de\ la\ tabla}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ getColumnModel().getColumn(0).setPreferredWidth(200);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ getColumnModel().getColumn(1).setPreferredWidth(50);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ getColumnModel().getColumn(2).setPreferredWidth(50);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ getColumnModel().getColumn(3).setPreferredWidth(70);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00050}00050\ \ \ \ \ \textcolor{comment}{//\ Filtra\ las\ filas\ de\ la\ tabla\ dejando\ solo\ los\ vegetarianos}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00051}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu_af534382a2acae14ccd9da381b683080e}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ Object[][]\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu_af534382a2acae14ccd9da381b683080e}{getMenuVegetariano}}()\{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ DefaultTableModel\ model\ =\ (DefaultTableModel)getModel();}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numFilas\ =\ model.getRowCount();}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ Object[][]\ rows\ =\ \textcolor{keyword}{new}\ Object[numFilas][4];}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ contadorFilas\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i<\ numFilas;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ String\ vegetariano\ =\ (String)model.getValueAt(i,\ 3);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(vegetariano.equals(\textcolor{stringliteral}{"{}Si"{}})\ ||\ vegetariano.equals(\textcolor{stringliteral}{"{}"{}}))\{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rows[contadorFilas][0]\ =\ model.getValueAt(i,\ 0);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rows[contadorFilas][1]\ =\ model.getValueAt(i,\ 1);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rows[contadorFilas][2]\ =\ model.getValueAt(i,\ 2);}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rows[contadorFilas][3]\ =\ vegetariano;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contadorFilas++;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ no\ encuentra\ ninguna\ devuelve\ un\ array\ vacío}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(contadorFilas\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Object[0][4];}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ se\ encontraron\ filas\ devuelve\ las\ filas\ encontradas}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ Object[][]\ result\ =\ \textcolor{keyword}{new}\ Object[contadorFilas][4];}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i\ <\ contadorFilas;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ result[i][0]\ =\ rows[i][0];}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ result[i][1]\ =\ rows[i][1];}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ result[i][2]\ =\ rows[i][2];}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ result[i][3]\ =\ rows[i][3];}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00080}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu_a8ed90d9a759f3ff19c2846584caf79f8}{00080}}\ \ \ \ \ \textcolor{keyword}{public}\ String[]\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_tabla_menu_a8ed90d9a759f3ff19c2846584caf79f8}{getColumnas}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ columnas;}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00083}00083\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_tabla_menu_8java_source_l00084}00084\ \}}
+
+\end{DoxyCode}

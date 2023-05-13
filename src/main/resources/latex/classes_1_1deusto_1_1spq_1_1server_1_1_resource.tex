@@ -1,0 +1,233 @@
+\hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource}{}\doxysection{es.\+deusto.\+spq.\+server.\+Resource Class Reference}
+\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource}\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a46d2d25355fdbc4143383b83b7ea404f}{Resource}} ()
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a517f7d02a837d1fea77e0a14858e88cd}{say\+Message}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_direct_message}{Direct\+Message}} direct\+Message)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a98f20b6ab5dbe483e0abd1599fb88205}{register\+User}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{User\+Data}} user\+Data)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a57cce8b004a3670d6ddb3609e601ec4f}{login\+User}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{User\+Data}} user\+Data)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a52e956b2f7b502b48882c3566746c73c}{logout}} (long token)  throws Remote\+Exception 
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1c1f01b3020ddb02411a90104394fbe}{realizar\+Reserva}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{Reserva\+Data}} reserva\+Data, @Header\+Param(\char`\"{}Authorization\char`\"{}) String authorization\+Header)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a7df710c1672fe26f69c1d4a46663d07e}{realizar\+Notificacion}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{Notificacion\+Data}} notificacion\+Data)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1d04a5245c55fcba551b8b0e74f32d5}{realizar\+Nota}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{Nota\+Data}} nota\+Data)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ad24624facb377f94021cc87191390f57}{get\+Notifications}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}} user\+Param)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a17e64e621b3e8425fb5314238355853d}{say\+Hello}} ()
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a18ee1d9c5fadf28e3f498e3b9b3977c1}{get\+Reservas}} ()
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a261fe19c3036764436ee5a08b5c219a5}{hay\+Mesa\+Libre}} (@Query\+Param(\char`\"{}fecha\char`\"{}) Date fecha, @Query\+Param(\char`\"{}hora\char`\"{}) Time hora, @Query\+Param(\char`\"{}num\+Personas\char`\"{}) int num\+Personas)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a5c97b307d4c5de3d50e55dc591ddb8a5}{hay\+Mesa\+Librebool}} (Date fecha, Time hora, int num\+Personas)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_aa99fe2274943e87998a1065d80a68b62}{actualizar\+Reserva}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{Reserva\+Data}} reserva\+Data)
+\item 
+Response \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a063cd8a2dfd96999b5d923ac29b691f4}{cancelar\+Reserva}} (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{Reserva\+Data}} reservadata)
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}} \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a60623e40cbafe059e8ebedc23be61aca}{get\+User\+By\+Username}} (String username)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final Logger \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}} = Log\+Manager.\+get\+Logger()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00024}{24}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a46d2d25355fdbc4143383b83b7ea404f}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a46d2d25355fdbc4143383b83b7ea404f}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!Resource@{Resource}}
+\index{Resource@{Resource}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{Resource()}{Resource()}}
+{\footnotesize\ttfamily es.\+deusto.\+spq.\+server.\+Resource.\+Resource (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00032}{32}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_aa99fe2274943e87998a1065d80a68b62}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_aa99fe2274943e87998a1065d80a68b62}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!actualizarReserva@{actualizarReserva}}
+\index{actualizarReserva@{actualizarReserva}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{actualizarReserva()}{actualizarReserva()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+actualizar\+Reserva (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{Reserva\+Data}}}]{reserva\+Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00425}{425}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a063cd8a2dfd96999b5d923ac29b691f4}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a063cd8a2dfd96999b5d923ac29b691f4}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!cancelarReserva@{cancelarReserva}}
+\index{cancelarReserva@{cancelarReserva}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{cancelarReserva()}{cancelarReserva()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+cancelar\+Reserva (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{Reserva\+Data}}}]{reservadata }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00468}{468}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ad24624facb377f94021cc87191390f57}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ad24624facb377f94021cc87191390f57}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!getNotifications@{getNotifications}}
+\index{getNotifications@{getNotifications}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{getNotifications()}{getNotifications()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+get\+Notifications (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}}]{user\+Param }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00294}{294}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a18ee1d9c5fadf28e3f498e3b9b3977c1}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a18ee1d9c5fadf28e3f498e3b9b3977c1}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!getReservas@{getReservas}}
+\index{getReservas@{getReservas}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{getReservas()}{getReservas()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+get\+Reservas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00333}{333}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a60623e40cbafe059e8ebedc23be61aca}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a60623e40cbafe059e8ebedc23be61aca}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!getUserByUsername@{getUserByUsername}}
+\index{getUserByUsername@{getUserByUsername}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{getUserByUsername()}{getUserByUsername()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}} es.\+deusto.\+spq.\+server.\+Resource.\+get\+User\+By\+Username (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00502}{502}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a261fe19c3036764436ee5a08b5c219a5}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a261fe19c3036764436ee5a08b5c219a5}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!hayMesaLibre@{hayMesaLibre}}
+\index{hayMesaLibre@{hayMesaLibre}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{hayMesaLibre()}{hayMesaLibre()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+hay\+Mesa\+Libre (\begin{DoxyParamCaption}\item[{@Query\+Param(\char`\"{}fecha\char`\"{}) Date}]{fecha,  }\item[{@Query\+Param(\char`\"{}hora\char`\"{}) Time}]{hora,  }\item[{@Query\+Param(\char`\"{}num\+Personas\char`\"{}) int}]{num\+Personas }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00384}{384}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a5c97b307d4c5de3d50e55dc591ddb8a5}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a5c97b307d4c5de3d50e55dc591ddb8a5}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!hayMesaLibrebool@{hayMesaLibrebool}}
+\index{hayMesaLibrebool@{hayMesaLibrebool}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{hayMesaLibrebool()}{hayMesaLibrebool()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+spq.\+server.\+Resource.\+hay\+Mesa\+Librebool (\begin{DoxyParamCaption}\item[{Date}]{fecha,  }\item[{Time}]{hora,  }\item[{int}]{num\+Personas }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00391}{391}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a57cce8b004a3670d6ddb3609e601ec4f}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a57cce8b004a3670d6ddb3609e601ec4f}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!loginUser@{loginUser}}
+\index{loginUser@{loginUser}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{loginUser()}{loginUser()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+login\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{User\+Data}}}]{user\+Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00122}{122}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a52e956b2f7b502b48882c3566746c73c}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a52e956b2f7b502b48882c3566746c73c}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!logout@{logout}}
+\index{logout@{logout}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{logout()}{logout()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+logout (\begin{DoxyParamCaption}\item[{long}]{token }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00173}{173}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1d04a5245c55fcba551b8b0e74f32d5}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1d04a5245c55fcba551b8b0e74f32d5}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!realizarNota@{realizarNota}}
+\index{realizarNota@{realizarNota}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{realizarNota()}{realizarNota()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+realizar\+Nota (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{Nota\+Data}}}]{nota\+Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00268}{268}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a7df710c1672fe26f69c1d4a46663d07e}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a7df710c1672fe26f69c1d4a46663d07e}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!realizarNotificacion@{realizarNotificacion}}
+\index{realizarNotificacion@{realizarNotificacion}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{realizarNotificacion()}{realizarNotificacion()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+realizar\+Notificacion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{Notificacion\+Data}}}]{notificacion\+Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00242}{242}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1c1f01b3020ddb02411a90104394fbe}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1c1f01b3020ddb02411a90104394fbe}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!realizarReserva@{realizarReserva}}
+\index{realizarReserva@{realizarReserva}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{realizarReserva()}{realizarReserva()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+realizar\+Reserva (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{Reserva\+Data}}}]{reserva\+Data,  }\item[{@Header\+Param(\char`\"{}Authorization\char`\"{}) String}]{authorization\+Header }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00199}{199}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a98f20b6ab5dbe483e0abd1599fb88205}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a98f20b6ab5dbe483e0abd1599fb88205}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!registerUser@{registerUser}}
+\index{registerUser@{registerUser}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{registerUser()}{registerUser()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+register\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{User\+Data}}}]{user\+Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00082}{82}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a17e64e621b3e8425fb5314238355853d}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a17e64e621b3e8425fb5314238355853d}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!sayHello@{sayHello}}
+\index{sayHello@{sayHello}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{sayHello()}{sayHello()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+say\+Hello (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00327}{327}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a517f7d02a837d1fea77e0a14858e88cd}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a517f7d02a837d1fea77e0a14858e88cd}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!sayMessage@{sayMessage}}
+\index{sayMessage@{sayMessage}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{sayMessage()}{sayMessage()}}
+{\footnotesize\ttfamily Response es.\+deusto.\+spq.\+server.\+Resource.\+say\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_direct_message}{Direct\+Message}}}]{direct\+Message }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00043}{43}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}\label{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}} 
+\index{es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}!logger@{logger}}
+\index{logger@{logger}!es.deusto.spq.server.Resource@{es.deusto.spq.server.Resource}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily final Logger es.\+deusto.\+spq.\+server.\+Resource.\+logger = Log\+Manager.\+get\+Logger()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_resource_8java_source_l00026}{26}} of file \mbox{\hyperlink{_resource_8java_source}{Resource.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Pasar/\+Universidad/\+SPQ-\/\+Repo/src/main/java/es/deusto/spq/server/\mbox{\hyperlink{_resource_8java}{Resource.\+java}}\end{DoxyCompactItemize}

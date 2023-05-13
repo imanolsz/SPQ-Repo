@@ -1,0 +1,39 @@
+\hypertarget{_auth_response_8java_source}{}\doxysection{Auth\+Response.\+java}
+\label{_auth_response_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/AuthResponse.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/AuthResponse.java}}
+\mbox{\hyperlink{_auth_response_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00001}\mbox{\hyperlink{namespacees_1_1deusto_1_1spq_1_1client}{00001}}\ \textcolor{keyword}{package\ }es.deusto.spq.client;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00004}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response}{00004}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response}{AuthResponse}}\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{private}\ String\ token;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00006}00006\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{boolean}\ isAdmin;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00008}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a0db2869114d85ecd96b4f32b5924af0a}{00008}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a0db2869114d85ecd96b4f32b5924af0a}{AuthResponse}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor\ sin\ argumentos\ requerido\ por\ Jackson\ para\ deserializar\ el\ objeto.}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00010}00010\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00012}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a169dbd991c29998d9541690773f43c92}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a169dbd991c29998d9541690773f43c92}{AuthResponse}}(String\ token,\ \textcolor{keywordtype}{boolean}\ isAdmin)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ this.token\ =\ token;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ this.isAdmin\ =\ isAdmin;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00017}00017\ \ \ \ \ \textcolor{comment}{//Devuelve\ el\ token\ en\ forma\ de\ String}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00018}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a637da969847ec969847a673b3a339e8e}{00018}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a637da969847ec969847a673b3a339e8e}{getToken}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ token;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00022}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_ac457b06dddaad8ef3d0c5a8fe0bc2cd0}{00022}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_ac457b06dddaad8ef3d0c5a8fe0bc2cd0}{setToken}}(String\ token)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ this.token\ =\ token;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00026}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a0e71541fa3fed4d5d72090b6f901b926}{00026}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_a0e71541fa3fed4d5d72090b6f901b926}{isAdmin}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isAdmin;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00030}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_af321466198f6096cdc37671b2528b60c}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_auth_response_af321466198f6096cdc37671b2528b60c}{setAdmin}}(\textcolor{keywordtype}{boolean}\ isAdmin)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ this.isAdmin\ =\ isAdmin;}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_response_8java_source_l00033}00033\ \}}
+
+\end{DoxyCode}

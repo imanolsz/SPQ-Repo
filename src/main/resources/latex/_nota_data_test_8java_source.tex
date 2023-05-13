@@ -1,0 +1,54 @@
+\hypertarget{_nota_data_test_8java_source}{}\doxysection{Nota\+Data\+Test.\+java}
+\label{_nota_data_test_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/pojo/NotaDataTest.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/pojo/NotaDataTest.java}}
+\mbox{\hyperlink{_nota_data_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.pojo;}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00003}00003\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.junit.Assert.assertEquals;}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.junit.Test;}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00009}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_test}{00009}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_test}{NotaDataTest}}\ \{}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00011}00011\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00012}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_test_a973b28e56cbaa24da8382baae6e8dd5a}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_test_a973b28e56cbaa24da8382baae6e8dd5a}{testConstructorAndGetters}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ String\ asunto\ =\ \textcolor{stringliteral}{"{}asunto"{}};}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ String\ contenido\ =\ \textcolor{stringliteral}{"{}contenido"{}};}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ Date\ fecha\ =\ \textcolor{keyword}{new}\ Date();}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ Long\ idNota\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{NotaData}}\ notaData\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{NotaData}}(asunto,\ contenido,\ fecha,\ idNota);}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ assertEquals(asunto,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_a55c1445fec80362bb838da96e070bf55}{getAsunto}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ assertEquals(contenido,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_aced6f74053d3fbd683364d78fd32c514}{getContenido}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ assertEquals(fecha,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_a9b5a32f970a519f183b2717dcaedd451}{getFecha}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ assertEquals(idNota,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_a9a81219449f1b81c567a58d5cab154f9}{getIDNota}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00024}00024\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00025}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_test_a062022d2e336db849fe8281b1deeb2df}{00025}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_test_a062022d2e336db849fe8281b1deeb2df}{testSetters}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{NotaData}}\ notaData\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{NotaData}}();}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ String\ asunto\ =\ \textcolor{stringliteral}{"{}asunto"{}};}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ String\ contenido\ =\ \textcolor{stringliteral}{"{}contenido"{}};}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ Date\ fecha\ =\ \textcolor{keyword}{new}\ Date();}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ Long\ idNota\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_ab117f89d952d405c4720411cc874b1b1}{setAsunto}}(asunto);}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_ab5c67f12eb2fe4ff6f74a8a6dab8e33a}{setContenido}}(contenido);}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_a2074bcf466e59c935b80a9899c4114a1}{setFecha}}(fecha);}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_ae4d905f0a0d0728514f22cf1b88e6ec7}{setIDNota}}(idNota);}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ assertEquals(asunto,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_a55c1445fec80362bb838da96e070bf55}{getAsunto}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ assertEquals(contenido,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_aced6f74053d3fbd683364d78fd32c514}{getContenido}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ assertEquals(fecha,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_a9b5a32f970a519f183b2717dcaedd451}{getFecha}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ assertEquals(idNota,\ notaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_a9a81219449f1b81c567a58d5cab154f9}{getIDNota}}());}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ @Test}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ public\ void\ testGuardarNotaDataBD()\ \{}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ NotaData\ notaData\ =\ new\ NotaData("{}asunto"{},\ "{}contenido"{},\ new\ Date(),\ 1L);}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ NotaData.guardarNotaDataBD(notaData);}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ TODO:\ comprobar\ que\ la\ nota\ se\ ha\ guardado\ correctamente\ en\ la\ base\ de\ datos}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_nota_data_test_8java_source_l00048}00048\ \}}
+
+\end{DoxyCode}

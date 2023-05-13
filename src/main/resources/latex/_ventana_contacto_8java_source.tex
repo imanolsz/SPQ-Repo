@@ -1,0 +1,99 @@
+\hypertarget{_ventana_contacto_8java_source}{}\doxysection{Ventana\+Contacto.\+java}
+\label{_ventana_contacto_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaContacto.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaContacto.java}}
+\mbox{\hyperlink{_ventana_contacto_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.client.gui;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00003}00003\ \textcolor{keyword}{import}\ es.deusto.spq.main.Main;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.awt.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.net.URL;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00007}00007\ \textcolor{keyword}{import}\ javax.swing.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00008}00008\ \textcolor{keyword}{import}\ java.awt.event.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00010}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_contacto}{00010}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_contacto}{VentanaContacto}}\ \textcolor{keyword}{extends}\ JFrame\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{long}\ serialVersionUID\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//\ private\ Thread\ t;}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00016}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_contacto_a17cb76b509e747e8cd09ad5885cbb859}{00016}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_contacto_a17cb76b509e747e8cd09ad5885cbb859}{VentanaContacto}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ setDefaultCloseOperation(JFrame.DISPOSE\_ON\_CLOSE);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ setTitle(\textcolor{stringliteral}{"{}CONTACTO"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ setSize(800,\ 600);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ setLocationRelativeTo(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ JPanel\ panel\ =\ \textcolor{keyword}{new}\ JPanel();}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ panel.setLayout(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ panel.setBackground(Color.decode(\textcolor{stringliteral}{"{}\#e0a370"{}}));}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ JLabel\ direccionLabel\ =\ \textcolor{keyword}{new}\ JLabel(\textcolor{stringliteral}{"{}Direción:"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ direccionLabel.setBounds(120,\ 120,\ 100,\ 20);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ direccionLabel.setForeground(Color.black);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ panel.add(direccionLabel);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ JTextArea\ direccionTextArea\ =\ \textcolor{keyword}{new}\ JTextArea(\textcolor{stringliteral}{"{}\ SAN\ FRANTZISKO\ KALEA,\ 10,\ 48003\ BILBO,\ BIZKAIA"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ direccionTextArea.setEditable(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ direccionTextArea.setBounds(240,\ 120,\ 300,\ 20);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ direccionTextArea.setForeground(Color.blue);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ direccionTextArea.setBackground(Color.decode(\textcolor{stringliteral}{"{}\#e0a370"{}}));}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ panel.add(direccionTextArea);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ JLabel\ telefonoLabel\ =\ \textcolor{keyword}{new}\ JLabel(\textcolor{stringliteral}{"{}Teléfono:"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ telefonoLabel.setBounds(120,\ 220,\ 100,\ 20);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ telefonoLabel.setForeground(Color.black);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ panel.add(telefonoLabel);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ JButton\ BAtras\ =\ \textcolor{keyword}{new}\ JButton();}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Código\ ejemplo\ para\ importar\ una\ foto}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \ URL\ urlImagenA\ =\ getClass().getResource(\textcolor{stringliteral}{"{}/fotos/atras.png"{}});\ \textcolor{comment}{//\ Obtener\ URL\ de\ la\ imagen}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ ImageIcon\ imagenA\ =\ \textcolor{keyword}{new}\ ImageIcon(urlImagenA);\ \textcolor{comment}{//\ Crear\ ImageIcon\ a\ partir\ de\ la\ URL}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \ BAtras.setBounds(100,\ 100,\ 50,\ 50);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \ Icon\ imagA\ =\ \textcolor{keyword}{new}\ ImageIcon(imagenA.getImage().getScaledInstance(BAtras.getWidth(),\ BAtras.getHeight(),\ Image.SCALE\_DEFAULT));\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \ BAtras.setIcon(imagA);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ getContentPane().add(BAtras,\ BorderLayout.SOUTH);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ JTextArea\ telefonoTextArea\ =\ \textcolor{keyword}{new}\ JTextArea(\textcolor{stringliteral}{"{}684156979"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ telefonoTextArea.setEditable(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ telefonoTextArea.setBounds(240,\ 220,\ 200,\ 20);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ telefonoTextArea.setForeground(Color.blue);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ telefonoTextArea.setBackground(Color.decode(\textcolor{stringliteral}{"{}\#e0a370"{}}));}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ panel.add(telefonoTextArea);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ JLabel\ mapaLabel\ =\ \textcolor{keyword}{new}\ JLabel(\textcolor{stringliteral}{"{}MAPA:"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ mapaLabel.setBounds(123,\ 320,\ 100,\ 20);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ mapaLabel.setForeground(Color.black);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ panel.add(mapaLabel);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00066}00066\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ URL\ urlImagenMapa\ =\ getClass().getResource(\textcolor{stringliteral}{"{}/fotos/imagenMapa.png"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ ImageIcon\ imagenMapa\ =\ \textcolor{keyword}{new}\ ImageIcon(urlImagenMapa);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reducir\ el\ tamaño\ de\ la\ imagen\ a\ 1/4\ de\ su\ tamaño\ original}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newWidth\ =\ imagenMapa.getIconWidth()\ /\ 4;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newHeight\ =\ imagenMapa.getIconHeight()\ /\ 4;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ Image\ scaledImage\ =\ imagenMapa.getImage().getScaledInstance(newWidth,\ newHeight,\ Image.SCALE\_SMOOTH);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ ImageIcon\ scaledIcon\ =\ \textcolor{keyword}{new}\ ImageIcon(scaledImage);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ JLabel\ etiquetaImgMapa\ =\ \textcolor{keyword}{new}\ JLabel(scaledIcon);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ajustar\ las\ coordenadas\ X\ e\ Y\ de\ etiquetaImgMapa\ para\ que\ esté\ a\ la\ derecha\ de\ mapaLabel}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newX\ =\ mapaLabel.getX()\ +\ mapaLabel.getWidth()\ +\ 20;}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newY\ =\ mapaLabel.getY();}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ etiquetaImgMapa.setBounds(newX,\ newY,\ newWidth,\ newHeight);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ panel.add(etiquetaImgMapa);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ BAtras.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaMenu().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \});\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ getContentPane().add(panel);}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_contacto_8java_source_l00093}00093\ \}}
+
+\end{DoxyCode}

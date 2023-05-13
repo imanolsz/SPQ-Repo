@@ -1,0 +1,52 @@
+\hypertarget{_notificacion_data_test_8java_source}{}\doxysection{Notificacion\+Data\+Test.\+java}
+\label{_notificacion_data_test_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/pojo/NotificacionDataTest.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/pojo/NotificacionDataTest.java}}
+\mbox{\hyperlink{_notificacion_data_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.pojo;}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00003}00003\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.junit.Assert.*;}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00004}00004\ \textcolor{keyword}{import}\ org.junit.Test;}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00007}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_test}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_test}{NotificacionDataTest}}\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00009}00009\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00010}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_test_a78357513ae7d56dd0d3a48509da8beec}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_test_a78357513ae7d56dd0d3a48509da8beec}{testConstructorAndGetters}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00011}00011\ \ \ \ \ \ \ \ \ String\ asunto\ =\ \textcolor{stringliteral}{"{}asunto"{}};}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00012}00012\ \ \ \ \ \ \ \ \ String\ contenido\ =\ \textcolor{stringliteral}{"{}contenido"{}};}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ Date\ fecha\ =\ \textcolor{keyword}{new}\ Date();}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ Long\ idNotificacion\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{NotificacionData}}\ notificacionData\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{NotificacionData}}(asunto,\ contenido,\ fecha,\ idNotificacion);}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ assertEquals(asunto,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a76b27f40974f77b71755d0a9e5d51c66}{getAsunto}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ assertEquals(contenido,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a43ae5f579d2a0546b17ea13a9720f4da}{getContenido}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ assertEquals(fecha,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a48421dcf50220601e4484e3f6ff46143}{getFecha}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ assertEquals(idNotificacion,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a9b5e07f526a1f079eb671bd38c419798}{getIDNotificacion}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00022}00022\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00023}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_test_aa2fde5cf5ed5e8c9c6517fe70653aafb}{00023}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_test_aa2fde5cf5ed5e8c9c6517fe70653aafb}{testSetters}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{NotificacionData}}\ notificacionData\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{NotificacionData}}();}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ String\ asunto\ =\ \textcolor{stringliteral}{"{}asunto"{}};}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ String\ contenido\ =\ \textcolor{stringliteral}{"{}contenido"{}};}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ Date\ fecha\ =\ \textcolor{keyword}{new}\ Date();}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ Long\ idNotificacion\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_aca6a7613e350ef5a0827c3b7a376c2a3}{setAsunto}}(asunto);}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a36a617d2625c743d1854a4377fb8c872}{setContenido}}(contenido);}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_aab281c77d2e61e11caa54ff8fcb83425}{setFecha}}(fecha);}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a27205da3d72602c3eba93362beb5d13b}{setIDNotificacion}}(idNotificacion);}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ assertEquals(asunto,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a76b27f40974f77b71755d0a9e5d51c66}{getAsunto}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ assertEquals(contenido,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a43ae5f579d2a0546b17ea13a9720f4da}{getContenido}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ assertEquals(fecha,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a48421dcf50220601e4484e3f6ff46143}{getFecha}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ assertEquals(idNotificacion,\ notificacionData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a9b5e07f526a1f079eb671bd38c419798}{getIDNotificacion}}());}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ @Test}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ public\ void\ testGuardarNotificacionDataBD()\ \{}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ NotificacionData\ notificacionData\ =\ new\ NotificacionData("{}asunto"{},\ "{}contenido"{},\ new\ Date(),\ 1L);}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ NotificacionData.guardarNotificacionDataBD(notificacionData);}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ TODO:\ comprobar\ que\ la\ notificación\ se\ ha\ guardado\ correctamente\ en\ la\ base\ de\ datos}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_data_test_8java_source_l00046}00046\ \}}
+
+\end{DoxyCode}

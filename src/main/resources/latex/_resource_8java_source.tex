@@ -1,0 +1,526 @@
+\hypertarget{_resource_8java_source}{}\doxysection{Resource.\+java}
+\label{_resource_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/Resource.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/Resource.java}}
+\mbox{\hyperlink{_resource_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.server;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.rmi.RemoteException;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.sql.Date;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.sql.Time;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.*;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00007}00007\ \textcolor{keyword}{import}\ java.util.stream.Collectors;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00009}00009\ \textcolor{keyword}{import}\ javax.jdo.*;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00011}00011\ \textcolor{keyword}{import}\ es.deusto.spq.pojo.*;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00012}00012\ \textcolor{keyword}{import}\ es.deusto.spq.server.jdo.*;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00014}00014\ \textcolor{keyword}{import}\ javax.ws.rs.*;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00015}00015\ \textcolor{keyword}{import}\ javax.ws.rs.core.*;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00016}00016\ \textcolor{keyword}{import}\ javax.ws.rs.core.Response.Status;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00017}00017\ \textcolor{keyword}{import}\ javax.inject.Singleton;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00019}00019\ \textcolor{keyword}{import}\ org.apache.logging.log4j.*;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00021}00021\ @Path(\textcolor{stringliteral}{"{}/resource"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00022}00022\ @Produces(MediaType.APPLICATION\_JSON)}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00023}00023\ @Singleton}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00024}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource}{00024}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource}{Resource}}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00026}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{00026}}\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ Logger\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}\ =\ LogManager.getLogger();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Map<Long,\ User>\ serverState\ =\ \textcolor{keyword}{new}\ HashMap<>();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ cont\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{private}\ PersistenceManager\ pm=\ \textcolor{keyword}{null};\ \textcolor{comment}{//\ Una\ instancia\ de\ una\ consulta,\ objeto\ que\ representa\ una\ consulta\ en\ una\ base\ de\ datos}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{private}\ Transaction\ tx=\textcolor{keyword}{null};\ \textcolor{comment}{//\ Una\ transacción\ es\ un\ conjunto\ de\ operaciones\ que\ se\ realizan\ sobre\ una\ base\ de\ datos,\ y\ que\ se\ consideran\ como\ una\ única\ unidad\ de\ trabajo.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00032}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a46d2d25355fdbc4143383b83b7ea404f}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a46d2d25355fdbc4143383b83b7ea404f}{Resource}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ PersistenceManagerFactory\ pmf\ =\ JDOHelper.getPersistenceManagerFactory(\textcolor{stringliteral}{"{}datanucleus.properties"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ this.pm\ =\ pmf.getPersistenceManager();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.tx\ !=\ \textcolor{keyword}{null}\ \&\&\ this.tx.isActive())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ this.tx\ =\ pm.currentTransaction();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00041}00041\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00042}00042\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/sayMessage"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00043}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a517f7d02a837d1fea77e0a14858e88cd}{00043}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a517f7d02a837d1fea77e0a14858e88cd}{sayMessage}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_direct_message}{DirectMessage}}\ directMessage)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Creating\ query\ ..."{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (Query<?>\ q\ =\ pm.newQuery(\textcolor{stringliteral}{"{}SELECT\ FROM\ "{}}\ +\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}.class.getName()\ +\ \textcolor{stringliteral}{"{}\ WHERE\ login\ ==\ \(\backslash\)"{}"{}}\ +\ directMessage.getUserData().\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a4b9c236ed45a67c9ae02812fe242c30b}{getId}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ \&\&\ \ password\ ==\ \(\backslash\)"{}"{}}\ +\ directMessage.getUserData().getPassword()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.setUnique(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\ =\ (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}})q.execute();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}User\ retrieved:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user\ !=\ \textcolor{keyword}{null})\ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{Message}}\ message\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{Message}}(directMessage.getMessageData().getMessage());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a3192b0c23e25df30b95923c5f9778ca6}{getMessages}}().add(message);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pm.makePersistent(user);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ tx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ cont++;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}\ *\ Client\ number:\ \{\}"{}},\ cont);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_message_data}{MessageData}}\ messageData\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_message_data}{MessageData}}();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ messageData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_message_data_ad30b3ad9f73b02847db6f226abef4b5f}{setMessage}}(directMessage.getMessageData().getMessage());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok(messageData).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Status.BAD\_REQUEST).entity(\textcolor{stringliteral}{"{}Login\ details\ supplied\ for\ message\ delivery\ are\ not\ correct"{}}).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00079}00079\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00080}00080\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00081}00081\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/register"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00082}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a98f20b6ab5dbe483e0abd1599fb88205}{00082}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a98f20b6ab5dbe483e0abd1599fb88205}{registerUser}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{UserData}}\ userData)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ Transaction\ localTx\ =\ pm.currentTransaction();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!localTx.isActive())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ localTx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Checking\ whether\ the\ user\ already\ exits\ or\ not:\ '\{\}'"{}},\ userData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\ =\ pm.getObjectById(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}.class,\ userData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a4b9c236ed45a67c9ae02812fe242c30b}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (javax.jdo.JDOObjectNotFoundException\ jonfe)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Exception\ launched:\ \{\}"{}},\ jonfe.getMessage());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}User:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Usuario\ ya\ registrado:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}objt\ creado"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}(userData.getId(),\ userData.getPassword());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Creating\ user:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pm.makePersistent(user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//User\ retrievedUser\ =\ getUserByUsername("{}username"{});}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ (retrievedUser\ !=\ null)\ \{}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ System.out.println("{}El\ usuario\ ha\ sido\ creado\ exitosamente."{});}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\}\ else\ \{}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ System.out.println("{}El\ usuario\ no\ se\ pudo\ crear."{});}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\}}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}User\ created:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ localTx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTx.isActive())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ localTx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00119}00119\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00120}00120\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00121}00121\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/login"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00122}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a57cce8b004a3670d6ddb3609e601ec4f}{00122}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a57cce8b004a3670d6ddb3609e601ec4f}{loginUser}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{UserData}}\ userData)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Checking\ whether\ the\ user\ already\ exists\ or\ not:\ '\{\}'"{}},\ userData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\ =\ pm.getObjectById(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}.class,\ userData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a4b9c236ed45a67c9ae02812fe242c30b}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (javax.jdo.JDOObjectNotFoundException\ jonfe)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Exception\ launched:\ \{\}"{}},\ jonfe.getMessage());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user\ !=\ \textcolor{keyword}{null}\ \&\&\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_aadf23ccdcdb208d59cc858e2dce85769}{getPassword}}().equals(userData.getPassword()))\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (Query<?>\ q\ =\ pm.newQuery(\textcolor{stringliteral}{"{}SELECT\ FROM\ "{}}\ +\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}.class.getName()\ +\ \textcolor{stringliteral}{"{}\ WHERE\ id\ ==\ \(\backslash\)"{}"{}}\ +\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a4b9c236ed45a67c9ae02812fe242c30b}{getId}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ \&\&\ password\ ==\ \(\backslash\)"{}"{}}\ +\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_aadf23ccdcdb208d59cc858e2dce85769}{getPassword}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ \&\&\ admin\ ==\ "{}}\ +\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_aac856d350acfeddaf0913a6c5608a5c3}{isAdmin}}()))\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.setUnique(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\ =\ (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}})q.execute();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}User:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pm.makePersistent(user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Long\ token\ =\ Calendar.getInstance().getTimeInMillis();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.serverState.put(token,\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_aac856d350acfeddaf0913a6c5608a5c3}{isAdmin}}())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Admin\ logged:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().entity(\textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}(token.toString(),\ \textcolor{keyword}{true})).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}User\ logged:\ \{\}"{}},\ user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().entity(\textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}(token.toString(),\ \textcolor{keyword}{false})).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}User\ not\ found"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Response.Status.NOT\_FOUND).entity(\textcolor{stringliteral}{"{}User\ not\ found"{}}).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Response.Status.INTERNAL\_SERVER\_ERROR).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(user\ !=\ \textcolor{keyword}{null}\ \&\&\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_aadf23ccdcdb208d59cc858e2dce85769}{getPassword}}().equals(userData.getPassword())\ ==\ false\ )\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Incorrect\ password\ for\ user\ '\{\}'"{}},\ userData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Response.Status.UNAUTHORIZED).entity(\textcolor{stringliteral}{"{}Incorrect\ password"{}}).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Incorrect\ user\ '\{\}'"{}},\ userData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Response.Status.UNAUTHORIZED).entity(\textcolor{stringliteral}{"{}Incorrect\ User"{}}).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00163}00163\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00167}00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00168}00168\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00169}00169\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00170}00170\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00171}00171\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00172}00172\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/logout"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00173}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a52e956b2f7b502b48882c3566746c73c}{00173}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a52e956b2f7b502b48882c3566746c73c}{logout}}(\textcolor{keywordtype}{long}\ token)\ throws\ RemoteException\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00175}00175\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.serverState.containsKey(token))\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Logout\ means\ remove\ the\ User\ from\ Server\ State}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.serverState.remove(token);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RemoteException(\textcolor{stringliteral}{"{}User\ is\ not\ logged\ in!"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ tx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00186}00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00188}00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00193}00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00194}00194\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00197}00197\ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00198}00198\ @Path(\textcolor{stringliteral}{"{}/realizarReserva"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00199}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1c1f01b3020ddb02411a90104394fbe}{00199}}\ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1c1f01b3020ddb02411a90104394fbe}{realizarReserva}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{ReservaData}}\ reservaData,\ @HeaderParam("{}Authorization"{})\ String\ authorizationHeader)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00200}00200\ \ \ \ \ \textcolor{keywordflow}{try}\ \{\ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00201}00201\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}\ reserva\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00202}00202\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_pedido}{Pedido}}\ pedido\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00203}00203\ \ \ \ \ \ \ \ \ List<DetallePedido>\ alimentos\ =\ \textcolor{keyword}{new}\ ArrayList<>();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00204}00204\ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Desenmascarar\ usuario\ activo}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00206}00206\ \ \ \ \ \ \ \ \ String\ tokenString\ =\ authorizationHeader.substring(\textcolor{stringliteral}{"{}Bearer\ "{}}.length()).trim();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ token\ =\ Long.parseLong(tokenString);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00208}00208\ \ \ \ \ \ \ \ \ System.out.println(token);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00209}00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ foundUser\ =\ serverState.get(token);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00210}00210\ \ \ \ \ \ \ \ \ System.out.println(foundUser);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.serverState.containsKey(token))\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ usuario\ =\ this.serverState.get(token);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(usuario.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a4b9c236ed45a67c9ae02812fe242c30b}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ reserva\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}(reservaData.getFecha(),\ reservaData.getHora(),\ reservaData.getNumPersonas(),\ reservaData.getCancelada(),\ reservaData.getEspecificacion(),\ reservaData.getAparcamiento(),usuario);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ pedido\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_pedido}{Pedido}}(\textcolor{keyword}{new}\ ArrayList<DetallePedido>(),\ reserva);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_detalle_pedido_data}{DetallePedidoData}}\ detallePedidoData\ :\ reservaData.getPedido().getListaAlimentos())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_detalle_pedido}{DetallePedido}}\ detallePedido\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_detalle_pedido}{DetallePedido}}(detallePedidoData.getAlimento(),detallePedidoData.getCantidad(),pedido);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pedido.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_pedido_a2321028b616e67d2afb533f36b843a46}{getlistaAlimentos}}().add(detallePedido);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00220}00220\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00221}00221\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Realizando\ reserva:\ '\{\}'"{}},\ reservaData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00222}00222\ \ \ \ \ \ \ \ \ pm.makePersistent(reserva);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00223}00223\ \ \ \ \ \ \ \ \ pm.makePersistent(pedido);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_detalle_pedido}{DetallePedido}}\ alimento\ :\ alimentos)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ pm.makePersistent(alimento);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00226}00226\ \ \ \ \ \ \ \ \ \}\}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}No\ se\ ha\ podido\ hacer\ la\ reserva\ :\ '\{\}'"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00228}00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00229}00229\ \ \ \ \ \ \ \ \ tx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00231}00231\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00232}00232\ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00235}00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00236}00236\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00237}00237\ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00240}00240\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00241}00241\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/realizarNotificacion"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00242}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a7df710c1672fe26f69c1d4a46663d07e}{00242}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a7df710c1672fe26f69c1d4a46663d07e}{realizarNotificacion}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{NotificacionData}}\ notificacionData\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00243}00243\ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}JEJEJEJE"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00244}00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00245}00245\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion}{Notificacion}}\ notificacion\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//paso\ de\ notificacionData\ a\ notificacion}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ notificacion\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion}{Notificacion}}(notificacionData.getAsunto(),\ notificacionData.getContenido(),\ notificacionData.getFecha(),notificacionData.getIDNotificacion());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Realizando\ notificacion:\ '\{\}'"{}},\ notificacionData.getIDNotificacion());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ pm.makePersistent(notificacion);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ tx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data}{NotificacionData}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_notificacion_data_a48e8064c68b581d4ac042bf6df1c7002}{guardarNotificacionDataBD}}(notificacionData);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00255}00255\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00257}00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00262}00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00263}00263\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00266}00266\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00267}00267\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/realizarNota"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00268}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1d04a5245c55fcba551b8b0e74f32d5}{00268}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ae1d04a5245c55fcba551b8b0e74f32d5}{realizarNota}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{NotaData}}\ notaData\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00269}00269\ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}JEJEJEJE"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00271}00271\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_nota}{Nota}}\ nota\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//paso\ de\ notificacionData\ a\ notificacion}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ nota\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_nota}{Nota}}(notaData.getAsunto(),\ notaData.getContenido(),\ notaData.getFecha(),notaData.getIDNota());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Realizando\ notificacion:\ '\{\}'"{}},\ notaData.getIDNota());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ pm.makePersistent(nota);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ tx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data}{NotaData}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_nota_data_aa5d67760e6891428401445ea8880d76b}{guardarNotaDataBD}}(notaData);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00281}00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00283}00283\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00288}00288\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00289}00289\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00292}00292\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00293}00293\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/getNotifications"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00294}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ad24624facb377f94021cc87191390f57}{00294}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_ad24624facb377f94021cc87191390f57}{getNotifications}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ userParam)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00295}00295\ \ \ \ \ \ \ \ \ List<Notificacion>\ notifications\ =\ \textcolor{keyword}{new}\ ArrayList<>();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00296}00296\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00297}00297\ \ \ \ \ \ \ \ \ PersistenceManagerFactory\ pmf\ =\ JDOHelper.getPersistenceManagerFactory(\textcolor{stringliteral}{"{}datanucleus.properties"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00298}00298\ \ \ \ \ \ \ \ \ PersistenceManager\ pm\ =\ pmf.getPersistenceManager();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00299}00299\ \ \ \ \ \ \ \ \ Transaction\ tx\ =\ pm.currentTransaction();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00300}00300\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00301}00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ find\ in\ notification\ where\ userParam.getId\ is\ equal\ to\ IDNotificacion}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ Query<Notificacion>\ query\ =\ pm.newQuery(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion}{Notificacion}}.class);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//userParam.setId("{}1"{});}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//query.setFilter("{}IDNOTIFICACION\ ==\ "{}\ +\ Long.parseLong(userParam.getId()));}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ notifications\ =\ query.executeList();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ tx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00310}00310\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}\ \$\ Error\ retrieving\ notifications:\ "{}}\ +\ ex.getMessage());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00312}00312\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ pm.close();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00317}00317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00319}00319\ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}\ \$\ Notifications\ retrieved:\ "{}}\ +\ notifications.size());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00320}00320\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok(notifications).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00322}00322\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00323}00323\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00324}00324\ \ \ \ \ @GET}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00325}00325\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/hello"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00326}00326\ \ \ \ \ @Produces(MediaType.TEXT\_PLAIN)}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00327}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a17e64e621b3e8425fb5314238355853d}{00327}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a17e64e621b3e8425fb5314238355853d}{sayHello}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00328}00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok(\textcolor{stringliteral}{"{}Hello\ world!"{}}).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00329}00329\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00331}00331\ \ \ \ \ @GET}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00332}00332\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/admin/getReservas"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00333}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a18ee1d9c5fadf28e3f498e3b9b3977c1}{00333}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a18ee1d9c5fadf28e3f498e3b9b3977c1}{getReservas}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00334}00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();\ \textcolor{comment}{//\ Comienza\ una\ transacción\ para\ realizar\ operaciones\ en\ la\ base\ de\ datos.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ List<Reserva>\ reservas\ =\ \textcolor{keyword}{new}\ ArrayList<>();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ Query<Reserva>\ query\ =\ pm.newQuery(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}.class);\ \textcolor{comment}{//\ Crea\ una\ instancia\ de\ una\ consulta}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ query.setOrdering(\textcolor{stringliteral}{"{}fecha\ desc,\ hora\ asc"{}});\ \textcolor{comment}{//\ Orden\ de\ la\ consulta,\ Las\ reservas\ se\ ordenan\ primero\ por\ fecha\ y\ luego\ por\ hora}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ reservas\ =\ query.executeList();\ \textcolor{comment}{//\ Ejecuta\ una\ consulta\ en\ la\ base\ de\ datos\ y\ devuelve\ los\ resultados\ en\ forma\ de\ una\ lista\ de\ objetos}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ tx.commit();\ \textcolor{comment}{//\ Confirma\ la\ transacción.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok(reservas).build();\ \textcolor{comment}{//\ Retorna\ una\ respuesta\ HTTP\ 200\ (OK)\ con\ la\ lista\ de\ reservas\ como\ cuerpo\ de\ la\ respuesta.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00342}00342\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.error(\textcolor{stringliteral}{"{}Error\ en\ el\ método\ getReservas:\ "{}},\ e);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Status.INTERNAL\_SERVER\_ERROR).build();\ \textcolor{comment}{//\ Retorna\ una\ respuesta\ HTTP\ 500\ (Internal\ Server\ Error)\ si\ se\ produce\ una\ excepción.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00345}00345\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{\ \textcolor{comment}{//\ Bloque\ finally\ se\ ejecuta\ siempre,\ independientemente\ de\ si\ se\ produce\ una\ excepción\ o\ no.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())\ \{\ \textcolor{comment}{//\ Si\ la\ transacción\ está\ activa\ (si\ no\ se\ realizo\ el\ tx.commit),\ hace\ un\ rollback\ de\ la\ transacción.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();\ \textcolor{comment}{//\ Operación\ que\ revierte\ una\ transacción\ y\ deshace\ todos\ los\ cambios\ realizados\ en\ la\ base\ de\ datos\ desde\ el\ inicio\ de\ la\ misma}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00349}00349\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00350}00350\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00352}00352\ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00353}00353\ \textcolor{comment}{\ \ \ \ \ @GET}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00354}00354\ \textcolor{comment}{\ \ \ \ \ @Path("{}/admin/getReservasFiltradas"{})}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00355}00355\ \textcolor{comment}{\ \ \ \ \ public\ Response\ getReservasFiltradas(Date\ fecha,\ LocalTime\ hora)\ \{}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00356}00356\ \textcolor{comment}{\ \ \ \ \ \ \ \ try\ \{\ }}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00357}00357\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ tx.begin();\ //\ Comienza\ una\ transacción\ para\ realizar\ operaciones\ en\ la\ base\ de\ datos.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00358}00358\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ List<Reserva>\ reservas\ =\ new\ ArrayList<>();}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00359}00359\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Query<Reserva>\ query\ =\ pm.newQuery(Reserva.class);\ //\ Crea\ una\ instancia\ de\ una\ consulta}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00360}00360\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ query.setFilter("{}cancelada\ ==\ true\ ||\ cancelada\ ==\ false"{});\ //\ Filtro\ para\ la\ consulta,\ devolverá\ todas\ las\ reservas,\ tanto\ canceladas\ como\ no\ canceladas}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00361}00361\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ query.setOrdering("{}fecha\ desc,\ hora\ asc"{});\ //\ Orden\ de\ la\ consulta,\ Las\ reservas\ se\ ordenan\ primero\ por\ fecha\ y\ luego\ por\ hora}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00362}00362\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ reservas\ =\ query.executeList();\ //\ Ejecuta\ una\ consulta\ en\ la\ base\ de\ datos\ y\ devuelve\ los\ resultados\ en\ forma\ de\ una\ lista\ de\ objetos}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00363}00363\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ List<Reserva>\ reservasFiltradas\ =\ new\ ArrayList<>();}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00364}00364\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ for\ (Reserva\ reserva\ :\ reservas)\ \{}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00365}00365\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (reserva.getFecha().equals(fecha)\ \&\&\ reserva.getHora().equals(hora))\ \{}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00366}00366\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reservasFiltradas.add(reserva);}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00367}00367\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00368}00368\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00369}00369\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ tx.commit();\ //\ Confirma\ la\ transacción.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00370}00370\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return\ Response.ok(reservasFiltradas).build();\ //\ Retorna\ una\ respuesta\ HTTP\ 200\ (OK)\ con\ la\ lista\ de\ reservas\ como\ cuerpo\ de\ la\ respuesta.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00371}00371\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}\ catch\ (Exception\ e)\ \{}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00372}00372\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ logger.error("{}Error\ en\ el\ método\ getReservas:\ "{},\ e);}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00373}00373\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return\ Response.status(Status.INTERNAL\_SERVER\_ERROR).build();\ //\ Retorna\ una\ respuesta\ HTTP\ 500\ (Internal\ Server\ Error)\ si\ se\ produce\ una\ excepción.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00374}00374\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}\ finally\ \{\ //\ Bloque\ finally\ se\ ejecuta\ siempre,\ independientemente\ de\ si\ se\ produce\ una\ excepción\ o\ no.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00375}00375\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if\ (tx.isActive())\ \{\ //\ Si\ la\ transacción\ está\ activa\ (si\ no\ se\ realizo\ el\ tx.commit),\ hace\ un\ rollback\ de\ la\ transacción.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00376}00376\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();\ //\ Operación\ que\ revierte\ una\ transacción\ y\ deshace\ todos\ los\ cambios\ realizados\ en\ la\ base\ de\ datos\ desde\ el\ inicio\ de\ la\ misma}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00377}00377\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00378}00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00379}00379\ \textcolor{comment}{\ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00380}00380\ \textcolor{comment}{\ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00381}00381\ \ \ \ \ @GET}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00382}00382\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/hayMesaLibre"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00383}00383\ \ \ \ \ @Produces(MediaType.APPLICATION\_JSON)\ \textcolor{comment}{//\ \ Anotación\ que\ indica\ que\ el\ método\ produce\ una\ respuesta\ en\ formato\ JSON.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00384}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a261fe19c3036764436ee5a08b5c219a5}{00384}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a261fe19c3036764436ee5a08b5c219a5}{hayMesaLibre}}(@QueryParam("{}fecha"{})\ Date\ fecha,\ @QueryParam("{}hora"{})\ Time\ hora,\ @QueryParam("{}numPersonas"{})\ \textcolor{keywordtype}{int}\ numPersonas)\ \{\ \textcolor{comment}{//\ Acepta\ tres\ parámetros\ de\ consulta\ HTTP:\ fecha,\ hora\ y\ numPersonas.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00385}00385\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{boolean}\ mesaLibre\ =\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a5c97b307d4c5de3d50e55dc591ddb8a5}{hayMesaLibrebool}}(fecha,\ hora,\ numPersonas);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00386}00386\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().entity(mesaLibre).build();\ \textcolor{comment}{//\ Se\ construye\ y\ se\ devuelve\ la\ respuesta\ HTTP\ completa,\ con\ un\ código\ de\ estado\ "{}200\ OK"{}.\ En\ este\ caso,\ la\ respuesta\ es\ un\ booleano\ mesaLibre\ en\ formato\ JSON.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00387}00387\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00388}00388\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00390}00390\ \ \ \ \ \textcolor{comment}{//\ Booleano\ para\ el\ método\ /hayMesaLibre}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00391}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a5c97b307d4c5de3d50e55dc591ddb8a5}{00391}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a5c97b307d4c5de3d50e55dc591ddb8a5}{hayMesaLibrebool}}(Date\ fecha,\ Time\ hora,\ \textcolor{keywordtype}{int}\ numPersonas)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00392}00392\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ CAPACIDAD\_MAXIMA\_RESTAURANTE\ =\ 100;\ \textcolor{comment}{//\ Ejemplo}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00393}00393\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00394}00394\ \ \ \ \ \ \ \ \ PersistenceManagerFactory\ pmf\ =\ JDOHelper.getPersistenceManagerFactory(\textcolor{stringliteral}{"{}nombreDeLaUnidadDePersistencia"{}});\ \textcolor{comment}{//\ Obtener\ una\ instancia\ de\ PersistenceManagerFactory}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00395}00395\ \ \ \ \ \ \ \ \ PersistenceManager\ pm\ =\ pmf.getPersistenceManager();\ \textcolor{comment}{//\ Se\ crea\ una\ instancia\ del\ objeto\ PersistenceManager,\ que\ se\ utiliza\ para\ interactuar\ con\ la\ base\ de\ datos.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{boolean}\ mesaLibre\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00397}00397\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00398}00398\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obtener\ todas\ las\ reservas\ para\ la\ fecha\ y\ hora\ especificadas\ y\ que\ no\ hayan\ sido\ canceladas}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ Query<Reserva>\ query\ =\ pm.newQuery(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}.class);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ query.setFilter(\textcolor{stringliteral}{"{}fecha\ ==\ fechaParam\ \&\&\ hora\ ==\ horaParam\ \&\&\ cancelada\ ==\ false"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ query.declareParameters(\textcolor{stringliteral}{"{}java.util.Date\ fechaParam,\ java.sql.Time\ horaParam"{}});\ \textcolor{comment}{//\ Declarar\ los\ parámetros\ que\ se\ utilizan\ en\ una\ consulta}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ List<Reserva>\ reservas\ =\ (List<Reserva>)\ query.execute(fecha,\ hora);\ \textcolor{comment}{//\ Se\ ejecuta\ la\ consulta}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00404}00404\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calcular\ el\ número\ de\ personas\ en\ las\ reservas\ encontradas}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numPersonasReservadas\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}\ reserva\ :\ reservas)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numPersonasReservadas\ +=\ reserva.getNumPersonas();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00410}00410\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Comprobar\ si\ hay\ suficiente\ espacio\ para\ la\ nueva\ reserva}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (numPersonasReservadas\ +\ numPersonas\ <=\ CAPACIDAD\_MAXIMA\_RESTAURANTE)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mesaLibre\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00415}00415\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ pm.close();\ \textcolor{comment}{//\ Se\ cierra\ el\ objeto\ PersistenceManager.}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00417}00417\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00418}00418\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00419}00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mesaLibre;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00420}00420\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00423}00423\ \ \ \ \ @GET}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00424}00424\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/admin/setReservas"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00425}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_aa99fe2274943e87998a1065d80a68b62}{00425}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_aa99fe2274943e87998a1065d80a68b62}{actualizarReserva}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{ReservaData}}\ reservaData)\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00426}00426\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}\ reserva\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Comprobando\ que\ la\ reserva\ \{\}\ existe."{}},\ reservaData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reserva\ =\ pm.getObjectById(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}.class,\ reservaData.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a1d63928434b607f7449a7fd6ee3f43f4}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (javax.jdo.JDOObjectNotFoundException\ jonfe)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}Exception\ launched:\ \{\}"{}},\ jonfe.getMessage());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Status.INTERNAL\_SERVER\_ERROR).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(reserva\ !=\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a319cdda9444c169ccb706b22a3f5d564}{setId}}(reservaData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//reserva.setFecha(reservaData.getFecha());}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a9ae0995663845427225415065fb5ee79}{setCancelada}}(reservaData.getCancelada());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a1db25781cdad60a13e8e1373ce48048f}{setHora}}(reservaData.getHora());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a58a2114f531ebc8a0457ec34039de666}{setNumPersonas}}(reservaData.getNumPersonas());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//reserva.setUser(reservaData.getUser());\ //TODO}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00443}00443\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}(Query<?>\ q\ =\ pm.newQuery(\textcolor{stringliteral}{"{}UPDATE"{}}+\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}.class.getName()+\ \textcolor{stringliteral}{"{}\ SET\ fecha==\ \(\backslash\)"{}"{}}\ +\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a87de509dcd2417dd967e7a690a0f3393}{getFecha}}()\ +\ \textcolor{stringliteral}{"{},\ cancelada==\ \(\backslash\)"{}"{}}+\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a98e821cde89c7773b882f294357bfbd2}{getCancelada}}()\ +\ \textcolor{stringliteral}{"{},\ hora==\ \(\backslash\)"{}"{}}\ +\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a296ebf43beca18e41bf4afba3df95d2f}{getHora}}()\ +\ \textcolor{stringliteral}{"{},\ numpersonas==\ \(\backslash\)"{}"{}}\ +\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a4b62516a8f88b9b671ca3e50cf2c7ff3}{getNumPersonas}}()+\ \textcolor{stringliteral}{"{}\ WHERE\ id\ ==\ \(\backslash\)"{}"{}}\ +\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a1d63928434b607f7449a7fd6ee3f43f4}{getId}}()+\ \textcolor{stringliteral}{"{}\ \(\backslash\)"{}\ \&\&\ user==\ \(\backslash\)"{}"{}}\ +\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_ac004f9b4b29d3679c28d3124c14d6cd1}{getUser}}()\ +\textcolor{stringliteral}{"{}+\ \(\backslash\)"{}"{}}))\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}La\ reserva\ \{\}\ ha\ sido\ modificada."{}},\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a1d63928434b607f7449a7fd6ee3f43f4}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{catch}(Exception\ e)\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.error(\textcolor{stringliteral}{"{}Error\ en\ el\ método\ actualizarReservas:\ "{}},\ e);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a1a5b31603778b2212fe3943020f230f0}{logger}}.info(\textcolor{stringliteral}{"{}La\ reserva\ \{\}\ no\ existe."{}},\ reservaData.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.status(Status.INTERNAL\_SERVER\_ERROR).build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00455}00455\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00456}00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00457}00457\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx.isActive())}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00462}00462\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00463}00463\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00465}00465\ \ \ \ \ \textcolor{comment}{//Falta\ comprobación:\ método\ que\ borra\ una\ reserva\ pasada\ por\ parametro}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00466}00466\ \ \ \ \ @POST}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00467}00467\ \ \ \ \ @Path(\textcolor{stringliteral}{"{}/cancelarReserva"{}})}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00468}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a063cd8a2dfd96999b5d923ac29b691f4}{00468}}\ \ \ \ \ public\ Response\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a063cd8a2dfd96999b5d923ac29b691f4}{cancelarReserva}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{ReservaData}}\ reservadata)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00469}00469\ \ \ \ \ \ \ \ \ PersistenceManagerFactory\ pmf\ =\ JDOHelper.getPersistenceManagerFactory(\textcolor{stringliteral}{"{}datanucleus.properties"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00470}00470\ \ \ \ \ \ \ \ \ PersistenceManager\ pm\ =\ pmf.getPersistenceManager();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00471}00471\ \ \ \ \ \ \ \ \ Transaction\ tx\ =\ pm.currentTransaction();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00473}00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{//pasar\ de\ reservadata\ a\ reserva}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00474}00474\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}\ reserva\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva}{Reserva}}();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00475}00475\ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_ad1018a5d063b7853971ff67c34dfc4a6}{setFecha}}(reservadata.getFecha());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00476}00476\ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a1db25781cdad60a13e8e1373ce48048f}{setHora}}(reservadata.getHora());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00477}00477\ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a58a2114f531ebc8a0457ec34039de666}{setNumPersonas}}(reservadata.getNumPersonas());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00478}00478\ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a9ae0995663845427225415065fb5ee79}{setCancelada}}(reservadata.isCancelada());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00479}00479\ \ \ \ \ \ \ \ \ \textcolor{comment}{//pasar\ de\ userdata\ a\ user}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00480}00480\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00481}00481\ \ \ \ \ \ \ \ \ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_ae93a6fc5069f3a94b58608bf6a9ba582}{setId}}(reservadata.getUser().getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00482}00482\ \ \ \ \ \ \ \ \ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a19393d43544f03a8649ef566b86facd1}{setPassword}}(reservadata.getUser().getPassword());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00483}00483\ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a3578993e63a8b48aca61b11b8f3f992d}{setUser}}(user);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00484}00484\ \ \ \ \ \ \ \ \ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_reserva_a319cdda9444c169ccb706b22a3f5d564}{setId}}(reservadata.getId());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00485}00485\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00486}00486\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00487}00487\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ tx.begin();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ pm.deletePersistent(reserva);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00490}00490\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ tx.commit();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.ok().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00493}00493\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}\ \$\ Error\ borrando\ reserva:\ "{}}\ +\ ex.getMessage());}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ tx.rollback();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Response.serverError().build();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00497}00497\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ pm.close();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00499}00499\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00500}00500\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00501}00501\ }
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00502}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a60623e40cbafe059e8ebedc23be61aca}{00502}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_resource_a60623e40cbafe059e8ebedc23be61aca}{getUserByUsername}}(String\ username)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00503}00503\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00504}00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ Query<User>\ query\ =\ pm.newQuery(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}.class);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ query.setFilter(\textcolor{stringliteral}{"{}this.username\ ==\ usernameParam"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ query.declareParameters(\textcolor{stringliteral}{"{}String\ usernameParam"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ List<User>\ results\ =\ (List<User>)\ query.execute(username);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(results\ +\ \textcolor{stringliteral}{"{}lista\ vacia"{}});}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!results.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\ =\ results.get(0);}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00513}00513\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Manejar\ excepción}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00515}00515\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{finally}\ \{}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ pm.close();}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00517}00517\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00518}00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ user;}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00519}00519\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_resource_8java_source_l00520}00520\ \}}
+
+\end{DoxyCode}
