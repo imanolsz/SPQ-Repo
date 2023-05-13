@@ -35,6 +35,10 @@ Ejecute el siguiente comando para crear un esquema de base de datos.
 
       mvn datanucleus:schema-create
       
+Use el comando siguiente para crear el usuario administador    
+      
+      mysql -uroot -proot < sql/create-admin.sql
+
 Para lanzar el servidor, ejecute el  siguiente comando.
 
       mvn jetty:run
