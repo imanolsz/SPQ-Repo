@@ -1,0 +1,138 @@
+\hypertarget{_ventana_menu_8java_source}{}\doxysection{Ventana\+Menu.\+java}
+\label{_ventana_menu_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaMenu.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaMenu.java}}
+\mbox{\hyperlink{_ventana_menu_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.client.gui;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.awt.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.awt.event.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00005}00005\ \textcolor{keyword}{import}\ javax.swing.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.net.URL;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00008}00008\ \textcolor{keyword}{import}\ es.deusto.spq.main.Main;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00010}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_menu}{00010}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_menu}{VentanaMenu}}\ \textcolor{keyword}{extends}\ JFrame\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{long}\ serialVersionUID\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00013}00013\ \ \ \ \ JButton\ bConsultarReservas;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00014}00014\ \ \ \ \ JButton\ bSalir;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00015}00015\ \ \ \ \ JButton\ bRealizarReserva;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00016}00016\ \ \ \ \ JButton\ BBuzon;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00017}00017\ \ \ \ \ JButton\ BContacto;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00018}00018\ \ \ \ \ JButton\ bModificarReserva;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00019}00019\ \ \ \ \ JButton\ bVisualizarCarta;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ private\ Thread\ t;}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00023}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_menu_adbabc89d2dff97aefa160fdac243a8d0}{00023}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_menu_adbabc89d2dff97aefa160fdac243a8d0}{VentanaMenu}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ setDefaultCloseOperation(JFrame.DISPOSE\_ON\_CLOSE);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ setTitle(\textcolor{stringliteral}{"{}MENU"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ setSize(800,\ 600);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ setLocationRelativeTo(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ JPanel\ panelInferior\ =\ \textcolor{keyword}{new}\ JPanel(\textcolor{keyword}{new}\ FlowLayout());}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ panelInferior.setBackground(Color.white);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ JPanel\ panelCentral\ =\ \textcolor{keyword}{new}\ JPanel(\textcolor{keyword}{new}\ FlowLayout());}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ panelCentral.setBackground(Color.decode(\textcolor{stringliteral}{"{}\#e0a370"{}}));}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ BBuzon\ =\ \textcolor{keyword}{new}\ JButton();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Código\ ejemplo\ para\ importar\ una\ foto}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \ URL\ urlImagen\ =\ getClass().getResource(\textcolor{stringliteral}{"{}/fotos/buzon.jpg"{}});\ \textcolor{comment}{//\ Obtener\ URL\ de\ la\ imagen}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \ ImageIcon\ imagen\ =\ \textcolor{keyword}{new}\ ImageIcon(urlImagen);\ \textcolor{comment}{//\ Crear\ ImageIcon\ a\ partir\ de\ la\ URL}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \ BBuzon.setBounds(100,\ 100,\ 50,\ 50);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ Icon\ imag\ =\ \textcolor{keyword}{new}\ ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(),\ BBuzon.getHeight(),\ Image.SCALE\_DEFAULT));\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ BBuzon.setIcon(imag);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \ BContacto\ =\ \textcolor{keyword}{new}\ JButton();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Código\ ejemplo\ para\ importar\ una\ foto}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ URL\ urlImagenC\ =\ getClass().getResource(\textcolor{stringliteral}{"{}/fotos/contacto.png"{}});\ \textcolor{comment}{//\ Obtener\ URL\ de\ la\ imagen}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ ImageIcon\ imagenC\ =\ \textcolor{keyword}{new}\ ImageIcon(urlImagenC);\ \textcolor{comment}{//\ Crear\ ImageIcon\ a\ partir\ de\ la\ URL}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ BContacto.setBounds(100,\ 100,\ 50,\ 50);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ Icon\ imagC\ =\ \textcolor{keyword}{new}\ ImageIcon(imagenC.getImage().getScaledInstance(BContacto.getWidth(),\ BContacto.getHeight(),\ Image.SCALE\_DEFAULT));\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ BContacto.setIcon(imagC);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//boton\ consultar\ reserva\ y\ añado\ el\ boton\ buzon\ al\ panel}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ bConsultarReservas\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Consultar\ Reservas"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ bConsultarReservas.setBackground(Color.LIGHT\_GRAY);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ bVisualizarCarta\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Visualizar\ carta"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ bVisualizarCarta.setBackground(Color.LIGHT\_GRAY);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ panelCentral.add(BBuzon);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ panelCentral.add(BContacto);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ panelInferior.add(bConsultarReservas);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ panelInferior.add(bVisualizarCarta);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//boton\ salir}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ bSalir\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Salir"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ bSalir.setBackground(Color.RED);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ panelInferior.add(bSalir);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//boton\ realizar\ reserva\ y\ caracteristicas\ de\ la\ ventana}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ bRealizarReserva\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Realizar\ reserva"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ bRealizarReserva.setBackground(Color.GREEN);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ Dimension\ pantalla\ =\ Toolkit.getDefaultToolkit().getScreenSize();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ height\ =\ pantalla.height;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width\ =\ pantalla.width;}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ panelCentral.add(bRealizarReserva);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ bRealizarReserva.setLocation(width,\ height);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//boton\ modificar\ reserva}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ bModificarReserva\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Modificar\ reserva"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ bModificarReserva.setBackground(Color.ORANGE);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ panelInferior.add(bModificarReserva);}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Paneles}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ getContentPane().add(panelInferior,\ \textcolor{stringliteral}{"{}South"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ getContentPane().add(panelCentral,\textcolor{stringliteral}{"{}Center"{}}\ );}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Action\ listener\ de\ los\ botones}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ bConsultarReservas.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaConsultaReserva().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ bSalir.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaPrincipal().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ BBuzon.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaBuzon().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \});\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ BContacto.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaContacto().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \});\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ bModificarReserva.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaModificar().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ bRealizarReserva.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaReserva().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00122}00122\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00124}00124\ \ \ \ \ \ \ \ \ bVisualizarCarta.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaMenuComida().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00129}00129\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00131}00131\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_menu_8java_source_l00132}00132\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,74 @@
+\hypertarget{_notificacion_8java_source}{}\doxysection{Notificacion.\+java}
+\label{_notificacion_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/jdo/Notificacion.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/jdo/Notificacion.java}}
+\mbox{\hyperlink{_notificacion_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.server.jdo;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00002}00002\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00004}00004\ \textcolor{keyword}{import}\ javax.jdo.annotations.*;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00007}00007\ @PersistenceCapable(detachable=\textcolor{stringliteral}{"{}true"{}})}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00008}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion}{00008}}\ public\ class\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion}{Notificacion}}\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00010}00010\ \ \ \ \ @Persistent\ \ \ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{private}\ String\ asunto;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00013}00013\ \ \ \ \ @Persistent}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{private}\ String\ contenido;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00016}00016\ \ \ \ \ @Persistent}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{private}\ Date\ fecha;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00019}00019\ \ \ \ \ @PrimaryKey}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00020}00020\ \ \ \ \ @Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{private}\ Long\ IDNotificacion;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00023}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a3c9a63577518614a9b09c8cfec664802}{00023}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a3c9a63577518614a9b09c8cfec664802}{Notificacion}}(String\ asunto,\ String\ contenido,\ Date\ fecha,\ Long\ IDNotificacion)\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ this.asunto\ =\ asunto;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ this.contenido\ =\ contenido;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ this.fecha\ =\ fecha;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ this.IDNotificacion\ =\ IDNotificacion;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00031}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a339eec267a70a81f9ac78f30f5613fbf}{00031}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a339eec267a70a81f9ac78f30f5613fbf}{getAsunto}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ asunto;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00035}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a1731343ea7817f5ef8839a12abf17c82}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a1731343ea7817f5ef8839a12abf17c82}{setAsunto}}(String\ asunto)\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ this.asunto\ =\ asunto;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00039}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a715b257b8f79246198a4dc56273a35e5}{00039}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a715b257b8f79246198a4dc56273a35e5}{getContenido}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contenido;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00043}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a777feff439da50c4982b9cfcf66757a2}{00043}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a777feff439da50c4982b9cfcf66757a2}{setContenido}}(String\ contenido)\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ this.contenido\ =\ contenido;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00047}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a5fa32186c2f1adea4c72d746090c1f5a}{00047}}\ \ \ \ \ \textcolor{keyword}{public}\ Date\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a5fa32186c2f1adea4c72d746090c1f5a}{getFecha}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fecha;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00051}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_ae5fe0d1800a2e455fa6feb52707613d0}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_ae5fe0d1800a2e455fa6feb52707613d0}{setFecha}}(Date\ fecha)\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ this.fecha\ =\ fecha;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00055}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_af6f15e48a80798efe3f31eddda317997}{00055}}\ \ \ \ \ \textcolor{keyword}{public}\ Long\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_af6f15e48a80798efe3f31eddda317997}{getIDNotificacion}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ IDNotificacion;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00059}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a1b8e8714350907d9766cb1bb810802bd}{00059}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_notificacion_a1b8e8714350907d9766cb1bb810802bd}{setIDNotificacion}}(Long\ IDNotificacion)\ \{}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ this.IDNotificacion\ =\ IDNotificacion;}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_notificacion_8java_source_l00068}00068\ \}}
+
+\end{DoxyCode}

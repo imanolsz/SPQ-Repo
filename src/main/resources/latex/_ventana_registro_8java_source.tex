@@ -1,0 +1,80 @@
+\hypertarget{_ventana_registro_8java_source}{}\doxysection{Ventana\+Registro.\+java}
+\label{_ventana_registro_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaRegistro.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaRegistro.java}}
+\mbox{\hyperlink{_ventana_registro_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.client.gui;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00003}00003\ \textcolor{keyword}{import}\ es.deusto.spq.main.Main;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.awt.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.awt.event.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00007}00007\ \textcolor{keyword}{import}\ javax.swing.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00009}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_registro}{00009}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_registro}{VentanaRegistro}}\ \textcolor{keyword}{extends}\ JFrame\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{long}\ serialVersionUID\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00012}00012\ \ \ \ \ JLabel\ lemail;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00013}00013\ \ \ \ \ JTextField\ tfemail;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00014}00014\ \ \ \ \ JLabel\ lPasword;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00015}00015\ \ \ \ \ JTextField\ tfPasword;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00016}00016\ \ \ \ \ JButton\ bRegistrarse;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00017}00017\ \ \ \ \ JButton\ bAtras;}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00019}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_registro_abf0861c2aa9e5d5a430c191ff280c644}{00019}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_registro_abf0861c2aa9e5d5a430c191ff280c644}{VentanaRegistro}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ setTitle(\textcolor{stringliteral}{"{}Registro"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ setSize(800,\ 600);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ setLocationRelativeTo(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ setDefaultCloseOperation(JFrame.DISPOSE\_ON\_CLOSE);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ JPanel\ panel\ =\ \textcolor{keyword}{new}\ JPanel();}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ panel.setBackground(Color.white);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ panel.setLayout(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ JPanel\ panelInferior\ =\ \textcolor{keyword}{new}\ JPanel(\textcolor{keyword}{new}\ FlowLayout());}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ panelInferior.setBackground(Color.decode(\textcolor{stringliteral}{"{}\#e0a370"{}}));}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ lemail\ =\ \textcolor{keyword}{new}\ JLabel(\textcolor{stringliteral}{"{}Email"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ lemail.setBounds(270,\ 200,\ 80,\ 25);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ panel.add(lemail);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ tfemail\ =\ \textcolor{keyword}{new}\ JTextField();}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ tfemail.setBounds(330,\ 200,\ 160,\ 25);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ tfemail.setText(\textcolor{stringliteral}{"{}test@test.com"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ panel.add(tfemail);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ lPasword\ =\ \textcolor{keyword}{new}\ JLabel(\textcolor{stringliteral}{"{}Password"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ lPasword.setBounds(270,\ 250,\ 80,\ 25);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ panel.add(lPasword);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ tfPasword\ =\ \textcolor{keyword}{new}\ JTextField();}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ tfPasword.setText(\textcolor{stringliteral}{"{}123456789"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ tfPasword.setBounds(330,\ 250,\ 190,\ 25);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ panel.add(tfPasword);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ getContentPane().add(panel);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ bRegistrarse\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Registrarse"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ panelInferior.add(bRegistrarse);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ bAtras\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Atras"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ panelInferior.add(bAtras);}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ getContentPane().add(panelInferior,\ \textcolor{stringliteral}{"{}South"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ bAtras.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaPrincipal().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ bRegistrarse.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(tfemail.getText()\ +\ tfPasword.getText());}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_a37bea548b8b83da1c922a5e502491209}{getExampleClient}}().registerUser(tfemail.getText(),\ tfPasword.getText());}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaPrincipal().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}\(\backslash\)t*\ usuario\ pasa\ por\ la\ ventana:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_registro_8java_source_l00074}00074\ }
+
+\end{DoxyCode}

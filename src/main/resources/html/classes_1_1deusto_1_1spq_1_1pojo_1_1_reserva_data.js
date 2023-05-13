@@ -1,0 +1,26 @@
+var classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data =
+[
+    [ "ReservaData", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a8b9b969ed7324ea83b14a25e8fab066a", null ],
+    [ "ReservaData", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a3c3152cd39176bb89cc71eaa2da1f95d", null ],
+    [ "ReservaData", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a2e5f1c5db535f0fd4e72217424e9a8f4", null ],
+    [ "getAparcamiento", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#abb0487a3e9357a3af6b69fa3a3e26f68", null ],
+    [ "getCancelada", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a3acb0d69b1e9abe39258705d2641b73c", null ],
+    [ "getEspecificacion", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#afbe02b513e4459b833f21106143a9db1", null ],
+    [ "getFecha", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a2cc9e64bbfecb8dd9b4ae603b8f5de69", null ],
+    [ "getHora", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a8583b6f695cb530e701cbd64ec6ae3e2", null ],
+    [ "getId", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#add69fa43b096239db8fde4308b4f1f98", null ],
+    [ "getNumPersonas", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#afb8e94b289cb6c6b276be6b4a94736dd", null ],
+    [ "getPedido", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#ac4aaffb723b131f0e99bdaf7fe035733", null ],
+    [ "getUser", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a7d2174c9a59aa6ce1e53f50f7e0ae2c0", null ],
+    [ "isCancelada", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#aed08da080673e4b8e348be68f1c7633c", null ],
+    [ "setAparcamiento", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a68bfceaa51b1a48f01866fcc59c56847", null ],
+    [ "setCancelada", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#aabc264d225424709b2977dc745f06d4f", null ],
+    [ "setEspecificacion", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a4dc6cf6011c2548a7b8fc871c175e0ea", null ],
+    [ "setFecha", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a4e6423ef66378b85b07f22087c9e970d", null ],
+    [ "setHora", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a6388b73efda2aa5077b03f4520ab03bc", null ],
+    [ "setId", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a1ffcde568e03c2b928af40e0c83cdbb8", null ],
+    [ "setNumPersonas", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#adcf427bb6381cc78c9934f6c4082dd17", null ],
+    [ "setPedido", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a651acd766aefc24f98d26be8cac0a076", null ],
+    [ "setUser", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a1d7e26c61227ea4f0bf5c72734685677", null ],
+    [ "toString", "classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data.html#a34d2eec0d677e8b5faa4187c6af77693", null ]
+];

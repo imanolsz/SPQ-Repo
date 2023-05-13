@@ -1,0 +1,136 @@
+\hypertarget{_ventana_consulta_reserva_8java_source}{}\doxysection{Ventana\+Consulta\+Reserva.\+java}
+\label{_ventana_consulta_reserva_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaConsultaReserva.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaConsultaReserva.java}}
+\mbox{\hyperlink{_ventana_consulta_reserva_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00002}00002\ \textcolor{keyword}{package\ }es.deusto.spq.client.gui;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.awt.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.awt.Image;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00007}00007\ \textcolor{keyword}{import}\ java.awt.event.ActionEvent;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00008}00008\ \textcolor{keyword}{import}\ java.awt.event.ActionListener;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00010}00010\ \textcolor{keyword}{import}\ javax.swing.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00011}00011\ \textcolor{keyword}{import}\ javax.swing.table.DefaultTableModel;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00013}00013\ \textcolor{keyword}{import}\ java.net.URL;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00015}00015\ \textcolor{keyword}{import}\ es.deusto.spq.main.Main;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00016}00016\ \textcolor{keyword}{import}\ es.deusto.spq.pojo.ReservaData;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00018}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_consulta_reserva}{00018}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_consulta_reserva}{VentanaConsultaReserva}}\ \textcolor{keyword}{extends}\ JFrame\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{long}\ serialVersionUID\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00021}00021\ \ \ \ \ JButton\ bConsultarReservas;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00022}00022\ \ \ \ \ JButton\ bSalir;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00023}00023\ \ \ \ \ JButton\ bRealizarReserva;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00024}00024\ \ \ \ \ JButton\ BBuzon;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00025}00025\ \ \ \ \ JButton\ bCancelarReserva;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00026}00026\ \ \ \ \ JTable\ tableReservasUsuario;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00028}00028\ \ \ \ \ \textcolor{comment}{//\ private\ Thread\ t;}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00030}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_consulta_reserva_ad9727a96d7a95b54c3bdd8f4d775ac16}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_consulta_reserva_ad9727a96d7a95b54c3bdd8f4d775ac16}{VentanaConsultaReserva}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ setDefaultCloseOperation(JFrame.DISPOSE\_ON\_CLOSE);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ setTitle(\textcolor{stringliteral}{"{}MENU"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ setSize(800,\ 600);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ setLocationRelativeTo(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ JPanel\ panelInferior\ =\ \textcolor{keyword}{new}\ JPanel(\textcolor{keyword}{new}\ FlowLayout());}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ panelInferior.setBackground(Color.white);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ JPanel\ panelCentral\ =\ \textcolor{keyword}{new}\ JPanel(\textcolor{keyword}{new}\ FlowLayout());}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ panelCentral.setBackground(Color.decode(\textcolor{stringliteral}{"{}\#e0a370"{}}));}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ BBuzon\ =\ \textcolor{keyword}{new}\ JButton();}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Código\ ejemplo\ para\ importar\ una\ foto}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ URL\ urlImagen\ =\ getClass().getResource(\textcolor{stringliteral}{"{}/fotos/buzon.jpg"{}});\ \textcolor{comment}{//\ Obtener\ URL\ de\ la\ imagen}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ ImageIcon\ imagen\ =\ \textcolor{keyword}{new}\ ImageIcon(urlImagen);\ \textcolor{comment}{//\ Crear\ ImageIcon\ a\ partir\ de\ la\ URL}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ BBuzon.setBounds(100,\ 100,\ 50,\ 50);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ Icon\ imag\ =\ \textcolor{keyword}{new}\ ImageIcon(imagen.getImage().getScaledInstance(BBuzon.getWidth(),\ BBuzon.getHeight(),\ Image.SCALE\_DEFAULT));\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ BBuzon.setIcon(imag);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ bConsultarReservas\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Consultar\ reservas"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//añado\ el\ boton\ buzon\ al\ panel}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ panelCentral.add(BBuzon);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ panelInferior.add(bConsultarReservas);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//boton\ salir}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ bSalir\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Salir"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ bSalir.setBackground(Color.LIGHT\_GRAY);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ panelInferior.add(bSalir);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//boton\ realizar\ reserva\ y\ caracteristicas\ de\ la\ ventana}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ bRealizarReserva\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Realizar\ reserva"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ bRealizarReserva.setBackground(Color.GREEN);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ Dimension\ pantalla\ =\ Toolkit.getDefaultToolkit().getScreenSize();}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ height\ =\ pantalla.height;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width\ =\ pantalla.width;}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ panelCentral.add(bRealizarReserva);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ bRealizarReserva.setLocation(width,\ height);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//boton\ cancelar\ reserva}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ bCancelarReserva\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Cancelar\ reserva"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ bCancelarReserva.setBackground(Color.RED);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ panelInferior.add(bCancelarReserva);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Paneles}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ getContentPane().add(panelInferior,\ \textcolor{stringliteral}{"{}South"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ getContentPane().add(panelCentral,\textcolor{stringliteral}{"{}Center"{}}\ );}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Tabla\ INCOMPLETA\ para\ mostrar\ las\ reservas\ del\ usuario}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ tableReservasUsuario\ =\ \textcolor{keyword}{new}\ JTable();}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ panelCentral.add(tableReservasUsuario);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//List<ReservaData>\ reservas\ =\ Main.getExampleClient().getReservas();}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ List<ReservaData>\ reservas\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reservas\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ DefaultTableModel\ model\ =\ \textcolor{keyword}{new}\ DefaultTableModel();}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ model.addColumn(\textcolor{stringliteral}{"{}ID"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ model.addColumn(\textcolor{stringliteral}{"{}Fecha"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ model.addColumn(\textcolor{stringliteral}{"{}Hora"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ model.addColumn(\textcolor{stringliteral}{"{}Cancelada"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ model.addColumn(\textcolor{stringliteral}{"{}NumPersonas"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ model.addColumn(\textcolor{stringliteral}{"{}UserData"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ para\ poder\ filtrar\ las\ reservas\ por\ el\ id\ que\ queremos.}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ reservas.size();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{ReservaData}}\ reserva\ =\ reservas.get(i);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Falta\ que\ con\ ese\ token\ encontremos\ el\ id\ del\ cliente\ que\ esta\ conectado\ mediante\ el\ mapa\ que\ los\ une\ en\ resources}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data_add69fa43b096239db8fde4308b4f1f98}{getId}}()\ ==\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_a37bea548b8b83da1c922a5e502491209}{getExampleClient}}().getToken())\ \{\ \textcolor{comment}{//\ Solo\ se\ agregan\ las\ reservas\ con\ el\ id\ que\ queremos}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.addRow(\textcolor{keyword}{new}\ Object[]\{reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data_add69fa43b096239db8fde4308b4f1f98}{getId}}(),\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data_a2cc9e64bbfecb8dd9b4ae603b8f5de69}{getFecha}}(),\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data_a8583b6f695cb530e701cbd64ec6ae3e2}{getHora}}(),\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data_a3acb0d69b1e9abe39258705d2641b73c}{getCancelada}}(),\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data_afb8e94b289cb6c6b276be6b4a94736dd}{getNumPersonas}}(),\ reserva.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data_a7d2174c9a59aa6ce1e53f50f7e0ae2c0}{getUser}}()\});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ tableReservasUsuario.setModel(model);}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Action\ listener\ de\ los\ botones}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ bSalir.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaMenu().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ BBuzon.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaBuzon().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \});\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Implementar\ el\ listener\ del\ metodo\ que\ cancele\ una\ reserva}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ bCancelarReserva.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00121}00121\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00123}00123\ \ \ \ \ \ \ \ \ bRealizarReserva.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main}{Main}}.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1main_1_1_main_aec74ea529f0e61e28d9dff688b7267bc}{getGestorVentanas}}().getVentanaReserva().setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_consulta_reserva_8java_source_l00130}00130\ \}}
+
+\end{DoxyCode}

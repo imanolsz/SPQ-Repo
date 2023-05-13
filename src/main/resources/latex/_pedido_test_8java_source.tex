@@ -1,0 +1,108 @@
+\hypertarget{_pedido_test_8java_source}{}\doxysection{Pedido\+Test.\+java}
+\label{_pedido_test_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/server/jdo/PedidoTest.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/server/jdo/PedidoTest.java}}
+\mbox{\hyperlink{_pedido_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.server.jdo;}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00003}00003\ \textcolor{comment}{//\ import\ static\ org.junit.Assert.*;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00005}00005\ \textcolor{comment}{//\ import\ java.time.LocalTime;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00006}00006\ \textcolor{comment}{//\ import\ java.util.ArrayList;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00007}00007\ \textcolor{comment}{//\ import\ java.util.Date;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00008}00008\ \textcolor{comment}{//\ import\ java.util.List;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00010}00010\ \textcolor{comment}{//\ import\ org.junit.Before;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00011}00011\ \textcolor{comment}{//\ import\ org.junit.Test;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00013}00013\ \textcolor{comment}{//\ import\ es.deusto.spq.pojo.PedidoData;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00015}00015\ \textcolor{comment}{//\ import\ javax.jdo.PersistenceManager;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00016}00016\ \textcolor{comment}{//\ import\ javax.jdo.PersistenceManagerFactory;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00017}00017\ \textcolor{comment}{//\ import\ javax.jdo.JDOHelper;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00019}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_pedido_test}{00019}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_pedido_test}{PedidoTest}}\ \{}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ private\ Pedido\ pedido;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ private\ DetallePedido\ detallePedido1;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ private\ DetallePedido\ detallePedido2;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ private\ Reserva\ reserva;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ private\ PersistenceManagerFactory\ pmf;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ private\ PersistenceManager\ pm;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ @Before}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ public\ void\ setUp()\ \{}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ Creamos\ los\ objetos\ necesarios\ para\ la\ prueba}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ detallePedido1\ =\ new\ DetallePedido("{}Pizza"{},\ 3,\ null);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ detallePedido2\ =\ new\ DetallePedido("{}Ensalada"{},\ 2,\ null);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ List<DetallePedido>\ listaAlimentos\ =\ new\ ArrayList<DetallePedido>();}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ listaAlimentos.add(detallePedido1);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ listaAlimentos.add(detallePedido2);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00038}00038\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ User\ user\ =\ new\ User("{}JohnDoe"{},\ "{}mypassword"{});}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Date\ fecha\ =\ new\ Date(1234567890000L);\ //\ 2009-\/02-\/14T00:31:30Z}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ LocalTime\ hora\ =\ LocalTime.of(14,\ 30);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ int\ numPersonas\ =\ 3;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ boolean\ cancelada\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ String\ especificacion\ =\ null;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ int\ aparcamiento\ =\ 0;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Reserva\ reserva\ =\ new\ Reserva(fecha,\ hora,\ numPersonas,\ cancelada,\ especificacion,\ aparcamiento,\ user);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ pedido\ =\ new\ Pedido(listaAlimentos,\ reserva);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ Inicializamos\ el\ gestor\ de\ persistencia}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00050}00050\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ pmf\ =\ JDOHelper.getPersistenceManagerFactory("{}datanucleus.properties"{});}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ pm\ =\ pmf.getPersistenceManager();}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//\ @Test}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ public\ void\ testGetId()\ \{}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ long\ id\ =\ 1;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ pedido.setId(id);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ assertEquals(id,\ pedido.getId());}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//\ @Test}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00062}00062\ \ \ \ \ \textcolor{comment}{//\ public\ void\ testGetSetReserva()\ \{}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ User\ user\ =\ new\ User("{}Luis"{},\ "{}1234"{});}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Date\ fecha\ =\ new\ Date(1234567890000L);\ //\ 2009-\/02-\/14T00:31:30Z}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ LocalTime\ hora\ =\ LocalTime.of(14,\ 30);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ int\ numPersonas\ =\ 5;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ boolean\ cancelada\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00068}00068\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ String\ especificacion\ =\ null;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ int\ aparcamiento\ =\ 2;}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00070}00070\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Reserva\ nuevaReserva\ =\ new\ Reserva(fecha,\ hora,\ numPersonas,\ cancelada,\ especificacion,\ aparcamiento,\ user);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00071}00071\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ pedido.setReserva(nuevaReserva);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ assertEquals(nuevaReserva,\ pedido.getReserva());}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ @Test}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00076}00076\ \ \ \ \ \textcolor{comment}{//\ public\ void\ testGetSetlistaAlimentos()\ \{}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00077}00077\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ List<DetallePedido>\ nuevaLista\ =\ new\ ArrayList<DetallePedido>();}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00078}00078\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ nuevaLista.add(detallePedido1);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ nuevaLista.add(detallePedido2);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00080}00080\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ nuevaLista.add(new\ DetallePedido("{}Hamburguesa"{},\ 2,\ null));}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00081}00081\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ pedido.setMapaComidaCantidad(nuevaLista);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00082}00082\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ assertEquals(nuevaLista,\ pedido.getlistaAlimentos());}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00083}00083\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00085}00085\ \ \ \ \ \textcolor{comment}{/*Problema\ con\ el\ persitent\ ¿JDO?\ }}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00086}00086\ \textcolor{comment}{\ \ \ \ @Test}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00087}00087\ \textcolor{comment}{\ \ \ \ public\ void\ testGuardarPedido()\ \{}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00088}00088\ \textcolor{comment}{\ \ \ \ \ \ \ \ //\ Guardamos\ el\ objeto\ en\ la\ base\ de\ datos}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00089}00089\ \textcolor{comment}{\ \ \ \ \ \ \ \ pm.currentTransaction().begin();}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00090}00090\ \textcolor{comment}{\ \ \ \ \ \ \ \ pm.makePersistent(pedido);}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00091}00091\ \textcolor{comment}{\ \ \ \ \ \ \ \ pm.currentTransaction().commit();}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00092}00092\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00093}00093\ \textcolor{comment}{\ \ \ \ \ \ \ \ //\ Obtenemos\ el\ objeto\ de\ la\ base\ de\ datos\ y\ verificamos\ que\ sus\ atributos\ coinciden\ con\ los\ que\ esperamos}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00094}00094\ \textcolor{comment}{\ \ \ \ \ \ \ \ pm.currentTransaction().begin();}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00095}00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ Pedido\ pedidoDB\ =\ pm.getObjectById(Pedido.class,\ pedido.getId());}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00096}00096\ \textcolor{comment}{\ \ \ \ \ \ \ \ assertEquals(pedido.getReserva(),\ pedidoDB.getReserva());}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00097}00097\ \textcolor{comment}{\ \ \ \ \ \ \ \ assertEquals(pedido.getlistaAlimentos(),\ pedidoDB.getlistaAlimentos());}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00098}00098\ \textcolor{comment}{\ \ \ \ \ \ \ \ pm.currentTransaction().commit();}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00099}00099\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00100}00100\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00101}00101\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_pedido_test_8java_source_l00102}00102\ \}}
+
+\end{DoxyCode}

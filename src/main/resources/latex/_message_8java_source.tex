@@ -1,0 +1,75 @@
+\hypertarget{_message_8java_source}{}\doxysection{Message.\+java}
+\label{_message_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/jdo/Message.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/jdo/Message.java}}
+\mbox{\hyperlink{_message_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.server.jdo;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00004}00004\ \textcolor{keyword}{import}\ javax.jdo.annotations.PersistenceCapable;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00006}00006\ @PersistenceCapable}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00007}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{Message}}\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{private}\ String\ asunto;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00009}00009\ \ \ \ \ \textcolor{keyword}{private}\ String\ contenido;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{private}\ Date\ fecha;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user=\textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00012}00012\ \ \ \ \ String\ text\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{long}\ timestamp;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00015}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_ab311e1cf889e9a2cb83f3bb397dc22c9}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_ab311e1cf889e9a2cb83f3bb397dc22c9}{Message}}(String\ asunto,\ String\ contenido,\ Date\ fecha)\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ this.asunto\ =\ asunto;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ this.contenido\ =\ contenido;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ this.fecha\ =\ fecha;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00021}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a1b8f4af8eca2aa51d6ecd4a901250167}{00021}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a1b8f4af8eca2aa51d6ecd4a901250167}{Message}}(String\ text)\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ this.text\ =\ text;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ this.timestamp\ =\ System.currentTimeMillis();}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00026}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_acaa2b6f04e139856fc42a22d13a601a7}{00026}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_acaa2b6f04e139856fc42a22d13a601a7}{getAsunto}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ asunto;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00030}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_aad52250550f4a780210b30ce3ec3f78b}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_aad52250550f4a780210b30ce3ec3f78b}{setAsunto}}(String\ asunto)\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ this.asunto\ =\ asunto;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00034}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_ac8ab1a372ec525061f382daa8ba105e3}{00034}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_ac8ab1a372ec525061f382daa8ba105e3}{getContenido}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contenido;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00038}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_ad64f2a3ac2dead5033b799f91048f27e}{00038}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_ad64f2a3ac2dead5033b799f91048f27e}{setContenido}}(String\ contenido)\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ this.contenido\ =\ contenido;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00042}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a2e8f3748fd0acc102c4a322d1cf892bd}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ Date\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a2e8f3748fd0acc102c4a322d1cf892bd}{getFecha}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fecha;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00046}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a6e7d73fd1fa532c52af072f454994d9c}{00046}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a6e7d73fd1fa532c52af072f454994d9c}{setFecha}}(Date\ fecha)\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ this.fecha\ =\ fecha;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00050}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a4b671d8efa79c6d3b7545e48beaa2788}{00050}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a4b671d8efa79c6d3b7545e48beaa2788}{getUser}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ user;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00054}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a042d1e82a0049e31158a8341f47f3212}{00054}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a042d1e82a0049e31158a8341f47f3212}{setUser}}(\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user)\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ this.user\ =\ user;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00058}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a6e53629c2d7079885111a516cc0a215d}{00058}}\ \ \ \ \ \textcolor{keyword}{public}\ Long\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a6e53629c2d7079885111a516cc0a215d}{getTimestamp}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ timestamp;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00062}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_afca7e7e1928f29aa4e9de0e3879571b8}{00062}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_afca7e7e1928f29aa4e9de0e3879571b8}{setTimestamp}}(\textcolor{keywordtype}{long}\ timestamp)\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ this.timestamp\ =\ timestamp;}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00066}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a0b2f174ec766850c7ac39d85e869513b}{00066}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message_a0b2f174ec766850c7ac39d85e869513b}{toString}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Message:\ message\ -\/-\/>\ "{}}\ +\ this.contenido\ +\ \textcolor{stringliteral}{"{},\ timestamp\ -\/-\/>\ \ "{}}\ +\ \textcolor{keyword}{new}\ Date(this.timestamp);}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_message_8java_source_l00069}00069\ \}}
+
+\end{DoxyCode}

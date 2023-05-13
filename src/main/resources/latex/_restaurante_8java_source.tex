@@ -1,0 +1,96 @@
+\hypertarget{_restaurante_8java_source}{}\doxysection{Restaurante.\+java}
+\label{_restaurante_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/jdo/Restaurante.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/server/jdo/Restaurante.java}}
+\mbox{\hyperlink{_restaurante_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.server.jdo;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.Calendar;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.time.LocalTime;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00007}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante}{Restaurante}}\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{private}\ Date\ fechaApertura;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00009}00009\ \ \ \ \ \textcolor{keyword}{private}\ Date\ fechaCierre;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ LocalTime\ horaApertura;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ LocalTime\ horaCierre;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ capacidadTotal;\ \textcolor{comment}{//\ numero\ de\ personas\ que\ entran\ en\ el\ restaurante}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ numReservas\ =\ 0;\ \textcolor{comment}{//\ numero\ de\ personas\ que\ han\ reservado}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00015}00015\ \ \ \ \ \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00016}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_ab255092e6aa5be1386b3919558f95510}{00016}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_ab255092e6aa5be1386b3919558f95510}{Restaurante}}(Date\ fechaApertura,\ Date\ fechaCierre,\ LocalTime\ horaApertura,\ LocalTime\ horaCierre,\ \textcolor{keywordtype}{int}\ capacidadTotal)\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ this.fechaApertura\ =\ fechaApertura;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ this.fechaCierre\ =\ fechaCierre;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ this.horaApertura\ =\ horaApertura;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ this.horaCierre\ =\ horaCierre;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ this.capacidadTotal\ =\ capacidadTotal;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00024}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a8ae266c08dbabf9923726703b896bf9b}{00024}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a8ae266c08dbabf9923726703b896bf9b}{estaAbierto}}(Date\ fecha,\ LocalTime\ hora)\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ Calendar\ calendario\ =\ Calendar.getInstance();}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ calendario.setTime(fecha);}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (calendario.get(Calendar.DAY\_OF\_WEEK)\ ==\ Calendar.TUESDAY)\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hora.isBefore(horaApertura)\ ||\ hora.isAfter(horaCierre))\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !fecha.before(fechaApertura)\ \&\&\ !fecha.after(fechaCierre);}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00035}00035\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00036}00036\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00037}00037\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00038}00038\ \ \ \ \ \textcolor{comment}{//Se\ podría\ cambiar\ este\ criterio:}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00039}00039\ \ \ \ \ \textcolor{comment}{/*En\ principio\ vamos\ a\ creer\ que\ si\ en\ una\ última\ reserva\ hay\ 4\ personas}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00040}00040\ \textcolor{comment}{\ \ \ \ y\ tan\ solo\ queda\ 1\ persona\ para\ llenar\ el\ restaurante.\ Se\ aceptarían\ las\ 4\ y\ el\ restaurante}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00041}00041\ \textcolor{comment}{\ \ \ \ se\ llenaría\ con\ 3\ personas\ más\ de\ su\ capacidad.*/}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00042}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a537063c228057838be13adf313acb64a}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a537063c228057838be13adf313acb64a}{estaLleno}}()\{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.numReservas\ >=\ this.capacidadTotal)}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00047}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_af8512fa7cc378cbefa42541a1e6536d5}{00047}}\ \ \ \ \ \textcolor{keyword}{public}\ Date\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_af8512fa7cc378cbefa42541a1e6536d5}{getFechaApertura}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fechaApertura;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00051}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_acced5053f757c3c9ead3a0e604d8e534}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_acced5053f757c3c9ead3a0e604d8e534}{setFechaApertura}}(Date\ fechaApertura)\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ this.fechaApertura\ =\ fechaApertura;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00055}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a281ef602810960e8de75147f6f880d06}{00055}}\ \ \ \ \ \textcolor{keyword}{public}\ Date\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a281ef602810960e8de75147f6f880d06}{getFechaCierre}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fechaCierre;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00059}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_aa04c90b3f60bfd7dd274a3b1db9cba8f}{00059}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_aa04c90b3f60bfd7dd274a3b1db9cba8f}{setFechaCierre}}(Date\ fechaCierre)\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ this.fechaCierre\ =\ fechaCierre;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00063}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_addb4b458d137972c75f91b48497168b2}{00063}}\ \ \ \ \ \textcolor{keyword}{public}\ LocalTime\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_addb4b458d137972c75f91b48497168b2}{getHoraApertura}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ horaApertura;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00067}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_aed7bb5ac488a9f229f5a67703755e861}{00067}}\ \ \ \ \ \textcolor{keyword}{public}\ LocalTime\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_aed7bb5ac488a9f229f5a67703755e861}{getHoraCierre}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ horaCierre;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00071}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a33532804b6ce5db94fdab661b5cfc04d}{00071}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a33532804b6ce5db94fdab661b5cfc04d}{getCapacidadTotal}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ capacidadTotal;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00075}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a23ef2459d77f2544a09eeb5e1a093727}{00075}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a23ef2459d77f2544a09eeb5e1a093727}{setCapacidadTotal}}(\textcolor{keywordtype}{int}\ capacidadTotal)\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ this.capacidadTotal\ =\ capacidadTotal;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00079}00079\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00080}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a824955e89156f3b7d9bf62ce967ac583}{00080}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_a824955e89156f3b7d9bf62ce967ac583}{toString}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Restaurante\ [fechaApertura="{}}\ +\ fechaApertura\ +\ \textcolor{stringliteral}{"{},\ fechaCierre="{}}\ +\ fechaCierre\ +\ \textcolor{stringliteral}{"{},\ horaApertura="{}}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ horaApertura\ +\ \textcolor{stringliteral}{"{},\ horaCierre="{}}\ +\ horaCierre\ +\ \textcolor{stringliteral}{"{},\ capacidadTotal="{}}\ +\ capacidadTotal\ +\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00085}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_ae19b40ddb145cb82d393839651836be0}{00085}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_restaurante_ae19b40ddb145cb82d393839651836be0}{setNumReservas}}(\textcolor{keywordtype}{int}\ numReservas)\ \{}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ this.numReservas\ =\ numReservas;}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00088}00088\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00089}00089\ \}}
+\DoxyCodeLine{\Hypertarget{_restaurante_8java_source_l00090}00090\ }
+
+\end{DoxyCode}

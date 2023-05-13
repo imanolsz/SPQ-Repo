@@ -1,0 +1,92 @@
+\hypertarget{_example_client_test_8java_source}{}\doxysection{Example\+Client\+Test.\+java}
+\label{_example_client_test_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/client/ExampleClientTest.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/client/ExampleClientTest.java}}
+\mbox{\hyperlink{_example_client_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.client;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.sql.Date;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.time.LocalTime;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.ArrayList;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00008}00008\ \textcolor{keyword}{import}\ javax.ws.rs.client.Invocation;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00009}00009\ \textcolor{keyword}{import}\ javax.ws.rs.client.WebTarget;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00010}00010\ \textcolor{keyword}{import}\ javax.ws.rs.core.GenericType;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00011}00011\ \textcolor{keyword}{import}\ javax.ws.rs.core.Response;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00013}00013\ \textcolor{keyword}{import}\ org.junit.*;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00015}00015\ \textcolor{keyword}{import}\ org.junit.Test;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00016}00016\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.junit.Assert.assertEquals;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00017}00017\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.junit.Assert.assertNotNull;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00018}00018\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.mockito.Mockito.mock;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00019}00019\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.mockito.Mockito.when;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00020}00020\ \textcolor{keyword}{import}\ javax.ws.rs.core.MediaType;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00022}00022\ \textcolor{keyword}{import}\ es.deusto.spq.pojo.ReservaData;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00023}00023\ \textcolor{keyword}{import}\ es.deusto.spq.pojo.UserData;}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00024}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test}{00024}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test}{ExampleClientTest}}\ \{}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00025}00025\ \ \ \ \ @BeforeClass}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00026}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test_a641f7c2c17699d58e352b9ea8d6c5a62}{00026}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test_a641f7c2c17699d58e352b9ea8d6c5a62}{setUpClass}}()\ throws\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Code\ executed\ before\ the\ first\ test\ method}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00029}00029\ \ \ \ \ @Before}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00030}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test_af53ad1be17d9a6a36024cb4e596573ee}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test_af53ad1be17d9a6a36024cb4e596573ee}{setUp}}()\ throws\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Code\ executed\ before\ each\ test}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00033}00033\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00034}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test_aec46831771402e5d9649802a277aacb7}{00034}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_test_aec46831771402e5d9649802a277aacb7}{getReservas}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Crear\ objetos\ mock\ para\ simular\ el\ comportamiento\ de\ las\ clases\ involucradas}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//El\ primer\ objeto\ mock\ se\ llama\ "{}mockWebTarget"{}\ y\ es\ de\ la\ clase\ "{}WebTarget"{}.\ La\ clase\ WebTarget\ es\ parte\ de\ la\ librería\ Jersey.\ Este\ objeto\ se\ está\ creando\ para\ simular\ una\ petición\ a\ un\ servicio\ web.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ WebTarget\ mockWebTarget\ =\ mock(WebTarget.class);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00039}00039\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00040}00040\ \ \ \ \ \ \ \ \textcolor{comment}{//El\ segundo\ objeto\ mock\ se\ llama\ "{}mockGetReservasWebTarget"{}\ y\ también\ es\ de\ la\ clase\ "{}WebTarget"{}.\ Este\ objeto\ es\ una\ simulación\ de\ la\ respuesta\ a\ la\ petición\ que\ se\ hizo\ en\ el\ objeto\ anterior.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ WebTarget\ mockGetReservasWebTarget\ =\ mock(WebTarget.class);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//El\ tercer\ objeto\ mock\ se\ llama\ "{}mockInvocationBuilder"{}\ y\ es\ de\ la\ clase\ "{}Invocation.Builder"{}.\ Esta\ clase\ representa\ una\ petición\ que\ se\ va\ a\ hacer\ a\ un\ servicio\ web.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ Invocation.Builder\ mockInvocationBuilder\ =\ mock(Invocation.Builder.class);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//El\ cuarto\ objeto\ mock\ se\ llama\ "{}mockResponse"{}\ y\ es\ de\ la\ clase\ "{}Response"{}.\ Esta\ clase\ representa\ la\ respuesta\ que\ se\ recibe\ después\ de\ hacer\ una\ petición\ a\ un\ servicio\ web.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ Response\ mockResponse\ =\ mock(Response.class);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Crear\ una\ instancia\ de\ la\ clase\ que\ contiene\ el\ método\ getReservas}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client}{ExampleClient}}\ clienteReservas\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client}{ExampleClient}}(\textcolor{stringliteral}{"{}127.0.0.1"{}},\textcolor{stringliteral}{"{}8080\ "{}});}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Se\ está\ asignando\ el\ objeto\ "{}mockWebTarget"{}\ a\ una\ propiedad\ de\ la\ instancia\ de\ "{}ExampleClient"{}.\ Esto\ se\ hace\ para\ que\ la\ instancia\ de\ "{}ExampleClient"{}\ utilice\ el\ objeto\ mock\ en\ lugar\ de\ la\ clase\ real\ "{}WebTarget"{}.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ clienteReservas.webTarget\ =\ mockWebTarget;\ \textcolor{comment}{//\ Reemplazar\ el\ webTarget\ real\ con\ el\ objeto\ mock}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Configurar\ los\ objetos\ mock\ para\ simular\ el\ comportamiento\ esperado}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ when(mockWebTarget.path(\textcolor{stringliteral}{"{}admin/getReservas"{}})).thenReturn(mockGetReservasWebTarget);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//cuando\ se\ llame\ al\ método\ "{}request"{}\ del\ objeto\ "{}mockGetReservasWebTarget"{}\ con\ el\ argumento\ "{}MediaType.APPLICATION\_JSON"{},\ entonces\ se\ debe\ retornar\ el\ objeto\ "{}mockInvocationBuilder"{}.\ Esto\ es\ para\ simular\ que\ se\ está\ haciendo\ una\ petición\ con\ un\ contenido\ tipo\ JSON.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ when(mockGetReservasWebTarget.request(MediaType.APPLICATION\_JSON)).thenReturn(mockInvocationBuilder);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//cuando\ se\ llame\ al\ método\ "{}get"{}\ del\ objeto\ "{}mockInvocationBuilder"{},\ entonces\ se\ debe\ retornar\ el\ objeto\ "{}mockResponse"{}.\ Esto\ es\ para\ simular\ que\ se\ ha\ recibido\ una\ respuesta.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ when(mockInvocationBuilder.get()).thenReturn(mockResponse);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//cuando\ se\ llame\ al\ método\ "{}getStatus"{}\ del\ objeto\ "{}mockResponse"{},\ entonces\ se\ debe\ retornar\ el\ código\ de\ estado\ "{}200"{}.\ Esto\ es\ para\ simular\ que\ la\ respuesta\ ha\ sido\ exitosa.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ when(mockResponse.getStatus()).thenReturn(Response.Status.OK.getStatusCode());}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Crear\ una\ lista\ de\ reservas\ simulada\ para\ devolver\ como\ resultado\ del\ método\ readEntity}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ El\ método\ "{}readEntity"{}\ se\ utiliza\ para\ leer\ la\ respuesta\ del\ servidor\ como\ una\ entidad\ de\ un\ tipo\ de\ objeto\ específico\ en\ la\ aplicación\ cliente.}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ List<ReservaData>\ reservasSimuladas\ =\ \textcolor{keyword}{new}\ ArrayList<>();}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ Date\ fecha\ =\ Date.valueOf(\textcolor{stringliteral}{"{}2022-\/05-\/10"{}});}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ LocalTime\ hora\ =\ LocalTime.parse(\textcolor{stringliteral}{"{}13:00"{}});}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{UserData}}\ usuario\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_user_data}{UserData}}(\textcolor{stringliteral}{"{}usuario1"{}},\ \textcolor{stringliteral}{"{}password1"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{ReservaData}}\ reservaSimulada\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1pojo_1_1_reserva_data}{ReservaData}}(fecha,\ hora,\ 4,\ \textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}"{}},\ usuario);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ reservasSimuladas.add(reservaSimulada);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Agregar\ más\ reservas\ a\ la\ lista\ si\ fuera\ necesario}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ when(mockResponse.readEntity(\textcolor{keyword}{new}\ GenericType<List<ReservaData>>()\ \{\})).thenReturn(reservasSimuladas);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Llamar\ al\ método\ getReservas\ y\ almacenar\ la\ respuesta}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ List<ReservaData>\ reservas\ =\ clienteReservas.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1_example_client_aa4fdd2549f00de84c3df02a472a95461}{getReservas}}();}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verificar\ si\ la\ respuesta\ es\ la\ esperada\ (lista\ de\ reservas)}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ assertNotNull(reservas);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ assertEquals(reservasSimuladas,\ reservas);}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Aquí\ se\ pueden\ agregar\ más\ verificaciones\ para\ los\ datos\ si\ fuera\ necesario}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00085}00085\ \}}
+\DoxyCodeLine{\Hypertarget{_example_client_test_8java_source_l00086}00086\ }
+
+\end{DoxyCode}

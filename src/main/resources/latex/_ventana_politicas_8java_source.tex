@@ -1,0 +1,69 @@
+\hypertarget{_ventana_politicas_8java_source}{}\doxysection{Ventana\+Politicas.\+java}
+\label{_ventana_politicas_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaPoliticas.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/main/java/es/deusto/spq/client/gui/VentanaPoliticas.java}}
+\mbox{\hyperlink{_ventana_politicas_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.client.gui;}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00003}00003\ \textcolor{keyword}{import}\ javax.swing.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.awt.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.awt.event.*;}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00007}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_politicas}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_politicas}{VentanaPoliticas}}\ \textcolor{keyword}{extends}\ JDialog\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00009}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_politicas_a653058536f59896c48b671efa38df374}{00009}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1_ventana_politicas_a653058536f59896c48b671efa38df374}{VentanaPoliticas}}(JFrame\ parent)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Título\ de\ la\ ventana}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00011}00011\ \ \ \ \ \ \ \ \ super(parent,\ \textcolor{stringliteral}{"{}Políticas\ y\ Cookies\ -\/\ Restaurante"{}},\ \textcolor{keyword}{true});\ \textcolor{comment}{//\ Usamos\ JDialog\ para\ que\ sea\ modal}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Panel\ superior\ con\ etiqueta\ de\ título}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ JPanel\ panelTitulo\ =\ \textcolor{keyword}{new}\ JPanel();}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ panelTitulo.add(\textcolor{keyword}{new}\ JLabel(\textcolor{stringliteral}{"{}<html><h3>Políticas\ y\ Cookies\ -\/\ Restaurante</h3></html>"{}}));}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ JEditorPane\ con\ políticas\ y\ cookies}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ JEditorPane\ editorPane\ =\ \textcolor{keyword}{new}\ JEditorPane();}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ editorPane.setEditable(\textcolor{keyword}{false});\ \textcolor{comment}{//\ deshabilitar\ la\ edición\ del\ contenido}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ editorPane.setContentType(\textcolor{stringliteral}{"{}text/html"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ editorPane.setText(\textcolor{stringliteral}{"{}<html>"{}}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}<p\ style=\(\backslash\)"{}text-\/align:justify;\(\backslash\)"{}>En\ nuestro\ restaurante\ nos\ preocupamos\ por\ ofrecer\ a\ nuestros\ clientes\ la\ mejor\ experiencia\ culinaria\ posible.\ "{}}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}Para\ lograrlo,\ utilizamos\ cookies\ y\ otras\ tecnologías\ para\ recopilar\ información\ sobre\ el\ uso\ que\ hacen\ nuestros\ clientes\ de\ nuestra\ web.\ "{}}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}Esto\ nos\ ayuda\ a\ personalizar\ y\ mejorar\ su\ experiencia,\ y\ a\ mantener\ un\ registro\ de\ sus\ preferencias\ para\ futuras\ visitas.</p>"{}}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}<p\ style=\(\backslash\)"{}text-\/align:justify;\(\backslash\)"{}>Nos\ comprometemos\ a\ respetar\ la\ privacidad\ de\ nuestros\ clientes\ y\ a\ proteger\ sus\ datos\ personales\ de\ acuerdo\ con\ las\ leyes\ y\ regulaciones\ aplicables.\ "{}}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}Si\ tienes\ alguna\ pregunta\ sobre\ nuestras\ políticas\ de\ privacidad\ o\ cookies,\ no\ dudes\ en\ ponerte\ en\ contacto\ con\ nosotros.</p>"{}}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}<p\ style=\(\backslash\)"{}text-\/align:justify;\(\backslash\)"{}>Gracias\ por\ confiar\ en\ nosotros.</p>"{}}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}</html>"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ JScrollPane\ para\ permitir\ desplazamiento\ por\ el\ contenido}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ JScrollPane\ scrollPane\ =\ \textcolor{keyword}{new}\ JScrollPane(editorPane);}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Panel\ inferior\ con\ botón\ de\ aceptar}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ JPanel\ panelBoton\ =\ \textcolor{keyword}{new}\ JPanel();}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ JButton\ botonAceptar\ =\ \textcolor{keyword}{new}\ JButton(\textcolor{stringliteral}{"{}Aceptar"{}});}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ botonAceptar.addActionListener(\textcolor{keyword}{new}\ ActionListener()\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ actionPerformed(ActionEvent\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dispose();\ \textcolor{comment}{//\ Cierra\ la\ ventana}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ panelBoton.add(botonAceptar);}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Configuramos\ las\ propiedades\ de\ la\ ventana}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ setLayout(\textcolor{keyword}{new}\ BorderLayout());}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ add(panelTitulo,\ BorderLayout.NORTH);}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ add(scrollPane,\ BorderLayout.CENTER);}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ add(panelBoton,\ BorderLayout.SOUTH);}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ setPreferredSize(\textcolor{keyword}{new}\ Dimension(500,\ 400));\ \textcolor{comment}{//\ Establecemos\ un\ tamaño\ medio\ por\ defecto}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Centrar\ la\ ventana\ de\ políticas\ en\ el\ centro\ de\ la\ ventana\ padre}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ SwingUtilities.invokeLater(()\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ (int)\ ((parent.getWidth()\ -\/\ \textcolor{keyword}{this}.getWidth())\ /\ 2)\ +\ parent.getX();}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ (int)\ ((parent.getHeight()\ -\/\ \textcolor{keyword}{this}.getHeight())\ /\ 2)\ +\ parent.getY();}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ this.setLocation(x,\ y);}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ setDefaultCloseOperation(JDialog.DISPOSE\_ON\_CLOSE);\ \textcolor{comment}{//\ Usamos\ DISPOSE\_ON\_CLOSE\ para\ que\ solo\ cierre\ esta\ ventana}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ pack();}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_ventana_politicas_8java_source_l00063}00063\ }
+
+\end{DoxyCode}

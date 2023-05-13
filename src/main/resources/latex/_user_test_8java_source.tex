@@ -1,0 +1,74 @@
+\hypertarget{_user_test_8java_source}{}\doxysection{User\+Test.\+java}
+\label{_user_test_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/server/jdo/UserTest.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/server/jdo/UserTest.java}}
+\mbox{\hyperlink{_user_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.server.jdo;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00003}00003\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.junit.Assert.*;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.HashSet;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.Set;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.junit.After;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.junit.Before;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00010}00010\ \textcolor{keyword}{import}\ org.junit.Test;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00012}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test}{00012}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test}{UserTest}}\ \{}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}\ user;}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{private}\ String\ \textcolor{keywordtype}{id}\ =\ \textcolor{stringliteral}{"{}test\_user"{}};}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{private}\ String\ password\ =\ \textcolor{stringliteral}{"{}test\_password"{}};}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{boolean}\ admin\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00019}00019\ \ \ \ \ @Before}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00020}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_a5e2021c97a9b07659b9501fa59c0a8f1}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_a5e2021c97a9b07659b9501fa59c0a8f1}{setUp}}()\ throws\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ user\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user}{User}}(\textcolor{keywordtype}{id},\ password,\ admin);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00024}00024\ \ \ \ \ @After}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00025}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_ab2a0e3784f92315b5e7017b6e9105285}{00025}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_ab2a0e3784f92315b5e7017b6e9105285}{tearDown}}()\ throws\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ user\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00029}00029\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00030}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_a86afe9c14334413322598ba619b073a9}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_a86afe9c14334413322598ba619b073a9}{testUser}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ assertNotNull(user);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ assertEquals(\textcolor{keywordtype}{id},\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a4b9c236ed45a67c9ae02812fe242c30b}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ assertEquals(password,\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_aadf23ccdcdb208d59cc858e2dce85769}{getPassword}}());}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ assertEquals(admin,\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_aac856d350acfeddaf0913a6c5608a5c3}{isAdmin}}());}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00037}00037\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00038}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_abab7da90a75929e065a8597939b30b46}{00038}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_test_abab7da90a75929e065a8597939b30b46}{testAddRemoveMessage}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{Message}}\ message1\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{Message}}(\textcolor{stringliteral}{"{}test\_subject1"{}});}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{Message}}\ message2\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_message}{Message}}(\textcolor{stringliteral}{"{}test\_subject2"{}});}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a2b03c52150cafe2e57850dc3463bdb88}{addMessage}}(message1);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a2b03c52150cafe2e57850dc3463bdb88}{addMessage}}(message2);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ Set<Message>\ expectedMessages\ =\ \textcolor{keyword}{new}\ HashSet<>();}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ expectedMessages.add(message1);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ expectedMessages.add(message2);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ assertEquals(expectedMessages,\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a3192b0c23e25df30b95923c5f9778ca6}{getMessages}}());}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a4fca80d4c6d3a79a9a1324d9e1d3b798}{removeMessage}}(message1);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ Set<Message>\ expectedMessagesAfterRemove\ =\ \textcolor{keyword}{new}\ HashSet<>();}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ expectedMessagesAfterRemove.add(message2);}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ assertEquals(expectedMessagesAfterRemove,\ user.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1_user_a3192b0c23e25df30b95923c5f9778ca6}{getMessages}}());}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00059}00059\ \ \ \ \ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00060}00060\ \textcolor{comment}{\ \ \ \ @Test}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00061}00061\ \textcolor{comment}{\ \ \ \ public\ void\ testToString()\ \{}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00062}00062\ \textcolor{comment}{\ \ \ \ \ \ \ \ Message\ message1\ =\ new\ Message("{}test\_subject1"{});}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00063}00063\ \textcolor{comment}{\ \ \ \ \ \ \ \ user.addMessage(message1);}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00064}00064\ \textcolor{comment}{\ \ \ \ \ \ \ \ String\ expectedString\ =\ "{}User:\ login\ -\/-\/>\ "{}\ +\ this.id\ +\ "{},\ password\ -\/-\/>\ \ "{}\ +\ this.password\ +\ "{},\ messages\ -\/-\/>\ ["{}\ +\ message1\ +\ "{}]"{};}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00065}00065\ \textcolor{comment}{\ \ \ \ \ \ \ \ assertEquals(expectedString,\ user.toString());}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00066}00066\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00067}00067\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_user_test_8java_source_l00068}00068\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\hypertarget{_auth_service_test_8java_source}{}\doxysection{Auth\+Service\+Test.\+java}
+\label{_auth_service_test_8java_source}\index{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/server/AuthServiceTest.java@{D:/Pasar/Universidad/SPQ-\/Repo/src/test/java/es/deusto/spq/server/AuthServiceTest.java}}
+\mbox{\hyperlink{_auth_service_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00001}00001\ \textcolor{keyword}{package\ }es.deusto.spq.server;}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00003}00003\ \textcolor{keyword}{import}\ org.junit.Test;}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00004}00004\ \textcolor{keyword}{import}\ \textcolor{keyword}{static}\ org.junit.Assert.*;}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00007}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test}{AuthServiceTest}}\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00009}00009\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00010}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_a5d42b835ff05370aeb3e73be8de610cf}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_a5d42b835ff05370aeb3e73be8de610cf}{testGetToken}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00011}00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}\ authService\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}(\textcolor{stringliteral}{"{}testToken"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00012}00012\ \ \ \ \ \ \ \ \ String\ expectedToken\ =\ \textcolor{stringliteral}{"{}testToken"{}};}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ String\ actualToken\ =\ authService.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_a58181f61304b32548e7019e7b0eb3631}{getToken}}();}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ assertEquals(expectedToken,\ actualToken);}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00017}00017\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00018}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_ac0fe8e638edfef6cec381f6ec0c62d0b}{00018}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_ac0fe8e638edfef6cec381f6ec0c62d0b}{testSetToken}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}\ authService\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}(\textcolor{stringliteral}{"{}testToken"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ String\ expectedToken\ =\ \textcolor{stringliteral}{"{}newTestToken"{}};}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ authService.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_a179b5f245fc36d06ee9cefe0eb84b49f}{setToken}}(\textcolor{stringliteral}{"{}newTestToken"{}});}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ String\ actualToken\ =\ authService.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_a58181f61304b32548e7019e7b0eb3631}{getToken}}();}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ assertEquals(expectedToken,\ actualToken);}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00026}00026\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00027}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_a6525fc6ef44f645ee1f740f176d7ff48}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_a6525fc6ef44f645ee1f740f176d7ff48}{testIsAdmin}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}\ authService\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}(\textcolor{stringliteral}{"{}testToken"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ assertTrue(authService.isAdmin());}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00032}00032\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00033}\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_a5060268550a6e1d2b54532c4eb1150d0}{00033}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_test_a5060268550a6e1d2b54532c4eb1150d0}{testSetAdmin}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}\ authService\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service}{AuthService}}(\textcolor{stringliteral}{"{}testToken"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ authService.\mbox{\hyperlink{classes_1_1deusto_1_1spq_1_1server_1_1_auth_service_ae1e5fec795957380950d0b83d653d7dc}{setAdmin}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ assertFalse(authService.isAdmin());}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{_auth_service_test_8java_source_l00039}00039\ }
+
+\end{DoxyCode}
