@@ -114,7 +114,11 @@
 			<version>3.12.4</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+      		<groupId>com.github.noconnor</groupId>
+      		<artifactId>junitperf</artifactId>
+      		<version>1.22.1</version>
+    	</dependency>
 	</dependencies>
 	
 
