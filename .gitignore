@@ -2,7 +2,6 @@
 target/
 .DS_Store
 
-
 #GITIGNORE JAVA
 # Compiled class file
 *.class
