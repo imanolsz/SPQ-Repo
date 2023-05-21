@@ -1,0 +1,77 @@
+var hierarchy =
+[
+    [ "AbstractTableModel", null, [
+      [ "es.deusto.spq.modelos.ModeloTablaNotificacionData", "classes_1_1deusto_1_1spq_1_1modelos_1_1ModeloTablaNotificacionData.html", null ]
+    ] ],
+    [ "es.deusto.spq.client.AuthResponse", "classes_1_1deusto_1_1spq_1_1client_1_1AuthResponse.html", null ],
+    [ "es.deusto.spq.client.AuthResponseTest", "classes_1_1deusto_1_1spq_1_1client_1_1AuthResponseTest.html", null ],
+    [ "es.deusto.spq.server.AuthService", "classes_1_1deusto_1_1spq_1_1server_1_1AuthService.html", null ],
+    [ "es.deusto.spq.server.AuthServiceTest", "classes_1_1deusto_1_1spq_1_1server_1_1AuthServiceTest.html", null ],
+    [ "DefaultTableCellRenderer", null, [
+      [ "es.deusto.spq.client.gui.MiRenderer", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1MiRenderer.html", null ]
+    ] ],
+    [ "es.deusto.spq.server.jdo.DetallePedido", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1DetallePedido.html", null ],
+    [ "es.deusto.spq.pojo.DetallePedidoData", "classes_1_1deusto_1_1spq_1_1pojo_1_1DetallePedidoData.html", null ],
+    [ "es.deusto.spq.server.jdo.DetallePedidoTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1DetallePedidoTest.html", null ],
+    [ "es.deusto.spq.pojo.DirectMessage", "classes_1_1deusto_1_1spq_1_1pojo_1_1DirectMessage.html", null ],
+    [ "es.deusto.spq.pojo.DirectMessageTest", "classes_1_1deusto_1_1spq_1_1pojo_1_1DirectMessageTest.html", null ],
+    [ "es.deusto.spq.client.ExampleClient", "classes_1_1deusto_1_1spq_1_1client_1_1ExampleClient.html", null ],
+    [ "es.deusto.spq.client.ExampleClientTest", "classes_1_1deusto_1_1spq_1_1client_1_1ExampleClientTest.html", null ],
+    [ "es.deusto.spq.client.gui.GestorVentanas", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1GestorVentanas.html", null ],
+    [ "JDialog", null, [
+      [ "es.deusto.spq.client.gui.VentanaPoliticas", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaPoliticas.html", null ]
+    ] ],
+    [ "JFrame", null, [
+      [ "es.deusto.spq.client.gui.VentanaAdministrador", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaAdministrador.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaBuzon", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaBuzon.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaComidaPedido", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaComidaPedido.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaConsultaReserva", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaConsultaReserva.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaContacto", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaContacto.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaInicio", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaInicio.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaMenu", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaMenu.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaMenuComida", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaMenuComida.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaModificar", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaModificar.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaPrincipal", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaPrincipal.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaRealizarResena", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaRealizarResena.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaRegistro", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaRegistro.html", null ],
+      [ "es.deusto.spq.client.gui.VentanaReserva", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaReserva.html", null ]
+    ] ],
+    [ "JTable", null, [
+      [ "es.deusto.spq.client.gui.TablaMenu", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1TablaMenu.html", null ]
+    ] ],
+    [ "es.deusto.spq.main.Main", "classes_1_1deusto_1_1spq_1_1main_1_1Main.html", null ],
+    [ "es.deusto.spq.main.MainTest", "classes_1_1deusto_1_1spq_1_1main_1_1MainTest.html", null ],
+    [ "es.deusto.spq.server.jdo.Menu", "enumes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Menu.html", null ],
+    [ "es.deusto.spq.server.jdo.Message", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Message.html", null ],
+    [ "es.deusto.spq.pojo.MessageData", "classes_1_1deusto_1_1spq_1_1pojo_1_1MessageData.html", null ],
+    [ "es.deusto.spq.pojo.MessageDataTest", "classes_1_1deusto_1_1spq_1_1pojo_1_1MessageDataTest.html", null ],
+    [ "es.deusto.spq.server.jdo.MessageTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1MessageTest.html", null ],
+    [ "es.deusto.spq.modelos.ModeloTablaNotificacionDataTest", "classes_1_1deusto_1_1spq_1_1modelos_1_1ModeloTablaNotificacionDataTest.html", null ],
+    [ "es.deusto.spq.server.jdo.Nota", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Nota.html", null ],
+    [ "es.deusto.spq.pojo.NotaData", "classes_1_1deusto_1_1spq_1_1pojo_1_1NotaData.html", null ],
+    [ "es.deusto.spq.pojo.NotaDataTest", "classes_1_1deusto_1_1spq_1_1pojo_1_1NotaDataTest.html", null ],
+    [ "es.deusto.spq.server.jdo.NotaTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1NotaTest.html", null ],
+    [ "es.deusto.spq.server.jdo.Notificacion", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Notificacion.html", null ],
+    [ "es.deusto.spq.pojo.NotificacionData", "classes_1_1deusto_1_1spq_1_1pojo_1_1NotificacionData.html", null ],
+    [ "es.deusto.spq.pojo.NotificacionDataTest", "classes_1_1deusto_1_1spq_1_1pojo_1_1NotificacionDataTest.html", null ],
+    [ "es.deusto.spq.server.jdo.NotificacionTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1NotificacionTest.html", null ],
+    [ "es.deusto.spq.server.jdo.Pedido", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Pedido.html", null ],
+    [ "es.deusto.spq.pojo.PedidoData", "classes_1_1deusto_1_1spq_1_1pojo_1_1PedidoData.html", null ],
+    [ "es.deusto.spq.server.jdo.PedidoTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1PedidoTest.html", null ],
+    [ "es.deusto.spq.server.jdo.Resena", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Resena.html", null ],
+    [ "es.deusto.spq.pojo.ResenaData", "classes_1_1deusto_1_1spq_1_1pojo_1_1ResenaData.html", null ],
+    [ "es.deusto.spq.server.jdo.Reserva", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Reserva.html", null ],
+    [ "es.deusto.spq.pojo.ReservaData", "classes_1_1deusto_1_1spq_1_1pojo_1_1ReservaData.html", null ],
+    [ "es.deusto.spq.pojo.ReservaDataTest", "classes_1_1deusto_1_1spq_1_1pojo_1_1ReservaDataTest.html", null ],
+    [ "es.deusto.spq.server.jdo.ReservaTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1ReservaTest.html", null ],
+    [ "es.deusto.spq.server.Resource", "classes_1_1deusto_1_1spq_1_1server_1_1Resource.html", null ],
+    [ "es.deusto.spq.server.ResourceTest", "classes_1_1deusto_1_1spq_1_1server_1_1ResourceTest.html", null ],
+    [ "es.deusto.spq.server.jdo.Restaurante", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1Restaurante.html", null ],
+    [ "es.deusto.spq.server.jdo.RestauranteTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1RestauranteTest.html", null ],
+    [ "es.deusto.spq.client.gui.TablaMenuTest", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1TablaMenuTest.html", null ],
+    [ "es.deusto.spq.server.jdo.User", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1User.html", null ],
+    [ "es.deusto.spq.pojo.UserData", "classes_1_1deusto_1_1spq_1_1pojo_1_1UserData.html", null ],
+    [ "es.deusto.spq.pojo.UserDataTest", "classes_1_1deusto_1_1spq_1_1pojo_1_1UserDataTest.html", null ],
+    [ "es.deusto.spq.server.jdo.UserTest", "classes_1_1deusto_1_1spq_1_1server_1_1jdo_1_1UserTest.html", null ],
+    [ "es.deusto.spq.client.gui.VentanaConfirmacion", "classes_1_1deusto_1_1spq_1_1client_1_1gui_1_1VentanaConfirmacion.html", null ]
+];
