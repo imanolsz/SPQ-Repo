@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.ResenaData;
 
 
 public class VentanaRealizarResena extends JFrame {
@@ -53,7 +54,10 @@ public class VentanaRealizarResena extends JFrame {
 
 		bRealizarResena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ResenaData resena = new ResenaData(TfResena.getText());
+				Main.getExampleClient().realizarResena(resena);
+				dispose();
+				Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
 			}
 		});
 	}
