@@ -4,6 +4,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.Mockito;
 
+import com.mysql.cj.Query;
+
+import es.deusto.spq.pojo.DirectMessage;
+import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 
@@ -50,7 +54,7 @@ public class ResourceTest {
         assertEquals(200, response.getStatus());
     }
 
-    /* 
+    /*
     @Test
     public void testLoginUser() {
         UserData userData = new UserData();
@@ -63,11 +67,62 @@ public class ResourceTest {
         Response response = resource.loginUser(userData);
         assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
     }
+     */
+
+
+    // This is a basic test that ensures the constructor sets up the PersistenceManager correctly.
+    @Test
+    public void testConstructorWithPm() {
+        Resource resourceWithPm = new Resource(pm);
+        assertNotNull(resourceWithPm);
+    }
+    
+    /* 
+    @Test
+    public void testSayMessage() {
+        DirectMessage dm = new DirectMessage();
+        UserData ud = new UserData();
+        ud.setId("testUser");
+        ud.setPassword("testPass");
+        dm.setUserData(ud);
+
+        MessageData md = new MessageData();
+        md.setMessage("test message");
+        dm.setMessageData(md);
+
+        User user = new User();
+        user.setLogin(ud.getId());
+        user.setPassword(ud.getPassword());
+
+        Query query = Mockito.mock(Query.class);
+        Mockito.when(pm.newQuery(anyString())).thenReturn(query);
+        Mockito.when(query.execute()).thenReturn(user);
+        
+        Response response = resource.sayMessage(dm);
+
+        assertEquals(200, response.getStatus());
+        assertEquals(md.getMessage(), ((MessageData)response.getEntity()).getMessage());
+    }
+
+    @Test
+    public void testSayMessageWithInvalidUser() {
+        DirectMessage dm = new DirectMessage();
+        UserData ud = new UserData();
+        ud.setId("testUser");
+        ud.setPassword("testPass");
+        dm.setUserData(ud);
+
+        MessageData md = new MessageData();
+        md.setMessage("test message");
+        dm.setMessageData(md);
+
+        Query query = Mockito.mock(Query.class);
+        Mockito.when(pm.newQuery(anyString())).thenReturn(query);
+        Mockito.when(query.execute()).thenReturn(null);
+        
+        Response response = resource.sayMessage(dm);
+
+        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), response.getStatus());
+    }
     */
-
-
-    // Implementa pruebas similares para los demás métodos en la clase Resource.
-    // Recuerda que estas pruebas son muy básicas y pueden necesitar más
-    // funcionalidades como mockear más métodos/objetos, comprobar si se
-    // llaman ciertos métodos, etc.
 }
