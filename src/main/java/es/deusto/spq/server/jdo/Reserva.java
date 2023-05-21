@@ -1,7 +1,11 @@
 package es.deusto.spq.server.jdo;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.Calendar;
 
 import javax.jdo.annotations.*;
 
@@ -13,7 +17,8 @@ public class Reserva {
     @PrimaryKey
     @Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT) /*Se indica que el valor de la clave primaria se generará de forma automática incrementando el valor de la clave primaria de la última entidad creada*/
     private long id;
-    
+    @Persistent
+    private static final int TIEMPO_LIMITE_MINUTOS = 60; // Define el tiempo límite en minutos
     @Persistent
     private Date fecha;
     
@@ -49,7 +54,7 @@ public class Reserva {
         this.especificacion = especificacion;
         this.aparcamiento = aparcamiento;
     }
-
+    // Constructor
     public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, int aparcamiento, User user){
         this.fecha = fecha;
         this.hora = hora;
@@ -59,7 +64,7 @@ public class Reserva {
         this.especificacion = especificacion;
         this.aparcamiento = aparcamiento;
     }
-
+    // Constructor
     public Reserva(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, User user){
         this.fecha = fecha;
         this.hora = hora;
@@ -68,11 +73,38 @@ public class Reserva {
         this.user = user;
         this.especificacion = especificacion;
     }
-
+    // Constructor vacio
     public Reserva(){
+        this.fecha = null;
+        this.hora = null;
+        this.numPersonas = 0;
+        this.cancelada = false;
+        this.user = null;
+        this.especificacion = null;
     }
+    // Comprueba si la reserva ha excedido el tiempo límite
+    public boolean haExcedidoTiempoLimite() {
+        LocalDateTime horaActual = LocalDateTime.now();
+        LocalDateTime horaLimite = LocalDateTime.of(convertirDateALocalDate(fecha), hora);
 
-    
+        // Calcula la duración entre la hora actual y la hora límite
+        Duration duracion = Duration.between(horaLimite, horaActual);
+        long minutosExcedidos = duracion.toMinutes();
+
+        // Comprueba si se ha excedido el tiempo límite
+        return minutosExcedidos > TIEMPO_LIMITE_MINUTOS;
+    }
+    // Convierte un objeto Date a un objeto LocalDate
+    private static LocalDate convertirDateALocalDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Los meses en Calendar están indexados desde 0
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        return LocalDate.of(year, month, day);
+    }
+    // Metodo para actualizar una reserva
     public void actualizarReserva(Reserva reserva) {
         this.setFecha(reserva.getFecha());
         this.setHora(reserva.getHora());
