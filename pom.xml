@@ -176,13 +176,47 @@
 					</execution>
 				</executions>
 			</plugin>
+        <plugin>
+                    <groupId>com.soebes.maven.plugins.dmg</groupId>
+                    <artifactId>doxygen-maven-plugin</artifactId>
+                    <configuration>
+                            <projectName>${project.artifactId}</projectName>
+                            <projectNumber>${project.version}</projectNumber>
+                            <optimizeOutputJava>true</optimizeOutputJava>
+                        <extractAll>true</extractAll>
+                            <extractStatic>true</extractStatic>
+                            <recursive>true</recursive>
+                            <exclude>.git</exclude>
+                            <recursive>true</recursive>
+                            <umlLook>true</umlLook>
+                            <haveGraph>true</haveGraph>
+                            <generateLatex>false</generateLatex>
+                            <generateHtml>true</generateHtml>
+                            <outputDirectory>${basedir}/doxygen_doc</outputDirectory>
+                    </configuration>
+                </plugin>
 			<plugin>
-				<groupId>com.soebes.maven.plugins</groupId>
-				<artifactId>doxygen-maven-plugin</artifactId>
-				<version>1.1.0</version>
-				<configuration>
-					<configurationFile>${doxygen.config.file}</configurationFile>
-				</configuration>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/docs</outputDirectory>
+								<resources>          
+									<resource>
+									<directory>${basedir}/target/doxygen/html</directory>
+									<filtering>true</filtering>
+									</resource>
+								</resources>              
+						</configuration>            
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
