@@ -11,10 +11,8 @@ public class VentanaContacto extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	// private Thread t;
-
+    // Constructor
     public VentanaContacto() {
-
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("CONTACTO");

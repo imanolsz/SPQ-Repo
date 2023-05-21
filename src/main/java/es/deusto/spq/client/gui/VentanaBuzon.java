@@ -14,8 +14,8 @@ import java.awt.event.*;
 public class VentanaBuzon extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	// private Thread t;
 
+    // CONSTRUCTOR
     public VentanaBuzon() {
 
         ExampleClient ec = Main.getExampleClient();

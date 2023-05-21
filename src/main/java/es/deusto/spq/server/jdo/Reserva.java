@@ -1,9 +1,6 @@
 package es.deusto.spq.server.jdo;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.Date;
 import java.util.Calendar;
 
@@ -184,7 +181,9 @@ public class Reserva {
     public void setAparcamiento(int aparcamiento) {
         this.aparcamiento = aparcamiento;
     }
-    
+    public static int getTiempoLimiteMinutos() {
+        return TIEMPO_LIMITE_MINUTOS;
+    }
 }
 
 

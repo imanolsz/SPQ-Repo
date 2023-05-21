@@ -1,15 +1,13 @@
 package es.deusto.spq.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import java.time.LocalTime;
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReservaData {
-
+    // Atributos
     @JsonProperty("id")
     private long id;
     @JsonProperty("fecha")
@@ -28,11 +26,20 @@ public class ReservaData {
     private int aparcamiento;
     @JsonProperty("pedido")
     private PedidoData pedido;
-
+    // CONSTRUCTOR
     public ReservaData() {
         // Requerido por la serialización (Para poder ser almacenada en un archivo o enviada a través de una red)
+        this.id = 0;
+        this.fecha = null;
+        this.hora = null;
+        this.numPersonas = 0;
+        this.cancelada = false;
+        this.user = null;
+        this.especificacion = "";
+        this.aparcamiento = 0;
+        this.pedido = null;
     }
-
+    // CONSTRUCTOR
     public ReservaData(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, PedidoData pedido, int aparcamiento, UserData user) {
         this.fecha = fecha;
         this.hora = hora;
@@ -43,7 +50,7 @@ public class ReservaData {
         this.aparcamiento = aparcamiento;
         this.pedido = pedido;
     }
-
+    // CONSTRUCTOR
     public ReservaData(Date fecha, LocalTime hora, int numPersonas, boolean cancelada, String especificacion, UserData user) {
         this.fecha = fecha;
         this.hora = hora;
