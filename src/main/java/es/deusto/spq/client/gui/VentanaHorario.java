@@ -52,16 +52,16 @@ public class VentanaHorario extends JFrame {
         constraints.gridy = 2;
         add(labelCena, constraints);
 
-        // Botón "Atrás"
-        JButton botonAtras = new JButton("Atrás");
-        botonAtras.addActionListener(new AtrasButtonListener());
+        // Botón "Salir"
+        JButton botonSalir = new JButton("Salir");
+        botonSalir.addActionListener(new AtrasButtonListener());
+        botonSalir.setBackground(Color.RED);
         constraints.gridy = 3;
-        add(botonAtras, constraints);
+        add(botonSalir, constraints);
 
         // Ajustar tamaño y mostrar la ventana
         pack();
         setLocationRelativeTo(null); // Centrar la ventana en la pantalla
-        setVisible(true);
     }
 
     // Clase interna para manejar los eventos de selección de la ComboBox
@@ -108,7 +108,8 @@ public class VentanaHorario extends JFrame {
     private class AtrasButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-        
+            Main.getGestorVentanas().getVentanaMenu().setVisible(true);
+				dispose();
         }
     }
 

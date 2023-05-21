@@ -16,6 +16,7 @@ public class GestorVentanas {
 	VentanaComidaPedido ventanaComidaPedido;
 	VentanaAdministrador ventanaAdministrador;
 	VentanaRealizarResena ventanaRealizarResena;
+	VentanaHorario ventanaHorario;
 	
 	public GestorVentanas() {
 		VentanaPrincipal = new VentanaPrincipal();
@@ -32,6 +33,7 @@ public class GestorVentanas {
 		ventanaMenuComida = new VentanaMenuComida();
 		ventanaComidaPedido = new VentanaComidaPedido();
 		ventanaRealizarResena = new VentanaRealizarResena();
+		ventanaHorario = new VentanaHorario();
 	}
 	public VentanaRealizarResena getVentanaRealizarResena(){
 		return ventanaRealizarResena;
@@ -93,6 +95,10 @@ public class GestorVentanas {
 		return VentanaInicioSesion;
 	}
 
+	public VentanaHorario gVentanaHorario(){
+		return ventanaHorario;
+	}
+
 	public void setVentanaInicioSesion(VentanaInicio ventanaInicioSesion) {
 		VentanaInicioSesion = ventanaInicioSesion;
 	}
@@ -144,4 +150,9 @@ public class GestorVentanas {
 	public void setVentanaAdministrador(VentanaAdministrador ventanaAdministrador) {
 		this.ventanaAdministrador = ventanaAdministrador;
 	}
+
+	public void setVentanaHorario(VentanaHorario ventanaHorario) {
+		this.ventanaHorario= ventanaHorario;
+	}
+
 }

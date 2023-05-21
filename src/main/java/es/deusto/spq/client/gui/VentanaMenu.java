@@ -19,6 +19,7 @@ public class VentanaMenu extends JFrame {
 	JButton bModificarReserva;
 	JButton bVisualizarCarta;
 	JButton bRealizarResena;
+	JButton bHorario;
 
 	// private Thread t;
 
@@ -65,6 +66,11 @@ public class VentanaMenu extends JFrame {
 		bSalir.setBackground(Color.RED);
 		panelInferior.add(bSalir);
 
+		//boton horario
+		bHorario = new JButton("Horario");
+		bHorario.setBackground(Color.LIGHT_GRAY);
+		panelInferior.add(bHorario);
+
 		//boton realizar reserva y caracteristicas de la ventana
 		bRealizarReserva = new JButton("Realizar reserva");
 		bRealizarReserva.setBackground(Color.GREEN);
@@ -75,7 +81,7 @@ public class VentanaMenu extends JFrame {
 		bRealizarReserva.setLocation(width, height);
 
 		bHistoria = new JButton("Conocer historia de la reserva");
-		bHistoria.setBackground(Color.GREEN);
+		bHistoria.setBackground(Color.LIGHT_GRAY);
 		panelCentral.add(bHistoria);
 		bHistoria.setLocation(width, height);
 
@@ -144,5 +150,11 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 
+		bHorario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().gVentanaHorario().setVisible(true);
+				dispose();
+			}
+		});
 	}
 }
