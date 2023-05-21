@@ -4,9 +4,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.rmi.RemoteException;
+import java.sql.Date;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mockito.Mockito;
+
+import com.mysql.cj.Query;
+
+import es.deusto.spq.pojo.DetallePedidoData;
+import es.deusto.spq.pojo.DirectMessage;
+import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.PedidoData;
+import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 
@@ -54,7 +66,8 @@ public class ResourceTest {
         assertEquals(200, response.getStatus());
     }
 
-    /*
+
+    /* 
     @Test
     public void testLoginUser() {
         UserData userData = new UserData();
@@ -67,7 +80,7 @@ public class ResourceTest {
         Response response = resource.loginUser(userData);
         assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
     }
-     */
+    */
 
     @Test
     public void testConstructorWithPm() {
@@ -88,13 +101,12 @@ public class ResourceTest {
         md.setMessage("test message");
         dm.setMessageData(md);
 
-        User user = new User();
-        user.setLogin(ud.getId());
+        UserData user = new UserData();
         user.setPassword(ud.getPassword());
 
         Query query = Mockito.mock(Query.class);
-        Mockito.when(pm.newQuery(anyString())).thenReturn(query);
-        Mockito.when(query.execute()).thenReturn(user);
+        Mockito.when(pm.newQuery(toString())).thenReturn((javax.jdo.Query) query);
+        Mockito.when(((javax.jdo.Query) query).execute()).thenReturn(user);
         
         Response response = resource.sayMessage(dm);
 
@@ -115,8 +127,8 @@ public class ResourceTest {
         dm.setMessageData(md);
 
         Query query = Mockito.mock(Query.class);
-        Mockito.when(pm.newQuery(anyString())).thenReturn(query);
-        Mockito.when(query.execute()).thenReturn(null);
+        Mockito.when(pm.newQuery(toString())).thenReturn((javax.jdo.Query) query);
+        Mockito.when(((javax.jdo.Query) query).execute()).thenReturn(null);
         
         Response response = resource.sayMessage(dm);
 
@@ -138,9 +150,10 @@ public class ResourceTest {
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
         assertFalse(Resource.serverState.containsKey(token));
     }
-    
+    */
+    /* 
     @Test(expected = RemoteException.class)
-    public void testLogoutNotLoggedIn() throws NullPointerException, RemoteException {
+    public void testLogoutNotLoggedIn() throws RemoteException {
         // Prepare
         long token = 123L;
         
@@ -180,6 +193,33 @@ public class ResourceTest {
 
         // Assert
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    }
+    */
+
+    /* 
+    @Test
+    public void testCancelarReserva() {
+        // Prepare
+        ReservaData reservaData = new ReservaData();
+        reservaData.setFecha(new Date(0));  
+        reservaData.setHora(LocalTime.parse("12:34:56"));
+        reservaData.setNumPersonas(4);
+        reservaData.setCancelada(false);
+
+        UserData user = new UserData();
+        user.setId("testUser");
+        user.setPassword("testPass");
+        reservaData.setUser(user);
+
+        // Execute
+        Response response = resource.cancelarReserva(reservaData);
+
+        // Assert
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        verify(tx).begin();
+        verify(pm).deletePersistent(any());
+        verify(tx).commit();
+        verify(pm).close();
     }
     */
 }
