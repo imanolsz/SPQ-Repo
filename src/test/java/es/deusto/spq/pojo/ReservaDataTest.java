@@ -85,6 +85,6 @@ public class ReservaDataTest {
         assertNull(emptyReserva.getHora());
         assertEquals(0, emptyReserva.getNumPersonas());
         assertNull(emptyReserva.getUser());
-        assertNull(emptyReserva.getEspecificacion());
+        assertEquals(emptyReserva.getEspecificacion(), "");
     }
 }
