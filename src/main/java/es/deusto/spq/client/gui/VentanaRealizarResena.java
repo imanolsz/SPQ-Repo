@@ -1,61 +1,61 @@
 package es.deusto.spq.client.gui;
 
-import es.deusto.spq.main.Main;
-
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
-import java.net.URL;
+
+import es.deusto.spq.main.Main;
+
 
 public class VentanaRealizarResena extends JFrame {
-	
-	public static void main(String[] args) {
-        VentanaPrincipal ventana = new VentanaPrincipal();
-        ventana.setVisible(true);
-    }
 
 	private static final long serialVersionUID = 1L;
-	private JButton bCerrar;
+	JButton bAtras;
+	JButton bRealizarResena;
+	JTextField TfResena;
 	
-	public VentanaRealizarResena(){
-		        // Título de la ventana
-				super("Ventana Realizar Resena");
 
-		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		setTitle( "Realizar Reserva" );
-		setSize( 800, 600 );
-		setLocationRelativeTo( null );
-		
-		//Paneles principales
-		JPanel panelCentral = new JPanel(new GridBagLayout());
-		panelCentral.setBackground(Color.white);
+	public VentanaRealizarResena() {
+
+		setTitle("Inicio sesion");
+		setSize(800, 600);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(Color.white);
 		JPanel panelInferior = new JPanel(new FlowLayout());
-		JPanel panelSuperior = new JPanel(new BorderLayout());
-		
-		//PanelCentral
-
-		JPanel panelCentrado = new JPanel(new GridBagLayout());
-		panelCentrado.add(panelSuperior, new GridBagConstraints());
-
-		getContentPane().add(panelCentrado, BorderLayout.NORTH);
-		panelSuperior.setBackground(Color.decode("#e0a370"));
-		panelCentrado.setBackground(Color.decode("#e0a370"));
-		
-		//PanelInferior
-		
-		bCerrar = new JButton("Cerrar");
-		panelInferior.add(bCerrar);
-		getContentPane().add(panelInferior,"South");
 		panelInferior.setBackground(Color.decode("#e0a370"));
 
+		bRealizarResena = new JButton("Entrar");
+		panelInferior.add(bRealizarResena);
+		bAtras = new JButton("Atras");
+		panelInferior.add(bAtras);
+		getContentPane().add(panelInferior, "South");
+
+
+		TfResena = new JTextField();
+		TfResena.setText("test@test.com");
+		TfResena.setBounds(330, 200, 160, 25);
+		panel.add(TfResena);
+
 		
-		
-		
-		bCerrar.addActionListener(new ActionListener() {
+
+		getContentPane().add(panel);
+
+		bAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Main.getGestorVentanas().getVentanaMenu().setVisible(true);
+				Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
+			}
+		});
+
+		bRealizarResena.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 	}
+
 }
