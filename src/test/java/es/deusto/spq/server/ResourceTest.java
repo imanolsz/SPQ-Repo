@@ -2,12 +2,17 @@ package es.deusto.spq.server;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.rmi.RemoteException;
+import java.sql.Date;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import org.mockito.Mockito;
-
-import com.mysql.cj.Query;
-
-import es.deusto.spq.pojo.DirectMessage;
-import es.deusto.spq.pojo.MessageData;
+import es.deusto.spq.pojo.DetallePedidoData;
+import es.deusto.spq.pojo.PedidoData;
+import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 
@@ -31,7 +36,8 @@ public class ResourceTest {
         Mockito.when(pmf.getPersistenceManager()).thenReturn(pm);
         Mockito.when(pm.currentTransaction()).thenReturn(tx);
     
-        resource = new Resource(pm);  // Pasamos el PersistenceManager simulado a la instancia de Resource
+        resource = new Resource();
+        Resource.serverState = new HashMap<>(); // Reinicia serverState antes de cada prueba
     }
     
     @Test
@@ -69,8 +75,6 @@ public class ResourceTest {
     }
      */
 
-
-    // This is a basic test that ensures the constructor sets up the PersistenceManager correctly.
     @Test
     public void testConstructorWithPm() {
         Resource resourceWithPm = new Resource(pm);
@@ -125,4 +129,58 @@ public class ResourceTest {
         assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), response.getStatus());
     }
     */
+    @Test
+    public void testLogout() throws RemoteException {
+        // Prepare
+        long token = 123L;
+        User user = new User();
+        Resource.serverState.put(token, user);
+        
+        // Execute
+        Response response = resource.logout(token);
+        
+        // Assert
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        assertFalse(Resource.serverState.containsKey(token));
+    }
+    
+    @Test(expected = RemoteException.class)
+    public void testLogoutNotLoggedIn() throws RemoteException {
+        // Prepare
+        long token = 123L;
+        
+        // This should throw a RemoteException because the user is not logged in
+        resource.logout(token);
+    }
+    @Test
+    public void testRealizarReserva() {
+        // Prepare
+        Date currentDate = new Date(System.currentTimeMillis());
+        LocalTime currentTime = LocalTime.now();
+
+        long token = 123L;
+        User user = new User();
+        Resource.serverState.put(token, user);
+        
+        ReservaData reservaData = new ReservaData();
+        reservaData.setFecha(currentDate);
+        reservaData.setHora(currentTime);
+        reservaData.setNumPersonas(4);
+        reservaData.setCancelada(false);
+        reservaData.setEspecificacion("Especificacion");
+        reservaData.setAparcamiento(1);
+        
+        PedidoData pedidoData = new PedidoData(); // Create a new PedidoData
+        List<DetallePedidoData> listaAlimentos = new ArrayList<>(); // Create a list for alimentos
+        pedidoData.setListaAlimentos(listaAlimentos); // Assign the list to the pedidoData
+        reservaData.setPedido(pedidoData); // Assign the pedidoData to the reservaData
+
+        String authorizationHeader = "Bearer " + token;
+
+        // Execute
+        Response response = resource.realizarReserva(reservaData, authorizationHeader);
+
+        // Assert
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    }
 }
