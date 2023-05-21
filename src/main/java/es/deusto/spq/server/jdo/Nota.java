@@ -27,7 +27,6 @@ public class Nota {
         this.IDNota = IDNota;
     }
 
-
     public String getAsunto() {
         return asunto;
     }
@@ -59,10 +58,4 @@ public class Nota {
     public void setIDNota(Long IDNota) {
         this.IDNota = IDNota;
     }
-
-
-
-
-
-
 }

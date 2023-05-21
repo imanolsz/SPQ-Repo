@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import javax.jdo.*;
 
@@ -23,12 +22,18 @@ import org.apache.logging.log4j.*;
 @Singleton
 public class Resource {
 
+	
 	protected static final Logger logger = LogManager.getLogger();
-	private static Map<Long, User> serverState = new HashMap<>();
+	static Map<Long, User> serverState = new HashMap<>();
 	private int cont = 0;
-	private PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
+	PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
+	// constructor
 
+	public Resource(PersistenceManager pm) {
+        this.pm = pm;
+    }
+	
 	public Resource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
@@ -100,12 +105,6 @@ public class Resource {
 				user = new User(userData.getId(), userData.getPassword());
 				logger.info("Creating user: {}", user);
 				pm.makePersistent(user);
-				//User retrievedUser = getUserByUsername("username");
-				//if (retrievedUser != null) {
-				//	System.out.println("El usuario ha sido creado exitosamente.");
-				//} else {
-				//	System.out.println("El usuario no se pudo crear.");
-				//}
 				logger.info("User created: {}", user);
 			}
 			localTx.commit();
@@ -256,7 +255,6 @@ try {
 	@POST
 	@Path("/realizarNotificacion")
 	public Response realizarNotificacion(NotificacionData notificacionData ) {
-		System.out.println("JEJEJEJE");
 		try
         {	
 			Notificacion notificacion = null;
@@ -278,11 +276,9 @@ try {
 		}
 	}
 
-
 	@POST
 	@Path("/realizarNota")
 	public Response realizarNota(NotaData notaData ) {
-		System.out.println("JEJEJEJE");
 		try
         {	
 			Nota nota = null;
@@ -303,7 +299,6 @@ try {
             }
 		}
 	}
-
 
 	@POST
 	@Path("/getNotifications")

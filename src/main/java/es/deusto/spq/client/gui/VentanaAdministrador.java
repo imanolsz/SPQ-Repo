@@ -6,54 +6,42 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
-
-import es.deusto.spq.main.Main;
-import es.deusto.spq.pojo.ReservaData;
 
 public class VentanaAdministrador extends JFrame {
+    // ATRIBUTOS
     private JTable tablaReservas;
     private JTable tablaMenu;
     private JFrame ventanaTablaMenu;
     private List<ReservaData> r;
     private Timer timer;
     private boolean filtro = false;
-    private Date fechaD;
-    
+
+    // CONSTRUCTOR
     public VentanaAdministrador() {
 
-        
         super("Ventana de Administración");
         setSize(800, 600);
         // Crear etiqueta para el título
         JLabel titleLabel = new JLabel("Bienvenido al Panel de Administración");
         titleLabel.setBounds(0, 0, 800, 50);
-
+        
         //Crear jcombobox hora para el parking
         JComboBox<LocalTime> boxHora = new JComboBox<LocalTime>();
-
+        
         //Crear textfield para fecha
         JTextField textFecha;
         textFecha = new JTextField();
-
+        
         // Crear botones para las distintas funcionalidades
         JButton crearReservaButton = new JButton("Crear Reserva");
         JButton editarReservaButton = new JButton("Editar Reserva");
         JButton eliminarReservaButton = new JButton("Eliminar Reserva");
         JButton mostrarMenuButton = new JButton("Mostrar menú");
         JButton atras = new JButton("Atras");
-
+        
         // Crear contenedor para organizar los componentes
         JPanel container = new JPanel();
         container.add(titleLabel);
@@ -64,7 +52,7 @@ public class VentanaAdministrador extends JFrame {
         container.add(boxHora);
         container.add(textFecha);
         container.add(atras);
-
+        
         //Crear la tabla
         tablaReservas = new JTable();
         tablaMenu = new JTable();
@@ -77,8 +65,9 @@ public class VentanaAdministrador extends JFrame {
             public void actionPerformed(ActionEvent e){
                 filtro = true;
             }
-        });
 
+        });
+        
         boxHora.addItem(LocalTime.of(13, 0));
         boxHora.addItem(LocalTime.of(13, 30));
         boxHora.addItem(LocalTime.of(14, 0));
@@ -95,7 +84,7 @@ public class VentanaAdministrador extends JFrame {
             List<ReservaData> reservas = Main.getExampleClient().getReservas();
             if (reservas != null && !reservas.equals(r)) {
                 r = reservas;
-            //    if(filtro = true){
+                //    if(filtro = true){
             //        filtro = false;
             //        boxHora.getSelectedItem();
              //       SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
@@ -105,11 +94,11 @@ public class VentanaAdministrador extends JFrame {
                //     Date fecha = formato.parse(textFecha.getText());
                //     fechaD = fecha;
                // } catch (ParseException e1) {
-                    // TODO Auto-generated catch block
+                   // TODO Auto-generated catch block
                 //    e1.printStackTrace();
                // }
                //     reservas = filtrarReservas(fechaD,(LocalTime) boxHora.getSelectedItem());
-
+               
               //  }
                 for (ReservaData reserva : reservas) {
                     System.out.println(reserva.toString()); // Imprimir la reserva en la pantalla
@@ -148,7 +137,7 @@ public class VentanaAdministrador extends JFrame {
         });
 
 
-
+        
         atras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
@@ -185,4 +174,63 @@ public class VentanaAdministrador extends JFrame {
     
     return reservasFiltradas;
 }
+
+    public JTable getTablaReservas() {
+        return tablaReservas;
+    }
+
+
+    public void setTablaReservas(JTable tablaReservas) {
+        this.tablaReservas = tablaReservas;
+    }
+
+    
+    public JTable getTablaMenu() {
+        return tablaMenu;
+    }
+
+
+    public void setTablaMenu(JTable tablaMenu) {
+        this.tablaMenu = tablaMenu;
+    }
+
+
+    public JFrame getVentanaTablaMenu() {
+        return ventanaTablaMenu;
+    }
+
+    
+    public void setVentanaTablaMenu(JFrame ventanaTablaMenu) {
+        this.ventanaTablaMenu = ventanaTablaMenu;
+    }
+    
+    
+    public List<ReservaData> getR() {
+        return r;
+    }
+
+    
+    public void setR(List<ReservaData> r) {
+        this.r = r;
+    }
+
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    
+    public boolean isFiltro() {
+        return filtro;
+    }
+
+    
+    public void setFiltro(boolean filtro) {
+        this.filtro = filtro;
+    }
 }

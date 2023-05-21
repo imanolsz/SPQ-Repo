@@ -2,6 +2,7 @@ package es.deusto.spq.server.jdo;
 
 import javax.jdo.annotations.*;
 import java.util.*;
+
 @PersistenceCapable
 public class User {
 	@PrimaryKey
@@ -12,7 +13,6 @@ public class User {
 	@Persistent(mappedBy = "user") // Es mappedBy user ya que la clase se llama  así 
 	private List<Reserva> reservas = new ArrayList<>();
 	
-	
 	Set<Message> messages = new HashSet<>();
 	
 	// CONSTRUCTOR Para inicializar un usuario sin permisos de administrador
@@ -21,9 +21,11 @@ public class User {
 		this.password = password;
 		this.admin = false;
 	}
-
+	// CONSTRUCTOR vacio Para inicializar un usuario sin permisos de administrador
 	public User(){
-
+		this.id = "";
+		this.password = "";
+		this.admin = false;
 	}
 	// CONSTRUCTOR Para inicializar un usuario con permisos (para crear admin)
 	public User(String id, String password, boolean admin) {
@@ -40,7 +42,6 @@ public class User {
 		messages.remove(message);
 	}
 	
-
 	public String getId() {
 		return this.id;
 	}
@@ -65,7 +66,10 @@ public class User {
 		this.admin = admin;
 	}
 
-	
+	public List<Reserva> getReservas() {
+		return this.reservas;
+	}
+	// Añade una reserva a la lista de reservas del usuario
 	public Set<Message> getMessages() {return this.messages;}
 	 
 	 public String toString() {
@@ -73,6 +77,10 @@ public class User {
 		for (Message message: this.messages) 
 			messagesStr.append(message.toString());
         return "User: login --> " + this.id + ", password -->  " + this.password + ", messages --> [" + messagesStr + "]";
+    }
+
+    public String getEmail() {
+        return null;
     }
 
 }

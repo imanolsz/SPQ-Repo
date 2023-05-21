@@ -5,28 +5,24 @@ import java.util.Date;
 import javax.jdo.*;
 
 public class NotificacionData {
-
-
+    // ATRIBUTOS
     private String asunto;
-
-
     private String contenido;
-    
-
     private Date fecha;
-
-
     private Long IDNotificacion;
-
+    // CONSTRUCTOR
     public NotificacionData(String asunto, String contenido, Date fecha, Long IDNotificacion) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
         this.IDNotificacion = IDNotificacion;
     }
-
+    // CONSTRUCTOR vacio
     public NotificacionData() {
-        // required by serialization
+        this.asunto = "";
+        this.contenido = "";
+        this.fecha = null;
+        this.IDNotificacion = null;
     }
 
     public String getAsunto() {
@@ -60,15 +56,12 @@ public class NotificacionData {
     public void setIDNotificacion(Long IDNotificacionData) {
         this.IDNotificacion = IDNotificacionData;
     }
-
-
-
+    // Agrega los getters y setters correspondientes
     public static void guardarNotificacionDataBD(NotificacionData notificaciondata) {
         // insert to notification a test notification
         PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
-    
         try {
             tx.begin();
             pm.makePersistent(notificaciondata);
@@ -82,7 +75,4 @@ public class NotificacionData {
             pm.close();
         }
     }
-    
-
-
 }

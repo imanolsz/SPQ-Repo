@@ -9,7 +9,7 @@ import es.deusto.spq.main.Main;
 
 
 public class VentanaInicio extends JFrame {
-
+	// ATRIBUTOS
 	private static final long serialVersionUID = 1L;
 	JButton bAtras;
 	JButton bEntrar;
@@ -17,7 +17,7 @@ public class VentanaInicio extends JFrame {
 	JTextField TfusuarioDTO;
 	JLabel lPasword;
 	JTextField TfPasword;
-
+	// CONSTRUCTOR
 	public VentanaInicio() {
 
 		setTitle("Inicio sesion");

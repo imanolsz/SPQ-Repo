@@ -33,8 +33,6 @@ public class Restaurante {
         return !fecha.before(fechaApertura) && !fecha.after(fechaCierre);
     }
     
-    
-    
     //Se podría cambiar este criterio:
     /*En principio vamos a creer que si en una última reserva hay 4 personas
     y tan solo queda 1 persona para llenar el restaurante. Se aceptarían las 4 y el restaurante

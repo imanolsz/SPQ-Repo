@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import es.deusto.spq.main.Main;
+import es.deusto.spq.pojo.ResenaData;
 
 
 public class VentanaRealizarResena extends JFrame {
@@ -18,7 +19,7 @@ public class VentanaRealizarResena extends JFrame {
 
 	public VentanaRealizarResena() {
 
-		setTitle("Inicio sesion");
+		setTitle("Realizar Resena");
 		setSize(800, 600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -28,7 +29,7 @@ public class VentanaRealizarResena extends JFrame {
 		JPanel panelInferior = new JPanel(new FlowLayout());
 		panelInferior.setBackground(Color.decode("#e0a370"));
 
-		bRealizarResena = new JButton("Entrar");
+		bRealizarResena = new JButton("Realiza resena");
 		panelInferior.add(bRealizarResena);
 		bAtras = new JButton("Atras");
 		panelInferior.add(bAtras);
@@ -36,7 +37,7 @@ public class VentanaRealizarResena extends JFrame {
 
 
 		TfResena = new JTextField();
-		TfResena.setText("test@test.com");
+		TfResena.setText("Pon tu resena");
 		TfResena.setBounds(330, 200, 160, 25);
 		panel.add(TfResena);
 
@@ -53,7 +54,10 @@ public class VentanaRealizarResena extends JFrame {
 
 		bRealizarResena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ResenaData resena = new ResenaData(TfResena.getText());
+				Main.getExampleClient().realizarResena(resena);
+				dispose();
+				Main.getGestorVentanas().getVentanaPrincipal().setVisible(true);
 			}
 		});
 	}
