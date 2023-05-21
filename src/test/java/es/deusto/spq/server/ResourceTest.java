@@ -23,11 +23,11 @@ public class ResourceTest {
         pmf = Mockito.mock(PersistenceManagerFactory.class);
         pm = Mockito.mock(PersistenceManager.class);
         tx = Mockito.mock(Transaction.class);
-
+    
         Mockito.when(pmf.getPersistenceManager()).thenReturn(pm);
         Mockito.when(pm.currentTransaction()).thenReturn(tx);
-
-        resource = new Resource();
+    
+        resource = new Resource(pm);  // Pasamos el PersistenceManager simulado a la instancia de Resource
     }
     
     @Test
@@ -64,6 +64,7 @@ public class ResourceTest {
         assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
     }
     */
+
 
     // Implementa pruebas similares para los demás métodos en la clase Resource.
     // Recuerda que estas pruebas son muy básicas y pueden necesitar más

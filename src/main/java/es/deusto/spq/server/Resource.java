@@ -22,12 +22,18 @@ import org.apache.logging.log4j.*;
 @Singleton
 public class Resource {
 
+	
 	protected static final Logger logger = LogManager.getLogger();
 	static Map<Long, User> serverState = new HashMap<>();
 	private int cont = 0;
-	private PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
+	PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
 	// constructor
+
+	public Resource(PersistenceManager pm) {
+        this.pm = pm;
+    }
+	
 	public Resource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
