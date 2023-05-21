@@ -24,7 +24,7 @@ import org.apache.logging.log4j.*;
 public class Resource {
 
 	protected static final Logger logger = LogManager.getLogger();
-	private static Map<Long, User> serverState = new HashMap<>();
+	static Map<Long, User> serverState = new HashMap<>();
 	private int cont = 0;
 	private PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
@@ -100,12 +100,6 @@ public class Resource {
 				user = new User(userData.getId(), userData.getPassword());
 				logger.info("Creating user: {}", user);
 				pm.makePersistent(user);
-				//User retrievedUser = getUserByUsername("username");
-				//if (retrievedUser != null) {
-				//	System.out.println("El usuario ha sido creado exitosamente.");
-				//} else {
-				//	System.out.println("El usuario no se pudo crear.");
-				//}
 				logger.info("User created: {}", user);
 			}
 			localTx.commit();
@@ -240,7 +234,6 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
 	@POST
 	@Path("/realizarNotificacion")
 	public Response realizarNotificacion(NotificacionData notificacionData ) {
-		System.out.println("JEJEJEJE");
 		try
         {	
 			Notificacion notificacion = null;
@@ -266,7 +259,6 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
 	@POST
 	@Path("/realizarNota")
 	public Response realizarNota(NotaData notaData ) {
-		System.out.println("JEJEJEJE");
 		try
         {	
 			Nota nota = null;
