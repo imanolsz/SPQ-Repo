@@ -19,6 +19,7 @@
 		<sonar.organization>imanolsz</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
+
 	</properties>
 
 	<dependencyManagement>		<!-- Para manejar todas las versiones de las dependencias del proyecto-->
