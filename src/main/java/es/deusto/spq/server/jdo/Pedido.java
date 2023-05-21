@@ -17,7 +17,7 @@ public class Pedido {
     @ForeignKey
     @Persistent
     private Reserva reserva;
-
+    // CONSTRUCTOR
     public Pedido(List<DetallePedido> listaAlimentos, Reserva reserva){
         this.listaAlimentos = listaAlimentos;
         this.reserva = reserva;
@@ -45,5 +45,4 @@ public class Pedido {
     public void setMapaComidaCantidad(List<DetallePedido> listaAlimentoss) {
         this.listaAlimentos = listaAlimentoss ;
     }
-
 }

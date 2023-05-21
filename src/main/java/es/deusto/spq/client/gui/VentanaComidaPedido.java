@@ -8,7 +8,6 @@ import java.awt.event.*;
 import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.*;
 
-
 public class VentanaComidaPedido extends JFrame {
 
 	//private JFrame frame;
@@ -17,6 +16,7 @@ public class VentanaComidaPedido extends JFrame {
 	private boolean verVegetariano = true;
 	JScrollPane scrollPane;
 
+	// constructor
 	public VentanaComidaPedido() {
 		this.setTitle("Menu");
 		this.setBounds(100, 100, 450, 300);
@@ -88,7 +88,6 @@ public class VentanaComidaPedido extends JFrame {
 				}
 			}
 		});
-		
 	}
 
 	public JTable getTablaMenu() {

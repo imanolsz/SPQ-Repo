@@ -4,21 +4,24 @@ import java.util.Date;
 
 import javax.jdo.*;
 public class NotaData {
-    
+    // Atributos
     private String asunto;
     private String contenido;
     private Date fecha;
     private Long IDNota;
-
+    // Constructor
     public NotaData(String asunto, String contenido, Date fecha, Long IDNota) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
         this.IDNota = IDNota;
     }
-
-    public NotaData(){
-        // required by serialization
+    // Constructor vacio
+    public NotaData() {
+        this.asunto = "";
+        this.contenido = "";
+        this.fecha = null;
+        this.IDNota = null;
     }
 
     public String getAsunto() {
@@ -52,9 +55,7 @@ public class NotaData {
     public void setIDNota(Long IDNota) {
         this.IDNota = IDNota;
     }
-
-    
-    
+    // Metodo para guardar la nota en la BD
     public static void guardarNotaDataBD(NotaData Notadata) {
         // insert to notification a test notification
         PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");

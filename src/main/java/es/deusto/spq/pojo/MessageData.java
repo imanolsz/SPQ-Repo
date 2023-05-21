@@ -1,9 +1,9 @@
 package es.deusto.spq.pojo;
 
 public class MessageData {
-
+    // ATRIBUTOS
     private String message;
-
+    // CONSTRUCTOR
     public MessageData() {
         // required by serialization
     }

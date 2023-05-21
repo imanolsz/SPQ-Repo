@@ -35,6 +35,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import es.deusto.spq.pojo.NotificacionData;
 import es.deusto.spq.pojo.PedidoData;
+import es.deusto.spq.pojo.ResenaData;
 
 public class ExampleClient {
 
@@ -166,21 +167,6 @@ public class ExampleClient {
 		WebTarget registerUserWebTarget = webTarget.path("realizarReserva");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		invocationBuilder.header("Authorization", "Bearer " + token);
-		//Date date = fecha; // crea un objeto Date
-		//java.time.Instant instant = date.toInstant(); // convierte Date a Instant
-		//Date Date = instant.atZone(ZoneId.systemDefault()).toLDate(); // convierte Instant a LocalDate
-
-		
-
-		//creo una NotificacionData para el usuario
-		/*NotificacionData NotificacionData = new NotificacionData();
-		NotificacionData.setIDNotificacionData(ID);
-		ID += 1;
-		NotificacionData.setFecha(Date);
-		NotificacionData.setAsunto("Confirmacion de reserva");
-		NotificacionData.setContenido("Su reserva se ha realizado correctamente. El dia " + fecha + " a las " + hora + " para " + numPersonas + " personas.");
-		*/
-		
 		ReservaData reservaData = new ReservaData();
 		reservaData.setFecha(fecha);
 		reservaData.setHora(hora);
@@ -252,7 +238,16 @@ public class ExampleClient {
 			logger.info("User correctly registered");
 		}
 	}
-
+	public void realizarResena(ResenaData resena){
+		WebTarget registerUserWebTarget = webTarget.path("realizarResena");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.post(Entity.entity(resena, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
+		}
+	}
 
 	public List<ReservaData> getReservas() {
 		WebTarget getReservasWebTarget = webTarget.path("admin/getReservas"); // Crea un objeto WebTarget con la URL del servicio REST que se desea invocar

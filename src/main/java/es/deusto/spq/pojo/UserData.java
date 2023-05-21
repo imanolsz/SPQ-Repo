@@ -2,21 +2,22 @@ package es.deusto.spq.pojo;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 public class UserData {
-
+    // Atributos
     private String id;
     private String password;
     private boolean admin;
-
+    // CONSTRUCTOR Para inicializar un usuario con permisos (para crear admin)
     public UserData(String id, String password, boolean admin) {
         this.id = id;
         this.password = password;
         this.admin = admin;
     }
-
+    // CONSTRUCTOR vacio Para inicializar un usuario sin permisos de administrador
     public UserData() {
+        this.id = "";
+        this.password = "";
+        this.admin = false;
     }
 
     private List<String> messages; // Asume que es una lista de mensajes de texto

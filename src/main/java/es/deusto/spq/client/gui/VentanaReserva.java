@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.*;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
 
@@ -36,10 +35,6 @@ public class VentanaReserva extends JFrame {
 
         JLabel lPlazas = new JLabel("Plazas libres: ");
         lPlazas.setLocation(100, 200);
-        
-        
-        
-
 
         // Crear los componentes que se van a agregar al panel
         JLabel lhora = new JLabel("Hora de la reserva:");
@@ -276,7 +271,6 @@ public class VentanaReserva extends JFrame {
         }
         parkingLibre = parkingTotal-parkingOcupado;    
         
-    
     return parkingLibre;
 }
 }

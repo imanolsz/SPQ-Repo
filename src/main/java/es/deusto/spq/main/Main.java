@@ -1,6 +1,5 @@
 package es.deusto.spq.main;
 
-
 import org.apache.logging.log4j.*;
 import es.deusto.spq.client.*;
 import es.deusto.spq.client.gui.*;
@@ -9,8 +8,6 @@ public class Main {
     private static GestorVentanas gestorVentanas;
 	private static ExampleClient exampleClient;
 	protected static final Logger logger = LogManager.getLogger();
-	
-
 	
 	public static void main(String[] args) {
 
@@ -25,9 +22,6 @@ public class Main {
 		exampleClient = new ExampleClient(hostname, port);
 		gestorVentanas = new GestorVentanas();
 
-	
-		
-		
 		gestorVentanas.getVentanaPrincipal().setVisible(true);
 	}
 	public static GestorVentanas getGestorVentanas() {
@@ -36,6 +30,4 @@ public class Main {
 	public static ExampleClient getExampleClient(){
 		return exampleClient;
 	}
-	
-
 }

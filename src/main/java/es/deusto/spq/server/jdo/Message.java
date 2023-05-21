@@ -1,23 +1,24 @@
 package es.deusto.spq.server.jdo;
 
 import java.util.Date;
-import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.*;
 
 @PersistenceCapable
 public class Message {
+    // ATRIBUTOS
     private String asunto;
     private String contenido;
     private Date fecha;
     User user=null;
     String text = null;
 	long timestamp;
-
+    // CONSTRUCTOR
     public Message(String asunto, String contenido, Date fecha) {
         this.asunto = asunto;
         this.contenido = contenido;
         this.fecha = fecha;
     }
-
+    // CONSTRUCTOR
     public Message(String text) {
         this.text = text;
 		this.timestamp = System.currentTimeMillis();

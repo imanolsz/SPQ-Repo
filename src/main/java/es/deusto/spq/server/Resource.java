@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import javax.jdo.*;
 
@@ -28,7 +27,7 @@ public class Resource {
 	private int cont = 0;
 	private PersistenceManager pm= null; // Una instancia de una consulta, objeto que representa una consulta en una base de datos
 	private Transaction tx=null; // Una transacción es un conjunto de operaciones que se realizan sobre una base de datos, y que se consideran como una única unidad de trabajo.
-
+	// constructor
 	public Resource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
@@ -230,6 +229,22 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
     }
 }
 
+@POST
+@Path("/realizarResena")
+public Response realizarResena(ResenaData resenaData, @HeaderParam("Authorization") String authorizationHeader) {
+try {	
+	tx.begin();
+	String pr = resenaData.getResena();
+	Resena resena = new Resena(pr);
+	pm.makePersistent(resena);
+	tx.commit();
+    return Response.ok().build();
+} finally {
+	if (tx.isActive()) {
+		tx.rollback();
+	}
+}
+}
 
 	@POST
 	@Path("/realizarNotificacion")
@@ -255,7 +270,6 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
 		}
 	}
 
-
 	@POST
 	@Path("/realizarNota")
 	public Response realizarNota(NotaData notaData ) {
@@ -279,7 +293,6 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
             }
 		}
 	}
-
 
 	@POST
 	@Path("/getNotifications")

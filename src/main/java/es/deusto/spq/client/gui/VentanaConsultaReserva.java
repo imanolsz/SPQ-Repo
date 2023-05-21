@@ -16,7 +16,7 @@ import es.deusto.spq.main.Main;
 import es.deusto.spq.pojo.ReservaData;
 
 public class VentanaConsultaReserva extends JFrame {
-
+	// atributos
 	private static final long serialVersionUID = 1L;
 	JButton bConsultarReservas;
 	JButton bSalir;
@@ -25,8 +25,7 @@ public class VentanaConsultaReserva extends JFrame {
 	JButton bCancelarReserva;
 	JTable tableReservasUsuario;
 
-	// private Thread t;
-
+	// constructor
 	public VentanaConsultaReserva() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("MENU");

@@ -3,7 +3,7 @@ package es.deusto.spq.server;
 public class AuthService {
     private String token;
     private boolean isAdmin;
-
+    // Constructor
     public AuthService(String token, boolean isAdmin) {
         this.token = token;
         this.isAdmin = isAdmin;

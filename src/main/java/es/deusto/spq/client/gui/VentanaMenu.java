@@ -51,7 +51,7 @@ public class VentanaMenu extends JFrame {
 		bConsultarReservas.setBackground(Color.LIGHT_GRAY);
 		bVisualizarCarta = new JButton("Visualizar carta");
 		bVisualizarCarta.setBackground(Color.LIGHT_GRAY);
-		bRealizarResena = new JButton("Visualizar carta");
+		bRealizarResena = new JButton("Realizar Resena");
 		bRealizarResena.setBackground(Color.LIGHT_GRAY);
 		panelCentral.add(BBuzon);
 		panelCentral.add(BContacto);
@@ -128,6 +128,12 @@ public class VentanaMenu extends JFrame {
 		bVisualizarCarta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaMenuComida().setVisible(true);
+				dispose();
+			}
+		});
+		bRealizarResena.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaRealizarResena().setVisible(true);
 				dispose();
 			}
 		});
