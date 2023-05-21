@@ -14,6 +14,7 @@ public class VentanaMenu extends JFrame {
 	JButton bSalir;
 	JButton bRealizarReserva;
 	JButton BBuzon;
+	JButton bHistoria;
 	JButton BContacto;
 	JButton bModificarReserva;
 	JButton bVisualizarCarta;
@@ -72,6 +73,11 @@ public class VentanaMenu extends JFrame {
 	    int width = pantalla.width;
 		panelCentral.add(bRealizarReserva);
 		bRealizarReserva.setLocation(width, height);
+
+		bHistoria = new JButton("Conocer historia de la reserva");
+		bHistoria.setBackground(Color.GREEN);
+		panelCentral.add(bHistoria);
+		bHistoria.setLocation(width, height);
 
 		//boton modificar reserva
 		bModificarReserva = new JButton("Modificar reserva");
