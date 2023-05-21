@@ -33,22 +33,36 @@ public class ExampleClientTest {
 	@Test
     public void getReservas() {
         // Crear objetos mock para simular el comportamiento de las clases involucradas
+
+        //El primer objeto mock se llama "mockWebTarget" y es de la clase "WebTarget". La clase WebTarget es parte de la librería Jersey. Este objeto se está creando para simular una petición a un servicio web.
         WebTarget mockWebTarget = mock(WebTarget.class);
+       
+       //El segundo objeto mock se llama "mockGetReservasWebTarget" y también es de la clase "WebTarget". Este objeto es una simulación de la respuesta a la petición que se hizo en el objeto anterior.
         WebTarget mockGetReservasWebTarget = mock(WebTarget.class);
+        
+        //El tercer objeto mock se llama "mockInvocationBuilder" y es de la clase "Invocation.Builder". Esta clase representa una petición que se va a hacer a un servicio web.
         Invocation.Builder mockInvocationBuilder = mock(Invocation.Builder.class);
+        
+        //El cuarto objeto mock se llama "mockResponse" y es de la clase "Response". Esta clase representa la respuesta que se recibe después de hacer una petición a un servicio web.
         Response mockResponse = mock(Response.class);
 
         // Crear una instancia de la clase que contiene el método getReservas
         ExampleClient clienteReservas = new ExampleClient("127.0.0.1","8080 ");
+        
+        //Se está asignando el objeto "mockWebTarget" a una propiedad de la instancia de "ExampleClient". Esto se hace para que la instancia de "ExampleClient" utilice el objeto mock en lugar de la clase real "WebTarget".
         clienteReservas.webTarget = mockWebTarget; // Reemplazar el webTarget real con el objeto mock
 
         // Configurar los objetos mock para simular el comportamiento esperado
         when(mockWebTarget.path("admin/getReservas")).thenReturn(mockGetReservasWebTarget);
+        //cuando se llame al método "request" del objeto "mockGetReservasWebTarget" con el argumento "MediaType.APPLICATION_JSON", entonces se debe retornar el objeto "mockInvocationBuilder". Esto es para simular que se está haciendo una petición con un contenido tipo JSON.
         when(mockGetReservasWebTarget.request(MediaType.APPLICATION_JSON)).thenReturn(mockInvocationBuilder);
+        //cuando se llame al método "get" del objeto "mockInvocationBuilder", entonces se debe retornar el objeto "mockResponse". Esto es para simular que se ha recibido una respuesta.
         when(mockInvocationBuilder.get()).thenReturn(mockResponse);
+        //cuando se llame al método "getStatus" del objeto "mockResponse", entonces se debe retornar el código de estado "200". Esto es para simular que la respuesta ha sido exitosa.
         when(mockResponse.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
 
         // Crear una lista de reservas simulada para devolver como resultado del método readEntity
+        // El método "readEntity" se utiliza para leer la respuesta del servidor como una entidad de un tipo de objeto específico en la aplicación cliente.
         List<ReservaData> reservasSimuladas = new ArrayList<>();
 
 		Date fecha = Date.valueOf("2022-05-10");

@@ -1,7 +1,8 @@
 .classpath
 target/
+src/main/resources/html/
+src/main/resources/latex/
 .DS_Store
-
 
 #GITIGNORE JAVA
 # Compiled class file
