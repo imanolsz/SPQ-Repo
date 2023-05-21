@@ -17,6 +17,7 @@ public class VentanaMenu extends JFrame {
 	JButton BContacto;
 	JButton bModificarReserva;
 	JButton bVisualizarCarta;
+	JButton bRealizarResena;
 
 	// private Thread t;
 
@@ -50,10 +51,13 @@ public class VentanaMenu extends JFrame {
 		bConsultarReservas.setBackground(Color.LIGHT_GRAY);
 		bVisualizarCarta = new JButton("Visualizar carta");
 		bVisualizarCarta.setBackground(Color.LIGHT_GRAY);
+		bRealizarResena = new JButton("Visualizar carta");
+		bRealizarResena.setBackground(Color.LIGHT_GRAY);
 		panelCentral.add(BBuzon);
 		panelCentral.add(BContacto);
 		panelInferior.add(bConsultarReservas);
 		panelInferior.add(bVisualizarCarta);
+		panelInferior.add(bRealizarResena);
 
 		//boton salir
 		bSalir = new JButton("Salir");
