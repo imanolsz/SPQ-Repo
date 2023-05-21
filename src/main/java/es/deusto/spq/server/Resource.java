@@ -236,6 +236,22 @@ public Response realizarReserva(ReservaData reservaData, @HeaderParam("Authoriza
     }
 }
 
+@POST
+@Path("/realizarResena")
+public Response realizarResena(ResenaData resenaData, @HeaderParam("Authorization") String authorizationHeader) {
+try {	
+	tx.begin();
+	String pr = resenaData.getResena();
+	Resena resena = new Resena(pr);
+	pm.makePersistent(resena);
+	tx.commit();
+    return Response.ok().build();
+} finally {
+	if (tx.isActive()) {
+		tx.rollback();
+	}
+}
+}
 
 	@POST
 	@Path("/realizarNotificacion")
