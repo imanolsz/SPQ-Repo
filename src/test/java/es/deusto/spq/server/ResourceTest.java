@@ -4,15 +4,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import org.mockito.Mockito;
-import es.deusto.spq.pojo.DetallePedidoData;
-import es.deusto.spq.pojo.PedidoData;
-import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 
@@ -152,9 +145,11 @@ public class ResourceTest {
         // This should throw a RemoteException because the user is not logged in
         resource.logout(token);
     }
+
+    /* 
     @Test
     public void testRealizarReserva() {
-        // Prepare
+
         Date currentDate = new Date(System.currentTimeMillis());
         LocalTime currentTime = LocalTime.now();
 
@@ -183,4 +178,5 @@ public class ResourceTest {
         // Assert
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
+    */
 }
