@@ -2,23 +2,8 @@ package es.deusto.spq.server;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import java.rmi.RemoteException;
-import java.sql.Date;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import org.mockito.Mockito;
-
-import com.mysql.cj.Query;
-
-import es.deusto.spq.pojo.DetallePedidoData;
-import es.deusto.spq.pojo.DirectMessage;
-import es.deusto.spq.pojo.MessageData;
-import es.deusto.spq.pojo.PedidoData;
-import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 
@@ -65,7 +50,11 @@ public class ResourceTest {
         Response response = resource.registerUser(userData);
         assertEquals(200, response.getStatus());
     }
-
+    @Test
+    public void testConstructorWithPm() {
+        Resource resourceWithPm = new Resource(pm);
+        assertNotNull(resourceWithPm);
+    }
 
     /* 
     @Test
@@ -82,11 +71,6 @@ public class ResourceTest {
     }
     */
 
-    @Test
-    public void testConstructorWithPm() {
-        Resource resourceWithPm = new Resource(pm);
-        assertNotNull(resourceWithPm);
-    }
     
     /* 
     @Test

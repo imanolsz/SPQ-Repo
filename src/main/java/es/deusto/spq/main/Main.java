@@ -8,6 +8,7 @@ public class Main {
     private static GestorVentanas gestorVentanas;
 	private static ExampleClient exampleClient;
 	protected static final Logger logger = LogManager.getLogger();
+    public static final String BASE_URI = null;
 	
 	public static void main(String[] args) {
 
