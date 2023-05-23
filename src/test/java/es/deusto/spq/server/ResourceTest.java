@@ -1,9 +1,15 @@
 package es.deusto.spq.server;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.HashMap;
 import org.mockito.Mockito;
+
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
+
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 
@@ -13,6 +19,9 @@ import javax.jdo.Transaction;
 import javax.ws.rs.core.Response;
 
 public class ResourceTest {
+
+    @Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
     private Resource resource;
     private PersistenceManagerFactory pmf;
     private PersistenceManager pm;
@@ -32,6 +41,7 @@ public class ResourceTest {
     }
     
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testSayHello() {
         Response response = resource.sayHello();
         assertEquals(200, response.getStatus());
