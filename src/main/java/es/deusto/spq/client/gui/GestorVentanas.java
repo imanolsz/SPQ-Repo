@@ -6,6 +6,7 @@ public class GestorVentanas {
 	VentanaPrincipal VentanaPrincipal;
 	VentanaRegistro VentanaRegistro;
 	VentanaMenu VentanaMenu;
+	VentanaHistoria VentanaHistoria;
 	VentanaBuzon VentanaBuzon;
 	VentanaConfirmacion VentanaConfirmacion;
 	VentanaModificar VentanaModificar;
@@ -20,6 +21,7 @@ public class GestorVentanas {
 	
 	public GestorVentanas() {
 		VentanaPrincipal = new VentanaPrincipal();
+		VentanaHistoria = new VentanaHistoria();
 		ventanaContacto = new VentanaContacto();
 		VentanaInicioSesion = new VentanaInicio();
 		VentanaRegistro = new VentanaRegistro();
@@ -35,6 +37,16 @@ public class GestorVentanas {
 		ventanaRealizarResena = new VentanaRealizarResena();
 		ventanaHorario = new VentanaHorario();
 	}
+
+	//getters y setters ventanahistoria
+	public VentanaHistoria getVentanaHistoria() {
+		return VentanaHistoria;
+	}
+
+	public void setVentanaHistoria(VentanaHistoria ventanaHistoria) {
+		VentanaHistoria = ventanaHistoria;
+	}
+
 	public VentanaRealizarResena getVentanaRealizarResena(){
 		return ventanaRealizarResena;
 	}

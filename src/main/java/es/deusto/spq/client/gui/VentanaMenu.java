@@ -80,7 +80,7 @@ public class VentanaMenu extends JFrame {
 		panelCentral.add(bRealizarReserva);
 		bRealizarReserva.setLocation(width, height);
 
-		bHistoria = new JButton("Conocer historia de la reserva");
+		bHistoria = new JButton("Sobre nosotros");
 		bHistoria.setBackground(Color.LIGHT_GRAY);
 		panelCentral.add(bHistoria);
 		bHistoria.setLocation(width, height);
@@ -98,6 +98,13 @@ public class VentanaMenu extends JFrame {
 		bConsultarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.getGestorVentanas().getVentanaConsultaReserva().setVisible(true);
+				dispose();
+			}
+		});
+
+		bHistoria.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				Main.getGestorVentanas().getVentanaHistoria().setVisible(true);
 				dispose();
 			}
 		});
