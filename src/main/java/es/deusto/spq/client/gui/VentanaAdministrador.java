@@ -9,7 +9,14 @@ import java.util.List;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
-
+/**
+ * @brief La tabla donde se muestran las opciones del administrador
+ * extiende de JFrame y crea la ventana del administrador
+ * @param tablaReservas la tabla con las reservas realizadas
+ * @param ventanaTablaMenu la tabla del menu del restaurante
+ * @param r la lista de reservas
+ * @param timer 
+ */
 public class VentanaAdministrador extends JFrame {
     // ATRIBUTOS
     private JTable tablaReservas;

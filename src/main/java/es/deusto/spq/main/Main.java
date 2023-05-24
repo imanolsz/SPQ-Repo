@@ -3,7 +3,14 @@ package es.deusto.spq.main;
 import org.apache.logging.log4j.*;
 import es.deusto.spq.client.*;
 import es.deusto.spq.client.gui.*;
-
+/**
+ * @brief La clase principal para ejecutar la aplicación java
+ * 
+ * @param gestorVentanas el gestor donde se inicializar todas las ventanas de la aplicacion
+ * @param exampleClient el cliente que usa y ejecuta la aplicacion
+ * @param logger el objeto logger para la información de la conexion cliente-servidor
+ * @param BASE_URI null
+ */
 public class Main {
     private static GestorVentanas gestorVentanas;
 	private static ExampleClient exampleClient;

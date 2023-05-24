@@ -1,5 +1,7 @@
 package es.deusto.spq.client.gui;
-
+/**
+ * @brief Clase de gestión de todas las ventanas de la aplicación
+ */
 public class GestorVentanas {
 	
 	VentanaInicio VentanaInicioSesion;

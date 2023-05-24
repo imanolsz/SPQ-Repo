@@ -4,7 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-// Clase de renderizado personalizada para colorear filas
+/**
+ * @brief Clase que da formato a las tablas del menu
+ * extiende de la clase DefaultTableCellRenderer para crear el formato de las celdas
+ */
 public class MiRenderer extends DefaultTableCellRenderer {
     private static final long serialVersionUID = 1L;
 

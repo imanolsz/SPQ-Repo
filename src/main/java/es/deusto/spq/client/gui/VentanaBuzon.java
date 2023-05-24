@@ -11,6 +11,10 @@ import javax.swing.event.*;
 import java.net.URL;
 import java.util.List;
 import java.awt.event.*;
+/**
+ * @brief La ventana donde los usuarios dejan comentarios para el restaurante
+ * Extiende de JFrame para crear la ventana al inicializar la clase.
+ */
 public class VentanaBuzon extends JFrame {
 
 	private static final long serialVersionUID = 1L;

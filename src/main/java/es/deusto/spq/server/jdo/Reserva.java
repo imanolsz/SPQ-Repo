@@ -7,7 +7,18 @@ import java.util.Calendar;
 import javax.jdo.annotations.*;
 
 import es.deusto.spq.pojo.PedidoData;
-
+/**
+ * @brief Clase persistente reserva donde se define la reserva de un restaurante
+ * 
+ * @param fecha la fecha de la reserva
+ * @param hora la hora en la que se ha pedido la reserva
+ * @param numPersonas las personas que asistiran de esa reserva
+ * @param cancelada indica si la reserva ha sido cancelada
+ * @param especificacion detalles adicionales de la reserva
+ * @param aparcamiento para indicar cuantas plazas necesitan en el parking del restaurante
+ * @param pedido los datos del pedido de lo que van a comer en el dia de la reserva
+ * @param user el usuario que realiza la reserva
+ */
 @PersistenceCapable(detachable="true")
 public class Reserva {
 

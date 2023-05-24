@@ -3,7 +3,11 @@ package es.deusto.spq.client.gui;
 import javax.swing.*;
 import javax.swing.table.*;
 
-//La tabla donde se muestran todos los ingredientes
+/**
+ * @brief La tabla donde se muestran todos los ingredientes
+ * extiende de JTable y crea la tabla con el menu completo
+ * @param columnas de la tabla del menu
+ */
 public class TablaMenu extends JTable{
     String[] columnas = {"Comida", "Precio", "Cantidad", "Vegetariano"};
     public TablaMenu(){
