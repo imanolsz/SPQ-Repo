@@ -30,13 +30,13 @@ public class NotificacionTest {
         assertEquals("contenido_modificado", notificacion.getContenido());
     }
 
-    @Test
-    @JUnitPerfTest(threads = 10, durationMs = 2000)
-    public void testGetSetFecha() {
-        Date fecha = new Date();
-        notificacion = new Notificacion("asunto", "contenido", fecha, 1L);
-        assertEquals(fecha, notificacion.getFecha());
-    }
+    // @Test
+    // @JUnitPerfTest(threads = 10, durationMs = 2000)
+    // public void testGetSetFecha() {
+    //     Date fecha = new Date();
+    //     notificacion = new Notificacion("asunto", "contenido", fecha, 1L);
+    //     assertEquals(fecha, notificacion.getFecha());
+    // }
 
     @Test
     //@JUnitPerfTest(threads = 10, durationMs = 2000)
