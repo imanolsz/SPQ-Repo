@@ -4,11 +4,15 @@ import java.sql.Date;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.Rule;
 
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 
 import org.junit.*;
 
@@ -22,6 +26,10 @@ import javax.ws.rs.core.MediaType;
 import es.deusto.spq.pojo.ReservaData;
 import es.deusto.spq.pojo.UserData;
 public class ExampleClientTest {
+
+    @Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
+
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		// Code executed before the first test method
@@ -31,6 +39,7 @@ public class ExampleClientTest {
 		// Code executed before each test
 	}
 	@Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void getReservas() {
         // Crear objetos mock para simular el comportamiento de las clases involucradas
 
