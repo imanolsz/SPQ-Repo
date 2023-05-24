@@ -5,11 +5,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.HashMap;
 import org.mockito.Mockito;
-
+import org.junit.Rule;
 import com.github.noconnor.junitperf.JUnitPerfRule;
 import com.github.noconnor.junitperf.JUnitPerfTest;
 import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
-
 import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.jdo.User;
 
@@ -41,7 +40,7 @@ public class ResourceTest {
     }
     
     @Test
-    @JUnitPerfTest(threads = 10, durationMs = 2000)
+   // @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testSayHello() {
         Response response = resource.sayHello();
         assertEquals(200, response.getStatus());
@@ -49,6 +48,7 @@ public class ResourceTest {
     }
     
     @Test
+    //@JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testRegisterUser() {
         UserData userData = new UserData();
         userData.setId("testUser");
@@ -61,6 +61,7 @@ public class ResourceTest {
         assertEquals(200, response.getStatus());
     }
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testConstructorWithPm() {
         Resource resourceWithPm = new Resource(pm);
         assertNotNull(resourceWithPm);

@@ -3,10 +3,17 @@ package es.deusto.spq.pojo;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.Date;
+import org.junit.Rule;
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 
 public class NotificacionDataTest {
+    @Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
 
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testConstructorAndGetters() {
         String asunto = "asunto";
         String contenido = "contenido";
@@ -20,6 +27,7 @@ public class NotificacionDataTest {
     }
 
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testSetters() {
         NotificacionData notificacionData = new NotificacionData();
         String asunto = "asunto";

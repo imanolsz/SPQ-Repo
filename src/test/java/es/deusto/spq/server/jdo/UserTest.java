@@ -1,15 +1,20 @@
 package es.deusto.spq.server.jdo;
 
 import static org.junit.Assert.*;
-
+import org.junit.Rule;
 import java.util.HashSet;
 import java.util.Set;
-
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class UserTest {
+
+	@Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
 
 	private User user;
 	private String id = "test_user";
@@ -27,6 +32,7 @@ public class UserTest {
 	}
 
 	@Test
+	//@JUnitPerfTest(threads = 10, durationMs = 2000)
 	public void testUser() {
 		assertNotNull(user);
 		assertEquals(id, user.getId());
@@ -35,6 +41,7 @@ public class UserTest {
 	}
 
 	@Test
+	//@JUnitPerfTest(threads = 10, durationMs = 2000)
 	public void testAddRemoveMessage() {
 		Message message1 = new Message("test_subject1");
 		Message message2 = new Message("test_subject2");

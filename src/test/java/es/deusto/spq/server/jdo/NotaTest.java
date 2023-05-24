@@ -3,10 +3,16 @@ package es.deusto.spq.server.jdo;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
-
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 import org.junit.Test;
+import org.junit.Rule;
 
 public class NotaTest {
+
+    @Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
 
     @Test
     public void testConstructorAndGetters() {
@@ -22,6 +28,7 @@ public class NotaTest {
     }
 
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testSetters() {
         Nota nota = new Nota("", "", new Date(), 0L);
         String asunto = "asunto";

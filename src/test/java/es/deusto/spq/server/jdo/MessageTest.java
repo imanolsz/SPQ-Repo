@@ -3,12 +3,17 @@ package es.deusto.spq.server.jdo;
 import static org.junit.Assert.*;
 
 import java.util.Date;
-
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 public class MessageTest {
 
+	@Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
 	private Message message;
 	
 	@Before
@@ -17,6 +22,7 @@ public class MessageTest {
 	}
 
 	@Test
+   // @JUnitPerfTest(threads = 10, durationMs = 2000)
 	public void testGettersAndSetters() {
 		message.setAsunto("Nuevo asunto");
 		assertEquals("Nuevo asunto", message.getAsunto());

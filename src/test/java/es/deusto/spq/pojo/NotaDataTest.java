@@ -1,14 +1,20 @@
 package es.deusto.spq.pojo;
 
 import static org.junit.Assert.assertEquals;
-
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 import java.util.Date;
+import org.junit.Rule;
 
 import org.junit.Test;
 
 public class NotaDataTest {
+    @Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
 
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testConstructorAndGetters() {
         String asunto = "asunto";
         String contenido = "contenido";
@@ -22,6 +28,7 @@ public class NotaDataTest {
     }
 
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testSetters() {
         NotaData notaData = new NotaData();
         String asunto = "asunto";

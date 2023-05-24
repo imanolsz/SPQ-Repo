@@ -9,11 +9,17 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-
+import org.junit.Rule;
+import com.github.noconnor.junitperf.JUnitPerfRule;
+import com.github.noconnor.junitperf.JUnitPerfTest;
+import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
 public class RestauranteTest {
+
+    @Rule
+    public JUnitPerfRule perfTestRule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
 
     private Restaurante restaurante;
     private Date fechaApertura;
@@ -97,6 +103,7 @@ public class RestauranteTest {
     */
 
     @Test
+    @JUnitPerfTest(threads = 10, durationMs = 2000)
     public void testToString() {
         String expected = "Restaurante [fechaApertura=" + fechaApertura + ", fechaCierre=" + fechaCierre + ", horaApertura=" + horaApertura
                 + ", horaCierre=" + horaCierre + ", capacidadTotal=" + capacidadTotal + "]";
